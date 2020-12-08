@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/styles/navs.css">
+    <link rel="stylesheet" href="../../public/styles/index.css">
+    <title>Active Problems</title>
+    
+</head>
+<body>
+
+    <nav class='top-nav'>
+        <div class="top-nav-left">
+            <h2 class="top-nav-company">Make-It-All</h2>
+        </div>
+        <div class="top-nav-right">
+            <h3 class="top-nav-text">Welcome Analyst</h3>
+            <h3 class="top-nav-button"><a href="../../login.html">Logout</a></h3>
+        </div>
+    </nav>
+    <nav class='side-nav'>
+        <div class="side-nav-profile">
+            <div class="profile-picture"></div>
+            <div class="profile-info">
+                <h3 class="profile-name">Alan Pip</h3>
+                <h3 class="profile-type">Analyst</h3>
+            </div>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-database"></i></i>Data</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Get Data</h3>
+            </div>
+        </div>
+        <div class="side-nav-date">
+            <p id="time">14:18</p>
+            <p id="date">30.10.2020</p>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="page-content scroll">
+            <h1 class="title"><i class="fa fa-database"></i> Data</h1>
+            <div class="search-element">
+                <h3 class="element-title">Solved Problems</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter problem type" onkeyup="searchTable(event, 4)">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+                <div class="search-element-table-wrapper">
+                <table class="search-element-table">
+                    <tr>
+                        <th>Problem No.</th>
+                        <th>Status</th>
+                        <th>Date Solved</th>
+                        <th>Time Solved</th>
+                        <th>Problem Type</th>
+                        <th>Specialist ID</th>
+                        <th>External Specialist</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>Solved</td>
+                        <td>20/10/20</td>
+                        <td>5:30pm</td>
+                        <td>Printers</td>
+                        <td>ES001</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Solved</td>
+                        <td>20/10/20</td>
+                        <td>5:33pm</td>
+                        <td>Software</td>
+                        <td>S001</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Solved</td>
+                        <td>21/10/20</td>
+                        <td>6:30pm</td>
+                        <td>Microsoft Word</td>
+                        <td>S002</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Solved</td>
+                        <td>22/10/20</td>
+                        <td>6:39pm</td>
+                        <td>PDF</td>
+                        <td>ES003</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                    </tr>
+                    
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+    </script>
+
+
+    <script src="../../public/js/navs.js"></script>
+    <script src="../../public/js/cssHelpers.js"></script>
+</body>
+</html>

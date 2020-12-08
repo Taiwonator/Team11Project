@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/styles/navs.css">
+    <link rel="stylesheet" href="../../public/styles/index.css">
+    <title>Edit Personnel</title>
+    
+</head>
+<body>
+
+    <nav class='top-nav'>
+        <div class="top-nav-left">
+            <h2 class="top-nav-company">Make-It-All</h2>
+        </div>
+        <div class="top-nav-right">
+            <h3 class="top-nav-text">Welcome HR Manager</h3>
+            <h3 class="top-nav-button"><a href="../../login.html">Logout</a></h3>
+        </div>
+    </nav>
+    <nav class='side-nav'>
+        <div class="side-nav-profile">
+            <div class="profile-picture"></div>
+            <div class="profile-info">
+                <h3 class="profile-name">Meghan Picker</h3>
+                <h3 class="profile-type">Human Resources</h3>
+            </div>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-list"></i>Personnel</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Personnel List</h3>
+            </div>
+        </div>
+        <div class="side-nav-date">
+            <p id="time">14:18</p>
+            <p id="date">30.10.2020</p>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="page-content scroll">
+            <h1 class="title"><i class="fa fa-list"></i> Personnel</h1>
+            <div class="search-element">
+                <h3 class="element-title">Personnel</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+                <div class="search-element-table-wrapper">
+                <table class="search-element-table">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Extension</th>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Branch ID</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>E001</td>
+                        <td>Harriet Simmons</td>
+                        <td>0</td>
+                        <td>DP Officer</td>
+                        <td>Legal</td>
+                        <td>franya@kurupee.com</td>
+                        <td>B0001</td>
+                        <td>
+                            <button class="view-button">View All</button>
+                            <button class="edit-button">Edit</button>
+                            <button class="report-solved-button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E002</td>
+                        <td>Allan Tomly</td>
+                        <td>1</td>
+                        <td>Diversity Coach</td>
+                        <td>Social</td>
+                        <td>ymar@hsmty.com</td>
+                        <td>B0001</td>
+                        <td>
+                            <button class="view-button">View All</button>
+                            <button class="edit-button">Edit</button>
+                            <button class="report-solved-button">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>E003</td>
+                        <td>Samuel Tyson</td>
+                        <td>2</td>
+                        <td>Software Engineer</td>
+                        <td>Technical</td>
+                        <td>lusa_2006n@coronagg.com</td>
+                        <td>B0002</td>
+                        <td>
+                            <button class="view-button">View All</button>
+                            <button class="edit-button">Edit</button>
+                            <button class="report-solved-button">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                <button id="add-personnel" class="big-button">Add Employee</button>
+            </div>
+        </div>
+        
+        <div id="edit-screen" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                    
+                <div class="element-row">
+                    <div class="text-input-element">
+                        <h3 class="element-title">Employee ID</h3>
+                        <input type="text" placeholder="Enter employee ID"></input>
+                    </div>  
+                    <div class="text-input-element">
+                        <h3 class="element-title">Name</h3>
+                        <input type="text" placeholder="Enter name"></input>
+                    </div>  
+                </div> 
+                    
+                <div class="element-row">
+                    <div class="text-input-element">
+                        <h3 class="element-title">Job Title</h3>
+                        <input type="text" placeholder="Enter job title"></input>
+                    </div>  
+                    <div class="text-input-element">
+                        <h3 class="element-title">Department</h3>
+                        <input type="text" placeholder="Enter department"></input>
+                    </div>  
+                </div> 
+    
+                <div class="element-row">
+                    <div class="text-input-element">
+                        <h3 class="element-title">Branch ID</h3>
+                        <input type="text" placeholder="Enter branch ID"></input>
+                    </div>  
+                    <div class="text-input-element">
+                        <h3 class="element-title">Extension</h3>
+                        <input type="text" placeholder="Enter extension no."></input>
+                    </div>  
+                </div> 
+                        
+                <button class="big-button confirm-edit">Confirm</button>
+            </div>
+
+    </div>
+
+    <div id="view-screen" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 class="title"><i class="fa fa-edit"></i> View All Info</h1>  
+
+            <div class="element-row">
+                <div class="text-input-element">
+                    <h3 class="element-title">Employee ID</h3>
+                    <input type="text" placeholder="Enter employee ID" value="Lorem Ipsum" disabled></input>
+                </div>  
+                <div class="text-input-element">
+                    <h3 class="element-title">Name</h3>
+                    <input type="text" placeholder="Enter name" value="Lorem Ipsum" disabled></input>
+                </div>  
+            </div> 
+                
+            <div class="element-row">
+                <div class="text-input-element">
+                    <h3 class="element-title">Job Title</h3>
+                    <input type="text" placeholder="Enter job title" value="Lorem Ipsum" disabled></input>
+                </div>  
+                <div class="text-input-element">
+                    <h3 class="element-title">Department</h3>
+                    <input type="text" placeholder="Enter department" value="Lorem Ipsum" disabled></input>
+                </div>  
+            </div> 
+
+            <div class="element-row">
+                <div class="text-input-element">
+                    <h3 class="element-title">Branch ID</h3>
+                    <input type="text" placeholder="Enter branch ID" value="Lorem Ipsum" disabled></input>
+                </div>  
+                <div class="text-input-element">
+                    <h3 class="element-title">Extension</h3>
+                    <input type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
+                </div>  
+            </div> 
+                    
+            <button class="big-button confirm-edit">Exit</button>
+        </div>
+
+</div>
+    <script>
+        var modal = document.getElementById("edit-screen");
+        var addPersonnelButton = document.getElementById("add-personnel");
+
+        addPersonnelButton.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+    </script>
+
+
+    <script src="../../public/js/navs.js"></script>
+    <script src="../../public/js/cssHelpers.js"></script>
+</body>
+</html>

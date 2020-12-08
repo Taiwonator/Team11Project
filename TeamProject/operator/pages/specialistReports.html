@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/styles/navs.css">
+    <link rel="stylesheet" href="../../public/styles/index.css">
+    <title>Active Problems</title>
+    
+</head>
+<body>
+
+    <nav class='top-nav'>
+        <div class="top-nav-left">
+            <h2 class="top-nav-company">Make-It-All</h2>
+        </div>
+        <div class="top-nav-right">
+            <h3 class="top-nav-text">Welcome Operator</h3>
+            <a class="top-nav-button" href="../../login.html">Logout</a>
+        </div>
+    </nav>
+    <nav class='side-nav'>
+        <div></div>
+        <div class="side-nav-profile">
+            <div class="profile-picture"></div>
+            <div class="profile-info">
+                <h3 class="profile-name">Jimmy Dago</h3>
+                <h3 class="profile-type">Operator</h3>
+            </div>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-list"></i>Problems</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <a href="./logCall.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Log Problem</h3>
+            </div></a>
+            <a href="./activeProblems.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Active Problems</h3>
+            </div></a>
+            <a href="./solvedProblems.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Solved Problem</h3>
+            </div></a>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Specialist</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <a href="./specialistStatus.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Specialist Status</h3>
+            </div></a>
+            <a href="./specialistReports.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Specialist Reports</h3>
+            </div></a>
+        </div>
+        <a href="./equipment.html"><div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Equipment</h3>
+        </div></a>
+        <a href="./software.html"><div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Software</h3>
+        </div></a>
+        <div class="side-nav-date">
+            <p id="time">14:18</p>
+            <p id="date">30.10.2020</p>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="page-content scroll">
+            <h1 class="title"><i class="fa fa-list"></i> Specialist Reports</h1>
+            <div class="search-element">
+                <h3 class="element-title">Specialist Reports</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)" >
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+                <div class="search-element-table-wrapper">
+                <table class="search-element-table">
+                    <tr>
+                        <th>Problem No.</th>
+                        <th>Specialist Name</th>
+                        <th>Serial No.</th>
+                        <th>Caller Name</th>
+                        <th>Operator Name</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Jim</td>
+                        <td>0</td>
+                        <td>Tiger Woods</td>
+                        <td>Jimmy</td>
+                        <td>
+                            <button class="view-button">View</button>
+                            <button class="report-solved-button">Confirm Solved</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Dave</td>
+                        <td>1</td>
+                        <td>Lamron Simmons</td>
+                        <td>Sally</td>
+                        <td>
+                            <button class="view-button">View</button>
+                            <button class="report-solved-button">Confirm Solved</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>Sally</td>
+                        <td>2</td>
+                        <td>Anthony Brown</td>
+                        <td>Nancy</td>
+                        <td>
+                            <button class="view-button">View</button>
+                            <button class="report-solved-button">Confirm Solved</button>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-screen" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 class="title"><i class="fa fa-edit"></i> View Problem</h1>  
+
+            <div class="search-element">
+                <h3 class="element-title">Caller</h3>
+                <table class="search-element-table">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Name</th>
+                        <th>Extension</th>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Branch ID</th>
+                    </tr>
+                    <tr>
+                        <td>E001</td>
+                        <td>Harriet Simmons</td>
+                        <td>0</td>
+                        <td>DP Officer</td>
+                        <td>Legal</td>
+                        <td>franya@kurupee.com</td>
+                        <td>B0001</td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="search-element">
+                <h3 class="element-title">Equipment</h3>
+                <table class="search-element-table">
+                    <tr>
+                        <th>Serial No.</th>
+                        <th>Type</th>
+                        <th>Make</th>
+                    </tr>
+                    <tr>
+                        <td>1234</td>
+                        <td>Monitor</td>
+                        <td>Asos</td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="search-element">
+                <h3 class="element-title">Software</h3>
+                <table class="search-element-table">
+                    <tr>
+                        <th>Software Name</th>
+                        <th>Licensed</th>
+                        <th>Supported</th>
+                    </tr>
+                    <tr>
+                        <td>Microsoft Word</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td><i class="fa fa-check-square"></i></td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div class="element-row">
+                <div class="select-input-element">
+                    <h3 class="element-title">Problem Type</h3>
+                    <select>
+                        <option value="" selected disabled hidden>Select a problem type</option>
+                        <optgroup label="Printer">
+                            <option>Printer</option>
+                            <option>Printer Ink</option>
+                            <option>Printer Paper</option>
+                        </optgroup>
+                        <optgroup label="Hardware">
+                            <option>Hardware</option>
+                            <option>GPU</option>
+                            <option>RAM</option>
+                        </optgroup>
+                    </select>
+                </div>
+    
+                <div class="select-input-element">
+                    <h3 class="element-title">Operating System</h3>
+                    <select>
+                        <option value="" selected disabled hidden>Select an OS</option>
+                        <option>Windows</option>
+                        <option>iOS</option>
+                        <option>Linux</option>
+                        <option>Doesn't require OS</option>
+                    </select>
+                </div>
+            </div>
+    
+            <div class="element-row">
+                <div class="select-input-element">
+                    <h3 class="element-title">Priority</h3>
+                    <select>
+                        <option value="" selected disabled hidden>Select Priority</option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                        <option>I don't know</option>
+                    </select>
+                </div>
+    
+                <div class="date-input-element">
+                    <h3 class="element-title">Date</h3>
+                    <input type="date">
+                </div>
+            </div>
+    
+            <div class="text-area-input-element">
+                <h3 class="element-title">Problem Description</h3>
+                <textarea class="scroll"></textarea>
+            </div>
+                
+            <div class="text-area-input-element">
+                <h3 class="element-title">How it was solved?</h3>
+                <textarea class="scroll"></textarea>
+            </div>
+
+            <div class="text-area-input-element">
+                <h3 class="element-title">Notes</h3>
+                <textarea class="scroll"></textarea>
+            </div>            
+
+            <button class="big-button confirm-edit">Confirm Edit</button>
+        </div>
+</div>
+
+
+    <script src="../../public/js/navs.js"></script>
+    <script src="../../public/js/cssHelpers.js"></script>
+</body>
+</html>

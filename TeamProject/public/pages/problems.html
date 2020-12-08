@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../php/problems.php', true)
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            console.log(this.response);
+            // Create some HTML DOM objects with response (problems)
+            document.querySelector("#demo").innerHTML = this.response;
+        }
+        xhr.send("user=specialist"); // Will be the logged in users credentials
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./public/styles/index.css">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #F1F1F1;
+        }
+
+        .login-form {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            color: #333333;
+            margin-bottom: .5em;
+            font-size: 50px;
+            font-weight: 100;
+        }
+
+        .avatar {
+            height: 150px;
+            width: 150px;
+            background-color:#333333;
+            border-radius: 100px;
+        }
+
+        .text-input-element {
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text-input-element text{
+            text-align: center;
+        }
+
+        button {
+            width: 100%;
+            font-size: 18px;
+        }
+
+        .login-info h3 {
+            font-weight: 700;
+        }
+
+        .login-info p {
+            display: flex;
+            flex-direction: row;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <a href="./analyst/analystDashboard.html">Analyst Dashboard</a>
+    <a href="./hr/hrDashboard.html">HR Dashboard</a>
+    <a href="./operator/operatorDashboard.html">Operator Dashboard</a>
+    <a href="./specialist/specialistDashboard.html">Specialist Dashboard</a> -->
+
+    <div class="login-form">
+        <h1 class="title">Sign In</h1>
+        <div class="avatar"></div>
+        <div class="text-input-element">
+            <input id="username" type="text" placeholder="Email">
+            <input id="password" type="text" placeholder="Password">
+            <button onclick="runLogin()"><a href="./operator/pages/logCall.html">Submit</a></button>
+        </div>
+        <div class="login-info">
+            <h3>Accounts <span style="font-weight: 100; font-size: 14px;">(hover to see email)</span></h3>
+            <p class="tooltip">Operator: <span class="tooltiptext">operator@gmail.com</span></p>
+            <p class="tooltip">Specialist: <span class="tooltiptext">specialist@gmail.com</span></p>
+            <p class="tooltip">HR: <span class="tooltiptext">hr@gmail.com</span></p>
+            <p class="tooltip">Analyst: <span class="tooltiptext">analyst@gmail.com</span></p>
+        </div>
+    </div>
+
+    <script>
+
+        const operatorEmail = "operator@gmail.com";
+        const specialistEmail = "specialist@gmail.com";
+        const hrEmail = "hr@gmail.com";
+        const analystEmail = "analyst@gmail.com";
+        
+        function runLogin() {
+            var username = document.querySelector("#username");
+            console.log(username.value);
+            if(username.value == "operator@gmail.com") {
+                window.location = "./operator/pages/logCall.html";
+            } else if (username.value == "specialist@gmail.com") {
+                window.location = "./specialist/pages/activeProblems.html";
+            } else if (username.value == "hr@gmail.com") {
+                window.location = "./hr/pages/editPersonnel.html";
+            } else if (username.value == "analyst@gmail.com") {
+                window.location = "./analyst/pages/getData.html";
+            } else {
+                console.log("no");
+            }
+        }
+
+        window.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                runLogin();
+            }
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/styles/navs.css">
+    <link rel="stylesheet" href="../../public/styles/index.css">
+    <title>Solved Problems</title>
+</head>
+<body>
+
+    <nav class='top-nav'>
+        <div class="top-nav-left">
+            <h2 class="top-nav-company">Make-It-All</h2>
+        </div>
+        <div class="top-nav-right">
+            <h3 class="top-nav-text">Welcome Operator</h3>
+            <h3 class="top-nav-button"><a href="../../login.html">Logout</a></h3>
+        </div>
+    </nav>
+    <nav class='side-nav'>
+        <div></div>
+        <div class="side-nav-profile">
+            <div class="profile-picture"></div>
+            <div class="profile-info">
+                <h3 class="profile-name">Jimmy Dago</h3>
+                <h3 class="profile-type">Operator</h3>
+            </div>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-list"></i>Problems</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <a href="./logCall.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Log Problem</h3>
+            </div></a>
+            <a href="./activeProblems.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Active Problems</h3>
+            </div></a>
+            <a href="./solvedProblems.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Solved Problem</h3>
+            </div></a>
+        </div>
+        <div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Specialist</h3>
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class="side-nav-sub-items">
+            <a href="./specialistStatus.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Specialist Status</h3>
+            </div></a>
+            <a href="./specialistReports.html"><div class="side-nav-sub-item">
+                <h3 class="side-nav-sub-item-title">Specialist Reports</h3>
+            </div></a>
+        </div>
+        <a href="./equipment.html"><div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Equipment</h3>
+        </div></a>
+        <a href="./software.html"><div class="side-nav-item">
+            <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Software</h3>
+        </div></a>
+        <div class="side-nav-date">
+            <p id="time">14:18</p>
+            <p id="date">30.10.2020</p>
+        </div>
+    </nav>
+
+    <div class="page">
+        <div class="page-content scroll">
+            <h1 class="title"><i class="fa fa-list"></i> Specialist Status</h1>
+            <div class="search-element">
+                <h3 class="element-title">Specialist Status</h3>
+
+		<input type="checkbox" id="third-party-status" onClick="checkInput(event)"></input>
+		<label>3rd party specialist</label>
+
+		<div id="specialists">
+            <div class="search-element-bar">
+                <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 0)">
+                <button><i class="fa fa-search"></i></button>
+            </div>
+
+                <div class="search-element-table-wrapper">
+                <table class="search-element-table">
+                    <tr>
+                        <th>Specialist Name</th>
+                        <th>Contact Number</th>
+                        <th>Expertise</th>
+                        <th>No. Jobs</th>
+                        <th>Part-Time</th>
+                        <th>Status</th>
+                        <th>In-Work</th>
+                        <th>Next In Work</th>
+                    </tr>
+                    <tr>
+                        <td>Sally</td>
+                        <td>0</td>
+                        <td>Printer</td>
+                        <td>10</td>
+                        <td></i></td>
+                        <td>Avaliable</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>20/20/2000</td>
+                    </tr>
+                    <tr>
+                        <td>Susan</td>
+                        <td>1</td>
+                        <td>Washing Machines</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>Busy</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>20/20/2000</td>
+                    </tr>
+                    <tr>
+                        <td>Simon</td>
+                        <td>2</td>
+                        <td>Alexas</td>
+                        <td>10</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>Unavailable</td>
+                        <td></td>
+                        <td>20/20/2000</td>
+                    </tr>
+                    <tr>
+                        <td>Sandre</td>
+                        <td>3</td>
+                        <td>Mac OS</td>
+                        <td>10</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>Avaliable</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>20/20/2000</td>
+                    </tr>
+                    <tr>
+                        <td>Sona</td>
+                        <td>4</td>
+                        <td>Anti-virus software</td>
+                        <td>10</td>
+                        <td></td>
+                        <td>Avaliable</td>
+                        <td><i class="fa fa-check-square"></i></td>
+                        <td>20/20/2000</td>
+                    </tr>
+                </table>
+                </div>
+		</div>
+
+<div id="third-party-specialists" class="hide-form">
+    <div class="search-element-bar">
+        <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 0)">
+        <button><i class="fa fa-search"></i></button>
+    </div>
+
+                <div class="search-element-table-wrapper">
+                <table class="search-element-table">
+                    <tr>
+                        <th>Specialist Name</th>
+                        <th>Contact Number</th>
+                        <th>Expertise</th>
+                        <th>No. Jobs</th>
+                    </tr>
+                    <tr>
+                        <td>Sally</td>
+                        <td>078678526954</td>
+                        <td>Printer</td>
+                        <td>10</td>
+                    </tr>
+                   
+                </table>
+                </div>
+		</div>
+
+
+            </div>
+            
+        </div>
+    </div>
+
+	<script>
+		
+		function checkInput(e) {
+  if(e.target.checked) {
+    document.querySelector("#specialists").classList.add("hide-form");
+    document.querySelector("#third-party-specialists").classList.remove("hide-form");
+  } else {
+    document.querySelector("#third-party-specialists").classList.add("hide-form");
+    document.querySelector("#specialists").classList.remove("hide-form");
+  }
+}
+
+	</script>
+
+    <script src="../../public/js/navs.js"></script>
+    <script src="../../public/js/cssHelpers.js"></script>
+</body>
+</html>
