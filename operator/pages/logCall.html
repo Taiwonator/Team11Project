@@ -71,7 +71,60 @@
                 </table>
             </div>
 
-            <div class="search-element">
+            <div class="date-input-element">
+                <h3 class="element-title">Date</h3>
+                <input type="date">
+            </div>
+
+            <div class="text-area-input-element">
+                <h3 class="element-title">Reason for call</h3>
+                <textarea class="scroll"></textarea>
+            </div>
+
+
+
+            <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close -->
+            <div class="tab">
+                <div class="tablinks-container">
+                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+                    <i class="fa fa-times deletetab"></i>
+                </div>
+
+                <div class="tablinks-container">
+                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                    <i class="fa fa-times deletetab"></i>
+                </div>
+
+                <div class="tablinks-container">
+                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    <i class="fa fa-times deletetab"></i>
+                </div>
+                <button class="addtab" onclick="addTab()"><i class="fa fa-plus"></i></button>
+              </div>
+              
+              <div id="London" class="tabcontent">
+                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                <h3>London</h3>
+                <p>London is the capital city of England.</p>
+              </div>
+              
+              <div id="Paris" class="tabcontent">
+                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p> 
+              </div>
+              
+              <div id="Tokyo" class="tabcontent">
+                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                <h3>Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+              </div>
+
+
+
+
+
+            <!-- <div class="search-element">
                 <h3 class="element-title">Equipment</h3>
                 <div class="search-element-bar">
                     <input type="text" placeholder="Enter Serial No." onkeyup="searchTable(event, 0)">
@@ -127,15 +180,6 @@
                 </table>
                 </div>
             </div>
-            <div class="select-input-element">
-                <h3 class="element-title">Branch</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select a branch</option>
-                    <option>England</option>
-                    <option>Germany</option>
-                    <option>Japan</option>
-                </select>
-            </div>
             <div class="element-row">
                 <div class="select-input-element">
                     <h3 class="element-title">Problem Type</h3>
@@ -166,7 +210,21 @@
                 </div>
             </div>
 
+            <div class="text-area-input-element">
+                <h3 class="element-title">Problem Description</h3>
+                <textarea class="scroll"></textarea>
+            </div>
+
             <div class="element-row">
+                <div class="select-input-element">
+                    <h3 class="element-title">Branch</h3>
+                    <select>
+                        <option value="" selected disabled hidden>Select a branch</option>
+                        <option>England</option>
+                        <option>Germany</option>
+                        <option>Japan</option>
+                    </select>
+                </div>
                 <div class="select-input-element">
                     <h3 class="element-title">Priority</h3>
                     <select>
@@ -178,20 +236,6 @@
                     </select>
                 </div>
 
-                <div class="date-input-element">
-                    <h3 class="element-title">Date</h3>
-                    <input type="date">
-                </div>
-            </div>
-
-            <div class="text-area-input-element">
-                <h3 class="element-title">Problem Description</h3>
-                <textarea class="scroll"></textarea>
-            </div>
-
-            <div class="text-area-input-element">
-                <h3 class="element-title">Reason for call</h3>
-                <textarea class="scroll"></textarea>
             </div>
 
             <div class="checkbox-input-element">
@@ -324,10 +368,25 @@
                 </div>
 
                 <button class="big-button"><a href="./activeProblems.html">Assign To Specialist</a></button>
-            </div>
+            </div> -->
         </div>
     </div>
-
+    <script>
+        //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
 
