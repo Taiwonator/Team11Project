@@ -33,12 +33,22 @@ const operatorSideNavBarString = `<nav class='side-nav'>
                                             <h3 class="side-nav-sub-item-title">Specialist Reports</h3>
                                         </div></a>
                                     </div>
-                                    <a href="./equipment.html"><div class="side-nav-item">
-                                        <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Equipment</h3>
-                                    </div></a>
-                                    <a href="./software.html"><div class="side-nav-item">
-                                        <h3 class="side-nav-item-title"><i class="fa fa-users"></i>Software</h3>
-                                    </div></a>
+
+                                    <div class="side-nav-item">
+                                        <h3 class="side-nav-item-title"><i class="fa fa-list"></i>Edit</h3>
+                                        <i class="fa fa-chevron-down"></i>
+                                    </div>
+                                    <div class="side-nav-sub-items">
+                                        <a href="./equipment.html"><div class="side-nav-sub-item">
+                                        <h3 class="side-nav-sub-item-title">Equipment</h3>
+                                        </div></a>
+                                        <a href="./software.html"><div class="side-nav-sub-item">
+                                            <h3 class="side-nav-sub-item-title">Software</h3>
+                                        </div></a>
+                                        <a href="./problemTypes.html"><div class="side-nav-sub-item">
+                                            <h3 class="side-nav-sub-item-title">Problem Types</h3>
+                                        </div></a>
+                                    </div>
                                     <div class="side-nav-date">
                                         <p id="time">14:18</p>
                                         <p id="date">30.10.2020</p>
