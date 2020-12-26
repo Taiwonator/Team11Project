@@ -350,8 +350,8 @@ input:focus, select:focus {
     }
 
     .tab .deletetab:hover {
-        color: white;
-        background-color: #ef476f;
+        color: white !important;
+        background-color: #ef476f !important;
     }
     
     /* Change background color of buttons on hover */
@@ -361,6 +361,11 @@ input:focus, select:focus {
     
     /* Create an active/current tablink class */
     .tab .tablinks.active {
+        background-color: #2d3142;
+        color: white;
+    }
+
+    .tab .tablinks.active + .deletetab {
         background-color: #2d3142;
         color: white;
     }

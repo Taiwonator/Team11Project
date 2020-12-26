@@ -84,40 +84,21 @@
 
 
             <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close -->
-            <div class="tab">
-                <div class="tablinks-container">
-                    <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
-                    <i class="fa fa-times deletetab"></i>
-                </div>
+            <div class="tab" id="tabs">
+                <!-- <div class="tablinks-container">
+                    <button class="tablinks" onclick="openTab(event, 'Problem1')" id="defaultOpen">Problem 1</button>
+                    <i class="fa fa-times deletetab" onclick="deleteTab(event)"></i>
+                </div> -->
 
-                <div class="tablinks-container">
-                    <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-                    <i class="fa fa-times deletetab"></i>
-                </div>
-
-                <div class="tablinks-container">
-                    <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-                    <i class="fa fa-times deletetab"></i>
-                </div>
                 <button class="addtab" onclick="addTab()"><i class="fa fa-plus"></i></button>
               </div>
               
-              <div id="London" class="tabcontent">
-                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                <h3>London</h3>
-                <p>London is the capital city of England.</p>
-              </div>
-              
-              <div id="Paris" class="tabcontent">
-                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                <h3>Paris</h3>
-                <p>Paris is the capital of France.</p> 
-              </div>
-              
-              <div id="Tokyo" class="tabcontent">
-                <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-                <h3>Tokyo</h3>
-                <p>Tokyo is the capital of Japan.</p>
+              <div id="tab-contents">
+                <!-- <div id="Problem1" class="tabcontent">
+                    <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                    <h3>Problem 1</h3>
+                </div> -->
+                
               </div>
 
 
@@ -373,7 +354,7 @@
     </div>
     <script>
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
-        function openCity(evt, cityName) {
+        function openTab(evt, problemName, plus) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
@@ -383,9 +364,52 @@
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(cityName).style.display = "block";
+            document.getElementById(problemName).style.display = "block";
+            if(plus) {
+                for(var i = 0; i < tablinks.length; i++) {
+                    if (tablinks[i].dataset.name == problemName) {
+                        tablinks[i].className += " active";
+                    }
+                }
+            }
             evt.currentTarget.className += " active";
         }
+
+        // Not w3chools
+        var tabCount = document.getElementsByClassName("tablinks").length;
+        var problemCount = 1;
+
+        function deleteTab(evt) {
+            if(tabCount != 1) {
+                evt.target.parentElement.remove();
+                tabCount--;
+                document.getElementById(evt.target.dataset.name).remove();
+            }
+        }
+
+        window.onload = function() {
+            addTab();
+        }
+
+        function addTab() {
+            const tabString = `<div class="tablinks-container">
+                                    <button class="tablinks" data-name="problem${problemCount}" onclick="openTab(event, 'problem${problemCount}')" id="defaultOpen">Problem ${problemCount}</button>
+                                    <i data-name="problem${problemCount}" class="fa fa-times deletetab" onclick="deleteTab(event)"></i>
+                                </div>`
+            const tabContentString = `<div id="problem${problemCount}" class="tabcontent">
+                                            <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+                                            <h3>Problem ${problemCount}</h3>
+                                        </div>`;
+
+            document.getElementById("tabs").insertAdjacentHTML('afterbegin', tabString);
+            document.getElementById("tab-contents").insertAdjacentHTML('afterbegin', tabContentString);
+            openTab(event, `problem${problemCount}` , true);
+            tabCount++;
+            problemCount++;
+
+
+        }
+
     </script>
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
