@@ -48,6 +48,9 @@ const operatorSideNavBarString = `<nav class='side-nav'>
                                         <a href="./problemTypes.html"><div class="side-nav-sub-item">
                                             <h3 class="side-nav-sub-item-title">Problem Types</h3>
                                         </div></a>
+                                        <a href="./standardSolutions.html"><div class="side-nav-sub-item">
+                                            <h3 class="side-nav-sub-item-title">Standard Solutions</h3>
+                                        </div></a>
                                     </div>
                                     <div class="side-nav-date">
                                         <p id="time">14:18</p>
