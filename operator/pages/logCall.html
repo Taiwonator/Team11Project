@@ -320,7 +320,7 @@
 
                                         <div class="search-element">
                                             <h3 class="element-title">Specialist </h3>
-                                            <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)">
+                                            <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)" class="external">
                                             <label>3rd party specialist</label>
 
                                             <div id="specialists">
@@ -582,7 +582,7 @@
             }
         }
 
-        function addSelectedRowInputs(obj, row){
+        function addSelectedRowInputs(obj, row, externalSpecialist){
             if(row != null) {
                 switch(row.parentNode.parentNode.dataset.tableName) {
                     case 'callerTable':
@@ -596,19 +596,20 @@
                         obj['softwareName'] = row.cells[0].innerHTML;
                         break;
                     case 'specialistTable': 
-                        obj['specialistID'] = row.cells[0].innerHTML;
+                        if(!externalSpecialist) {
+                            obj['specialistID'] = row.cells[0].innerHTML;
+                        }
                         break;
                     case 'externalSpecialistTable': 
-                        obj['externalSpecialistID'] = row.cells[0].innerHTML;
+                        if(externalSpecialist) {
+                            obj['externalSpecialistID'] = row.cells[0].innerHTML;
+                        }
                         break;
                     default: 
                         console.log(row);
                         break;
                 }
-            } else {
-                obj['callerName'] = ""
-                obj['extension'] = "";
-            }
+            } 
         }
 
         function getNewProblem(problemName) {
@@ -622,6 +623,8 @@
 
         function getNewProblemInputs(obj, newProblem) {
             const inputs = newProblem.getElementsByClassName('problem-input-field');
+            let external = newProblem.getElementsByClassName('external')[0].checked;
+
             let newProblemObj = {};
             for(var i = 0; i < inputs.length; i++) {
                 if(inputs[i].tagName != 'TABLE') {
@@ -638,9 +641,15 @@
                     }
                 } else {
                     let selectedRow = inputs[i].getElementsByClassName("selected-row")[0];
-                    addSelectedRowInputs(newProblemObj, selectedRow);
+                    addSelectedRowInputs(newProblemObj, selectedRow, external);
                 }
             }
+
+            if(newProblemObj.status == 'solved') {
+                newProblemObj['specialistID'] = '';
+                newProblemObj['externalSpecialistID'] = '';
+            }
+            
             obj.problems.push(newProblemObj);
         }
 
@@ -685,6 +694,10 @@
         // data-input: refers to the database column name
         // data-input-type: refers to the type of input ()
         // data-table-name: 'caller', 'solvedProblems' etc
+
+        // PROBLEMS
+        // Inputs should all be filled out according to existing problem if that one is chosen. Need an object which returns all the previously solved problems. 
+        // If specialist is set, 3rd party specialist should not be. Only check if input....
             
     </script>
     <script src="../../public/js/navs.js"></script>
