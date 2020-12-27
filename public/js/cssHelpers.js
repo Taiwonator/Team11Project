@@ -97,20 +97,24 @@ function searchTable(e, index) {
   }
 }
 
+
 // Selection
-const rows = document.getElementsByTagName("tr");
-for(var i = 0; i < rows.length; i++) {
-  rows[i].onclick = (e) => {
-    let row = e.target.parentNode;
-    let table = row.parentNode;
-    for(var i = 0; i < table.childNodes.length; i++) {
-      if(table.childNodes[i].tagName == "TR") {
-        if(table.childNodes[i] != row) {
-          table.childNodes[i].classList.remove("selected-row");
-        } else {
-          table.childNodes[i].classList.toggle("selected-row")
+function addSelectableRows() {
+  const rows = document.getElementsByTagName("tr");
+  for(var i = 0; i < rows.length; i++) {
+    rows[i].onclick = (e) => {
+      let row = e.target.parentNode;
+      let table = row.parentNode;
+      for(var i = 1; i < table.childNodes.length; i++) {
+        if(table.childNodes[i].tagName == "TR") {
+          if(table.childNodes[i] != row) {
+            table.childNodes[i].classList.remove("selected-row");
+          } else {
+            table.childNodes[i].classList.toggle("selected-row")
+          }
         }
       }
     }
   }
 }
+addSelectableRows();

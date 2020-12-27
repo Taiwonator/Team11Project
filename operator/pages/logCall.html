@@ -31,7 +31,7 @@
                     <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)">
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table class="search-element-table">
+                <table class="search-element-table call-input-field" data-table-name='callerTable'>
                     <tr>
                         <th>Employee ID</th>
                         <th>Name</th>
@@ -70,15 +70,22 @@
                     </tr>
                 </table>
             </div>
+            
+            <div class="element-row">
+                <div class="date-input-element">
+                    <h3 class="element-title">Date</h3>
+                    <input type="date" class="call-input-field" data-input-type='date' data-input='date' >
+                </div>
 
-            <div class="date-input-element">
-                <h3 class="element-title">Date</h3>
-                <input type="date">
+                <div class="time-input-element">
+                    <h3 class="element-title">Time</h3>
+                    <input type="time" class="call-input-field" data-input-type='time' data-input='time'>
+                </div>
             </div>
 
             <div class="text-area-input-element">
                 <h3 class="element-title">Reason for call</h3>
-                <textarea class="scroll"></textarea>
+                <textarea class="scroll call-input-field" data-input-type='textarea' data-input='reasonForCall'></textarea>
             </div>
 
 
@@ -101,7 +108,8 @@
                 
               </div>
 
-            <button class="big-button"><a href="./activeProblems.html">Confirm</a></button>
+            <!-- <button class="big-button"><a href="./activeProblems.html">Confirm</a></button> -->
+            <button onclick="retreiveInputs()" class="big-button">Confirm</a></button>
         </div>
     </div>
     <script>
@@ -148,272 +156,271 @@
 
         function addTab() {
             const problemString = `<div class="new-problem" data-name="problem${problemCount}"><div class="search-element">
-                <h3 class="element-title">Equipment</h3>
-                <div class="search-element-bar">
-                    <input type="text" placeholder="Enter Serial No." onkeyup="searchTable(event, 0)">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-                <table class="search-element-table">
-                    <tr>
-                        <th>Serial No.</th>
-                        <th>Type</th>
-                        <th>Make</th>
-                    </tr>
-                    <tr>
-                        <td>1234</td>
-                        <td>Monitor</td>
-                        <td>Asos</td>
-                    </tr>
-                    <tr>
-                        <td>234</td>
-                        <td>Printer</td>
-                        <td>Icer</td>
-                    </tr>
-                    <tr class="selected-row">
-                        <td>9456</td>
-                        <td>Fridge</td>
-                        <td>Samsung</td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>Monitor</td>
-                        <td>Apple</td>
-                    </tr>
-                </table>
-            </div>
+                                        <h3 class="element-title">Equipment</h3>
+                                        <div class="search-element-bar">
+                                            <input type="text" placeholder="Enter Serial No." onkeyup="searchTable(event, 0)">
+                                            <button><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <table class="search-element-table problem-input-field" data-table-name='equipmentTable'>
+                                            <tr>
+                                                <th>Serial No.</th>
+                                                <th>Type</th>
+                                                <th>Make</th>
+                                            </tr>
+                                            <tr>
+                                                <td>1234</td>
+                                                <td>Monitor</td>
+                                                <td>Asos</td>
+                                            </tr>
+                                            <tr>
+                                                <td>234</td>
+                                                <td>Printer</td>
+                                                <td>Icer</td>
+                                            </tr>
+                                            <tr>
+                                                <td>9456</td>
+                                                <td>Fridge</td>
+                                                <td>Samsung</td>
+                                            </tr>
+                                            <tr>
+                                                <td>0</td>
+                                                <td>Monitor</td>
+                                                <td>Apple</td>
+                                            </tr>
+                                        </table>
+                                    </div>
 
-            <div class="search-element">
-                <h3 class="element-title">Software</h3>
-                <div class="search-element-bar">
-                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 0)">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-                <div class="search-element-table-wrapper">
-                <table class="search-element-table">
-                    <tr>
-                        <th>Software Name</th>
-                        <th>Licensed</th>
-                        <th>Supported</th>
-                    </tr>
-                    <tr>
-                        <td>Microsoft Word</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td><i class="fa fa-check-square"></i></td>
-                    </tr>
-                </table>
-                </div>
-            </div>
-            <div class="element-row">
-                <div class="select-input-element">
-                    <h3 class="element-title">Problem Type</h3>
-                    <select>
-                        <option value="" selected disabled hidden>Select a problem type</option>
-                        <optgroup label="Printer">
-                            <option>Printer</option>
-                            <option>Printer Ink</option>
-                            <option>Printer Paper</option>
-                        </optgroup>
-                        <optgroup label="Hardware">
-                            <option>Hardware</option>
-                            <option>GPU</option>
-                            <option>RAM</option>
-                        </optgroup>
-                    </select>
-                </div>
+                                    <div class="search-element">
+                                        <h3 class="element-title">Software</h3>
+                                        <div class="search-element-bar">
+                                            <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 0)">
+                                            <button><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <div class="search-element-table-wrapper">
+                                        <table class="search-element-table problem-input-field" data-table-name='softwareTable'>
+                                            <tr>
+                                                <th>Software Name</th>
+                                                <th>Licensed</th>
+                                                <th>Supported</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Microsoft Word</td>
+                                                <td><i class="fa fa-check-square"></i></td>
+                                                <td><i class="fa fa-check-square"></i></td>
+                                            </tr>
+                                        </table>
+                                        </div>
+                                    </div>
+                                    <div class="element-row">
+                                        <div class="select-input-element">
+                                            <h3 class="element-title">Problem Type</h3>
+                                            <select class='problem-input-field' data-input-type='select' data-input='problemType'>
+                                                <option value="" selected disabled hidden>Select a problem type</option>
+                                                <optgroup label="Printer">
+                                                    <option>Printer</option>
+                                                    <option>Printer Ink</option>
+                                                    <option>Printer Paper</option>
+                                                </optgroup>
+                                                <optgroup label="Hardware">
+                                                    <option>Hardware</option>
+                                                    <option>GPU</option>
+                                                    <option>RAM</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
 
-                <div class="select-input-element">
-                    <h3 class="element-title">Operating System</h3>
-                    <select>
-                        <option value="" selected disabled hidden>Select an OS</option>
-                        <option>Windows</option>
-                        <option>iOS</option>
-                        <option>Linux</option>
-                        <option>Doesn't require OS</option>
-                    </select>
-                </div>
-            </div>
+                                        <div class="select-input-element">
+                                            <h3 class="element-title">Operating System</h3>
+                                            <select class='problem-input-field' data-input-type='select' data-input='OS'>
+                                                <option value="" selected disabled hidden>Select an OS</option>
+                                                <option>Windows</option>
+                                                <option>iOS</option>
+                                                <option>Linux</option>
+                                                <option>Doesn't require OS</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-            <div class="text-area-input-element">
-                <h3 class="element-title">Problem Description</h3>
-                <textarea class="scroll"></textarea>
-            </div>
+                                    <div class="text-area-input-element">
+                                        <h3 class="element-title">Problem Description</h3>
+                                        <textarea class="scroll problem-input-field" data-input-type='textarea' data-input='problemDescription'></textarea>
+                                    </div>
 
-            <div class="element-row">
-                <div class="select-input-element">
-                    <h3 class="element-title">Branch</h3>
-                    <select>
-                        <option value="" selected disabled hidden>Select a branch</option>
-                        <option>England</option>
-                        <option>Germany</option>
-                        <option>Japan</option>
-                    </select>
-                </div>
-                <div class="select-input-element">
-                    <h3 class="element-title">Priority</h3>
-                    <select>
-                        <option value="" selected disabled hidden>Select Priority</option>
-                        <option>Low</option>
-                        <option>Medium</option>
-                        <option>High</option>
-                        <option>I don't know</option>
-                    </select>
-                </div>
+                                    <div class="element-row">
+                                        <div class="select-input-element">
+                                            <h3 class="element-title">Branch</h3>
+                                            <select class='problem-input-field' data-input-type='select' data-input='branch'>
+                                                <option value="" selected disabled hidden>Select a branch</option>
+                                                <option>England</option>
+                                                <option>Germany</option>
+                                                <option>Japan</option>
+                                            </select>
+                                        </div>
+                                        <div class="select-input-element">
+                                            <h3 class="element-title">Priority</h3>
+                                            <select class='problem-input-field' data-input-type='select' data-input='priority'>
+                                                <option value="" selected disabled hidden>Select Priority</option>
+                                                <option>Low</option>
+                                                <option>Medium</option>
+                                                <option>High</option>
+                                                <option>I don't know</option>
+                                            </select>
+                                        </div>
 
-            </div>
+                                    </div>
 
-            <div class="search-element night">
-                <h3 class="element-title">Standard Solutions</h3>
-                <div class="search-element-bar">
-                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 0)">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-                <div class="search-element-table-wrapper">
+                                    <div class="search-element night">
+                                        <h3 class="element-title">Standard Solutions</h3>
+                                        <div class="search-element-bar">
+                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)">
+                                            <button><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <div class="search-element-table-wrapper">
 
-                    <table class="search-element-table">
-                        <tr>
-                            <th>Solution Name</th>
-                            <th>Problem Type</th>
-                            <th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>Turn off and On again</td>
-                            <td>General</td>
-                            <td>Hold the power button until power is lost. Then power up again</td>
-                        </tr>
-                    </table>
-                
-                </div>
-            </div>
+                                            <table class="search-element-table">
+                                                <tr>
+                                                    <th>Solution Name</th>
+                                                    <th>Problem Type</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>Turn off and On again</td>
+                                                    <td>General</td>
+                                                    <td>Hold the power button until power is lost. Then power up again</td>
+                                                </tr>
+                                            </table>
+                                        
+                                        </div>
+                                    </div>
 
-            <div class="checkbox-input-element">
-                <h3 class="element-title">Problem Status</h3>
-                <input type="checkbox" id="solved" value="solved" onclick="checkSolved(event)">
-                <label>Problem solved over the phone</label>
-            </div>
-            
-            <div id="solved-form" class="hide-form">
-                <div class="text-area-input-element">
-                    <h3 class="element-title">How it was solved?</h3>
-                    <textarea class="scroll"></textarea>
-                </div>
+                                    <div class="checkbox-input-element">
+                                        <h3 class="element-title">Problem Status</h3>
+                                        <input type="checkbox" id="solved" onclick="checkSolved(event)" class='problem-input-field' data-input-type='checkbox' data-input='status'>
+                                        <label>Problem solved over the phone</label>
+                                    </div>
+                                    
+                                    <div id="solved-form" class="hide-form">
+                                        <div class="text-area-input-element">
+                                            <h3 class="element-title">How it was solved?</h3>
+                                            <textarea class="scroll problem-input-field" data-input-type='textarea' data-input='solveMethod'></textarea>
+                                        </div>
 
-                <div class="text-area-input-element">
-                    <h3 class="element-title">Notes</h3>
-                    <textarea class="scroll"></textarea>
-                </div>
-                <button class="big-button"><a href="./solvedProblems.html">Report Solved Problem</a></button>
-            </div>
+                                        <div class="text-area-input-element">
+                                            <h3 class="element-title">Notes</h3>
+                                            <textarea class="scroll problem-input-field" data-input-type='textarea' data-input='solveNotes'></textarea>
+                                        </div>
+                                    </div>
 
-            <div id="unsolved-form">
-                <div class="checkbox-input-element">
-                    <h3 class="element-title">In Person Solving</h3>
-                    <input type="checkbox">
-                    <label>Problem must be solved in person</label>
-                </div>
+                                    <div id="unsolved-form">
+                                        <div class="checkbox-input-element">
+                                            <h3 class="element-title">In Person Solving</h3>
+                                            <input type="checkbox" class='problem-input-field' data-input-type='checkbox' data-input='inPerson'>
+                                            <label>Problem must be solved in person</label>
+                                        </div>
 
-                <div class="search-element">
-                    <h3 class="element-title">Specialist </h3>
-                    <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)">
-                    <label>3rd party specialist</label>
+                                        <div class="search-element">
+                                            <h3 class="element-title">Specialist </h3>
+                                            <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)">
+                                            <label>3rd party specialist</label>
 
-                    <div id="specialists">
-                        <div class="search-element-bar">
-                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)"> 
-                            <button><i class="fa fa-search"></i></button>
-                        </div>
-                        <table class="search-element-table">
-                            <tr>
-                                <th>Specialist Name</th>
-                                <th>Branch</th>
-                                <th>Expertise</th>
-                                <th>No. Jobs</th>
-                                <th>Part-Time</th>
-                                <th>Status</th>
-                                <th>In-Work</th>
-                                <th>Next In Work</th>
-                            </tr>
-                            <tr>
-                                <td>Sally</td>
-                                <td>Germany</td>
-                                <td>Printer</td>
-                                <td>10</td>
-                                <td></i></td>
-                                <td>Avaliable</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>20/20/2000</td>
-                            </tr>
-                            <tr class="selected-row">
-                                <td>Susan</td>
-                                <td>England</td>
-                                <td>Washing Machines</td>
-                                <td>10</td>
-                                <td></td>
-                                <td>Busy</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>20/20/2000</td>
-                            </tr>
-                            <tr>
-                                <td>Simon</td>
-                                <td>England</td>
-                                <td>Alexas</td>
-                                <td>10</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>Unavailable</td>
-                                <td></td>
-                                <td>20/20/2000</td>
-                            </tr>
-                            <tr>
-                                <td>Sandre</td>
-                                <td>Japan</td>
-                                <td>Mac OS</td>
-                                <td>10</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>Avaliable</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>20/20/2000</td>
-                            </tr>
-                            <tr>
-                                <td>Sona</td>
-                                <td>England</td>
-                                <td>Anti-virus software</td>
-                                <td>10</td>
-                                <td></td>
-                                <td>Avaliable</td>
-                                <td><i class="fa fa-check-square"></i></td>
-                                <td>20/20/2000</td>
-                            </tr>
-                        </table>
-                    </div>
+                                            <div id="specialists">
+                                                <div class="search-element-bar">
+                                                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)"> 
+                                                    <button><i class="fa fa-search"></i></button>
+                                                </div>
+                                                <table class="search-element-table problem-input-field" data-table-name="specialistTable">
+                                                    <tr>
+                                                        <th>Specialist Name</th>
+                                                        <th>Branch</th>
+                                                        <th>Expertise</th>
+                                                        <th>No. Jobs</th>
+                                                        <th>Part-Time</th>
+                                                        <th>Status</th>
+                                                        <th>In-Work</th>
+                                                        <th>Next In Work</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sally</td>
+                                                        <td>Germany</td>
+                                                        <td>Printer</td>
+                                                        <td>10</td>
+                                                        <td></i></td>
+                                                        <td>Avaliable</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>20/20/2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Susan</td>
+                                                        <td>England</td>
+                                                        <td>Washing Machines</td>
+                                                        <td>10</td>
+                                                        <td></td>
+                                                        <td>Busy</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>20/20/2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Simon</td>
+                                                        <td>England</td>
+                                                        <td>Alexas</td>
+                                                        <td>10</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>Unavailable</td>
+                                                        <td></td>
+                                                        <td>20/20/2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sandre</td>
+                                                        <td>Japan</td>
+                                                        <td>Mac OS</td>
+                                                        <td>10</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>Avaliable</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>20/20/2000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Sona</td>
+                                                        <td>England</td>
+                                                        <td>Anti-virus software</td>
+                                                        <td>10</td>
+                                                        <td></td>
+                                                        <td>Avaliable</td>
+                                                        <td><i class="fa fa-check-square"></i></td>
+                                                        <td>20/20/2000</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
 
-                    <div id="third-party-specialists" class="hide-form">
-                        <div class="search-element-bar">
-                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)">
-                            <button><i class="fa fa-search"></i></button>
-                        </div>
-                        <table class="search-element-table">
-                            <tr>
-                                <th>Third Party Specialist</th>
-                                <th>Telephone</th>
-                                <th>Active Jobs</th>
-                                <th>Expertise</th>
-                            </tr>
-                            <tr class="selected-row">
-                                <td>Dave</td>
-                                <td>07123456789</td>
-                                <td>10</td>
-                                <td>Printers</td>
-                            </tr>
-                            <tr>
-                                <td>Peter</td>
-                                <td>01789456123</td>
-                                <td>10</td>
-                                <td>Printers</td>
-                            </tr>
-                        </table>
-                    </div>
+                                            <div id="third-party-specialists" class="hide-form">
+                                                <div class="search-element-bar">
+                                                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)">
+                                                    <button><i class="fa fa-search"></i></button>
+                                                </div>
+                                                <table class="search-element-table problem-input-field" data-table-name='externalSpecialistTable'>
+                                                    <tr>
+                                                        <th>Third Party Specialist</th>
+                                                        <th>Telephone</th>
+                                                        <th>Active Jobs</th>
+                                                        <th>Expertise</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Dave</td>
+                                                        <td>07123456789</td>
+                                                        <td>10</td>
+                                                        <td>Printers</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Peter</td>
+                                                        <td>01789456123</td>
+                                                        <td>10</td>
+                                                        <td>Printers</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
 
-                </div>
-            </div></div>`;
+                                        </div>
+                                    </div></div>`;
 
             const existingString = `<div data-name="problem${problemCount}" class="existing-problem">
                                         <div class="search-element">
@@ -423,7 +430,7 @@
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <div class="search-element-table-wrapper">
-                                        <table class="search-element-table">
+                                        <table class="search-element-table problem-input-field" data-table-name='solvedProblemsTable'>
                                             <tr>
                                                 <th>Problem No.</th>
                                                 <th>Status</th>
@@ -490,13 +497,16 @@
 
             document.getElementById("tabs").insertAdjacentHTML('afterbegin', tabString);
             document.getElementById("tab-contents").insertAdjacentHTML('afterbegin', tabContentString);
-            openTab(event, `problem${problemCount}` , true);
             
+            openTab(event, `problem${problemCount}` , true);
+
             problemIDs.push(`problem${problemCount}`);
             console.log(problemIDs);
 
             tabCount++;
             problemCount++;
+
+            addSelectableRows();
         }
 
         function chooseExisting(e) {
@@ -549,6 +559,93 @@
             }
         }
 
+        function retreiveInputs() {
+            const inputFields = document.getElementsByClassName('call-input-field');
+            let obj = {
+                problems: []
+            };
+            for(var i = 0; i < inputFields.length; i++) {
+                readCallInput(obj, inputFields[i]);
+            }
+            for(var i = 0; i < problemIDs.length; i++) {
+                getNewProblemInputs(obj, getNewProblem(problemIDs[i]));
+            }
+            console.log(obj);
+        }
+
+        function readCallInput(obj, input) {
+            if(input.tagName != 'TABLE') {
+                obj[input.dataset.input] = input.value;
+            } else {
+                let selectedRow = input.getElementsByClassName("selected-row")[0];
+                addSelectedRowInputs(obj, selectedRow);
+            }
+        }
+
+        function addSelectedRowInputs(obj, row){
+            if(row != null) {
+                switch(row.parentNode.parentNode.dataset.tableName) {
+                    case 'callerTable':
+                        obj['callerName'] = row.cells[1].innerHTML;
+                        obj['extension'] = row.cells[2].innerHTML;
+                        break;
+                    case 'equipmentTable': 
+                        obj['serialNumber'] = row.cells[0].innerHTML;
+                        break;
+                    case 'softwareTable':
+                        obj['softwareName'] = row.cells[0].innerHTML;
+                        break;
+                    case 'specialistTable': 
+                        obj['specialistID'] = row.cells[0].innerHTML;
+                        break;
+                    case 'externalSpecialistTable': 
+                        obj['externalSpecialistID'] = row.cells[0].innerHTML;
+                        break;
+                    default: 
+                        console.log(row);
+                        break;
+                }
+            } else {
+                obj['callerName'] = ""
+                obj['extension'] = "";
+            }
+        }
+
+        function getNewProblem(problemName) {
+            const newProblems = document.getElementsByClassName('new-problem');
+            for(var i = 0; i < newProblems.length; i++) {
+                if(newProblems[i].dataset.name == problemName) {
+                     return newProblems[i];
+                }
+            }
+        }
+
+        function getNewProblemInputs(obj, newProblem) {
+            const inputs = newProblem.getElementsByClassName('problem-input-field');
+            let newProblemObj = {};
+            for(var i = 0; i < inputs.length; i++) {
+                if(inputs[i].tagName != 'TABLE') {
+                    if(inputs[i].dataset.input == 'status') {
+                        if(inputs[i].checked) {
+                            newProblemObj[inputs[i].dataset.input] = 'solved';
+                        } else {
+                            newProblemObj[inputs[i].dataset.input] = 'unsolved';
+                        }
+                    } else if (inputs[i].dataset.input == 'inPerson') {
+                        newProblemObj[inputs[i].dataset.input] = inputs[i].checked;
+                    } else {
+                        newProblemObj[inputs[i].dataset.input] = inputs[i].value;
+                    }
+                } else {
+                    let selectedRow = inputs[i].getElementsByClassName("selected-row")[0];
+                    addSelectedRowInputs(newProblemObj, selectedRow);
+                }
+            }
+            obj.problems.push(newProblemObj);
+        }
+
+
+
         // {
         //     call: {
         //         callerName,          TABLE - SELECTED ROW
@@ -556,6 +653,7 @@
         //         date,                DATE NOW
         //         time,                TIME NOW
         //         operatorID           OPERATOR LOGGED IN
+        //         callReason           TEXTAREA
         //     }, 
         //     problems: [{}, {},...,{}]
         // }
@@ -583,6 +681,11 @@
         // For existing problems, take from object used to construct table, should have all the data. Simply take that
         // Create problems array of length tabCount. Create empty problem object. Go through one tab (all inputs with problem${problemCount}) (Would require list of unique problemNums) amd assign to problems object
 
+        // data-name: refers 
+        // data-input: refers to the database column name
+        // data-input-type: refers to the type of input ()
+        // data-table-name: 'caller', 'solvedProblems' etc
+            
     </script>
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
