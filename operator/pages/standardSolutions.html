@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../public/styles/navs.css">
+    <link rel="stylesheet" href="../../public/styles/index.css">
+    <title>Standard Solutions</title>
+    
+</head>
+<body>
+
+    <nav class='top-nav'>
+        <div class="top-nav-left">
+            <h2 class="top-nav-company">Make-It-All</h2>
+        </div>
+        <div class="top-nav-right">
+            <h3 class="top-nav-text">Welcome Operator</h3>
+            <a class="top-nav-button" href="../../login.html">Logout</a>
+        </div>
+    </nav>
+    <nav id='operator-side-nav'></nav>
+
+    <div class="page">
+        <div class="page-content scroll">
+         
+            <h1 class="title"><i class="fa fa-list"></i> Standard Solutions</h1>
+            <div class="search-element">
+                <h3 class="element-title">Standard Solutions</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 0)">
+                    <button><i class="fa fa-search"></i></button>
+                </div>
+                <div class="search-element-table-wrapper">
+
+                    <table class="search-element-table">
+                        <tr>
+                            <th>Solution Name</th>
+                            <th>Problem Type</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            <td>Turn off and On again</td>
+                            <td>General</td>
+                            <td>Hold the power button until power is lost. Then power up again</td>
+                            <td>
+                                <button class="edit-button">Edit</button>
+                                <button class="report-solved-button">Delete</button>
+                            </td>
+                        </tr>
+                    </table>
+                
+                </div>
+
+        </div>
+        <button id="add-personnel" class="big-button">Add Solution</button>
+
+        <div id="edit-screen" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                     
+                <div class="element-row">
+                    <div class="text-input-element">
+                        <h3 class="element-title">Standard Solution Name</h3>
+                        <input type="text" placeholder="Enter software name"></input>
+                    </div> 
+                    <div class="select-input-element">
+                        <h3 class="element-title">Problem Type</h3>
+                        <select>
+                            <option value="" selected disabled hidden>Select a branch</option>
+                            <option>England</option>
+                            <option>Germany</option>
+                            <option>Japan</option>
+                        </select>
+                    </div>
+                </div> 
+
+                <div class="text-area-input-element">
+                    <h3 class="element-title">Solution Description</h3>
+                    <textarea class="scroll"></textarea>
+                </div>  
+
+                        
+                <button class="big-button confirm-edit">Confirm</button>
+            </div>
+
+    </div>
+
+    
+
+    <script>
+        var modal = document.getElementById("edit-screen");
+        var addPersonnelButton = document.getElementById("add-personnel");
+
+        addPersonnelButton.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+    </script>
+
+
+    <script src="../../public/js/navs.js"></script>
+    <script src="../../public/js/cssHelpers.js"></script>
+</body>
+</html>
