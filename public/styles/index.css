@@ -184,7 +184,7 @@ input:focus, select:focus {
 }
 
 .search-element table tr:nth-child(1) {
-    background: white !important;
+    background: white;
 }
 
 .selected-row {
@@ -215,7 +215,8 @@ input:focus, select:focus {
     position: relative;
     font-size: 18px;
     left: 100%;
-    transform: translateX(-100%)
+    transform: translateX(-100%);
+    color: white;
 }
 
 .hide-form {
@@ -393,7 +394,7 @@ input:focus, select:focus {
     }
 
     .problem-tab-button {
-        background-color: #6c757d;
+        background-color:#9497a7;
     }
 
     .problem-tab-button.active {
@@ -402,4 +403,12 @@ input:focus, select:focus {
 
     .new-problem, .existing-problem {
         display: none;
+    }
+
+    .night, .night table tr, .night input {
+        background-color: #2d3142 !important;
+    }
+
+    .night *, .night input::placeholder {
+        color: white !important;
     }
