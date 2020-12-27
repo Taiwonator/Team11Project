@@ -391,3 +391,15 @@ input:focus, select:focus {
         background-color:#2176ff;
         color: white;
     }
+
+    .problem-tab-button {
+        background-color: #6c757d;
+    }
+
+    .problem-tab-button.active {
+        background-color:#2176ff;
+    }
+
+    .new-problem, .existing-problem {
+        display: none;
+    }
