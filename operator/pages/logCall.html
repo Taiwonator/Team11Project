@@ -130,11 +130,14 @@
         // Not w3chools
         var tabCount = document.getElementsByClassName("tablinks").length;
         var problemCount = 1;
+        var problemIDs = [];
 
         function deleteTab(evt) {
             if(tabCount != 1) {
                 evt.target.parentElement.remove();
                 tabCount--;
+                problemIDs = problemIDs.filter(x => x != evt.target.dataset.name);
+                console.log(problemIDs);
                 document.getElementById(evt.target.dataset.name).remove();
             }
         }
@@ -488,6 +491,10 @@
             document.getElementById("tabs").insertAdjacentHTML('afterbegin', tabString);
             document.getElementById("tab-contents").insertAdjacentHTML('afterbegin', tabContentString);
             openTab(event, `problem${problemCount}` , true);
+            
+            problemIDs.push(`problem${problemCount}`);
+            console.log(problemIDs);
+
             tabCount++;
             problemCount++;
         }
@@ -544,8 +551,8 @@
 
         // {
         //     call: {
-        //         callerName,          TABLE 
-        //         ext,                 TABLE
+        //         callerName,          TABLE - SELECTED ROW
+        //         ext,                 TABLE - SELECTED ROW
         //         date,                DATE NOW
         //         time,                TIME NOW
         //         operatorID           OPERATOR LOGGED IN
@@ -570,6 +577,11 @@
         //     solveMethod,             TEXTAREA
         //     notes                    TEXTAREA
         // }
+
+        // Each input has a class named 'input-field'. Then its data-input will be the object key. To actually read the input it will depend. data-inputType will tell the function how to read the data.
+        // A selected row will need to assign td a class 'input-field' so it is checked. It'll have a data-inputType which will tell the program to read td.innerHTML. It will also have a data-input to give it a name in the input dictionary
+        // For existing problems, take from object used to construct table, should have all the data. Simply take that
+        // Create problems array of length tabCount. Create empty problem object. Go through one tab (all inputs with problem${problemCount}) (Would require list of unique problemNums) amd assign to problems object
 
     </script>
     <script src="../../public/js/navs.js"></script>
