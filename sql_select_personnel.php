@@ -7,7 +7,7 @@ try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   echo "<h2>Problem Types</h2><ol>";
   foreach($db->query("SELECT 'ProblemType' FROM $table") as $row) {
-    echo "<li>" . $row . "</li>";
+    echo "<li>" . $row[0] . "</li>";
   }
   echo "</ol>";
 } catch (PDOException $e) {
