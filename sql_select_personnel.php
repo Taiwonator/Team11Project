@@ -8,6 +8,7 @@ try {
   echo "<h2>Problem Types</h2><ol>";
   foreach($db->query("SELECT 'ProblemType' FROM $table") as $row) {
     echo "<li>" . $row[0] . "</li>";
+    print_r($row);
   }
   echo "</ol>";
 } catch (PDOException $e) {
