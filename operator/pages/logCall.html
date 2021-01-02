@@ -41,33 +41,6 @@
                         <th>Email</th>
                         <th>Branch ID</th>
                     </tr>
-                    <tr>
-                        <td>E001</td>
-                        <td>Harriet Simmons</td>
-                        <td>0</td>
-                        <td>DP Officer</td>
-                        <td>Legal</td>
-                        <td>franya@kurupee.com</td>
-                        <td>B0001</td>
-                    </tr>
-                    <tr>
-                        <td>E002</td>
-                        <td>Allan Tomly</td>
-                        <td>1</td>
-                        <td>Diversity Coach</td>
-                        <td>Social</td>
-                        <td>ymar@hsmty.com</td>
-                        <td>B0001</td>
-                    </tr>
-                    <tr>
-                        <td>E003</td>
-                        <td>Samuel Tyson</td>
-                        <td>2</td>
-                        <td>Software Engineer</td>
-                        <td>Technical</td>
-                        <td>lusa_2006n@coronagg.com</td>
-                        <td>B0002</td>
-                    </tr>
                 </table>
             </div>
             
@@ -115,17 +88,30 @@
     <script>
         var softwareString;
 
-        function loadData(callback) {
-            loadSoftware();
-            loadPersonnel();
-            callback();
+        function loadData(url, code) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    code(this.responseText);
+                }
+            }
+            xhttp.open("GET", url, true);
+            xhttp.send();
         }
+
+
+        function loadPersonnel2() {
+            loadData('../php/sql_select_personnel.php', function(json){
+                console.log(json);
+            });
+        }
+        loadPersonnel2();
+
 
         function loadPersonnel() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Sets first created to the correct value
                     var tables = document.getElementsByClassName("search-element-table");
                     for(var i = 0; i < tables.length; i++) {
                         if(tables[i].dataset.tableName == 'callerTable') {
@@ -243,7 +229,9 @@
 
 
         window.onload = function() {
-            loadData(addTab);
+            loadSoftware();
+            loadPersonnel();
+            addTab();
         }
 
         function addTab() {
