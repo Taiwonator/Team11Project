@@ -114,9 +114,8 @@
     </div>
     <script>
         var softwareString;
-        console.log("OUTSIDE: " + softwareString);
 
-        function loadSoftware() {
+        async function loadSoftware() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -178,8 +177,8 @@
             }
         }
 
-        window.onload = function() {
-            loadSoftware();
+        window.onload = async function() {
+            await loadSoftware();
             addTab();
         }
 
