@@ -121,9 +121,10 @@
                     console.log(this.responseText);
                 }
             }
+            xhttp.open("GET", "../php/sql_select_software.php", true);
+            xhttp.send();
         };
-        xhttp.open("GET", "../php/sql_select_software.php", true);
-        xhttp.send();
+        loadDoc();
 
 
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
