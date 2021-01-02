@@ -127,7 +127,6 @@
 
         function generatesSoftwareTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object
-            console.log(loadSoftware());
             const outputArray = obj.map(software => {
                 return `<tr><td>${software.softwareName}</td>
                         ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
