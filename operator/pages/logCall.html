@@ -114,17 +114,33 @@
     </div>
     <script>
 
-        function loadDoc() {
+        function loadSoftware() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(this.responseText);
+                    return this.responseText;
                 }
             }
             xhttp.open("GET", "../php/sql_select_software.php", true);
             xhttp.send();
         };
-        loadDoc();
+        loadSoftware();
+
+        function generatesSoftwareTable() {
+            const obj = JSON.parse(loadSoftware()); // Converts JSON to Javascript Object
+            const outputArray = obj.map(software => {
+                return `<tr><td>${software.softwareName}</td>
+                        ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                        ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}</tr>`;
+            })
+            let output = ``;
+            for(var i = 0; i < outputArray.length; i++) {
+                output += outputArray[i];
+            }
+            return output;
+        }
+
+        console.log(generatesSoftwareTable());
 
 
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
