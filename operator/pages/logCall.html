@@ -115,7 +115,12 @@
     <script>
         var softwareString;
 
-        async function loadSoftware() {
+        function loadData(callback) {
+            loadSoftware();
+            callback();
+        }
+
+        function loadSoftware() {
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -177,9 +182,10 @@
             }
         }
 
-        window.onload = async function() {
-            await loadSoftware();
-            addTab();
+
+
+        window.onload = function() {
+            loadData(addTab);
         }
 
         function addTab() {
