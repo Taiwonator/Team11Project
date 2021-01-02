@@ -118,15 +118,14 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    return this.responseText;
+                    console.log(generatesSoftwareTable(this.responseText));
                 }
             }
             xhttp.open("GET", "../php/sql_select_software.php", true);
             xhttp.send();
         };
 
-        async function generatesSoftwareTable() {
-            const json = await loadSoftware();
+        async function generatesSoftwareTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object
             console.log(loadSoftware());
             const outputArray = obj.map(software => {
