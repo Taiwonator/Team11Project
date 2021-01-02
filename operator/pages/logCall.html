@@ -125,7 +125,7 @@
             xhttp.send();
         };
 
-        async function generatesSoftwareTable(json) {
+        function generatesSoftwareTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object
             console.log(loadSoftware());
             const outputArray = obj.map(software => {
@@ -140,7 +140,7 @@
             return output;
         }
 
-        console.log(generatesSoftwareTable());
+        loadSoftware();
 
 
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
