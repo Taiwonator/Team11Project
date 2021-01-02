@@ -28,7 +28,7 @@
             <div class="search-element">
                 <h3 class="element-title">Caller</h3>
                 <div class="search-element-bar">
-                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)">
+                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)" onclick="loadSoftware()">
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <table class="search-element-table call-input-field" data-table-name='callerTable'>
@@ -139,9 +139,6 @@
             }
             return output;
         }
-
-        loadSoftware();
-
 
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
         function openTab(evt, problemName, plus) {
