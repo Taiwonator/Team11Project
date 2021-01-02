@@ -7,12 +7,12 @@ try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
-    $row = array($row['SoftwareName'], $row['Licensed'], $row['Supported']);
+    $row = array("softwareName"=>$row['SoftwareName'], "licensed"=>$row['Licensed'], "supported"=>$row['Supported']);
+    print_r($row);
     push_array($output, $row);
-    // echo "<li>" . $row['SoftwareName'] . $row['Licensed'] . $row['Supported'] . "</li>";
-    // print_r($row);
   }
-  echo $output;
+  print_r($output);
+  echo json_encode($output);
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
