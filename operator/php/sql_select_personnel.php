@@ -2,15 +2,15 @@
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
-$table = "Branch";
+$table = "Personnel";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  echo "<h2>Branches</h2><ol>";
+  $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
-    echo "<li>" . $row['BranchID'] . $row['BranchName'] . $row['City'] . $row['Country'] . $row['Telephone'] . "</li>";
-    print_r($row);
+    $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
+    array_push($output, $row);
   }
-  echo "</ol>";
+  echo json_encode($output);
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
