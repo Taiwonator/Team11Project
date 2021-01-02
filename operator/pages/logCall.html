@@ -100,60 +100,44 @@
         }
 
 
-        function loadPersonnel2() {
+        function loadPersonnel() {
             loadData('../php/sql_select_personnel.php', function(json){
-                console.log(json);
+                var tables = document.getElementsByClassName("search-element-table");
+                for(var i = 0; i < tables.length; i++) {
+                    if(tables[i].dataset.tableName == 'callerTable') {
+                        tables[i].innerHTML = ` <tr>
+                                                    <th>Employee ID</th>
+                                                    <th>Name</th>
+                                                    <th>Extension</th>
+                                                    <th>Job Title</th>
+                                                    <th>Department</th>
+                                                    <th>Email</th>
+                                                    <th>Branch ID</th>
+                                                </tr>
+                                                ${generatesPersonnelTable(this.responseText)}`;
+                    }
+                }
             });
         }
-        loadPersonnel2();
-
-
-        function loadPersonnel() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var tables = document.getElementsByClassName("search-element-table");
-                    for(var i = 0; i < tables.length; i++) {
-                        if(tables[i].dataset.tableName == 'callerTable') {
-                            tables[i].innerHTML = ` <tr>
-                                                        <th>Employee ID</th>
-                                                        <th>Name</th>
-                                                        <th>Extension</th>
-                                                        <th>Job Title</th>
-                                                        <th>Department</th>
-                                                        <th>Email</th>
-                                                        <th>Branch ID</th>
-                                                    </tr>${generatesPersonnelTable(this.responseText)}`;
-                        }
-                    }
-                }
-            }
-            xhttp.open("GET", "../php/sql_select_personnel.php", true);
-            xhttp.send();
-        };
-
+        
         function loadSoftware() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    softwareString = generatesSoftwareTable(this.responseText);
+            loadData('../php/sql_select_software.php', function(json){
+                softwareString = generatesSoftwareTable(this.responseText);
                     
-                    // Sets first created to the correct value
-                    var tables = document.getElementsByClassName("search-element-table");
-                    for(var i = 0; i < tables.length; i++) {
-                        if(tables[i].dataset.tableName == 'softwareTable') {
-                            tables[i].innerHTML = `<tr>
-                                                        <th>Software Name</th>
-                                                        <th>Licensed</th>
-                                                        <th>Supported</th>
-                                                   </tr>${softwareString}`;
-                        }
+                // Sets first created to the correct value
+                var tables = document.getElementsByClassName("search-element-table");
+                for(var i = 0; i < tables.length; i++) {
+                    if(tables[i].dataset.tableName == 'softwareTable') {
+                        tables[i].innerHTML = `<tr>
+                                                    <th>Software Name</th>
+                                                    <th>Licensed</th>
+                                                    <th>Supported</th>
+                                                </tr>
+                                                ${softwareString}`;
                     }
                 }
-            }
-            xhttp.open("GET", "../php/sql_select_software.php", true);
-            xhttp.send();
-        };
+            });
+        }
 
         function generatesPersonnelTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object
@@ -188,6 +172,7 @@
             }
             return output;
         }
+
 
         //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs_close
         function openTab(evt, problemName, plus) {
