@@ -28,7 +28,7 @@
             <div class="search-element">
                 <h3 class="element-title">Caller</h3>
                 <div class="search-element-bar">
-                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)" onclick="loadSoftware()">
+                    <input type="text" placeholder="Enter name" onkeyup="searchTable(event, 1)">
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <table class="search-element-table call-input-field" data-table-name='callerTable'>
@@ -118,7 +118,7 @@
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    console.log(generatesSoftwareTable(this.responseText));
+                    return generatesSoftwareTable(this.responseText);
                 }
             }
             xhttp.open("GET", "../php/sql_select_software.php", true);
@@ -229,11 +229,7 @@
                                                 <th>Licensed</th>
                                                 <th>Supported</th>
                                             </tr>
-                                            <tr>
-                                                <td>Microsoft Word</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                            </tr>
+                                            ${loadSoftware()}
                                         </table>
                                         </div>
                                     </div>
