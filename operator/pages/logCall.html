@@ -125,9 +125,9 @@
             xhttp.send();
         };
 
-        function generatesSoftwareTable() {
-            console.log(loadSoftware());
-            const obj = JSON.parse(loadSoftware()); // Converts JSON to Javascript Object
+        async function generatesSoftwareTable() {
+            const json = await loadSoftware();
+            const obj = JSON.parse(json); // Converts JSON to Javascript Object
             console.log(loadSoftware());
             const outputArray = obj.map(software => {
                 return `<tr><td>${software.softwareName}</td>
