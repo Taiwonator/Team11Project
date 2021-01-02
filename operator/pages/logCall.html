@@ -129,7 +129,7 @@
                     // Sets first created to the correct value
                     var tables = document.getElementsByClassName("search-element-table");
                     for(var i = 0; i < tables.length; i++) {
-                        if(tables.dataset.tableName == 'softwareTable') {
+                        if(tables[i].dataset.tableName == 'softwareTable') {
                             tables[i].innerHTML = `<tr>
                                                         <th>Software Name</th>
                                                         <th>Licensed</th>
