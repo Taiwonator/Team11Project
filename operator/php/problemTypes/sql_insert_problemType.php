@@ -1,4 +1,6 @@
 <?php
+$_POST = json_decode(file_get_contents('php://input'), true);
+
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
@@ -8,8 +10,7 @@ $problemType = $_POST["problemType"];
 $data = [ "problemType" => $problemType ];
 $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
-print_r($_REQUEST);
-echo "Data: " . $_REQUEST;
+echo "Data: " . $_POST['problemType'];
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
