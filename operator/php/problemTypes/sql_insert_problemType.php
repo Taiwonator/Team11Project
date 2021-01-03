@@ -10,7 +10,8 @@ $sql = "INSERT INTO ProblemType (ProblemType) VALUES (:problemType)";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  $db->prepare($sql)->execute($data)
+  // $db->prepare($sql)->execute($data)
+  print_r('Hello');
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
