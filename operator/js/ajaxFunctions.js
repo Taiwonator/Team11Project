@@ -3,6 +3,7 @@ window.onload = function() {
     loadPersonnel();
     loadProblems();
     loadEquipment();
+    loadProblemTyps();
 
     addTab();
 }
@@ -23,7 +24,7 @@ function loadData(url, code) {
     xhttp.send();
 }
 
-function loadProblemType() {
+function loadProblemTypes() {
     loadData('../php/sql_select_problemType.php', function(json){
         problemInputStrings['problemType'] = generateProblemTypes(json);
 
