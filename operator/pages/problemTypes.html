@@ -49,6 +49,7 @@
         <div id="edit-screen" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
+                <span class="close">&times;</span>
                 <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
 
 
@@ -70,6 +71,7 @@
         // Popup
         var modal = document.getElementById("edit-screen");
         var addProblemTypeButton = document.getElementById("add-problem-type");
+        var span = document.getElementsByClassName("close")[0];
         var edit = true;
         var problemTypeBuffer;
 
@@ -77,6 +79,10 @@
             edit = false;
             modal.style.display = "block";
             document.getElementById('problem-type-input').value = '';
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
         }
 
         function openModal(problemType) {

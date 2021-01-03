@@ -9,7 +9,7 @@ $table = "ProblemType";
 $old = $_POST["old"];
 $new = $_POST["new"];
 
-$data = [ "old" => $old, "old" => $new ];
+$data = [ "old" => $old, "new" => $new ];
 $sql = "UPDATE $table SET ProblemType = :new WHERE ProblemType.ProblemType = :old";
 
 try {
