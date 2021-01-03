@@ -184,7 +184,7 @@ function generateSpecialistsTable(json) {
                     <td>${specialist.problemType}</td>
                     <td>${specialist.numJobs}</td>
                     <td>${specialist.status}</td>
-                    <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>>' : ''}</td>
+                    <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
                     <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
                     <td>${specialist.nextInWork}</td>
                 </tr>`;
