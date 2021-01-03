@@ -103,7 +103,7 @@
         function deleteProblemType(problemType) {
             const payload = { 'problemType': problemType };
             loadData('POST', '../php/problemTypes/sql_delete_problemType.php', payload, function(json) {
-                console.log(json);
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
         }
 
@@ -119,7 +119,7 @@
         function insertProblemType(problemType) {
             const payload = { 'problemType': problemType };
             loadData('POST', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
-                console.log(json);
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
         }
 
