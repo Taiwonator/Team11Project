@@ -359,14 +359,6 @@ function addSelectedRowInputs(obj, row, externalSpecialist){
                     obj['externalSpecialistID'] = row.cells[0].innerHTML;
                 }
                 break;
-            case 'allProblemsTable':
-                for(var i = 0; i < allProblemsArray.length; i++) {
-                    console.log(allProblemsArray[i]);
-                    if(allProblemsArray[i].problemNumber == row.cells[0].innerHTML) {
-                        obj['problemDescription'] = allProblemsArray[i].problemDescription;
-                    }
-                }
-                break;
             default: 
                 console.log(row);
                 break;

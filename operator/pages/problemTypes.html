@@ -78,17 +78,28 @@
     </div>
 
     <script>
+        // Popup
         var modal = document.getElementById("edit-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
 
         addPersonnelButton.onclick = function() {
             modal.style.display = "block";
         }
+
+
+        // CODE
+        loadData('../php/problemTypes/sql_select_problemTypes.php', function(json){
+            console.log(json);
+        })
+
+
         
     </script>
 
+<!-- IMPORTS LOAD DATA FUNCTION -->
+<script src="../js/ajaxFunctions.js"></script>
 
-    <script src="../../public/js/navs.js"></script>
+<script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
 </body>
 </html>
