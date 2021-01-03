@@ -301,23 +301,23 @@ function addTab() {
 
     const existingString = `<div data-name="problem${problemCount}" class="existing-problem">
                                 <div class="search-element">
-                                <h3 class="element-title">Problems</h3>
-                                <div class="search-element-bar">
-                                    <input type="text" placeholder="Enter problem type" onkeyup="searchTable(event, 4)">
-                                    <button><i class="fa fa-search"></i></button>
+                                    <h3 class="element-title">Problems</h3>
+                                    <div class="search-element-bar">
+                                        <input type="text" placeholder="Enter problem type" onkeyup="searchTable(event, 4)">
+                                        <button><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <div class="search-element-table-wrapper">
+                                        <table class="search-element-table problem-input-field" data-table-name='allProblemsTable'>
+                                            <tr>
+                                                <th>Problem No.</th>
+                                                <th>Description</th>
+                                                <th>Status</th>
+                                                <th>Solve Method</th>
+                                                <th>Problem Type</th>
+                                            </tr>                                    
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="search-element-table-wrapper">
-                                <table class="search-element-table problem-input-field" data-table-name='allProblemsTable'>
-                                    <tr>
-                                        <th>Problem No.</th>
-                                        <th>Description</th>
-                                        <th>Status</th>
-                                        <th>Solve Method</th>
-                                        <th>Problem Type</th>
-                                    </tr>                                    
-                                </table>
-                                </div>
-                            </div>
                             </div>`;
 
     const tabString = `<div class="tablinks-container">
