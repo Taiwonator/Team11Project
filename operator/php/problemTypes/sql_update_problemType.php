@@ -6,10 +6,10 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "ProblemType";
 
-$old = $_POST["oldProblemType"];
-$new = $_POST["newProblemType"];
+$old = $_POST["old"];
+$new = $_POST["new"];
 
-$data = [ "oldProblemType" => $old, "newProblemType" => $new ];
+$data = [ "old" => $old, "old" => $new ];
 $sql = "UPDATE $table SET ProblemType = :new WHERE ProblemType.ProblemType = :old";
 
 try {
