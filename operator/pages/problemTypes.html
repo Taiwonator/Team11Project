@@ -96,9 +96,22 @@
 
         // CODE
         var problemTypesArray;
-        loadData('../php/problemTypes/sql_select_problemType.php', function(json){
-            document.getElementById('problem-type-table').innerHTML = generateTable(json);
-        })
+        function loadProblemTypes() {
+            loadData('GET', '../php/problemTypes/sql_select_problemType.php', {}, function(json){
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
+            })
+        }
+
+        function insertProblemType(problemType) {
+            const payload = { problemType: problemType }
+            loadData('POST', '../php/problemTypes/sql_insert_problemType', payload, function(json) {
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
+            })
+        }
+
+        window.onload = function() {
+            loadProblemTypes();
+        }
 
         function generateTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object (Array)

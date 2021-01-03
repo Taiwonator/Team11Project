@@ -13,7 +13,7 @@ var allProblemsArray = [];
 
 var problemInputStrings = {}
 
-function loadData(url, code) {
+function loadData(method, url, data={}, code) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -21,12 +21,12 @@ function loadData(url, code) {
             code(this.responseText);
         }
     }
-    xhttp.open("GET", url, true);
-    xhttp.send();
+    xhttp.open(method, url, true);
+    xhttp.send(data);
 }
 
 function loadSpecialists() {
-    loadData('../php/logCall/sql_select_specialists.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_specialists.php', {}, function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
 
         var tables = document.getElementsByClassName("search-element-table");
@@ -49,7 +49,7 @@ function loadSpecialists() {
 }
 
 function loadStandardSolutions() {
-    loadData('../php/logCall/sql_select_standardSolutions.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_standardSolutions.php', {}, function(json){
         problemInputStrings['standardSolutions'] = generateStandardSolutionsTable(json);
 
         var tables = document.getElementsByClassName("search-element-table");
@@ -68,7 +68,7 @@ function loadStandardSolutions() {
 }
 
 function loadBranches() {
-    loadData('../php/logCall/sql_select_branches.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_branches.php', {}, function(json){
         problemInputStrings['branches'] = generateBranches(json);
 
         var inputs = document.getElementsByClassName("problem-input-field");
@@ -82,7 +82,7 @@ function loadBranches() {
 }
 
 function loadProblemTypes() {
-    loadData('../php/logCall/sql_select_problemType.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_problemType.php', {}, function(json){
         problemInputStrings['problemType'] = generateProblemTypes(json);
 
         var inputs = document.getElementsByClassName("problem-input-field");
@@ -96,7 +96,7 @@ function loadProblemTypes() {
 }
 
 function loadEquipment() {
-    loadData('../php/logCall/sql_select_equipment.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_equipment.php', {}, function(json){
         problemInputStrings['equipment'] = generateEquipmentTable(json);
 
         var tables = document.getElementsByClassName("search-element-table");
@@ -115,7 +115,7 @@ function loadEquipment() {
 }
 
 function loadProblems() {
-    loadData('../php/logCall/sql_select_problems.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_problems.php', {}, function(json){
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
             if(tables[i].dataset.tableName == 'allProblemsTable') {
@@ -135,7 +135,7 @@ function loadProblems() {
 
 
 function loadPersonnel() {
-    loadData('../php/logCall/sql_select_personnel.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_personnel.php', {}, function(json){
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
             if(tables[i].dataset.tableName == 'callerTable') {
@@ -156,7 +156,7 @@ function loadPersonnel() {
 }
 
 function loadSoftware() {
-    loadData('../php/logCall/sql_select_software.php', function(json){
+    loadData('GET', '../php/logCall/sql_select_software.php', {}, function(json){
         problemInputStrings['software'] = generateSoftwareTable(json);
         // Sets first created to the correct value
         var tables = document.getElementsByClassName("search-element-table");
