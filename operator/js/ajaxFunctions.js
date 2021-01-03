@@ -1,5 +1,3 @@
-import { loadData } from '../js/loadData';
-
 window.onload = function() {
     loadSoftware();
     loadPersonnel();
@@ -9,8 +7,6 @@ window.onload = function() {
     loadBranches();
     loadStandardSolutions();
     loadSpecialists();
-
-    addTab();
 }
 
 var allProblemsArray = [];
