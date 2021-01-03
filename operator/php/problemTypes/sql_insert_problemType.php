@@ -14,7 +14,7 @@ try {
 
   
   foreach ($_POST as $key => $value) {
-    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>" . $data[0];
+    echo "Data: " . $data[0];
   }
 
 } catch (PDOException $e) {
