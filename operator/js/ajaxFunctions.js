@@ -3,7 +3,7 @@ window.onload = function() {
     loadPersonnel();
     loadProblems();
     loadEquipment();
-    loadProblemTyps();
+    loadProblemTypes();
 
     addTab();
 }
