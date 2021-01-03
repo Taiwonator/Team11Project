@@ -91,6 +91,7 @@
                 console.log(`edit confirmed: ${problemType}`);
 
             } else {
+                console.log(problemType);
                 insertProblemType(problemType);
             }
             exitModal();
@@ -115,6 +116,7 @@
 
         function insertProblemType(problemType) {
             const payload = { problemType: problemType }
+            console.log(payload);
             loadData('POST', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
                 // document.getElementById('problem-type-table').innerHTML = generateTable(json);
                 console.log(json);
