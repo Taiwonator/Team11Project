@@ -17,5 +17,3 @@ try {
 }
 
 ?>
-
-<!-- No. | Problem desc | Status | Solve Method | Problem Type  -->
