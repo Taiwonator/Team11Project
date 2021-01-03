@@ -2,11 +2,14 @@ window.onload = function() {
     loadSoftware();
     loadPersonnel();
     loadProblems();
+    loadEquipment();
 
     addTab();
 }
 
 var softwareString;
+
+var problemInputStrings = {}
 
 function loadData(url, code) {
     var xhttp = new XMLHttpRequest();
@@ -18,6 +21,25 @@ function loadData(url, code) {
     }
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function loadEquipment() {
+    loadData('../php/sql_select_equipment.php', function(json){
+        problemInputStrings['equipment'] = generateEquipmentTable(json);
+
+        var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == 'equipmentTable') {
+                tables[i].innerHTML = ` <tr>
+                                            <th>Serial No.</th>
+                                            <th>Type</th>
+                                            <th>Make</th>
+                                        </tr>
+                                        ${problemInputStrings['equipment']}`;
+            }
+        }
+        addSelectableRows();
+    });
 }
 
 function loadProblems() {
@@ -63,8 +85,7 @@ function loadPersonnel() {
 
 function loadSoftware() {
     loadData('../php/sql_select_software.php', function(json){
-        softwareString = generateSoftwareTable(json);
-            
+        problemInputStrings['software'] = generateSoftwareTable(json);
         // Sets first created to the correct value
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
@@ -74,11 +95,27 @@ function loadSoftware() {
                                             <th>Licensed</th>
                                             <th>Supported</th>
                                         </tr>
-                                        ${softwareString}`;
+                                        ${problemInputStrings['software']}`;
             }
         }
         addSelectableRows();
     });
+}
+
+function generateEquipmentTable(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(equipment => {
+        return `<tr>
+                    <td>${equipment.serialNumber}</td>
+                    <td>${equipment.type}</td>
+                    <td>${equipment.make}</td>
+                </tr>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
 }
 
 function generateProblemsTable(json) {
@@ -88,7 +125,7 @@ function generateProblemsTable(json) {
                     <td>${problem.problemNumber}</td>
                     <td>${problem.description}</td>
                     <td>${problem.status}</td>
-                    <td>${problem.solveMethod}</td>
+                    <td>${(problem.solveMethod == null) ? 'Not solved yet' : problem.solveMethod}</td>
                     <td>${problem.problemType}</td>
                 </tr>`;
     })

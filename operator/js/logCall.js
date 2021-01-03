@@ -48,26 +48,7 @@ function addTab() {
                                         <th>Type</th>
                                         <th>Make</th>
                                     </tr>
-                                    <tr>
-                                        <td>1234</td>
-                                        <td>Monitor</td>
-                                        <td>Asos</td>
-                                    </tr>
-                                    <tr>
-                                        <td>234</td>
-                                        <td>Printer</td>
-                                        <td>Icer</td>
-                                    </tr>
-                                    <tr>
-                                        <td>9456</td>
-                                        <td>Fridge</td>
-                                        <td>Samsung</td>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>Monitor</td>
-                                        <td>Apple</td>
-                                    </tr>
+                                    ${(problemInputStrings['equipment'] != undefined) ? problemInputStrings['equipment'] : ''}
                                 </table>
                             </div>
 
@@ -84,7 +65,7 @@ function addTab() {
                                         <th>Licensed</th>
                                         <th>Supported</th>
                                     </tr>
-                                    ${(softwareString != undefined) ? softwareString : ''}
+                                    ${(problemInputStrings['software'] != undefined) ? problemInputStrings['software'] : ''}
                                 </table>
                                 </div>
                             </div>
