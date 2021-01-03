@@ -3,6 +3,7 @@ $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "ProblemType";
+
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();

@@ -13,13 +13,13 @@ var allProblemsArray = [];
 
 var problemInputStrings = {}
 
-function loadData(method, url, data={}, code) {
+function loadData(method, url, data, code) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // console.log(`Object from PHP file (${url}): ${this.responseText}`);
             code(this.responseText);
-        }
+        } 
     }
     xhttp.open(method, url, true);
     xhttp.setRequestHeader("Content-type", "application/json");
