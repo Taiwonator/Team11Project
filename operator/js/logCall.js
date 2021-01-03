@@ -100,9 +100,7 @@ function addTab() {
                                     <h3 class="element-title">Branch</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='branch'>
                                         <option value="" selected disabled hidden>Select a branch</option>
-                                        <option>England</option>
-                                        <option>Germany</option>
-                                        <option>Japan</option>
+                                        ${(problemInputStrings['branches'] != undefined) ? problemInputStrings['branches'] : ''}
                                     </select>
                                 </div>
                                 <div class="select-input-element">

@@ -4,6 +4,7 @@ window.onload = function() {
     loadProblems();
     loadEquipment();
     loadProblemTypes();
+    loadBranches();
 
     addTab();
 }
@@ -22,6 +23,20 @@ function loadData(url, code) {
     }
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function loadBranches() {
+    loadData('../php/sql_select_branches.php', function(json){
+        problemInputStrings['branches'] = generateBranches(json);
+
+        var inputs = document.getElementsByClassName("problem-input-field");
+        for(var i = 0; i < inputs.length; i++) {
+            if(inputs[i].dataset.input == 'branch') {
+                inputs[i].innerHTML = ` <option value="" selected disabled hidden>Select a branch</option>
+                                        ${problemInputStrings['branches']}`;
+            }
+        }
+    });
 }
 
 function loadProblemTypes() {
@@ -115,6 +130,18 @@ function loadSoftware() {
         }
         addSelectableRows();
     });
+}
+
+function generateBranches(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(branch => {
+        return `<option>${branch.country}</option>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
 }
 
 function generateProblemTypes(json) {
