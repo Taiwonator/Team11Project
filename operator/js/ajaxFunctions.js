@@ -6,6 +6,7 @@ window.onload = function() {
     loadProblemTypes();
     loadBranches();
     loadStandardSolutions();
+    loadSpecialists();
 
     addTab();
 }
@@ -24,6 +25,29 @@ function loadData(url, code) {
     }
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function loadSpecialists() {
+    loadData('../php/sql_select_specialists.php', function(json){
+        problemInputStrings['specialists'] = generateSpecialistsTable(json);
+
+        var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == 'specialistTable') {
+                tables[i].innerHTML = ` <tr>
+                                            <th>Specialist ID</th>
+                                            <th>Problem Type</th>
+                                            <th>No. Jobs</th>
+                                            <th>Status</th>
+                                            <th>In Work</th>
+                                            <th>Part Time</th>
+                                            <th>Next In Work</th>
+                                        </tr>
+                                        ${problemInputStrings['specialists']}`;
+            }
+        }
+        addSelectableRows();
+    });
 }
 
 function loadStandardSolutions() {
@@ -150,6 +174,26 @@ function loadSoftware() {
         }
         addSelectableRows();
     });
+}
+
+function generateSpecialistsTable(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(specialist => {
+        return `<tr>
+                    <td>${specialist.id}</td>
+                    <td>${specialist.problemType}</td>
+                    <td>${specialist.numJobs}</td>
+                    <td>${specialist.status}</td>
+                    <td>${(specialist.inWork == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
+                    <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
+                    <td>${specialist.nextInWork}</td>
+                </tr>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
 }
 
 function generateStandardSolutionsTable(json) {

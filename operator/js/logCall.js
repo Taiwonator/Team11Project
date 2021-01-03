@@ -173,65 +173,15 @@ function addTab() {
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name="specialistTable">
                                             <tr>
-                                                <th>Specialist Name</th>
-                                                <th>Branch</th>
-                                                <th>Expertise</th>
+                                                <th>Specialist ID</th>
+                                                <th>Problem Type</th>
                                                 <th>No. Jobs</th>
-                                                <th>Part-Time</th>
                                                 <th>Status</th>
-                                                <th>In-Work</th>
+                                                <th>In Work</th>
+                                                <th>Part Time</th>
                                                 <th>Next In Work</th>
                                             </tr>
-                                            <tr>
-                                                <td>Sally</td>
-                                                <td>Germany</td>
-                                                <td>Printer</td>
-                                                <td>10</td>
-                                                <td></i></td>
-                                                <td>Avaliable</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>20/20/2000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Susan</td>
-                                                <td>England</td>
-                                                <td>Washing Machines</td>
-                                                <td>10</td>
-                                                <td></td>
-                                                <td>Busy</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>20/20/2000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Simon</td>
-                                                <td>England</td>
-                                                <td>Alexas</td>
-                                                <td>10</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>Unavailable</td>
-                                                <td></td>
-                                                <td>20/20/2000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sandre</td>
-                                                <td>Japan</td>
-                                                <td>Mac OS</td>
-                                                <td>10</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>Avaliable</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>20/20/2000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sona</td>
-                                                <td>England</td>
-                                                <td>Anti-virus software</td>
-                                                <td>10</td>
-                                                <td></td>
-                                                <td>Avaliable</td>
-                                                <td><i class="fa fa-check-square"></i></td>
-                                                <td>20/20/2000</td>
-                                            </tr>
+                                            ${(problemInputStrings['specialists'] != undefined) ? problemInputStrings['specialists'] : ''}
                                         </table>
                                     </div>
 
