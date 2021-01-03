@@ -10,11 +10,16 @@ $problemType = $_POST["problemType"];
 $data = [ "problemType" => $problemType ];
 $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
-echo "Data: " . $_POST['problemType'];
-
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->prepare($sql)->execute($data);
+
+  $output = array();
+  foreach($db->query("SELECT * FROM $table") as $row) {
+    $row = array("problemType"=>$row['ProblemType']);
+    array_push($output, $row);
+  }
+  echo json_encode($output);
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
