@@ -74,16 +74,7 @@ function addTab() {
                                     <h3 class="element-title">Problem Type</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='problemType'>
                                         <option value="" selected disabled hidden>Select a problem type</option>
-                                        <optgroup label="Printer">
-                                            <option>Printer</option>
-                                            <option>Printer Ink</option>
-                                            <option>Printer Paper</option>
-                                        </optgroup>
-                                        <optgroup label="Hardware">
-                                            <option>Hardware</option>
-                                            <option>GPU</option>
-                                            <option>RAM</option>
-                                        </optgroup>
+                                        ${(problemInputStrings['problemType'] != undefined) ? problemInputStrings['problemType'] : ''}
                                     </select>
                                 </div>
 

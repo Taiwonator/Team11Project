@@ -23,6 +23,20 @@ function loadData(url, code) {
     xhttp.send();
 }
 
+function loadProblemType() {
+    loadData('../php/sql_select_problemType.php', function(json){
+        problemInputStrings['problemType'] = generateProblemTypes(json);
+
+        var inputs = document.getElementsByClassName("problem-input-field");
+        for(var i = 0; i < inputs.length; i++) {
+            if(inputs[i].dataset.input == 'problemType') {
+                inputs[i].innerHTML = ` <option value="" selected disabled hidden>Select a problem type</option>
+                                        ${problemInputStrings['problemType']}`;
+            }
+        }
+    });
+}
+
 function loadEquipment() {
     loadData('../php/sql_select_equipment.php', function(json){
         problemInputStrings['equipment'] = generateEquipmentTable(json);
@@ -100,6 +114,18 @@ function loadSoftware() {
         }
         addSelectableRows();
     });
+}
+
+function generateProblemTypes(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(type => {
+        return `<option>${type.problemType}</option>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
 }
 
 function generateEquipmentTable(json) {
