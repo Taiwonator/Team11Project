@@ -111,8 +111,8 @@
                 output += `<tr>
                                 <td>${obj[i].problemType}</td>
                                 <td>
-                                        <button data-name=${obj[i].problemType}  onclick="openModal(${obj[i].problemType})"   class="edit-button">Edit</button>
-                                        <button data-name=${obj[i].problemType}  onclick="deleteProblemType(${obj[i].problemType})"   class="report-solved-button">Delete</button>
+                                        <button data-name=${obj[i].problemType}  onclick="openModal('${obj[i].problemType}')"   class="edit-button">Edit</button>
+                                        <button data-name=${obj[i].problemType}  onclick="deleteProblemType('${obj[i].problemType}')"   class="report-solved-button">Delete</button>
                                 </td>
                            </tr>`
             }
