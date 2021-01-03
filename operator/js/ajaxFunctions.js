@@ -11,7 +11,7 @@ window.onload = function() {
     addTab();
 }
 
-var softwareString;
+var allProblemsArray = [];
 
 var problemInputStrings = {}
 
@@ -255,6 +255,7 @@ function generateEquipmentTable(json) {
 
 function generateProblemsTable(json) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    allProblemsArray = [...obj];
     const outputArray = obj.map(problem => {
         return `<tr>
                     <td>${problem.problemNumber}</td>
