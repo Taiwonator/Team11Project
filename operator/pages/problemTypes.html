@@ -58,7 +58,7 @@
                 </div> 
 
                         
-                <button onclick="exitModal()" class="big-button confirm-edit">Confirm</button>
+                <button onclick="confirmEdit()" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -80,8 +80,17 @@
             modal.getElementById('problem-type-input').value = problemType;
         }
 
+        function confirmEdit() {
+            console.log(`edit confirmed: ${modal.getElementById('problem-type-input').value}`);
+            exitModal();
+        }
+
         function exitModal() {
             document.getElementById('edit-screen').style.display = 'none';
+        }
+
+        function deleteProblemType(problemType) {
+            console.log(`delete problem type: ${problemType}`);
         }
 
 
@@ -103,7 +112,7 @@
                                 <td>${obj[i].problemType}</td>
                                 <td>
                                         <button data-name=${obj[i].problemType}  onclick="openModal(${obj[i].problemType})"   class="edit-button">Edit</button>
-                                        <button data-name=${obj[i].problemType}  onclick="openModal(${obj[i].problemType})"   class="report-solved-button">Delete</button>
+                                        <button data-name=${obj[i].problemType}  onclick="deleteProblemType(${obj[i].problemType})"   class="report-solved-button">Delete</button>
                                 </td>
                            </tr>`
             }
