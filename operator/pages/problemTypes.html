@@ -90,7 +90,7 @@
             console.log("CONFIRM CLICKED");
             let problemType = document.getElementById('problem-type-input').value;
             if(edit) {
-                console.log(`edit confirmed: ${problemType}`);
+                updateProblemType(problemType);
 
             } else {
                 insertProblemType(problemType);
