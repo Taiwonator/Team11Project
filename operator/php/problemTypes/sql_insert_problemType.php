@@ -6,7 +6,7 @@ $table = "ProblemType";
 
 $problemType = $_POST["problemType"];
 $data = [ "problemType" => $problemType ];
-$sql = "INSERT INTO $table (ProblemType) VALUES ('DUMMY')";
+$sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
