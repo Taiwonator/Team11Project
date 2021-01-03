@@ -34,7 +34,7 @@
                 </div>
                 <div class="search-element-table-wrapper">
 
-                <table class="search-element-table">
+                <table class="search-element-table" id="problemTypeTable">
                     <tr>
                         <th>Problem Type</th>
                         <th>Actions</th>
@@ -90,9 +90,27 @@
 
 
         // CODE
+        var problemTypesArray;
         loadData('../php/problemTypes/sql_select_problemType.php', function(json){
-            console.log(json);
+            document.getElementsById('problemTypeTable').innerHTML = generateTable(json);
         })
+
+        function generateTable(json) {
+            const obj = JSON.parse(json); // Converts JSON to Javascript Object (Array)
+            problemTypesArray = [...obj]; // Stores problem types in a variable
+            let output = `<tr>
+                            <th>Problem Type</th>
+                            <th>Actions</th>
+                          </tr>`;
+            for(var i = 0; i < obj.length; i++) {
+                output += `<td>${obj[i].problemType}</td>
+                           <td>
+                                <button data-name=${obj[i].problemType}     class="edit-button">Edit</button>
+                                <button data-name=${obj[i].problemType}     class="report-solved-button">Delete</button>
+                           </td>`
+            }
+            return output;
+        }
 
 
         
