@@ -88,9 +88,10 @@
             console.log("CONFIRM CLICKED");
             let problemType = document.getElementById('problem-type-input').value;
             if(edit) {
-                insertProblemType(problemType);
+                console.log(`edit confirmed: ${problemType}`);
+
             } else {
-                console.log(`addition confirmed: ${problemType}`);
+                insertProblemType(problemType);
             }
             exitModal();
         }
