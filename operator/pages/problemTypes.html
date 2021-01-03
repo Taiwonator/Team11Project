@@ -39,20 +39,6 @@
                         <th>Problem Type</th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <td>General</td>
-                        <td>
-                            <button class="edit-button">Edit</button>
-                            <button class="report-solved-button">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Printers</td>
-                        <td>
-                            <button class="edit-button">Edit</button>
-                            <button class="report-solved-button">Delete</button>
-                        </td>
-                    </tr>
                 </table>
                 
                 </div>
@@ -92,7 +78,7 @@
         // CODE
         var problemTypesArray;
         loadData('../php/problemTypes/sql_select_problemType.php', function(json){
-            document.getElementsById('problemTypeTable').innerHTML = generateTable(json);
+            document.getElementById('problemTypeTable').innerHTML = generateTable(json);
         })
 
         function generateTable(json) {
