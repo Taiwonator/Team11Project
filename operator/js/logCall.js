@@ -35,6 +35,10 @@ function deleteTab(evt) {
     }
 }
 
+window.onload = function() {
+    addTab();
+}
+
 function addTab() {
     var problemString = `<div class="new-problem" data-name="problem${problemCount}"><div class="search-element">
                                 <h3 class="element-title">Equipment</h3>

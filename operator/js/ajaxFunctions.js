@@ -17,6 +17,18 @@ var allProblemsArray = [];
 
 var problemInputStrings = {}
 
+function loadData(url, code) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // console.log(`Object from PHP file (${url}): ${this.responseText}`);
+            code(this.responseText);
+        }
+    }
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
 function loadSpecialists() {
     loadData('../php/logCall/sql_select_specialists.php', function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
