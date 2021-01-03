@@ -231,8 +231,8 @@ function generatePersonnelTable(json) {
     const outputArray = obj.map(personnel => {
         return `<tr>
                     <td>${personnel.id}</td>
-                    <td>Harriet Simmons</td>
-                    <td>0</td>
+                    <td>${personnel.name}</td>
+                    <td>${personnel.ext}</td>
                     <td>${personnel.jobTitle}</td>
                     <td>${personnel.dept}</td>
                     <td>${personnel.email}</td>
