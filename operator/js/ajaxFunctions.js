@@ -5,6 +5,7 @@ window.onload = function() {
     loadEquipment();
     loadProblemTypes();
     loadBranches();
+    loadStandardSolutions();
 
     addTab();
 }
@@ -23,6 +24,25 @@ function loadData(url, code) {
     }
     xhttp.open("GET", url, true);
     xhttp.send();
+}
+
+function loadStandardSolutions() {
+    loadData('../php/sql_select_standardSolutions.php', function(json){
+        problemInputStrings['standardSolutions'] = generateStandardSolutionsTable(json);
+
+        var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == 'standardSolutionsTable') {
+                tables[i].innerHTML = ` <tr>
+                                            <th>Solution Name</th>
+                                            <th>Problem Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        ${problemInputStrings['standardSolutions']}`;
+            }
+        }
+        addSelectableRows();
+    });
 }
 
 function loadBranches() {

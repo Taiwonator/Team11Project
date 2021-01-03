@@ -124,17 +124,13 @@ function addTab() {
                                 </div>
                                 <div class="search-element-table-wrapper">
 
-                                    <table class="search-element-table">
+                                    <table class="search-element-table" data-table-name="standardSolutionsTable">
                                         <tr>
                                             <th>Solution Name</th>
                                             <th>Problem Type</th>
                                             <th>Description</th>
                                         </tr>
-                                        <tr>
-                                            <td>Turn off and On again</td>
-                                            <td>General</td>
-                                            <td>Hold the power button until power is lost. Then power up again</td>
-                                        </tr>
+                                        ${(problemInputStrings['standardSolutions'] != undefined) ? problemInputStrings['standardSolutions'] : ''}
                                     </table>
                                 
                                 </div>
