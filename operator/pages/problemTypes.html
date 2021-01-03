@@ -34,7 +34,7 @@
                 </div>
                 <div class="search-element-table-wrapper">
 
-                <table class="search-element-table" id="problemTypeTable">
+                <table class="search-element-table" id="problem-type-table">
                     <tr>
                         <th>Problem Type</th>
                         <th>Actions</th>
@@ -42,7 +42,7 @@
                 </table>
                 
                 </div>
-                <button id="add-personnel" class="big-button">Add Software</button>
+                <button id="add-problem-type" class="big-button">Add Problem Type</button>
 
         </div>
 
@@ -54,11 +54,11 @@
 
                 <div class="text-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <input type="text" placeholder="Enter problem Type"></input>
+                    <input id="problem-type-input" type="text" placeholder="Enter problem Type"></input>
                 </div> 
 
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button onclick="exitModal()" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -68,17 +68,27 @@
     <script>
         // Popup
         var modal = document.getElementById("edit-screen");
-        var addPersonnelButton = document.getElementById("add-personnel");
+        var addProblemTypeButton = document.getElementById("add-problem-type");
 
-        addPersonnelButton.onclick = function() {
+        addProblemTypeButton.onclick = function() {
             modal.style.display = "block";
+            modal.getElementById('problem-type-input').value = '';
+        }
+
+        function openModal(problemType) {
+            modal.style.display = 'block';
+            modal.getElementById('problem-type-input').value = problemType;
+        }
+
+        function exitModal() {
+            document.getElementById('edit-screen').style.display = 'none';
         }
 
 
         // CODE
         var problemTypesArray;
         loadData('../php/problemTypes/sql_select_problemType.php', function(json){
-            document.getElementById('problemTypeTable').innerHTML = generateTable(json);
+            document.getElementById('problem-type-table').innerHTML = generateTable(json);
         })
 
         function generateTable(json) {
@@ -92,8 +102,8 @@
                 output += `<tr>
                                 <td>${obj[i].problemType}</td>
                                 <td>
-                                        <button data-name=${obj[i].problemType}     class="edit-button">Edit</button>
-                                        <button data-name=${obj[i].problemType}     class="report-solved-button">Delete</button>
+                                        <button data-name=${obj[i].problemType}  onclick="openModal(${obj[i].problemType})"   class="edit-button">Edit</button>
+                                        <button data-name=${obj[i].problemType}  onclick="openModal(${obj[i].problemType})"   class="report-solved-button">Delete</button>
                                 </td>
                            </tr>`
             }
