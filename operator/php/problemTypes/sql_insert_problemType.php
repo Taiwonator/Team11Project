@@ -11,7 +11,8 @@ $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->prepare($sql)->execute($data);
-  echo "Data: " . $data[0];
+  print_r($_REQUEST);
+  echo "Data: " . $_REQUEST];
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
