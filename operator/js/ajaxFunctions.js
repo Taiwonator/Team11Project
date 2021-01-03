@@ -118,6 +118,7 @@ function loadEquipment() {
 
 function loadProblems() {
     loadData('../php/sql_select_problems.php', function(json){
+        console.log(json);
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
             if(tables[i].dataset.tableName == 'allProblemsTable') {
