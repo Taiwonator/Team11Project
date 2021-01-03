@@ -5,7 +5,7 @@ $database = "helpdesk_database";
 $table = "ProblemType";
 
 $problemType = $_POST['problemType'];
-$data = [ 'problemType' = $problemType ]
+$data = [ 'problemType' => $problemType ]
 $sql = "INSERT INTO ProblemType (ProblemType) VALUES (':problemType')";
 
 try {
