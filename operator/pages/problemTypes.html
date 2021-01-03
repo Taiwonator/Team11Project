@@ -71,6 +71,7 @@
         var modal = document.getElementById("edit-screen");
         var addProblemTypeButton = document.getElementById("add-problem-type");
         var edit = true;
+        var problemTypeBuffer;
 
         addProblemTypeButton.onclick = function() {
             edit = false;
@@ -82,6 +83,7 @@
             edit = true;
             modal.style.display = 'block';
             document.getElementById('problem-type-input').value = problemType;
+            problemTypeBuffer = problemType;
         }
 
         function confirmEdit() {
@@ -101,7 +103,7 @@
         }
 
         function deleteProblemType(problemType) {
-            const payload = { 'problemType': problemType };
+            const payload = { 'old': problemTypeBuffer, 'new': problemType};
             loadData('POST', '../php/problemTypes/sql_delete_problemType.php', payload, function(json) {
                 document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
