@@ -152,6 +152,22 @@ function loadSoftware() {
     });
 }
 
+function generateStandardSolutionsTable(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(solution => {
+        return `<tr>
+                    <td>${solution.name}</td>
+                    <td>${solution.description}</td>
+                    <td>${solution.problemType}</td>
+                </tr>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
+}
+
 function generateBranches(json) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
     const outputArray = obj.map(branch => {
