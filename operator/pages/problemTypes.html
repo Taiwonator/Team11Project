@@ -101,7 +101,11 @@
         }
 
         function deleteProblemType(problemType) {
-            console.log(`delete problem type: ${problemType}`);
+            const payload = { 'problemType': problemType };
+            loadData('POST', '../php/problemTypes/sql_delete_problemType.php', payload, function(json) {
+                console.log(json);
+            })
+            loadProblemTypes();
         }
 
 
@@ -118,7 +122,7 @@
             loadData('POST', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
                 console.log(json);
             })
-            // loadProblemTypes();
+            loadProblemTypes();
         }
 
         window.onload = function() {
