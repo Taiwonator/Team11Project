@@ -69,19 +69,26 @@
         // Popup
         var modal = document.getElementById("edit-screen");
         var addProblemTypeButton = document.getElementById("add-problem-type");
+        var edit = true;
 
         addProblemTypeButton.onclick = function() {
+            edit = false;
             modal.style.display = "block";
             document.getElementById('problem-type-input').value = '';
         }
 
         function openModal(problemType) {
+            edit = true;
             modal.style.display = 'block';
             document.getElementById('problem-type-input').value = problemType;
         }
 
         function confirmEdit() {
-            console.log(`edit confirmed: ${document.getElementById('problem-type-input').value}`);
+            if(edit) {
+                console.log(`edit confirmed: ${document.getElementById('problem-type-input').value}`);
+            } else {
+                console.log(`addition confirmed: ${document.getElementById('problem-type-input').value}`);
+            }
             exitModal();
         }
 
