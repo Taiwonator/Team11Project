@@ -1,7 +1,7 @@
 window.onload = function() {
     loadSoftware();
     loadPersonnel();
-    // loadProblems();
+    loadProblems();
 
     addTab();
 }
@@ -32,7 +32,7 @@ function loadProblems() {
                                             <th>Solve Method</th>
                                             <th>Problem Type</th>
                                         </tr>
-                                        ${generateProblemsTable(json)}`;
+                                        ${'generateProblemsTable(json)'}`;
             }
         }
         addSelectableRows();
