@@ -22,7 +22,8 @@ function loadData(method, url, data={}, code) {
         }
     }
     xhttp.open(method, url, true);
-    xhttp.send(data);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(data));
 }
 
 function loadSpecialists() {
