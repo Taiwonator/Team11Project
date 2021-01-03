@@ -36,6 +36,15 @@ function deleteTab(evt) {
 }
 
 window.onload = function() {
+    loadSoftware();
+    loadPersonnel();
+    loadProblems();
+    loadEquipment();
+    loadProblemTypes();
+    loadBranches();
+    loadStandardSolutions();
+    loadSpecialists();
+    
     addTab();
 }
 

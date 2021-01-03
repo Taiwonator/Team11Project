@@ -96,7 +96,7 @@
             console.log("CONFIRM CLICKED");
             let problemType = document.getElementById('problem-type-input').value;
             if(edit) {
-                // updateProblemType(problemType);
+                updateProblemType(problemType);
 
             } else {
                 insertProblemType(problemType);
@@ -139,7 +139,7 @@
         }
 
         window.onload = function() {
-            loadProblemTypes();
+            // loadProblemTypes();
         }
 
         function generateTable(json) {

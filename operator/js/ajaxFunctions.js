@@ -1,12 +1,5 @@
 window.onload = function() {
-    loadSoftware();
-    loadPersonnel();
-    loadProblems();
-    loadEquipment();
-    loadProblemTypes();
-    loadBranches();
-    loadStandardSolutions();
-    loadSpecialists();
+    
 }
 
 var allProblemsArray = [];
