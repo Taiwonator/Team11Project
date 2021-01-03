@@ -1,6 +1,8 @@
 window.onload = function() {
     loadSoftware();
     loadPersonnel();
+    loadProblems();
+
     addTab();
 }
 
