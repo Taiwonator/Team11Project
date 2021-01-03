@@ -8,7 +8,6 @@ try {
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
     $row = array("problemNumber"=>$row['ProblemNumber'], "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], "problemType"=>$row['ProblemType']);
-    print_r($row);
     array_push($output, $row);
   }
   echo json_encode($output);
