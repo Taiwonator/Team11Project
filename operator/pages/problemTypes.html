@@ -102,8 +102,15 @@
             document.getElementById('edit-screen').style.display = 'none';
         }
 
-        function deleteProblemType(problemType) {
+        function updateProblemType(problemType) {
             const payload = { 'old': problemTypeBuffer, 'new': problemType};
+            loadData('POST', '../php/problemTypes/sql_update_problemType.php', payload, function(json) {
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
+            })
+        }
+
+        function deleteProblemType(problemType) {
+            const payload = { 'problemType': problemType };
             loadData('POST', '../php/problemTypes/sql_delete_problemType.php', payload, function(json) {
                 document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
