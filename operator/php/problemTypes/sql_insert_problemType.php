@@ -12,7 +12,7 @@ try {
   print_r('Hello1');
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   print_r('Hello2');
-  $db->prepare($sql)->execute($data)
+  $db->prepare($sql)->execute($data);
   print_r('Hello3');
 
 } catch (PDOException $e) {
