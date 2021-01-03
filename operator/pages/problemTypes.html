@@ -68,14 +68,18 @@
     <script src="../../public/js/cssHelpers.js"></script>
     <script src="../js/ajaxFunctions.js"></script>
     <script>
+        window.onload = function() {
+            loadProblemTypes();
+        }
+
         // Popup
         var modal = document.getElementById("edit-screen");
-        var addProblemTypeButton = document.getElementById("add-problem-type");
-        var span = document.getElementsByClassName("close")[0];
-        var edit = true;
-        var problemTypeBuffer;
+        var addProblemTypeButton = document.getElementById("add-problem-type"); 
+        var span = document.getElementsByClassName("close")[0]; // close button
+        var edit = true; // edit or add?
+        var problemTypeBuffer; // used for alter, need previous value to know which record to change as the problemType is the primary key (See UPDATE SQL statement)
 
-        addProblemTypeButton.onclick = function() {
+        addProblemTypeButton.onclick = function() { 
             edit = false;
             modal.style.display = "block";
             document.getElementById('problem-type-input').value = '';
@@ -97,7 +101,6 @@
             let problemType = document.getElementById('problem-type-input').value;
             if(edit) {
                 updateProblemType(problemType);
-
             } else {
                 insertProblemType(problemType);
             }
@@ -122,8 +125,6 @@
             })
         }
 
-
-        // CODE
         var problemTypesArray;
         function loadProblemTypes() {
             loadData('GET', '../php/problemTypes/sql_select_problemType.php', {}, function(json){
@@ -136,10 +137,6 @@
             loadData('POST', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
                 document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
-        }
-
-        window.onload = function() {
-            loadProblemTypes();
         }
 
         function generateTable(json) {
