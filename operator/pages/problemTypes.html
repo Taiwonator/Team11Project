@@ -86,10 +86,11 @@
 
         function confirmEdit() {
             console.log("CONFIRM CLICKED");
+            let problemType = document.getElementById('problem-type-input').value;
             if(edit) {
-                console.log(`edit confirmed: ${document.getElementById('problem-type-input').value}`);
+                insertProblemType(problemType);
             } else {
-                console.log(`addition confirmed: ${document.getElementById('problem-type-input').value}`);
+                console.log(`addition confirmed: ${problemType}`);
             }
             exitModal();
         }
