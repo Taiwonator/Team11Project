@@ -115,7 +115,7 @@
 
         function insertProblemType(problemType) {
             const payload = { 'problemType': problemType };
-            loadData('GET', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
+            loadData('POST', '../php/problemTypes/sql_insert_problemType.php', payload, function(json) {
                 console.log(json);
             })
             // loadProblemTypes();
