@@ -21,7 +21,7 @@ function loadData(url, code) {
 }
 
 function loadProblems() {
-    loadData('../php/sql_select_problem.php', function(json){
+    loadData('../php/sql_select_problems.php', function(json){
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
             if(tables[i].dataset.tableName == 'allProblemsTable') {
