@@ -89,11 +89,13 @@
                             <th>Actions</th>
                           </tr>`;
             for(var i = 0; i < obj.length; i++) {
-                output += `<td>${obj[i].problemType}</td>
-                           <td>
-                                <button data-name=${obj[i].problemType}     class="edit-button">Edit</button>
-                                <button data-name=${obj[i].problemType}     class="report-solved-button">Delete</button>
-                           </td>`
+                output += `<tr>
+                                <td>${obj[i].problemType}</td>
+                                <td>
+                                        <button data-name=${obj[i].problemType}     class="edit-button">Edit</button>
+                                        <button data-name=${obj[i].problemType}     class="report-solved-button">Delete</button>
+                                </td>
+                           </tr>`
             }
             return output;
         }
