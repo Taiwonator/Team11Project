@@ -301,59 +301,20 @@ function addTab() {
 
     const existingString = `<div data-name="problem${problemCount}" class="existing-problem">
                                 <div class="search-element">
-                                <h3 class="element-title">Solved Problems</h3>
+                                <h3 class="element-title">Problems</h3>
                                 <div class="search-element-bar">
                                     <input type="text" placeholder="Enter problem type" onkeyup="searchTable(event, 4)">
                                     <button><i class="fa fa-search"></i></button>
                                 </div>
                                 <div class="search-element-table-wrapper">
-                                <table class="search-element-table problem-input-field" data-table-name='solvedProblemsTable'>
+                                <table class="search-element-table problem-input-field" data-table-name='allProblemsTable'>
                                     <tr>
                                         <th>Problem No.</th>
+                                        <th>Description</th>
                                         <th>Status</th>
-                                        <th>Date Solved</th>
-                                        <th>Time Solved</th>
+                                        <th>Solve Method</th>
                                         <th>Problem Type</th>
-                                        <th>Specialist ID</th>
-                                        <th>External Specialist</th>
-                                    </tr>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>Solved</td>
-                                        <td>20/10/20</td>
-                                        <td>5:30pm</td>
-                                        <td>Printers</td>
-                                        <td>ES001</td>
-                                        <td><i class="fa fa-check-square"></i></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Solved</td>
-                                        <td>20/10/20</td>
-                                        <td>5:33pm</td>
-                                        <td>Software</td>
-                                        <td>S001</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Solved</td>
-                                        <td>21/10/20</td>
-                                        <td>6:30pm</td>
-                                        <td>Microsoft Word</td>
-                                        <td>S002</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Solved</td>
-                                        <td>22/10/20</td>
-                                        <td>6:39pm</td>
-                                        <td>PDF</td>
-                                        <td>ES003</td>
-                                        <td><i class="fa fa-check-square"></i></td>
-                                    </tr>
-                                    
+                                    </tr>                                    
                                 </table>
                                 </div>
                             </div>

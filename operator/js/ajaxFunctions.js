@@ -18,6 +18,25 @@ function loadData(url, code) {
     xhttp.send();
 }
 
+function loadProblems() {
+    loadData('../php/sql_select_problem.php', function(json){
+        var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == 'allProblemsTable') {
+                tables[i].innerHTML = ` <tr>
+                                            <th>Problem No.</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Solve Method</th>
+                                            <th>Problem Type</th>
+                                        </tr>
+                                        ${generateProblemsTable(json)}`;
+            }
+        }
+        addSelectableRows();
+    });
+}
+
 
 function loadPersonnel() {
     loadData('../php/sql_select_personnel.php', function(json){
@@ -33,15 +52,16 @@ function loadPersonnel() {
                                             <th>Email</th>
                                             <th>Branch ID</th>
                                         </tr>
-                                        ${generatesPersonnelTable(json)}`;
+                                        ${generatePersonnelTable(json)}`;
             }
         }
+        addSelectableRows();
     });
 }
 
 function loadSoftware() {
     loadData('../php/sql_select_software.php', function(json){
-        softwareString = generatesSoftwareTable(json);
+        softwareString = generateSoftwareTable(json);
             
         // Sets first created to the correct value
         var tables = document.getElementsByClassName("search-element-table");
@@ -55,10 +75,29 @@ function loadSoftware() {
                                         ${softwareString}`;
             }
         }
+        addSelectableRows();
     });
 }
 
-function generatesPersonnelTable(json) {
+function generateProblemsTable(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(problem => {
+        return `<tr>
+                    <td>${problem.problemNumber}</td>
+                    <td>${problem.description}</td>
+                    <td>${problem.status}</td>
+                    <td>${problem.solveMethod}</td>
+                    <td>${problem.problemType}</td>
+                </tr>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
+}
+
+function generatePersonnelTable(json) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
     const outputArray = obj.map(personnel => {
         return `<tr>
@@ -78,7 +117,7 @@ function generatesPersonnelTable(json) {
     return output;
 }
 
-function generatesSoftwareTable(json) {
+function generateSoftwareTable(json) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
     const outputArray = obj.map(software => {
         return `<tr><td>${software.softwareName}</td>
