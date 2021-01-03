@@ -22,80 +22,80 @@ function checkThirdParty(e) {
 
   
 
-// Get the editScreen
-var editScreen = document.getElementById("edit-screen");
-var viewScreen = document.getElementById("view-screen");
+// // Get the editScreen
+// var editScreen = document.getElementById("edit-screen");
+// var viewScreen = document.getElementById("view-screen");
 
-// When the user clicks the button, open the editScreen --------------------------------
-var closeButtons = document.getElementsByClassName("close");
-var viewButtons = document.getElementsByClassName("view-button");
-var confirmButtons = document.getElementsByClassName("confirm-edit");
-var editButtons = document.getElementsByClassName("edit-button");
+// // When the user clicks the button, open the editScreen --------------------------------
+// var closeButtons = document.getElementsByClassName("close");
+// var viewButtons = document.getElementsByClassName("view-button");
+// var confirmButtons = document.getElementsByClassName("confirm-edit");
+// var editButtons = document.getElementsByClassName("edit-button");
 
-if(confirmButtons != undefined) {
-  for(var i = 0; i < editButtons.length; i++) {
-      editButtons[i].onclick = function() {
-          editScreen.style.display = "block";
-      }
-  }
-} 
+// if(confirmButtons != undefined) {
+//   for(var i = 0; i < editButtons.length; i++) {
+//       editButtons[i].onclick = function() {
+//           editScreen.style.display = "block";
+//       }
+//   }
+// } 
 
-if(confirmButtons != undefined) {
-  for(var i = 0; i < viewButtons.length; i++) {
-      viewButtons[i].onclick = function() {
-          viewScreen.style.display = "block";
-      }
-  }
-} 
+// if(confirmButtons != undefined) {
+//   for(var i = 0; i < viewButtons.length; i++) {
+//       viewButtons[i].onclick = function() {
+//           viewScreen.style.display = "block";
+//       }
+//   }
+// } 
 
-if(confirmButtons != undefined) {
-  for(var i = 0; i < confirmButtons.length; i++) {
-    confirmButtons[i].onclick = function() {
-      if(editScreen != undefined) {
-        editScreen.style.display = "none";
-      } 
-      if(viewScreen != undefined) {
-        viewScreen.style.display = "none";
-      }
-    }
-  } 
-}
+// if(confirmButtons != undefined) {
+//   for(var i = 0; i < confirmButtons.length; i++) {
+//     confirmButtons[i].onclick = function() {
+//       if(editScreen != undefined) {
+//         editScreen.style.display = "none";
+//       } 
+//       if(viewScreen != undefined) {
+//         viewScreen.style.display = "none";
+//       }
+//     }
+//   } 
+// }
 
-if(confirmButtons != undefined) {
-  for(var i = 0; i < closeButtons.length; i++) {
-    closeButtons[i].onclick = function() {
-      if(editScreen != undefined) {
-        editScreen.style.display = "none";
-      } 
-      if(viewScreen != undefined) {
-        viewScreen.style.display = "none";
-      }
-    }
-  } 
-}
+// if(confirmButtons != undefined) {
+//   for(var i = 0; i < closeButtons.length; i++) {
+//     closeButtons[i].onclick = function() {
+//       if(editScreen != undefined) {
+//         editScreen.style.display = "none";
+//       } 
+//       if(viewScreen != undefined) {
+//         viewScreen.style.display = "none";
+//       }
+//     }
+//   } 
+// }
 
 
-// -------------------------------------------------------------------------
+// // -------------------------------------------------------------------------
 
-// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table
-function searchTable(e, index) {
-  var input, filter, table, tr, td, i, txtValue;
-  input = e.target;
-  filter = input.value.toUpperCase();
-  table = e.target.parentNode.nextElementSibling;
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[index];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
+// // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table
+// function searchTable(e, index) {
+//   var input, filter, table, tr, td, i, txtValue;
+//   input = e.target;
+//   filter = input.value.toUpperCase();
+//   table = e.target.parentNode.nextElementSibling;
+//   tr = table.getElementsByTagName("tr");
+//   for (i = 0; i < tr.length; i++) {
+//     td = tr[i].getElementsByTagName("td")[index];
+//     if (td) {
+//       txtValue = td.textContent || td.innerText;
+//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//         tr[i].style.display = "";
+//       } else {
+//         tr[i].style.display = "none";
+//       }
+//     }       
+//   }
+// }
 
 
 // Selection
