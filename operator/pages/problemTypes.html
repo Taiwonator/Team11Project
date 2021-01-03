@@ -84,6 +84,7 @@
         }
 
         function confirmEdit() {
+            console.log("CONFIRM CLICKED");
             if(edit) {
                 console.log(`edit confirmed: ${document.getElementById('problem-type-input').value}`);
             } else {
@@ -94,6 +95,7 @@
 
         function exitModal() {
             document.getElementById('edit-screen').style.display = 'none';
+            console.log("EXIT MODAL");
         }
 
         function deleteProblemType(problemType) {
