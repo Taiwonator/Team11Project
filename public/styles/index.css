@@ -70,7 +70,7 @@ button:focus, input:focus, textarea:focus {
 }
 
 .disabled-button {
-    background-color: #6c757d;
+    background-color: #6c757d !important;
 }
 
 input[type="text"], input[type="date"], select, textarea, input[type="time"] {
