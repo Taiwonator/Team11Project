@@ -55,11 +55,11 @@
 
                 <div class="text-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <input id="problem-type-input" type="text" placeholder="Enter problem Type"></input>
+                    <input id="problem-type-input" onkeyup="checkIfEmpty(event)" type="text" autocomplete="off" placeholder="Enter problem Type"></input>
                 </div> 
 
                         
-                <button onclick="confirmEdit()" class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" onclick="confirmEdit()" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -82,11 +82,29 @@
         addProblemTypeButton.onclick = function() { 
             edit = false;
             modal.style.display = "block";
+            
             document.getElementById('problem-type-input').value = '';
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
+            
         }
 
         span.onclick = function() {
             modal.style.display = "none";
+        }
+
+        function checkIfEmpty(e) {
+            var button = document.getElementById('confirm-button');
+            if(e.target.value == "") {
+                button.classList.add('disabled-button');
+            } else {
+                if(button.classList.contains('disabled-button')) {
+                    button.classList.remove('disabled-button');
+                }
+            }
         }
 
         function openModal(problemType) {
@@ -99,12 +117,25 @@
         function confirmEdit() {
             console.log("CONFIRM CLICKED");
             let problemType = document.getElementById('problem-type-input').value;
-            if(edit) {
-                updateProblemType(problemType);
-            } else {
-                insertProblemType(problemType);
+            if(problemType != "") {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    console.log(problemType);
+                    if(edit) {
+                        updateProblemType(problemType);
+                    } else {
+                        insertProblemType(problemType);
+                    } 
+                    exitModal();
+                }
             }
-            exitModal();
+        }
+
+        function confirmDelete(problemType) {
+            var confirmed = confirm("Are you sure?");
+            if(confirmed == true) {
+                deleteProblemType(problemType);
+            }
         }
 
         function exitModal() {
@@ -151,7 +182,7 @@
                                 <td>${obj[i].problemType}</td>
                                 <td>
                                         <button data-name=${obj[i].problemType}  onclick="openModal('${obj[i].problemType}')"   class="edit-button">Edit</button>
-                                        <button data-name=${obj[i].problemType}  onclick="deleteProblemType('${obj[i].problemType}')"   class="report-solved-button">Delete</button>
+                                        <button data-name=${obj[i].problemType}  onclick="confirmDelete('${obj[i].problemType}')"   class="report-solved-button">Delete</button>
                                 </td>
                            </tr>`
             }

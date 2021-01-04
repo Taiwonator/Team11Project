@@ -69,6 +69,10 @@ button:focus, input:focus, textarea:focus {
     outline: none !important;
 }
 
+.disabled-button {
+    background-color: #6c757d;
+}
+
 input[type="text"], input[type="date"], select, textarea, input[type="time"] {
     border:none;
     min-height: 40px;

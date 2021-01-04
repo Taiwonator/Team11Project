@@ -75,27 +75,27 @@ function checkThirdParty(e) {
 // }
 
 
-// // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
 
-// // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table
-// function searchTable(e, index) {
-//   var input, filter, table, tr, td, i, txtValue;
-//   input = e.target;
-//   filter = input.value.toUpperCase();
-//   table = e.target.parentNode.nextElementSibling;
-//   tr = table.getElementsByTagName("tr");
-//   for (i = 0; i < tr.length; i++) {
-//     td = tr[i].getElementsByTagName("td")[index];
-//     if (td) {
-//       txtValue = td.textContent || td.innerText;
-//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//         tr[i].style.display = "";
-//       } else {
-//         tr[i].style.display = "none";
-//       }
-//     }       
-//   }
-// }
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_table
+function searchTable(e, index) {
+  var input, filter, table, tr, td, i, txtValue;
+  input = e.target;
+  filter = input.value.toUpperCase();
+  table = e.target.parentNode.nextElementSibling;
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[index];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
 
 
 // Selection
