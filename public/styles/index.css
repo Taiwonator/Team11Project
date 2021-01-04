@@ -55,6 +55,7 @@ button {
     padding: 0 1em;
     transition: filter .1s ease-in-out;
     font-size: 15px;
+    transition: background-color .2s ease-in-out;
 }
 
 button:hover {
@@ -67,6 +68,10 @@ button:active {
 
 button:focus, input:focus, textarea:focus {
     outline: none !important;
+}
+
+.disabled-button {
+    background-color: #6c757d !important;
 }
 
 input[type="text"], input[type="date"], select, textarea, input[type="time"] {
