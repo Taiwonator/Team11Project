@@ -503,7 +503,7 @@ function getNewProblemInputs(obj, newProblem) {
             const problemKeys = Object.keys(problemInputs[i]);
             for(var j = 0; j < problemKeys.length; j++) {
                 // console.log(`key (${problemKeys[j]}): `, validateProblemInput(problemInputs, problemKeys[j]));
-                console.log("value", (problemInputs[i])[problemKeys[j]]);
+                console.log("value", (problemInputs[i])[[problemKeys[j]]]);
                 if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
                     return false;
                 } 
