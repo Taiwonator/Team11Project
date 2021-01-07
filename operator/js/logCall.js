@@ -499,12 +499,10 @@ function getNewProblemInputs(obj, newProblem) {
     }
 
     function validateProblemInputs(problemInputs) {
-        console.log("problemInputs: ", problemInputs);
         for(var i = 0; i < problemInputs.length; i++) {
-            const problemKeys = Object.keys(problemInputs);
-            for(var i = 0; i < problemKeys.length; i++) {
-                console.log(`problemkey: ${problemKeys[i]}`, validateProblemInput(problemInputs, problemKeys[i]));
-                if( !validateProblemInput(problemInputs, problemKeys[i]) ) {
+            const problemKeys = Object.keys(problemInputs[i]);
+            for(var j = 0; j < problemKeys.length; j++) {
+                if( !validateProblemInput(problemInputs, problemKeys[j]) ) {
                     return false;
                 } 
             }
