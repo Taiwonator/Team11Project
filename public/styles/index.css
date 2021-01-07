@@ -204,7 +204,7 @@ input:focus, select:focus {
     padding: 1em;
 }
 
-.search-element > *, .text-input-element > *, .select-input-element > *, .date-input-element > *, .text-area-input-element > *, .checkbox-input-element > *, .time-input-element > * {
+.search-element > *, .text-input-element > *, .select-input-element > *, .date-input-element > *, .text-area-input-element > *, .checkbox-input-element > *, .time-input-element > *, #specialists > *, #third-party-specialists {
     margin-bottom: 20px;
     color: #6c757d;
 ;
