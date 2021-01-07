@@ -101,13 +101,13 @@
         function runLogin() {
             var username = document.querySelector("#username");
             console.log(username.value);
-            if(username.value == "operator@gmail.com") {
+            if(username.value == "operator@gmail.com" || username.value == "o") {
                 window.location = "./operator/pages/logCall.html";
-            } else if (username.value == "specialist@gmail.com") {
+            } else if (username.value == "specialist@gmail.com" || username.value == "s") {
                 window.location = "./specialist/pages/activeProblems.html";
-            } else if (username.value == "hr@gmail.com") {
+            } else if (username.value == "hr@gmail.com" || username.value == "h") {
                 window.location = "./hr/pages/editPersonnel.html";
-            } else if (username.value == "analyst@gmail.com") {
+            } else if (username.value == "analyst@gmail.com" || username.value == "a") {
                 window.location = "./analyst/pages/getData.html";
             } else {
                 console.log("no");

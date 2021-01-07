@@ -18,6 +18,7 @@ function openTab(evt, problemName, plus) {
         }
     }
     evt.currentTarget.className += " active";
+    console.log(problemIDs);
 }
 
 // Not w3chools
@@ -29,7 +30,7 @@ function deleteTab(evt) {
     if(tabCount != 1) {
         evt.target.parentElement.remove();
         tabCount--;
-        problemIDs = problemIDs.filter(x => x != evt.target.dataset.name);
+        problemIDs = problemIDs.filter(x => x.problemID != evt.target.dataset.name);
         console.log(problemIDs);
         document.getElementById(evt.target.dataset.name).remove();
     }
@@ -267,7 +268,8 @@ function addTab() {
     
     openTab(event, `problem${problemCount}` , true);
 
-    problemIDs.push(`problem${problemCount}`);
+    let item = { problemID: `problem${problemCount}`, type: "" }
+    problemIDs.push(item);
     console.log(problemIDs);
 
     tabCount++;
@@ -299,6 +301,13 @@ function chooseExisting(e) {
             existingProblems[i].style.display = 'block';
         }
     }
+
+    //
+    for(var i = 0; i < problemIDs.length; i++) {
+        if(problemIDs[i].problemID == e.target.dataset.name) {
+            problemIDs[i].type = "existing";
+        }
+    }
 }
 
 function chooseNew(e) {
@@ -324,20 +333,35 @@ function chooseNew(e) {
             existingProblems[i].style.display = 'none';
         }
     }
+
+    // 
+    for(var i = 0; i < problemIDs.length; i++) {
+        if(problemIDs[i].problemID == e.target.dataset.name) {
+            problemIDs[i].type = "new";
+        }
+    }
 }
 
 function retreiveInputs() {
     const inputFields = document.getElementsByClassName('call-input-field');
     let obj = {
+        callerName: "", 
+        extension: "",
         problems: []
     };
     for(var i = 0; i < inputFields.length; i++) {
         readCallInput(obj, inputFields[i]);
     }
     for(var i = 0; i < problemIDs.length; i++) {
-        getNewProblemInputs(obj, getNewProblem(problemIDs[i]));
+        if(problemIDs[i].type == "new") {
+            getNewProblemInputs(obj, getNewProblem(problemIDs[i].problemID));
+        } else if(problemIDs[i].type == "existing") {
+            getExistingProblemInputs(obj, getExistingProblem(problemIDs[i].problemID));
+        } else {
+            console.log("choose!!!");
+        }
     }
-    console.log(obj);
+    validateInputs(obj);
 }
 
 function readCallInput(obj, input) {
@@ -372,6 +396,9 @@ function addSelectedRowInputs(obj, row, externalSpecialist){
                     obj['externalSpecialistID'] = row.cells[0].innerHTML;
                 }
                 break;
+            case 'allProblemsTable': 
+                obj['problemNumber'] = row.cells[0].innerHTML;
+                break;
             default: 
                 console.log(row);
                 break;
@@ -392,7 +419,12 @@ function getNewProblemInputs(obj, newProblem) {
     const inputs = newProblem.getElementsByClassName('problem-input-field');
     let external = newProblem.getElementsByClassName('external')[0].checked;
 
-    let newProblemObj = {};
+    let newProblemObj = {
+        serialNumber: "", 
+        softwareName: "", 
+        specialistID: "", 
+        externalSpecialistID: ""
+    };
     for(var i = 0; i < inputs.length; i++) {
         if(inputs[i].tagName != 'TABLE') {
             if(inputs[i].dataset.input == 'status') {
@@ -420,36 +452,109 @@ function getNewProblemInputs(obj, newProblem) {
     obj.problems.push(newProblemObj);
 }
 
+    function getExistingProblem(problemName) {
+        const existingProblems = document.getElementsByClassName('existing-problem');
+        for(var i = 0; i < existingProblems.length; i++) {
+            if(existingProblems[i].dataset.name == problemName) {
+                 return existingProblems[i];
+            }
+        }
+    }
+
+    function getExistingProblemInputs(obj, existingProblem) {
+        let existingProblemObj = {
+            problemNumber: ""
+        };
+        let selectedRow = existingProblem.getElementsByClassName("selected-row")[0];
+        addSelectedRowInputs(existingProblemObj, selectedRow);
+        obj.problems.push(existingProblemObj)
+    }
+
+    function validateInputs(inputs) {
+        console.log("validating: ", inputs);
+        const keys = Object.keys(inputs);
+        let pass = true;
+        for(var i = 0; i < keys.length; i++) {
+            if( !validateInput(inputs, keys[i]) ) {
+                pass = false;
+            }
+        }
+        console.log(pass); 
+    }
+
+    function validateInput(inputs, key) {
+        if(key != "problem") {
+            if(inputs[key] == "") {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if(inputs[key].length == 0) {
+                return false;
+            } else {
+                return validateProblemInputs(inputs[key]);
+            }
+        }
+    }
+
+    function validateProblemInputs(problemInputs) {
+        for(var i = 0; i < problemInputs.length; i++) {
+            const problemKeys = Object.keys(problemInputs);
+            for(var i = 0; i < problemKeys.length; i++) {
+                if( !validateProblemInput(problemInputs, problemKeys[i]) ) {
+                    return false;
+                } 
+            }
+            return true;
+        }
+    }
+
+    function validateProblemInput(inputs, key) {
+        const nullFields = ["OS", "solveMethod"];
+        if(nullFields.includes(inputs[key])) {
+            return true;
+        } else {
+            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+                return false;
+            } else if (inputs[key] == "") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
 
 
 // {
 //     call: {
-//         callerName,          TABLE - SELECTED ROW
-//         ext,                 TABLE - SELECTED ROW
-//         date,                DATE NOW
-//         time,                TIME NOW
-//         operatorID           OPERATOR LOGGED IN
-//         callReason           TEXTAREA
+//         callerName,          TABLE - SELECTED ROW      ...
+//         ext,                 TABLE - SELECTED ROW      ...
+//         date,                DATE NOW                  ...   
+//         time,                TIME NOW                  ...
+//         operatorID           OPERATOR LOGGED IN        ...
+//         callReason           TEXTAREA                  ...
 //     }, 
 //     problems: [{}, {},...,{}]
 // }
 
 // problem : {
-//     serialNo,                TABLE   
-//     softwareName,            TABLE
-//     OS,                      DROPDOWN
-//     problemType,             DROPDOWN
-//     problemDescription,      TEXTAREA
-//     branch,                  DROPDOWN
-//     priority,                DROPDOWN
-//     status (solved?),        CHECKBOX
-//     inPerson,                CHECKBOX
-//     specialistID,            TABLE
-//     externalSpecialistID,    TABLE
-//     dateSolved,              NULL / DATE NOW
-//     timeSolved,              NULL / TIME NOW
-//     solveMethod,             TEXTAREA
-//     notes                    TEXTAREA
+//     serialNo,                TABLE                     ...
+//     softwareName,            TABLE                     ...
+//     OS,                      DROPDOWN                  ...   
+//     problemType,             DROPDOWN                  ...
+//     problemDescription,      TEXTAREA                  ...
+//     branch,                  DROPDOWN                  ...
+//     priority,                DROPDOWN                  ...
+//     status (solved?),        CHECKBOX                  ...
+//     inPerson,                CHECKBOX                  ...
+//     specialistID,            TABLE                     ...
+//     externalSpecialistID,    TABLE                     ...
+//     dateSolved,              NULL / DATE NOW           ...
+//     timeSolved,              NULL / TIME NOW           ...
+//     solveMethod,             TEXTAREA                  ...
+//     notes                    TEXTAREA                  ...
 // }
 
 // Each input has a class named 'input-field'. Then its data-input will be the object key. To actually read the input it will depend. data-inputType will tell the function how to read the data.
@@ -465,3 +570,21 @@ function getNewProblemInputs(obj, newProblem) {
 // PROBLEMS
 // Inputs should all be filled out according to existing problem if that one is chosen. Need an object which returns all the previously solved problems. 
 // If specialist is set, 3rd party specialist should not be. Only check if input....
+
+
+
+// Sort out problemsArray x 
+// Obj { problemNo } needs to be made x
+
+// None of call can be null
+// Os NULL
+// Software NULL
+// DateSolved NULL
+// TimeSolved NULL
+// SolveMethod NULL
+// ID NULL (Although, ExternalID cannot be null)
+// ExternalID NULL (Although if null, ID cannot be null)
+
+// CHECK FOR NULLS
+// ADD DATE AND TIME SOLVED
+
