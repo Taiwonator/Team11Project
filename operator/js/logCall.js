@@ -503,7 +503,7 @@ function getNewProblemInputs(obj, newProblem) {
             const problemKeys = Object.keys(problemInputs[i]);
             for(var j = 0; j < problemKeys.length; j++) {
                 // console.log(`key (${problemKeys[j]}): `, validateProblemInput(problemInputs, problemKeys[j]));
-                console.log(`count: ${problemInputs[i][problemKeys[j]]}`);
+                console.log(`count: ${(problemInputs[i])[problemKeys[j]]}`);
                 if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
                     return false;
                 } 
@@ -514,7 +514,7 @@ function getNewProblemInputs(obj, newProblem) {
 
     function validateProblemInput(inputs, key) {
         const nullFields = ["OS", "solveMethod", "solveNotes"];
-        console.log(`${key}:${inputs[key]}`);
+        // console.log(`${key}:${inputs[key]}`);
         if(nullFields.includes(inputs[key])) {
             return true;
         } else {
