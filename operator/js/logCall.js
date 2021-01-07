@@ -502,7 +502,8 @@ function getNewProblemInputs(obj, newProblem) {
         for(var i = 0; i < problemInputs.length; i++) {
             const problemKeys = Object.keys(problemInputs[i]);
             for(var j = 0; j < problemKeys.length; j++) {
-                console.log(`key (${problemKeys[j]}): `, validateProblemInput(problemInputs, problemKeys[j]));
+                // console.log(`key (${problemKeys[j]}): `, validateProblemInput(problemInputs, problemKeys[j]));
+                console.log(problemInputs[i], problemKeys[j]);
                 if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
                     return false;
                 } 
@@ -517,7 +518,7 @@ function getNewProblemInputs(obj, newProblem) {
         if(nullFields.includes(inputs[key])) {
             return true;
         } else {
-            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "" && inputs['problemNumber'] == null) {
+            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "" && inputs['problemNumber'] == null) { // Has to be a newProblem and not an existing problem to make this check
                 return false;
             } else if (inputs[key] == "") {
                 return false;
