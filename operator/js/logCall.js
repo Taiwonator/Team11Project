@@ -483,7 +483,7 @@ function getNewProblemInputs(obj, newProblem) {
     }
 
     function validateInput(inputs, key) {
-        if(key != "problem") {
+        if(key != "problems") {
             if(inputs[key] == "") {
                 return false;
             } else {
