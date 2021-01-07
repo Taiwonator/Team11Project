@@ -512,12 +512,12 @@ function getNewProblemInputs(obj, newProblem) {
     }
 
     function validateProblemInput(inputs, key) {
-        const nullFields = ["OS", "solveMethod"];
+        const nullFields = ["OS", "solveMethod", "solveNotes"];
         console.log(`${key}:${inputs[key]}`);
         if(nullFields.includes(inputs[key])) {
             return true;
         } else {
-            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "" && inputs['problemNumber'] == null) {
                 return false;
             } else if (inputs[key] == "") {
                 return false;
