@@ -514,7 +514,7 @@ function getNewProblemInputs(obj, newProblem) {
 
     function validateProblemInput(inputs, key) {
         const nullFields = ["OS", "solveMethod", "solveNotes"];
-        // console.log(`${key}:${inputs[key]}`);
+        console.log(`${key}:${inputs[key]}`);
         if(nullFields.includes(inputs[key])) {
             return true;
         } else {
