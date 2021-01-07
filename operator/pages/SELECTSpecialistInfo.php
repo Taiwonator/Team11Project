@@ -40,8 +40,8 @@ $branchID = intval($_POST['BranchID']);
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
-  foreach($db->query("SELECT Specialist.ID, Specialist.NumJobs, Specialist.Status, Specialist.InWork, Specialist.PartTime, Specialist.NextInWork FROM Specialist INNER JOIN Personnel ON Specialist.ID=Personnel.ID WHERE Personnel.BranchID = $branchID") as $row) {
-    $row = array("ID"=>$row['ID'], "numJobs"=>$row['NumJobs'], "status"=>$row['Status'], "inWork"=>$row['InWork'], "partTime"=>$row['PartTime'], "nextInWork"=>$row['NextInWork']);
+  foreach($db->query("SELECT Specialist.ID, Specialist.NumJobs, Specialist.PartTime, Specialist.Status, Specialist.InWork, Specialist.NextInWork FROM Specialist INNER JOIN Personnel ON Specialist.ID=Personnel.ID WHERE Personnel.BranchID = $branchID") as $row) {
+    $row = array("SpecialistID"=>$row['ID'], "numJobs"=>$row['NumJobs'], "partTime"=>$row['PartTime'], "status"=>$row['Status'], "inWork"=>$row['InWork'], "nextInWork"=>$row['NextInWork']);
     array_push($output, $row);
   }
   echo json_encode($output);
