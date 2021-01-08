@@ -19,24 +19,29 @@ function loadData(method, url, data, code) {
     xhttp.send(JSON.stringify(data));
 }
 
+function getTable(tableName) {
+    var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == tableName) {
+                return tables[i];
+            }
+        }
+}
+
 function loadExternalSpecialists() {
     loadData('GET', '../php/logCall/sql_select_externalSpecialists.php', {}, function(json){
         problemInputStrings['externalSpecialists'] = generateExternalSpecialistsTable(json);
         console.log(json);
         console.log(generateExternalSpecialistsTable(json));
 
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'externalSpecialistTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>External Specialist ID</th>
-                                            <th>Name</th>
-                                            <th>Contact Number</th>
-                                            <th>Expertise</th>
-                                        </tr>
-                                        ${problemInputStrings['externalSpecialists']}`;
-            }
-        }
+        var table = getTable('externalSpecialistTable');
+        table.innerHTML = ` <tr>
+                                <th>External Specialist ID</th>
+                                <th>Name</th>
+                                <th>Contact Number</th>
+                                <th>Expertise</th>
+                            </tr>
+                            ${problemInputStrings['externalSpecialists']}`
         addSelectableRows();
     });
 }
@@ -227,25 +232,6 @@ function generateSpecialistsTable(json) {
     })
 }
 
-// function generateSpecialistsTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(specialist => {
-//         return `<tr>
-//                     <td>${specialist.id}</td>
-//                     <td>${specialist.problemType}</td>
-//                     <td>${specialist.numJobs}</td>
-//                     <td>${specialist.status}</td>
-//                     <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
-//                     <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
-//                     <td>${specialist.nextInWork}</td>
-//                 </tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateStandardSolutionsTable(json) {
     return generateTable(json, (solution) => {
@@ -257,21 +243,6 @@ function generateStandardSolutionsTable(json) {
     })
 }
 
-// function generateStandardSolutionsTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(solution => {
-//         return `<tr>
-//                     <td>${solution.name}</td>
-//                     <td>${solution.description}</td>
-//                     <td>${solution.problemType}</td>
-//                 </tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateBranches(json) {
     return generateTable(json, (branch) => {
@@ -279,17 +250,6 @@ function generateBranches(json) {
     })
 }
 
-// function generateBranches(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(branch => {
-//         return `<option>${branch.country}</option>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateProblemTypes(json) {
     return generateTable(json, (type) => {
@@ -297,17 +257,6 @@ function generateProblemTypes(json) {
     })
 }
 
-// function generateProblemTypes(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(type => {
-//         return `<option>${type.problemType}</option>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateEquipmentTable(json) {
     return generateTable(json, (equipment) => {
@@ -319,21 +268,6 @@ function generateEquipmentTable(json) {
     })
 }
 
-// function generateEquipmentTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(equipment => {
-//         return `<tr>
-//                     <td>${equipment.serialNumber}</td>
-//                     <td>${equipment.type}</td>
-//                     <td>${equipment.make}</td>
-//                 </tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateProblemsTable(json) {
     return generateTable(json, (problem) => {
@@ -347,24 +281,6 @@ function generateProblemsTable(json) {
     })
 }
 
-// function generateProblemsTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     allProblemsArray = [...obj];
-//     const outputArray = obj.map(problem => {
-//         return `<tr>
-//                     <td>${problem.problemNumber}</td>
-//                     <td>${problem.description}</td>
-//                     <td>${problem.status}</td>
-//                     <td>${(problem.solveMethod == null) ? 'Not solved yet' : problem.solveMethod}</td>
-//                     <td>${problem.problemType}</td>
-//                 </tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generatePersonnelTable(json) {
     return generateTable(json, (personnel) => {
@@ -380,25 +296,6 @@ function generatePersonnelTable(json) {
     })
 }
 
-// function generatePersonnelTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(personnel => {
-//         return `<tr>
-//                     <td>${personnel.id}</td>
-//                     <td>${personnel.name}</td>
-//                     <td>${personnel.ext}</td>
-//                     <td>${personnel.jobTitle}</td>
-//                     <td>${personnel.dept}</td>
-//                     <td>${personnel.email}</td>
-//                     <td>${personnel.branchID}</td>
-//                 </tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
 
 function generateSoftwareTable(json) {
     return generateTable(json, (software) => {
@@ -410,16 +307,3 @@ function generateSoftwareTable(json) {
     })
 }
 
-// function generateSoftwareTable(json) {
-//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(software => {
-//         return `<tr><td>${software.softwareName}</td>
-//                 ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
-//                 ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}</tr>`;
-//     })
-//     let output = ``;
-//     for(var i = 0; i < outputArray.length; i++) {
-//         output += outputArray[i];
-//     }
-//     return output;
-// }
