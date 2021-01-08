@@ -527,6 +527,7 @@ function getNewProblemInputs(obj, newProblem) {
         }
 
         if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) {
+            console.log(`ID: ${inputs["specialistID"]}, external: ${inputs["externalSpecialistID"]}`);
             if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
                 return false;
             }
