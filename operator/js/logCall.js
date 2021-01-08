@@ -515,21 +515,24 @@ function getNewProblemInputs(obj, newProblem) {
     function validateProblemInput(inputs, key) {
         const nullFields = ["OS", "solveMethod", "solveNotes"];
         if(nullFields.includes(inputs[key])) {
+            console.log(`IF ${key}:${inputs[key]}`);
             return true;
         } else {
-            if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) { 
-                // console.log(inputs["specialistID"], inputs["externalSpecialistID"]);
-                if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
-                    console.log(`IF ${key}:${inputs[key]}`);
-                    return false;
-                }
-            } else if (inputs[key] == "") {
-                console.log(`ELSE IF ${key}:${inputs[key]}`);
-                return false;
-            } else {
-                console.log(`YAY ${key}:${inputs[key]}`);
-                return true;
-            }
+            console.log(`ELSE ${key}:${inputs[key]}`);
+            return true;
+            // if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) { 
+            //     // console.log(inputs["specialistID"], inputs["externalSpecialistID"]);
+            //     if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+            //         console.log(`IF ${key}:${inputs[key]}`);
+            //         return false;
+            //     }
+            // } else if (inputs[key] == "") {
+            //     console.log(`ELSE IF ${key}:${inputs[key]}`);
+            //     return false;
+            // } else {
+            //     console.log(`YAY ${key}:${inputs[key]}`);
+            //     return true;
+            // }
         }
     }
 
