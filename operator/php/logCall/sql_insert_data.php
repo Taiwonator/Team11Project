@@ -16,13 +16,19 @@ $operatorID = $_POST['operatorID'];
 
 $problems = $_POST['problems'];
 
-$callData = [ "callerName" => $extension, "extension" => $callerName, "date" => $date, "time" => $time, "reasonForCall" => $reasonForCall, "operatorID" => $operatorID];
+$callData = [ "callerName" => $extension, "extension" => $callerName, "date" => $date, "time" => $time, "reasonForCall" => $reasonForCall, "operatorID" => $operatorID ];
 $callSQL = "INSERT INTO $callTable (Name, Ext, Date, Time, ReasonForCall, operatorID) VALUES (:callerName, :extension, :date, :time, :reasonForCall, :operatorID)";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->prepare($callSQL)->execute($callData);
-  echo "Done";
+  
+  $output = array();
+  foreach($db->query("SELECT * FROM $table") as $row) {
+    $row = array("callerName"=>$row['Name']);
+    array_push($output, $row);
+  }
+  echo json_encode($output);
 
   // $output = array();
   // foreach($db->query("SELECT * FROM $table") as $row) {
