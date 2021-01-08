@@ -17,7 +17,7 @@ $operatorID = $_POST['operatorID'];
 
 $problems = $_POST['problems'];
 
-$callData = [ "2", $extension, $callerName, $date, $formatedTime, $reasonForCall, $operatorID ];
+$callData = [ 2, $callerName, $extension, $date, $formatedTime, $reasonForCall, $operatorID ];
 $callSQL = "INSERT INTO `Call` (`CallID`, `Name`, `Ext`, `Date`, `Time`, `ReasonForCall`, `ID`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 try {
