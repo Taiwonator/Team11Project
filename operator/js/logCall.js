@@ -484,7 +484,7 @@ function getNewProblemInputs(obj, newProblem) {
 
     function validateInput(inputs, key) {
         if(key != "problems") {
-            if(inputs[key] == "") {
+            if(inputs[key] === "") {
                 return false;
             } else {
                 return true;
@@ -532,7 +532,7 @@ function getNewProblemInputs(obj, newProblem) {
                 return false;
             }
         } else {
-            if (inputs[key] == "") {
+            if (inputs[key] === "") {
                 console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
                 return false;
             }
