@@ -20,7 +20,7 @@ for($i = 0; $i <= count($problems); $i++) {
 }
 
 echo "Working";
-print_r($problemsArray);
+print_r(($problems[0])['serialNumber']);
 // $data = [ "problemType" => $problemType ];
 // $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
