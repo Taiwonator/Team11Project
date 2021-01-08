@@ -152,7 +152,7 @@ function addTab() {
 
                             <div class="checkbox-input-element">
                                 <h3 class="element-title">Problem Status</h3>
-                                <input type="checkbox" id="solved" onclick="checkSolved(event, ${problemCount})" class='problem-input-field' data-input-type='checkbox' data-input='status'>
+                                <input type="checkbox" id="solved" onclick="checkStatus(event, ${problemCount})" class='problem-input-field' data-input-type='checkbox' data-input='status'>
                                 <label>Problem solved over the phone</label>
                             </div>
                             
