@@ -366,8 +366,8 @@ function confirmInsert() {
 }
 
 function insertData(obj) {
-    console.log(alert("Data inserted"));
-    loadData('POST', '../php/problemTypes/sql_insert_data.php', obj, function(json){
+    alert("Data inserted");
+    loadData('POST', '../php/logCall/sql_insert_data.php', obj, function(json){
         console.log(json);
     })
 }
