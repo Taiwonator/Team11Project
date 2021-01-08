@@ -505,6 +505,7 @@ function getNewProblemInputs(obj, newProblem) {
                 // console.log(`key (${problemKeys[j]}): `, validateProblemInput(problemInputs, problemKeys[j]));
                 console.log(`obj: ${problemInputs[i]}, keys: ${problemKeys[j]}`);
                 if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
+                    console.log(`${problemKeys[j]}:${(problemInputs[i])[problemKeys[j]]}`);
                     return false;
                 } 
             }
