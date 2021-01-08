@@ -45,6 +45,7 @@ window.onload = function() {
     loadBranches();
     loadStandardSolutions();
     loadSpecialists();
+    loadExternalSpecialists();
     
     addTab();
 }
