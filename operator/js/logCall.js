@@ -533,7 +533,7 @@ function getNewProblemInputs(obj, newProblem) {
                 return false;
             }
         } else if (inputs[key] == "" && key != "specialistID" && key != "externalSpecialistID") {
-            console.log(`${key}:${inputs[key]}`);
+            console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
             return false;
         } else {
             return true;
