@@ -31,8 +31,6 @@ function getTable(tableName) {
 function loadExternalSpecialists() {
     loadData('GET', '../php/logCall/sql_select_externalSpecialists.php', {}, function(json){
         problemInputStrings['externalSpecialists'] = generateExternalSpecialistsTable(json);
-        console.log(json);
-        console.log(generateExternalSpecialistsTable(json));
 
         var table = getTable('externalSpecialistTable');
         table.innerHTML = ` <tr>
