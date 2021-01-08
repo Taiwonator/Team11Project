@@ -10,17 +10,15 @@ $callTable = "Call";
 $callerName = $_POST['callerName'];
 $extension = $_POST['extension'];
 $date = $_POST['date'];
-$formatedDate = date('H:i:s', strtotime($date));
 $time = $_POST['time'];
+$formatedTime = date('H:i:s', strtotime($time));
 $reasonForCall = $_POST['reasonForCall'];
 $operatorID = $_POST['operatorID'];
 
 $problems = $_POST['problems'];
 
-$callData = [ $extension, $callerName, $date, $time, $reasonForCall, $operatorID ];
+$callData = [ $extension, $callerName, $date, $formatedTime, $reasonForCall, $operatorID ];
 $callSQL = "INSERT INTO `Call` (`Name`, `Ext`, `Date`, `Time`, `ReasonForCall`, `ID`) VALUES (?, ?, ?, ?, ?, ?)";
-
-echo $formatedDate;
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
