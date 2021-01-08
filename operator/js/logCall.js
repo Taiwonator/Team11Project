@@ -531,7 +531,7 @@ function getNewProblemInputs(obj, newProblem) {
             if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
                 return false;
             }
-        } else if (inputs[key] == "") {
+        } else if (inputs[key] == "" && key != "specialistID" != key == "externalSpecialistID") {
             return false;
         } else {
             return true;
