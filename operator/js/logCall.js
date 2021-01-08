@@ -229,7 +229,7 @@ function addTab() {
                                 </div>
                             </div></div>`;
 
-    const existingString = `<div data-name="problem${problemCount}" class="existing-problem">
+    var existingString = `<div data-name="problem${problemCount}" class="existing-problem">
                                 <div class="search-element">
                                     <h3 class="element-title">Problems</h3>
                                     <div class="search-element-bar">
