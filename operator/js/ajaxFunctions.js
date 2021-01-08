@@ -110,6 +110,8 @@ function loadEquipment() {
 
 function loadProblems() {
     loadData('GET', '../php/logCall/sql_select_problems.php', {}, function(json){
+        problemInputStrings['allProblems'] = generateProblemsTable(json);
+
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
             if(tables[i].dataset.tableName == 'allProblemsTable') {

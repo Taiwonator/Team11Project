@@ -244,7 +244,8 @@ function addTab() {
                                                 <th>Status</th>
                                                 <th>Solve Method</th>
                                                 <th>Problem Type</th>
-                                            </tr>                                    
+                                            </tr>                                 
+                                            ${(problemInputStrings['allProblems'] != undefined) ? problemInputStrings['allProblems'] : ''}   
                                         </table>
                                     </div>
                                 </div>
