@@ -194,7 +194,7 @@ function loadSoftware() {
 
 function generateTable(json, mapFunc) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = mapFunc;
+    const outputArray = obj.map(mapFunc);
     let output = ``;
     for(var i = 0; i < outputArray.length; i++) {
         output += outputArray[i];
