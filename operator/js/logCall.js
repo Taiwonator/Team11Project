@@ -531,12 +531,12 @@ function getNewProblemInputs(obj, newProblem) {
             if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
                 return false;
             }
-        } else if (inputs[key] == "" && key != "specialistID" && key != "externalSpecialistID") {
-            console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
-            return false;
         } else {
-            return true;
-        }
+            if (inputs[key] == "") {
+                console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
+                return false;
+            }
+        return true;
     }
 
 
