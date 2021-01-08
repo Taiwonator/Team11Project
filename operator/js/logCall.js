@@ -536,6 +536,7 @@ function getNewProblemInputs(obj, newProblem) {
                 console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
                 return false;
             }
+        }
         return true;
     }
 
