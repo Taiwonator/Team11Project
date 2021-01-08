@@ -6,8 +6,8 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 
 $obj = $_POST["callerName"];
-echo $obj;
-print_r($obj);
+$problems = $["problems"]
+echo $problems;
 // $data = [ "problemType" => $problemType ];
 // $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
