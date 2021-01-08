@@ -21,12 +21,19 @@ $callSQL = "INSERT INTO $callTable (Name, Ext, Date, Time, ReasonForCall, operat
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  // $db->prepare($callSQL)->execute($callData);
+  $db->prepare($callSQL)->execute($callData);
   
+  // $output = array();
+  // foreach($db->query("SELECT * FROM $callTable") as $row) {
+  //   print_r($row);
+  //   $row = array("callerName" => $row['Name']);
+  //   array_push($output, $row);
+  // }
+  // echo json_encode($output);
+
   $output = array();
-  foreach($db->query("SELECT * FROM $callTable") as $row) {
-    print_r($row);
-    $row = array("callerName" => $row['Name']);
+  foreach($db->query("SELECT * FROM ProblemType") as $row) {
+    $row = array("problemType"=>$row['ProblemType']);
     array_push($output, $row);
   }
   echo json_encode($output);
