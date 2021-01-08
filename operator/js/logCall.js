@@ -518,8 +518,10 @@ function getNewProblemInputs(obj, newProblem) {
         if(nullFields.includes(inputs[key])) {
             return true;
         } else {
-            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "" && inputs['problemNumber'] == null) { // Has to be a newProblem and not an existing problem to make this check
-                return false;
+            if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) { 
+                if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+                    return false;
+                }
             } else if (inputs[key] == "") {
                 return false;
             } else {
