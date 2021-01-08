@@ -16,8 +16,8 @@ $operatorID = $_POST['operatorID'];
 
 $problems = $_POST['problems'];
 
-$callData = [ "callerName" => $extension, "extension" => $callerName, "date" => $date, "time" => $time, "reasonForCall" => $reasonForCall, "operatorID" => $operatorID ];
-$callSQL = "INSERT $callTable (Name, Ext, Date, Time, ReasonForCall, operatorID) VALUES (:callerName, :extension, :date, :time, :reasonForCall, :operatorID)";
+$callData = [ $extension, $callerName, $date, $time, $reasonForCall, $operatorID ];
+$callSQL = "INSERT INTO $callTable (Name, Ext, Date, Time, ReasonForCall, operatorID) VALUES (?, ?, ?, ?, ?, ?)";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
@@ -29,7 +29,7 @@ try {
     array_push($output, $row);
   }
   echo json_encode($output);
-  print_r($callTable . $callSQL);
+  print_r($callTable);
 
   // $output = array();
   // foreach($db->query("SELECT * FROM $table") as $row) {
