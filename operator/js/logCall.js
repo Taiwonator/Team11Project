@@ -152,11 +152,11 @@ function addTab() {
 
                             <div class="checkbox-input-element">
                                 <h3 class="element-title">Problem Status</h3>
-                                <input type="checkbox" id="solved" onclick="checkSolved(event)" class='problem-input-field' data-input-type='checkbox' data-input='status'>
+                                <input type="checkbox" id="solved" onclick="checkSolved(event, ${problemCount})" class='problem-input-field' data-input-type='checkbox' data-input='status'>
                                 <label>Problem solved over the phone</label>
                             </div>
                             
-                            <div id="solved-form" class="hide-form">
+                            <div id="solved-form-${problemCount}" class="hide-form">
                                 <div class="text-area-input-element">
                                     <h3 class="element-title">How it was solved?</h3>
                                     <textarea class="scroll problem-input-field" data-input-type='textarea' data-input='solveMethod'></textarea>
@@ -168,7 +168,7 @@ function addTab() {
                                 </div>
                             </div>
 
-                            <div id="unsolved-form">
+                            <div id="unsolved-form-${problemCount}">
                                 <div class="checkbox-input-element">
                                     <h3 class="element-title">In Person Solving</h3>
                                     <input type="checkbox" class='problem-input-field' data-input-type='checkbox' data-input='inPerson'>
@@ -177,10 +177,10 @@ function addTab() {
 
                                 <div class="search-element">
                                     <h3 class="element-title">Specialist </h3>
-                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)" class="external">
+                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkIfThirdParty(event, ${problemCount})" class="external">
                                     <label>3rd party specialist</label>
 
-                                    <div id="specialists">
+                                    <div id="specialists-${problemCount}">
                                         <div class="search-element-bar">
                                             <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)"> 
                                             <button><i class="fa fa-search"></i></button>
@@ -199,7 +199,7 @@ function addTab() {
                                         </table>
                                     </div>
 
-                                    <div id="third-party-specialists" class="hide-form">
+                                    <div id="third-party-specialists-${problemCount}" class="hide-form">
                                         <div class="search-element-bar">
                                             <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)">
                                             <button><i class="fa fa-search"></i></button>
@@ -277,6 +277,26 @@ function addTab() {
     problemCount++;
 
     addSelectableRows();
+}
+
+function checkStatus(e, problemCount) {
+    if(e.target.checked) {
+        document.querySelector(`#unsolved-form-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#solved-form-${problemCount}`).classList.remove("hide-form");
+    } else {
+        document.querySelector(`#solved-form-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#unsolved-form-${problemCount}`).classList.remove("hide-form");
+    }
+}
+
+function checkIfThirdParty(e, problemCount) {
+    if(e.target.checked) {
+        document.querySelector(`#specialists-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#third-party-specialists-${problemCount}`).classList.remove("hide-form");
+    } else {
+        document.querySelector(`#third-party-specialists-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#specialists-${problemCount}`).classList.remove("hide-form");
+    }
 }
 
 function chooseExisting(e) {
