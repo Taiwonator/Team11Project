@@ -514,7 +514,7 @@ function getNewProblemInputs(obj, newProblem) {
     }
 
     function validateProblemInput(inputs, key) {
-        const solvedNullFields = ["OS", "softwareName", "solveNotes"];
+        const solvedNullFields = ["OS", "softwareName", "solveNotes", "specialistID", "externalSpecialistID"];
         const unsolvedNullFields = ["OS", "softwareName", "solveMethod", "solveNotes"];
 
         if(inputs['status'] == "solved") {
@@ -522,12 +522,12 @@ function getNewProblemInputs(obj, newProblem) {
                 return true;
             }
         } else {
-            if(unsolvedNullFields.includes(key)) {
+            if(unsolvedNullFields.includes(key)) {            
                 return true;
             }
         }
 
-        if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 && inputs['status'] == "unsolved" ) {
+        if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1) {
             if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
                 return false;
             }
