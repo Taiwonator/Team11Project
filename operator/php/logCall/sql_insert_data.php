@@ -29,6 +29,7 @@ try {
     array_push($output, $row);
   }
   echo json_encode($output);
+  print_r($callTable . $callSQL);
 
   // $output = array();
   // foreach($db->query("SELECT * FROM $table") as $row) {
