@@ -22,6 +22,8 @@ function loadData(method, url, data, code) {
 function loadExternalSpecialists() {
     loadData('GET', '../php/logCall/sql_select_externalSpecialists.php', {}, function(json){
         problemInputStrings['externalSpecialists'] = generateExternalSpecialistsTable(json);
+        console.log(json);
+        console.log(generateExternalSpecialistsTable(json));
 
         var tables = document.getElementsByClassName("search-element-table");
         for(var i = 0; i < tables.length; i++) {
