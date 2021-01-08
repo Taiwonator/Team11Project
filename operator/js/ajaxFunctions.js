@@ -19,6 +19,26 @@ function loadData(method, url, data, code) {
     xhttp.send(JSON.stringify(data));
 }
 
+function loadExternalSpecialists() {
+    loadData('GET', '../php/logCall/sql_select_externalSpecialists.php', {}, function(json){
+        problemInputStrings['externalSpecialists'] = generateExternalSpecialistsTable(json);
+
+        var tables = document.getElementsByClassName("search-element-table");
+        for(var i = 0; i < tables.length; i++) {
+            if(tables[i].dataset.tableName == 'externalSpecialistTable') {
+                tables[i].innerHTML = ` <tr>
+                                            <th>External Specialist ID</th>
+                                            <th>Name</th>
+                                            <th>Contact Number</th>
+                                            <th>Expertise</th>
+                                        </tr>
+                                        ${problemInputStrings['externalSpecialists']}`;
+            }
+        }
+        addSelectableRows();
+    });
+}
+
 function loadSpecialists() {
     loadData('GET', '../php/logCall/sql_select_specialists.php', {}, function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
@@ -168,6 +188,23 @@ function loadSoftware() {
         }
         addSelectableRows();
     });
+}
+
+function generateExternalSpecialistsTable(json) {
+    const obj = JSON.parse(json); // Converts JSON to Javascript Object
+    const outputArray = obj.map(externalSpecialist => {
+        return `<tr>
+                    <td>${externalSpecialist.externalSpecialist}</td>
+                    <td>${externalSpecialist.name}</td>
+                    <td>${externalSpecialist.contactNumber}</td>
+                    <td>${externalSpecialist.expertise}</td>
+                </tr>`;
+    })
+    let output = ``;
+    for(var i = 0; i < outputArray.length; i++) {
+        output += outputArray[i];
+    }
+    return output;
 }
 
 function generateSpecialistsTable(json) {

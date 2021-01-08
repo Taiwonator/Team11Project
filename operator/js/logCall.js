@@ -206,23 +206,12 @@ function addTab() {
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name='externalSpecialistTable'>
                                             <tr>
-                                                <th>Third Party Specialist</th>
-                                                <th>Telephone</th>
-                                                <th>Active Jobs</th>
+                                                <th>External Specialist ID</th>
+                                                <th>Name</th>
+                                                <th>Contact Number</th>
                                                 <th>Expertise</th>
                                             </tr>
-                                            <tr>
-                                                <td>Dave</td>
-                                                <td>07123456789</td>
-                                                <td>10</td>
-                                                <td>Printers</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Peter</td>
-                                                <td>01789456123</td>
-                                                <td>10</td>
-                                                <td>Printers</td>
-                                            </tr>
+                                            ${(problemInputStrings['externalSpecialists'] != undefined) ? problemInputStrings['externalSpecialists'] : ''}
                                         </table>
                                     </div>
 
