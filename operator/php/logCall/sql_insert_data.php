@@ -7,7 +7,10 @@ $database = "helpdesk_database";
 
 $obj = $_POST["callerName"];
 $problems = $_POST["problems"];
+
+
 echo $problems;
+print_r($problems);
 // $data = [ "problemType" => $problemType ];
 // $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
