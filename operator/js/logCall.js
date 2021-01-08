@@ -358,7 +358,7 @@ function retreiveInputs() {
         } else if(problemIDs[i].type == "existing") {
             getExistingProblemInputs(obj, getExistingProblem(problemIDs[i].problemID));
         } else {
-            console.log("choose!!!");
+            obj.problems.push({});
         }
     }
     validateInputs(obj);
@@ -500,12 +500,15 @@ function getNewProblemInputs(obj, newProblem) {
 
     function validateProblemInputs(problemInputs) {
         for(var i = 0; i < problemInputs.length; i++) {
-            const problemKeys = Object.keys(problemInputs[i]);
-            for(var j = 0; j < problemKeys.length; j++) {
-                if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
-                    console.log(`${problemKeys[j]}:${(problemInputs[i])[problemKeys[j]]}`);
-                    return false;
-                } 
+            if(Object.keys(problemInputs[i]).length == 0) {
+                return false;
+            } else {
+                const problemKeys = Object.keys(problemInputs[i]);
+                for(var j = 0; j < problemKeys.length; j++) {
+                    if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
+                        return false;
+                    } 
+                }
             }
         }
         return true;
