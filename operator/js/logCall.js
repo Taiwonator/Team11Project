@@ -180,9 +180,9 @@ function addTab() {
                                     <input type="checkbox" id="third-party" value="third-party" onClick="checkIfThirdParty(event, ${problemCount})" class="external">
                                     <label>3rd party specialist</label>
 
-                                    <div id="specialists-${problemCount}">
+                                    <div id="specialists-${problemCount}" class="specialists">
                                         <div class="search-element-bar">
-                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)"> 
+                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name="specialistTable">
@@ -199,9 +199,9 @@ function addTab() {
                                         </table>
                                     </div>
 
-                                    <div id="third-party-specialists-${problemCount}" class="hide-form">
+                                    <div id="third-party-specialists-${problemCount}" class="hide-form third-party-specialists">
                                         <div class="search-element-bar">
-                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)">
+                                            <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 3)">
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name='externalSpecialistTable'>
