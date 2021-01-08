@@ -353,6 +353,22 @@ function chooseNew(e) {
     }
 }
 
+function confirmInsert() {
+    const obj = retreiveInputs();
+    if(!validateInputs(obj)) {
+        alert("Invalid inputs");
+    } else {
+        var confirmed = confirm("Are you sure?");
+        if(confirmed) {
+            insertData(obj);
+        } 
+    }
+}
+
+function insertData(obj) {
+    console.log(alert("Data inserted"));
+}
+
 function retreiveInputs() {
     const inputFields = document.getElementsByClassName('call-input-field');
     let obj = {
@@ -373,7 +389,9 @@ function retreiveInputs() {
             obj.problems.push({});
         }
     }
-    validateInputs(obj);
+
+    return obj;
+    
 }
 
 function readCallInput(obj, input) {
@@ -491,7 +509,7 @@ function getNewProblemInputs(obj, newProblem) {
                 pass = false;
             }
         }
-        console.log(pass); 
+        return pass;
     }
 
     function validateInput(inputs, key) {
