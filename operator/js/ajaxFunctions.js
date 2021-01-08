@@ -50,21 +50,19 @@ function loadSpecialists() {
     loadData('GET', '../php/logCall/sql_select_specialists.php', {}, function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
 
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'specialistTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>Specialist ID</th>
-                                            <th>Problem Type</th>
-                                            <th>No. Jobs</th>
-                                            <th>Status</th>
-                                            <th>In Work</th>
-                                            <th>Part Time</th>
-                                            <th>Next In Work</th>
-                                        </tr>
-                                        ${problemInputStrings['specialists']}`;
-            }
-        }
+        var table = getTable('specialistTable');
+        table.innerHTML = ` <tr>
+                                    <th>Specialist ID</th>
+                                    <th>Problem Type</th>
+                                    <th>No. Jobs</th>
+                                    <th>Status</th>
+                                    <th>In Work</th>
+                                    <th>Part Time</th>
+                                    <th>Next In Work</th>
+                                </tr>
+                                ${problemInputStrings['specialists']}`;
+            
+        
         addSelectableRows();
     });
 }
@@ -73,17 +71,13 @@ function loadStandardSolutions() {
     loadData('GET', '../php/logCall/sql_select_standardSolutions.php', {}, function(json){
         problemInputStrings['standardSolutions'] = generateStandardSolutionsTable(json);
 
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'standardSolutionsTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>Solution Name</th>
-                                            <th>Problem Type</th>
-                                            <th>Description</th>
-                                        </tr>
-                                        ${problemInputStrings['standardSolutions']}`;
-            }
-        }
+        var table = getTable('standardSolutionsTable');
+        table.innerHTML = ` <tr>
+                                    <th>Solution Name</th>
+                                    <th>Problem Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                ${problemInputStrings['standardSolutions']}`;
         addSelectableRows();
     });
 }
@@ -120,17 +114,13 @@ function loadEquipment() {
     loadData('GET', '../php/logCall/sql_select_equipment.php', {}, function(json){
         problemInputStrings['equipment'] = generateEquipmentTable(json);
 
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'equipmentTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>Serial No.</th>
-                                            <th>Type</th>
-                                            <th>Make</th>
-                                        </tr>
-                                        ${problemInputStrings['equipment']}`;
-            }
-        }
+        var table = getTable('equipmentTable');
+        table.innerHTML = `<tr>
+                                <th>Serial No.</th>
+                                <th>Type</th>
+                                <th>Make</th>
+                            </tr>
+                                ${problemInputStrings['equipment']}`;
         addSelectableRows();
     });
 }
@@ -139,19 +129,15 @@ function loadProblems() {
     loadData('GET', '../php/logCall/sql_select_problems.php', {}, function(json){
         problemInputStrings['allProblems'] = generateProblemsTable(json);
 
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'allProblemsTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>Problem No.</th>
-                                            <th>Description</th>
-                                            <th>Status</th>
-                                            <th>Solve Method</th>
-                                            <th>Problem Type</th>
-                                        </tr>
-                                        ${generateProblemsTable(json)}`;
-            }
-        }
+        var table = getTable('allProblemsTable');
+        table.innerHTML = ` <tr>
+                                    <th>Problem No.</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Solve Method</th>
+                                    <th>Problem Type</th>
+                                </tr>
+                                ${generateProblemsTable(json)}`;
         addSelectableRows();
     });
 }
@@ -159,21 +145,18 @@ function loadProblems() {
 
 function loadPersonnel() {
     loadData('GET', '../php/logCall/sql_select_personnel.php', {}, function(json){
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'callerTable') {
-                tables[i].innerHTML = ` <tr>
-                                            <th>Employee ID</th>
-                                            <th>Name</th>
-                                            <th>Extension</th>
-                                            <th>Job Title</th>
-                                            <th>Department</th>
-                                            <th>Email</th>
-                                            <th>Branch ID</th>
-                                        </tr>
-                                        ${generatePersonnelTable(json)}`;
-            }
-        }
+
+        var table = getTable('allProblemsTable');
+        table.innerHTML = ` <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Extension</th>
+                                    <th>Job Title</th>
+                                    <th>Department</th>
+                                    <th>Email</th>
+                                    <th>Branch ID</th>
+                                </tr>
+                                ${generatePersonnelTable(json)}`;
         addSelectableRows();
     });
 }
@@ -182,17 +165,13 @@ function loadSoftware() {
     loadData('GET', '../php/logCall/sql_select_software.php', {}, function(json){
         problemInputStrings['software'] = generateSoftwareTable(json);
         // Sets first created to the correct value
-        var tables = document.getElementsByClassName("search-element-table");
-        for(var i = 0; i < tables.length; i++) {
-            if(tables[i].dataset.tableName == 'softwareTable') {
-                tables[i].innerHTML = `<tr>
-                                            <th>Software Name</th>
-                                            <th>Licensed</th>
-                                            <th>Supported</th>
-                                        </tr>
-                                        ${problemInputStrings['software']}`;
-            }
-        }
+        var table = getTable('allProblemsTable');
+        table.innerHTML = `<tr>
+                                    <th>Software Name</th>
+                                    <th>Licensed</th>
+                                    <th>Supported</th>
+                                </tr>
+                                ${problemInputStrings['software']}`;
         addSelectableRows();
     });
 }
