@@ -5,12 +5,22 @@ $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
 
-$obj = $_POST["callerName"];
-$problems = $_POST["problems"];
+$callerName = $_POST['callerName'];
+$extension = $_POST['extension'];
+$date = $_POST['date'];
+$time = $_POST['time'];
+$reasonForCall = $_POST['reasonForCall'];
+$operatorID = $_POST['operatorID'];
 
+$problems = $_POST['problems'];
+$problemsArray = array();
 
-echo $problems;
-print_r($problems);
+for($i = 0; $i <= count($problems); $i++) {
+  array_push($problemsArray, $problems[$i]);
+}
+
+echo "Working";
+print_r($problemsArray);
 // $data = [ "problemType" => $problemType ];
 // $sql = "INSERT INTO $table (ProblemType) VALUES (:problemType)";
 
