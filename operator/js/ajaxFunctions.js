@@ -146,7 +146,7 @@ function loadProblems() {
 function loadPersonnel() {
     loadData('GET', '../php/logCall/sql_select_personnel.php', {}, function(json){
 
-        var table = getTable('allProblemsTable');
+        var table = getTable('callerTable');
         table.innerHTML = ` <tr>
                                     <th>Employee ID</th>
                                     <th>Name</th>
@@ -165,7 +165,7 @@ function loadSoftware() {
     loadData('GET', '../php/logCall/sql_select_software.php', {}, function(json){
         problemInputStrings['software'] = generateSoftwareTable(json);
         // Sets first created to the correct value
-        var table = getTable('allProblemsTable');
+        var table = getTable('softwareTable');
         table.innerHTML = `<tr>
                                     <th>Software Name</th>
                                     <th>Licensed</th>
