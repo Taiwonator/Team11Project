@@ -32,7 +32,7 @@ try {
   // echo json_encode($output);
 
   $output = array();
-  foreach($db->query("SELECT * FROM ProblemType") as $row) {
+  foreach($db->query("SELECT * FROM Problem") as $row) {
     $row = array("problemType"=>$row['ProblemType']);
     array_push($output, $row);
   }
