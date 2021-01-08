@@ -213,14 +213,31 @@ function generateExternalSpecialistsTable(json) {
     })
 }
 
-// function generateExternalSpecialistsTable(json) {
+function generateSpecialistsTable(json) {
+    return generateTable(json, (specialist) => {
+        return `<tr>
+                    <td>${specialist.id}</td>
+                    <td>${specialist.problemType}</td>
+                    <td>${specialist.numJobs}</td>
+                    <td>${specialist.status}</td>
+                    <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
+                    <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
+                    <td>${specialist.nextInWork}</td>
+                </tr>`
+    })
+}
+
+// function generateSpecialistsTable(json) {
 //     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-//     const outputArray = obj.map(externalSpecialist => {
+//     const outputArray = obj.map(specialist => {
 //         return `<tr>
-//                     <td>${externalSpecialist.externalID}</td>
-//                     <td>${externalSpecialist.name}</td>
-//                     <td>${externalSpecialist.contactNumber}</td>
-//                     <td>${externalSpecialist.expertise}</td>
+//                     <td>${specialist.id}</td>
+//                     <td>${specialist.problemType}</td>
+//                     <td>${specialist.numJobs}</td>
+//                     <td>${specialist.status}</td>
+//                     <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
+//                     <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
+//                     <td>${specialist.nextInWork}</td>
 //                 </tr>`;
 //     })
 //     let output = ``;
@@ -230,104 +247,127 @@ function generateExternalSpecialistsTable(json) {
 //     return output;
 // }
 
-function generateSpecialistsTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(specialist => {
-        return `<tr>
-                    <td>${specialist.id}</td>
-                    <td>${specialist.problemType}</td>
-                    <td>${specialist.numJobs}</td>
-                    <td>${specialist.status}</td>
-                    <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
-                    <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
-                    <td>${specialist.nextInWork}</td>
-                </tr>`;
-    })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
-}
-
 function generateStandardSolutionsTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(solution => {
+    return generateTable(json, (solution) => {
         return `<tr>
                     <td>${solution.name}</td>
                     <td>${solution.description}</td>
                     <td>${solution.problemType}</td>
-                </tr>`;
+                </tr>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
+
+// function generateStandardSolutionsTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(solution => {
+//         return `<tr>
+//                     <td>${solution.name}</td>
+//                     <td>${solution.description}</td>
+//                     <td>${solution.problemType}</td>
+//                 </tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
 
 function generateBranches(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(branch => {
-        return `<option>${branch.country}</option>`;
+    return generateTable(json, (branch) => {
+        return `<option>${branch.country}</option>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
+
+// function generateBranches(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(branch => {
+//         return `<option>${branch.country}</option>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
 
 function generateProblemTypes(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(type => {
-        return `<option>${type.problemType}</option>`;
+    return generateTable(json, (type) => {
+        return `<option>${type.problemType}</option>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
 
+// function generateProblemTypes(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(type => {
+//         return `<option>${type.problemType}</option>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
+
 function generateEquipmentTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(equipment => {
+    return generateTable(json, (equipment) => {
         return `<tr>
                     <td>${equipment.serialNumber}</td>
                     <td>${equipment.type}</td>
                     <td>${equipment.make}</td>
-                </tr>`;
+                </tr>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
 
+// function generateEquipmentTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(equipment => {
+//         return `<tr>
+//                     <td>${equipment.serialNumber}</td>
+//                     <td>${equipment.type}</td>
+//                     <td>${equipment.make}</td>
+//                 </tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
+
 function generateProblemsTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    allProblemsArray = [...obj];
-    const outputArray = obj.map(problem => {
+    return generateTable(json, (problem) => {
         return `<tr>
                     <td>${problem.problemNumber}</td>
                     <td>${problem.description}</td>
                     <td>${problem.status}</td>
                     <td>${(problem.solveMethod == null) ? 'Not solved yet' : problem.solveMethod}</td>
                     <td>${problem.problemType}</td>
-                </tr>`;
+                </tr>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
 
+// function generateProblemsTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     allProblemsArray = [...obj];
+//     const outputArray = obj.map(problem => {
+//         return `<tr>
+//                     <td>${problem.problemNumber}</td>
+//                     <td>${problem.description}</td>
+//                     <td>${problem.status}</td>
+//                     <td>${(problem.solveMethod == null) ? 'Not solved yet' : problem.solveMethod}</td>
+//                     <td>${problem.problemType}</td>
+//                 </tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
+
 function generatePersonnelTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(personnel => {
+    return generateTable(json, (personnel) => {
         return `<tr>
                     <td>${personnel.id}</td>
                     <td>${personnel.name}</td>
@@ -336,25 +376,50 @@ function generatePersonnelTable(json) {
                     <td>${personnel.dept}</td>
                     <td>${personnel.email}</td>
                     <td>${personnel.branchID}</td>
-                </tr>`;
+                </tr>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
 
+// function generatePersonnelTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(personnel => {
+//         return `<tr>
+//                     <td>${personnel.id}</td>
+//                     <td>${personnel.name}</td>
+//                     <td>${personnel.ext}</td>
+//                     <td>${personnel.jobTitle}</td>
+//                     <td>${personnel.dept}</td>
+//                     <td>${personnel.email}</td>
+//                     <td>${personnel.branchID}</td>
+//                 </tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
+
 function generateSoftwareTable(json) {
-    const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(software => {
-        return `<tr><td>${software.softwareName}</td>
-                ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
-                ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}</tr>`;
+    return generateTable(json, (software) => {
+        return `<tr>
+                    <td>${software.softwareName}</td>
+                    ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                    ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                </tr>`
     })
-    let output = ``;
-    for(var i = 0; i < outputArray.length; i++) {
-        output += outputArray[i];
-    }
-    return output;
 }
+
+// function generateSoftwareTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(software => {
+//         return `<tr><td>${software.softwareName}</td>
+//                 ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+//                 ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}</tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
