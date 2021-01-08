@@ -518,14 +518,16 @@ function getNewProblemInputs(obj, newProblem) {
             return true;
         } else {
             if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) { 
-                console.log(inputs["specialistID"], inputs["externalSpecialistID"]);
+                // console.log(inputs["specialistID"], inputs["externalSpecialistID"]);
                 if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+                    console.log(`IF ${key}:${inputs[key]}`);
                     return false;
                 }
             } else if (inputs[key] == "") {
-                console.log(`${key}:${inputs[key]}`);
+                console.log(`ELSE IF ${key}:${inputs[key]}`);
                 return false;
             } else {
+                console.log(`YAY ${key}:${inputs[key]}`);
                 return true;
             }
         }
