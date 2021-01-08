@@ -192,22 +192,43 @@ function loadSoftware() {
     });
 }
 
-function generateExternalSpecialistsTable(json) {
+function generateTable(json, mapFunc) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
-    const outputArray = obj.map(externalSpecialist => {
-        return `<tr>
-                    <td>${externalSpecialist.externalSpecialist}</td>
-                    <td>${externalSpecialist.name}</td>
-                    <td>${externalSpecialist.contactNumber}</td>
-                    <td>${externalSpecialist.expertise}</td>
-                </tr>`;
-    })
+    const outputArray = mapFunc;
     let output = ``;
     for(var i = 0; i < outputArray.length; i++) {
         output += outputArray[i];
     }
     return output;
 }
+
+function generateExternalSpecialistsTable(json) {
+    return generateTable(json, (externalSpecialist) => {
+        return `<tr>
+                    <td>${externalSpecialist.externalID}</td>
+                    <td>${externalSpecialist.name}</td>
+                    <td>${externalSpecialist.contactNumber}</td>
+                    <td>${externalSpecialist.expertise}</td>
+                </tr>`
+    })
+}
+
+// function generateExternalSpecialistsTable(json) {
+//     const obj = JSON.parse(json); // Converts JSON to Javascript Object
+//     const outputArray = obj.map(externalSpecialist => {
+//         return `<tr>
+//                     <td>${externalSpecialist.externalID}</td>
+//                     <td>${externalSpecialist.name}</td>
+//                     <td>${externalSpecialist.contactNumber}</td>
+//                     <td>${externalSpecialist.expertise}</td>
+//                 </tr>`;
+//     })
+//     let output = ``;
+//     for(var i = 0; i < outputArray.length; i++) {
+//         output += outputArray[i];
+//     }
+//     return output;
+// }
 
 function generateSpecialistsTable(json) {
     const obj = JSON.parse(json); // Converts JSON to Javascript Object
