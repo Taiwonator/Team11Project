@@ -32,8 +32,8 @@ try {
   // echo json_encode($output);
 
   $output = array();
-  foreach($db->query("SELECT * FROM `Problem`") as $row) {
-    $row = array("problemType"=>$row['ProblemType']);
+  foreach($db->query("SELECT * FROM `Call`") as $row) {
+    $row = array("name"=>$row['Name']);
     array_push($output, $row);
   }
   echo json_encode($output);
