@@ -527,7 +527,7 @@ function getNewProblemInputs(obj, newProblem) {
             }
         }
 
-        if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 ) {
+        if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1 && inputs['status'] == "unsolved" ) {
             if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
                 return false;
             }
