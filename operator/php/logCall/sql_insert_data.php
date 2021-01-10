@@ -28,16 +28,19 @@ foreach($problems as $problem) {
 }
 // print_r($problemNumbers);
 
+
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($callSQL)->execute($callData);
   $callID = $db->lastInsertId();
-  
+
 
   foreach($problems as $problem) {
     if(count(array_keys($problem)) != 1) {
       $problemData = [ $problem['OS'], (int)$problem['branch'], (int)$problem['externalSpecialistID'], (int)$problem['inPerson'], $problem['priority'], $problem['problemDescription'], $problem['problemType'], (int)$problem['serialNumber'], $problem['softwareName'], $problem['solveMethod'], $problem['solveNotes'], (int)$problem['specialistID'], $problem['status'], $problem['dateSolved'], date('H:i:s', strtotime($problem['timeSolved'])) ];
+      print_r($problemData);
+      print_r(getAttr($problem, 'externalSpecialistID'));
       $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`, `DateSolved`, `TimeSolved`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
       $db->prepare($problemSQL)->execute($problemData);
       $problemID = $db->lastInsertId();
@@ -50,6 +53,15 @@ try {
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
+}
+
+function getAttr($problem, $attribute) {
+  $value = $problem[$attribute];
+  if($value === '') {
+    return null;
+  } else {
+    return $value;
+  }
 }
 
 
