@@ -18,6 +18,7 @@ function openTab(evt, problemName, plus) {
         }
     }
     evt.currentTarget.className += " active";
+    console.log(problemIDs);
 }
 
 // Not w3chools
@@ -29,7 +30,7 @@ function deleteTab(evt) {
     if(tabCount != 1) {
         evt.target.parentElement.remove();
         tabCount--;
-        problemIDs = problemIDs.filter(x => x != evt.target.dataset.name);
+        problemIDs = problemIDs.filter(x => x.problemID != evt.target.dataset.name);
         console.log(problemIDs);
         document.getElementById(evt.target.dataset.name).remove();
     }
@@ -44,6 +45,7 @@ window.onload = function() {
     loadBranches();
     loadStandardSolutions();
     loadSpecialists();
+    loadExternalSpecialists();
     
     addTab();
 }
@@ -95,10 +97,10 @@ function addTab() {
                                     <h3 class="element-title">Operating System</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='OS'>
                                         <option value="" selected disabled hidden>Select an OS</option>
-                                        <option>Windows</option>
-                                        <option>iOS</option>
-                                        <option>Linux</option>
-                                        <option>Doesn't require OS</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="iOS">iOS</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="">Doesn't require OS</option>
                                     </select>
                                 </div>
                             </div>
@@ -120,10 +122,10 @@ function addTab() {
                                     <h3 class="element-title">Priority</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='priority'>
                                         <option value="" selected disabled hidden>Select Priority</option>
-                                        <option>Low</option>
-                                        <option>Medium</option>
-                                        <option>High</option>
-                                        <option>I don't know</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                        <option value="">I don't know</option>
                                     </select>
                                 </div>
 
@@ -151,11 +153,11 @@ function addTab() {
 
                             <div class="checkbox-input-element">
                                 <h3 class="element-title">Problem Status</h3>
-                                <input type="checkbox" id="solved" onclick="checkSolved(event)" class='problem-input-field' data-input-type='checkbox' data-input='status'>
+                                <input type="checkbox" id="solved" onclick="checkStatus(event, ${problemCount})" class='problem-input-field' data-input-type='checkbox' data-input='status'>
                                 <label>Problem solved over the phone</label>
                             </div>
                             
-                            <div id="solved-form" class="hide-form">
+                            <div id="solved-form-${problemCount}" class="hide-form">
                                 <div class="text-area-input-element">
                                     <h3 class="element-title">How it was solved?</h3>
                                     <textarea class="scroll problem-input-field" data-input-type='textarea' data-input='solveMethod'></textarea>
@@ -167,7 +169,7 @@ function addTab() {
                                 </div>
                             </div>
 
-                            <div id="unsolved-form">
+                            <div id="unsolved-form-${problemCount}">
                                 <div class="checkbox-input-element">
                                     <h3 class="element-title">In Person Solving</h3>
                                     <input type="checkbox" class='problem-input-field' data-input-type='checkbox' data-input='inPerson'>
@@ -176,12 +178,12 @@ function addTab() {
 
                                 <div class="search-element">
                                     <h3 class="element-title">Specialist </h3>
-                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkThirdParty(event)" class="external">
+                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkIfThirdParty(event, ${problemCount})" class="external">
                                     <label>3rd party specialist</label>
 
-                                    <div id="specialists">
+                                    <div id="specialists-${problemCount}" class="specialists">
                                         <div class="search-element-bar">
-                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)"> 
+                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name="specialistTable">
@@ -198,37 +200,26 @@ function addTab() {
                                         </table>
                                     </div>
 
-                                    <div id="third-party-specialists" class="hide-form">
+                                    <div id="third-party-specialists-${problemCount}" class="hide-form third-party-specialists">
                                         <div class="search-element-bar">
-                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)">
+                                            <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 3)">
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name='externalSpecialistTable'>
                                             <tr>
-                                                <th>Third Party Specialist</th>
-                                                <th>Telephone</th>
-                                                <th>Active Jobs</th>
+                                                <th>External Specialist ID</th>
+                                                <th>Name</th>
+                                                <th>Contact Number</th>
                                                 <th>Expertise</th>
                                             </tr>
-                                            <tr>
-                                                <td>Dave</td>
-                                                <td>07123456789</td>
-                                                <td>10</td>
-                                                <td>Printers</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Peter</td>
-                                                <td>01789456123</td>
-                                                <td>10</td>
-                                                <td>Printers</td>
-                                            </tr>
+                                            ${(problemInputStrings['externalSpecialists'] != undefined) ? problemInputStrings['externalSpecialists'] : ''}
                                         </table>
                                     </div>
 
                                 </div>
                             </div></div>`;
 
-    const existingString = `<div data-name="problem${problemCount}" class="existing-problem">
+    var existingString = `<div data-name="problem${problemCount}" class="existing-problem">
                                 <div class="search-element">
                                     <h3 class="element-title">Problems</h3>
                                     <div class="search-element-bar">
@@ -243,7 +234,8 @@ function addTab() {
                                                 <th>Status</th>
                                                 <th>Solve Method</th>
                                                 <th>Problem Type</th>
-                                            </tr>                                    
+                                            </tr>                                 
+                                            ${(problemInputStrings['allProblems'] != undefined) ? problemInputStrings['allProblems'] : ''}   
                                         </table>
                                     </div>
                                 </div>
@@ -267,13 +259,34 @@ function addTab() {
     
     openTab(event, `problem${problemCount}` , true);
 
-    problemIDs.push(`problem${problemCount}`);
+    let item = { problemID: `problem${problemCount}`, type: "" }
+    problemIDs.push(item);
     console.log(problemIDs);
 
     tabCount++;
     problemCount++;
 
     addSelectableRows();
+}
+
+function checkStatus(e, problemCount) {
+    if(e.target.checked) {
+        document.querySelector(`#unsolved-form-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#solved-form-${problemCount}`).classList.remove("hide-form");
+    } else {
+        document.querySelector(`#solved-form-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#unsolved-form-${problemCount}`).classList.remove("hide-form");
+    }
+}
+
+function checkIfThirdParty(e, problemCount) {
+    if(e.target.checked) {
+        document.querySelector(`#specialists-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#third-party-specialists-${problemCount}`).classList.remove("hide-form");
+    } else {
+        document.querySelector(`#third-party-specialists-${problemCount}`).classList.add("hide-form");
+        document.querySelector(`#specialists-${problemCount}`).classList.remove("hide-form");
+    }
 }
 
 function chooseExisting(e) {
@@ -297,6 +310,13 @@ function chooseExisting(e) {
     for(var i = 0; i < existingProblems.length; i++) {
         if(existingProblems[i].dataset.name == e.target.dataset.name) {
             existingProblems[i].style.display = 'block';
+        }
+    }
+
+    //
+    for(var i = 0; i < problemIDs.length; i++) {
+        if(problemIDs[i].problemID == e.target.dataset.name) {
+            problemIDs[i].type = "existing";
         }
     }
 }
@@ -324,20 +344,57 @@ function chooseNew(e) {
             existingProblems[i].style.display = 'none';
         }
     }
+
+    // 
+    for(var i = 0; i < problemIDs.length; i++) {
+        if(problemIDs[i].problemID == e.target.dataset.name) {
+            problemIDs[i].type = "new";
+        }
+    }
+}
+
+function confirmInsert() {
+    const obj = retreiveInputs();
+    if(!validateInputs(obj)) {
+        alert("Invalid inputs");
+    } else {
+        var confirmed = confirm("Are you sure?");
+        if(confirmed) {
+            insertData(obj);
+        } 
+    }
+}
+
+function insertData(obj) {
+    alert("Data inserted");
+    loadData('POST', '../php/logCall/sql_insert_data.php', obj, function(json){
+        console.log(json);
+    })
 }
 
 function retreiveInputs() {
     const inputFields = document.getElementsByClassName('call-input-field');
     let obj = {
-        problems: []
+        callerName: "", 
+        extension: "",
+        problems: [], 
+        operatorID: "3"
     };
     for(var i = 0; i < inputFields.length; i++) {
         readCallInput(obj, inputFields[i]);
     }
     for(var i = 0; i < problemIDs.length; i++) {
-        getNewProblemInputs(obj, getNewProblem(problemIDs[i]));
+        if(problemIDs[i].type == "new") {
+            getNewProblemInputs(obj, getNewProblem(problemIDs[i].problemID));
+        } else if(problemIDs[i].type == "existing") {
+            getExistingProblemInputs(obj, getExistingProblem(problemIDs[i].problemID));
+        } else {
+            obj.problems.push({});
+        }
     }
-    console.log(obj);
+
+    return obj;
+    
 }
 
 function readCallInput(obj, input) {
@@ -372,6 +429,9 @@ function addSelectedRowInputs(obj, row, externalSpecialist){
                     obj['externalSpecialistID'] = row.cells[0].innerHTML;
                 }
                 break;
+            case 'allProblemsTable': 
+                obj['problemNumber'] = row.cells[0].innerHTML;
+                break;
             default: 
                 console.log(row);
                 break;
@@ -392,7 +452,14 @@ function getNewProblemInputs(obj, newProblem) {
     const inputs = newProblem.getElementsByClassName('problem-input-field');
     let external = newProblem.getElementsByClassName('external')[0].checked;
 
-    let newProblemObj = {};
+    let newProblemObj = {
+        serialNumber: "", 
+        softwareName: "", 
+        specialistID: "", 
+        externalSpecialistID: "", 
+        dateSolved: "",
+        timeSolved: ""
+    };
     for(var i = 0; i < inputs.length; i++) {
         if(inputs[i].tagName != 'TABLE') {
             if(inputs[i].dataset.input == 'status') {
@@ -415,41 +482,132 @@ function getNewProblemInputs(obj, newProblem) {
     if(newProblemObj.status == 'solved') {
         newProblemObj['specialistID'] = '';
         newProblemObj['externalSpecialistID'] = '';
+        newProblemObj['dateSolved'] = obj.date;
+        newProblemObj['timeSolved'] = obj.time;
     }
     
     obj.problems.push(newProblemObj);
 }
 
+    function getExistingProblem(problemName) {
+        const existingProblems = document.getElementsByClassName('existing-problem');
+        for(var i = 0; i < existingProblems.length; i++) {
+            if(existingProblems[i].dataset.name == problemName) {
+                 return existingProblems[i];
+            }
+        }
+    }
+
+    function getExistingProblemInputs(obj, existingProblem) {
+        let existingProblemObj = {
+            problemNumber: ""
+        };
+        let selectedRow = existingProblem.getElementsByClassName("selected-row")[0];
+        addSelectedRowInputs(existingProblemObj, selectedRow);
+        obj.problems.push(existingProblemObj)
+    }
+
+    function validateInputs(inputs) {
+        console.log("validating: ", inputs);
+        const keys = Object.keys(inputs);
+        let pass = true;
+        for(var i = 0; i < keys.length; i++) {
+            if( !validateInput(inputs, keys[i]) ) {
+                pass = false;
+            }
+        }
+        return pass;
+    }
+
+    function validateInput(inputs, key) {
+        if(key != "problems") {
+            if(inputs[key] === "") {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            if(inputs[key].length == 0) {
+                return false;
+            } else {
+                return validateProblemInputs(inputs[key]);
+            }
+        }
+    }
+
+    function validateProblemInputs(problemInputs) {
+        for(var i = 0; i < problemInputs.length; i++) {
+            if(Object.keys(problemInputs[i]).length == 0) {
+                return false;
+            } else {
+                const problemKeys = Object.keys(problemInputs[i]);
+                for(var j = 0; j < problemKeys.length; j++) {
+                    if( !validateProblemInput(problemInputs[i], problemKeys[j]) ) {
+                        return false;
+                    } 
+                }
+            }
+        }
+        return true;
+    }
+
+    function validateProblemInput(inputs, key) {
+        const solvedNullFields = ["OS", "softwareName", "solveNotes", "specialistID", "externalSpecialistID", "priority"];
+        const unsolvedNullFields = ["OS", "softwareName", "solveMethod", "solveNotes", "timeSolved", "dateSolved", "priority"];
+
+        if(inputs['status'] == "solved") {
+            if(solvedNullFields.includes(key)) {
+                return true;
+            }
+        } else {
+            if(unsolvedNullFields.includes(key)) {            
+                return true;
+            }
+        }
+
+        if( (key == "specialistID" || key == "externalSpecialistID") && Object.keys(inputs).length != 1) {
+            if(inputs["specialistID"] == "" && inputs["externalSpecialistID"] == "") {
+                return false;
+            }
+        } else {
+            if (inputs[key] === "") {
+                console.log(`type: ${typeof key} -> ${key}:${inputs[key]}`);
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 
 // {
 //     call: {
-//         callerName,          TABLE - SELECTED ROW
-//         ext,                 TABLE - SELECTED ROW
-//         date,                DATE NOW
-//         time,                TIME NOW
-//         operatorID           OPERATOR LOGGED IN
-//         callReason           TEXTAREA
+//         callerName,          TABLE - SELECTED ROW      ...
+//         ext,                 TABLE - SELECTED ROW      ...
+//         date,                DATE NOW                  ...   
+//         time,                TIME NOW                  ...
+//         operatorID           OPERATOR LOGGED IN        ...
+//         callReason           TEXTAREA                  ...
 //     }, 
 //     problems: [{}, {},...,{}]
 // }
 
 // problem : {
-//     serialNo,                TABLE   
-//     softwareName,            TABLE
-//     OS,                      DROPDOWN
-//     problemType,             DROPDOWN
-//     problemDescription,      TEXTAREA
-//     branch,                  DROPDOWN
-//     priority,                DROPDOWN
-//     status (solved?),        CHECKBOX
-//     inPerson,                CHECKBOX
-//     specialistID,            TABLE
-//     externalSpecialistID,    TABLE
-//     dateSolved,              NULL / DATE NOW
-//     timeSolved,              NULL / TIME NOW
-//     solveMethod,             TEXTAREA
-//     notes                    TEXTAREA
+//     serialNo,                TABLE                     ...
+//     softwareName,            TABLE                     ...
+//     OS,                      DROPDOWN                  ...   
+//     problemType,             DROPDOWN                  ...
+//     problemDescription,      TEXTAREA                  ...
+//     branch,                  DROPDOWN                  ...
+//     priority,                DROPDOWN                  ...
+//     status (solved?),        CHECKBOX                  ...
+//     inPerson,                CHECKBOX                  ...
+//     specialistID,            TABLE                     ...
+//     externalSpecialistID,    TABLE                     ...
+//     dateSolved,              NULL / DATE NOW           ...
+//     timeSolved,              NULL / TIME NOW           ...
+//     solveMethod,             TEXTAREA                  ...
+//     notes                    TEXTAREA                  ...
 // }
 
 // Each input has a class named 'input-field'. Then its data-input will be the object key. To actually read the input it will depend. data-inputType will tell the function how to read the data.
@@ -465,3 +623,21 @@ function getNewProblemInputs(obj, newProblem) {
 // PROBLEMS
 // Inputs should all be filled out according to existing problem if that one is chosen. Need an object which returns all the previously solved problems. 
 // If specialist is set, 3rd party specialist should not be. Only check if input....
+
+
+
+// Sort out problemsArray x 
+// Obj { problemNo } needs to be made x
+
+// None of call can be null
+// Os NULL
+// Software NULL
+// DateSolved NULL
+// TimeSolved NULL
+// SolveMethod NULL
+// ID NULL (Although, ExternalID cannot be null)
+// ExternalID NULL (Although if null, ID cannot be null)
+
+// CHECK FOR NULLS
+// ADD DATE AND TIME SOLVED
+
