@@ -97,10 +97,10 @@ function addTab() {
                                     <h3 class="element-title">Operating System</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='OS'>
                                         <option value="" selected disabled hidden>Select an OS</option>
-                                        <option>Windows</option>
-                                        <option>iOS</option>
-                                        <option>Linux</option>
-                                        <option>Doesn't require OS</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="iOS">iOS</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="">Doesn't require OS</option>
                                     </select>
                                 </div>
                             </div>
@@ -122,10 +122,10 @@ function addTab() {
                                     <h3 class="element-title">Priority</h3>
                                     <select class='problem-input-field' data-input-type='select' data-input='priority'>
                                         <option value="" selected disabled hidden>Select Priority</option>
-                                        <option>Low</option>
-                                        <option>Medium</option>
-                                        <option>High</option>
-                                        <option>I don't know</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                        <option value="">I don't know</option>
                                     </select>
                                 </div>
 
