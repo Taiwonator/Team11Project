@@ -41,7 +41,7 @@ try {
       $problemData = [ getAttr($problem, 'OS'), 
                        getAttr($problem, 'branch'), 
                        getAttr($problem, 'externalSpecialistID'), 
-                       getAttr($problem, 'inPerson'), 
+                       (int)getAttr($problem, 'inPerson'), 
                        getAttr($problem, 'priority'), 
                        getAttr($problem, 'problemDescription'), 
                        getAttr($problem, 'problemType'), 
