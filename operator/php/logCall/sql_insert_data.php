@@ -33,14 +33,24 @@ try {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($callSQL)->execute($callData);
   $callID = $db->lastInsertId();
-  print_r($callID);
   
-  $output = array();
-  foreach($db->query("SELECT * FROM `$callTable`") as $row) {
-    $row = array("callerName" => $row['Name']);
-    array_push($output, $row);
-  }
+  // $output = array();
+  // foreach($db->query("SELECT * FROM `$callTable`") as $row) {
+  //   $row = array("callerName" => $row['Name']);
+  //   array_push($output, $row);
+  // }
   // echo json_encode($output);
+
+  foreach($problems as $problem) {
+    if(count(array_keys($problem)) != 1) {
+      $problemData = [ $problem['OS'], $problem['branch'], $problem['externalSpecialistID'], $problem['inPerson'], $problem['priority'], $problem['problemDescription'], $problem['problemType'], $problem['serialNumber'], $problem['softwareName'], $problem['solveMethod'], $problem['solveNotes'], $problem['specialistID'], $problem['status'] ];
+      $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+      $db->prepare($problemSQL)->execute($problemData);
+      $problemID = $db->lastInsertId();
+      array_push($problemNumbers, $problemID);
+    }
+  }
+  print_r($problemNumbers);
 
 
 } catch (PDOException $e) {
@@ -58,5 +68,8 @@ try {
 // Insert all problem objects (which aren't just problem no.) then get back Primary Key
 // Create a problemNo Array and add problem no. of posted extsting problems + new retreived Primary Keys
 // Insert into CallProblem table (Under contstraint that every pair of foreign keys are UNIQUE)
+
+// Priority: I don't know
+// OS: Doesn't require OS
 
 ?>

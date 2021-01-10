@@ -223,7 +223,7 @@ function generateStandardSolutionsTable(json) {
 
 function generateBranches(json) {
     return generateTable(json, (branch) => {
-        return `<option>${branch.country}</option>`
+        return `<option value="${branch.id}">${branch.country}</option>`
     })
 }
 
