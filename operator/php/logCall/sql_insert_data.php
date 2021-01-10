@@ -26,13 +26,12 @@ foreach($problems as $problem) {
     array_push($problemNumbers, (int)$problem['problemNumber']);
   }
 }
-// print_r($problemNumbers);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($callSQL)->execute($callData);
-  $callID = $db->fetch(PDO::FETCH_ASSOC);
+  $callID = $db->lastInsertedId();
   print_r($callID);
   
   $output = array();
@@ -40,7 +39,7 @@ try {
     $row = array("callerName" => $row['Name']);
     array_push($output, $row);
   }
-  // echo json_encode($output);
+  echo json_encode($output);
 
 
 } catch (PDOException $e) {
