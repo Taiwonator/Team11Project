@@ -20,6 +20,14 @@ $problems = $_POST['problems'];
 $callData = [ $callerName, $extension, $date, $formatedTime, $reasonForCall, $operatorID ];
 $callSQL = "INSERT INTO `Call` (`Name`, `Ext`, `Date`, `Time`, `ReasonForCall`, `ID`) VALUES (?, ?, ?, ?, ?, ?)";
 
+$problemNumbers = array();
+foreach($problems as $problem) {
+  if(count(array_keys($problem)) == 1) {
+    array_push($problemNumbers, (int)$problem['problemNumber']);
+  }
+}
+print_r("Problem Numbers: " . $problemNumbers);
+
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
