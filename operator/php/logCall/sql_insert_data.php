@@ -72,7 +72,8 @@ try {
 
 function getAttr($problem, $attribute) {
   $value = $problem[$attribute];
-  if($value === '') {
+  print_r($value);
+  if($value == "") {
     return NULL;
   } else {
     return $value;
