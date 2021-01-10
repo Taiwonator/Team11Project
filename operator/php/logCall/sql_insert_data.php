@@ -26,7 +26,7 @@ foreach($problems as $problem) {
     array_push($problemNumbers, (int)$problem['problemNumber']);
   }
 }
-print_r("Problem Numbers: " . $problemNumbers);
+print_r($problemNumbers);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
@@ -35,11 +35,10 @@ try {
   
   $output = array();
   foreach($db->query("SELECT * FROM `$callTable`") as $row) {
-    print_r($row);
     $row = array("callerName" => $row['Name']);
     array_push($output, $row);
   }
-  echo json_encode($output);
+  // echo json_encode($output);
 
 
 } catch (PDOException $e) {
