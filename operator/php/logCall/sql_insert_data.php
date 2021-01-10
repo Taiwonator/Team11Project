@@ -39,17 +39,17 @@ try {
   foreach($problems as $problem) {
     if(count(array_keys($problem)) != 1) {
       $problemData = [ getAttr($problem, 'OS'), 
-                       (int)getAttr($problem, 'branch'), 
-                       (int)getAttr($problem, 'externalSpecialistID'), 
-                       (int)getAttr($problem, 'inPerson'), 
+                       getAttr($problem, 'branch'), 
+                       getAttr($problem, 'externalSpecialistID'), 
+                       getAttr($problem, 'inPerson'), 
                        getAttr($problem, 'priority'), 
                        getAttr($problem, 'problemDescription'), 
                        getAttr($problem, 'problemType'), 
-                       (int)getAttr($problem, 'serialNumber'), 
+                       getAttr($problem, 'serialNumber'), 
                        getAttr($problem, 'softwareName'), 
                        getAttr($problem, 'solveMethod'), 
                        getAttr($problem, 'solveNotes'), 
-                       (int)getAttr($problem, 'specialistID'), 
+                       getAttr($problem, 'specialistID'), 
                        getAttr($problem, 'status'),
                        getAttr($problem, 'dateSolved'), 
                        date('H:i:s', strtotime(getAttr($problem, 'timeSolved'))) ];
@@ -76,7 +76,11 @@ function getAttr($problem, $attribute) {
     print_r($attribute);
     return "NULL";
   } else {
-    return $value;
+    if(is_numeric($value)) {
+      return (int)$value;
+    } else {
+      return $value;
+    }
   }
 }
 
