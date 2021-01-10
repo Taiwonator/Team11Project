@@ -53,7 +53,6 @@ try {
                        getAttr($problem, 'status'),
                        getAttr($problem, 'dateSolved'), 
                        date('H:i:s', strtotime(getAttr($problem, 'timeSolved'))) ];
-      print_r($problemData);
 
       $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`, `DateSolved`, `TimeSolved`) 
                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
@@ -65,6 +64,13 @@ try {
   }
   print_r($problemNumbers);
 
+  foreach($problemNumbers as $problemNumber) {
+    $callProblemData = [ $callID, $problemNumber ];
+    $callProblemSQL = "INSERT INTO CallProblem (`CallID`, `ProblemNumber`) VALUES (?, ?)";
+    $db->prepare($problemSQL)->execute($problemData);
+    print_r("CallProblem inserted: " . $callID . " -> " . $problemNumber );
+  }
+
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
@@ -73,7 +79,6 @@ try {
 function getAttr($problem, $attribute) {
   $value = $problem[$attribute];
   if($value == "") {
-    print_r($attribute);
     return NULL;
   } else {
     if(is_numeric($value)) {
@@ -90,12 +95,12 @@ function getAttr($problem, $attribute) {
 
 // Get Post data x
 // Get each value (Create Call Object & Problem object for each problem) x
-// Insert Call Obj then get back Primary Key
-// Insert all problem objects (which aren't just problem no.) then get back Primary Key
-// Create a problemNo Array and add problem no. of posted extsting problems + new retreived Primary Keys
+// Insert Call Obj then get back Primary Key x
+// Insert all problem objects (which aren't just problem no.) then get back Primary Key x
+// Create a problemNo Array and add problem no. of posted extsting problems + new retreived Primary Keys x
 // Insert into CallProblem table (Under contstraint that every pair of foreign keys are UNIQUE)
 
-// Priority: I don't know
-// OS: Doesn't require OS
+// Priority: I don't know x
+// OS: Doesn't require OS x
 
 ?>
