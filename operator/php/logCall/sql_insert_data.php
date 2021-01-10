@@ -38,9 +38,9 @@ try {
 
   foreach($problems as $problem) {
     if(count(array_keys($problem)) != 1) {
-      $problemData = [ $problem['OS'], (int)$problem['branch'], (int)$problem['externalSpecialistID'], (int)$problem['inPerson'], $problem['priority'], $problem['problemDescription'], $problem['problemType'], (int)$problem['serialNumber'], $problem['softwareName'], $problem['solveMethod'], $problem['solveNotes'], (int)$problem['specialistID'], $problem['status'], $problem['dateSolved'], date('H:i:s', strtotime($problem['timeSolved'])) ];
-      print_r($problemData);
-      print_r(getAttr($problem, 'externalSpecialistID'));
+      $problemData = [ getAttr($problem, 'OS')), (int)getAttr($problem, 'branch')), (int)getAttr($problem, 'externalSpecialistID')), (int)getAttr($problem, 'inPerson')), getAttr($problem, 'priority')), getAttr($problem, 'problemDescription')), getAttr($problem, 'problemType')), (int)getAttr($problem, 'serialNumber')), getAttr($problem, 'softwareName')), getAttr($problem, 'solveMethod')), getAttr($problem, 'solveNotes')), (int)getAttr($problem, 'specialistID')), getAttr($problem, 'status')), getAttr($problem, 'dateSolved')), date('H:i:s', strtotime(getAttr($problem, 'timeSolved')))) ];
+      
+      print_r(is_null(getAttr($problem, 'externalSpecialistID')));
       $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`, `DateSolved`, `TimeSolved`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
       $db->prepare($problemSQL)->execute($problemData);
       $problemID = $db->lastInsertId();
@@ -48,7 +48,6 @@ try {
     }
   }
   print_r($problemNumbers);
-
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
