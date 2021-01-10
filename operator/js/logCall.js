@@ -553,7 +553,7 @@ function getNewProblemInputs(obj, newProblem) {
 
     function validateProblemInput(inputs, key) {
         const solvedNullFields = ["OS", "softwareName", "solveNotes", "specialistID", "externalSpecialistID"];
-        const unsolvedNullFields = ["OS", "softwareName", "solveMethod", "solveNotes"];
+        const unsolvedNullFields = ["OS", "softwareName", "solveMethod", "solveNotes", "timeSolved", "dateSolved"];
 
         if(inputs['status'] == "solved") {
             if(solvedNullFields.includes(key)) {
