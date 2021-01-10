@@ -18,7 +18,7 @@ $operatorID = $_POST['operatorID'];
 $problems = $_POST['problems'];
 
 $callData = [ $callerName, $extension, $date, $formatedTime, $reasonForCall, $operatorID ];
-$callSQL = "INSERT INTO `Call` (`Name`, `Ext`, `Date`, `Time`, `ReasonForCall`, `ID`) VALUES (?, ?, ?, ?, ?, ?)";
+$callSQL = "INSERT INTO `Call` (`Name`, `Ext`, `Date`, `Time`, `ReasonForCall`, `ID`) OUTPUT INSERTED.CallID VALUES (?, ?, ?, ?, ?, ?)";
 
 $problemNumbers = array();
 foreach($problems as $problem) {
@@ -26,12 +26,14 @@ foreach($problems as $problem) {
     array_push($problemNumbers, (int)$problem['problemNumber']);
   }
 }
-print_r($problemNumbers);
+// print_r($problemNumbers);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($callSQL)->execute($callData);
+  $callID = $db->fetch(PDO::FETCH_ASSOC);
+  print_r($callID);
   
   $output = array();
   foreach($db->query("SELECT * FROM `$callTable`") as $row) {
