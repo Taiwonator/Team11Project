@@ -67,7 +67,7 @@ try {
   foreach($problemNumbers as $problemNumber) {
     $callProblemData = [ $callID, $problemNumber ];
     $callProblemSQL = "INSERT INTO CallProblem (`CallID`, `ProblemNumber`) VALUES (?, ?)";
-    $db->prepare($problemSQL)->execute($problemData);
+    $db->prepare($callProblemSQL)->execute($callProblemData);
     print_r("CallProblem inserted: " . $callID . " -> " . $problemNumber );
   }
 
