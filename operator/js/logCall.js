@@ -456,7 +456,9 @@ function getNewProblemInputs(obj, newProblem) {
         serialNumber: "", 
         softwareName: "", 
         specialistID: "", 
-        externalSpecialistID: ""
+        externalSpecialistID: "", 
+        dateSolved: "",
+        timeSolved: ""
     };
     for(var i = 0; i < inputs.length; i++) {
         if(inputs[i].tagName != 'TABLE') {
@@ -480,6 +482,8 @@ function getNewProblemInputs(obj, newProblem) {
     if(newProblemObj.status == 'solved') {
         newProblemObj['specialistID'] = '';
         newProblemObj['externalSpecialistID'] = '';
+        newProblemObj['dateSolved'] = obj.date;
+        newProblemObj['timeSolved'] = obj.time;
     }
     
     obj.problems.push(newProblemObj);

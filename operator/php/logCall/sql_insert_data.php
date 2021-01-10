@@ -34,17 +34,11 @@ try {
   $db->prepare($callSQL)->execute($callData);
   $callID = $db->lastInsertId();
   
-  // $output = array();
-  // foreach($db->query("SELECT * FROM `$callTable`") as $row) {
-  //   $row = array("callerName" => $row['Name']);
-  //   array_push($output, $row);
-  // }
-  // echo json_encode($output);
 
   foreach($problems as $problem) {
     if(count(array_keys($problem)) != 1) {
-      $problemData = [ $problem['OS'], $problem['branch'], $problem['externalSpecialistID'], $problem['inPerson'], $problem['priority'], $problem['problemDescription'], $problem['problemType'], $problem['serialNumber'], $problem['softwareName'], $problem['solveMethod'], $problem['solveNotes'], $problem['specialistID'], $problem['status'] ];
-      $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
+      $problemData = [ $problem['OS'], (int)$problem['branch'], (int)$problem['externalSpecialistID'], (int)$problem['inPerson'], $problem['priority'], $problem['problemDescription'], $problem['problemType'], (int)$problem['serialNumber'], $problem['softwareName'], $problem['solveMethod'], $problem['solveNotes'], (int)$problem['specialistID'], $problem['status'], $problem['dateSolved'], date('H:i:s', strtotime($problem['timeSolved'])) ];
+      $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`, `DateSolved`, `TimeSolved`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
       $db->prepare($problemSQL)->execute($problemData);
       $problemID = $db->lastInsertId();
       array_push($problemNumbers, $problemID);
