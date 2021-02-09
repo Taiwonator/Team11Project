@@ -1,19 +1,22 @@
 <?php
 
-$problemNum = intval($_GET['ProblemNumber']);
-$servername = "35.189.96.25";
-$db = "helpdesk_database";
-$username = "pma";
-$password = "webproject@Team11";
-try {
-  $db = mysqli_connect("$servername",$username,$password,$db) or die("Bad Connect:".mysqli_connect_error());
-  $sqlQuery = "UPDATE Problem SET Status = 'SOLVED' WHERE ProblemNumber = $problemNum";
-  $db->query($sqlQuery);
-  $db->close();
+//Ethan 03/01/21
 
-} catch (Exception $e) {
+$user = "pma";
+$password = "webproject@Team11";
+$database = "helpdesk_database";
+$table = "Problem";
+try {
+	
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $output = array();
+  foreach($db->query("SELECT `Problem_No.`, `Serial_No.`,`Caller_Name`, `Operator_Name` FROM $table WHERE `Status` = 'unsolved'") as $row) {
+    $row = array("problemNo."=>$row['ProblemNo.'], "serialNo."=>$row['SerialNo.'], "callerName"=>$row['CallerName'], "operatorName"=>$row['OperatorName']);
+    array_push($output, $row);
+  }
+  echo json_encode($output);
+} catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
 }
-
 ?>
