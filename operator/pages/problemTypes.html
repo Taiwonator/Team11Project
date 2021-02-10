@@ -111,8 +111,10 @@
             modal.style.display = 'block';
             document.getElementById('problem-type-input').value = problemType;
             problemTypeBuffer = problemType;
-            if(!button.classList.contains('disabled-button')) {
-                button.classList.add('disabled-button');
+            
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
             }
         }
 

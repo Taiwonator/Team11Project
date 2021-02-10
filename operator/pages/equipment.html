@@ -68,7 +68,7 @@
                     <input onkeyup="checkIfAllEmpty()" id="make-input" type="text" placeholder="Enter make"></input>
                 </div>  
                         
-                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" onclick="confirmEdit()" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -129,6 +129,15 @@
             return [serialNo, type, make]
         }
 
+        function getInputsAsObj() {
+            let serialNumber = document.getElementById('serial-no-input');
+            let type = document.getElementById('type-input');
+            let make = document.getElementById('make-input');
+            return {
+                serialNumber, type, make
+            }
+        }
+
         function setInputs(serialNumber, type, make) {
             var inputs = getInputs();
             inputs[0].value = serialNumber;
@@ -139,8 +148,10 @@
         function openModal(serialNumber) {
             edit = true;
             modal.style.display = 'block';
-            if(!button.classList.contains('disabled-button')) {
-                button.classList.add('disabled-button');
+
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
             }
             // document.getElementById('problem-type-input').value = problemType;
             // problemTypeBuffer = problemType;
@@ -161,6 +172,29 @@
             // 1) select serial no from table
             // 2) check to see which object has that same serial no
             // 3) populate the modal with values   
+        }
+
+        function confirmEdit() {
+            console.log("CONFIRM CLICKED");
+            var obj = getInputsAsObj();
+            if(!button.classList.contains("disabled-button")) {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    if(edit) {
+                        // updateProblemType(problemType);
+                        alert("Edit");
+                    } else {
+                        // insertProblemType(problemType);
+                        alert("Insert");
+                        console.log(obj);
+                    } 
+                    exitModal();
+                }
+            }
+        }
+
+        function exitModal() {
+            document.getElementById('edit-screen').style.display = 'none';
         }
         
         var equipmentArray;
