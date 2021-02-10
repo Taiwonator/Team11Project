@@ -33,21 +33,12 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="equipment-table">
                     <tr>
                         <th>Serial No.</th>
                         <th>Type</th>
                         <th>Make</th>
                         <th>Actions</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Laptop</td>
-                        <td>Asos</td>
-                        <td>
-                            <button onclick="openModal('1')" class="edit-button">Edit</button>
-                            <button class="report-solved-button">Delete</button>
-                        </td>
                     </tr>
                 </table>
                 </div>
@@ -90,8 +81,6 @@
         var span = document.getElementsByClassName("close")[0]; // close button
         var edit = true; // edit or add?
         var equipmentBuffer; // used for alter, need previous value to know which record to change as the problemType is the primary key (See UPDATE SQL statement)
-
-        var equipmentData = loadEquipment();
 
         addEquipmentButton.onclick = function() {
             edit = false;
@@ -155,14 +144,14 @@
 
             // generate inputs - we should have a whole list of all the equipment. So I shall...
             
-            for(var i = 0; i < equipmentData.length; i++) {
-                if(equipmentData[i].serialNumber == serialNumber) {
+            for(var i = 0; i < equipmentArray.length; i++) {
+                if(equipmentArray[i].serialNumber == serialNumber) {
 
-                    setInputs(equipmentData[i].serialNumber, equipmentData[i].type, equipmentData[i].make);
+                    setInputs(equipmentArray[i].serialNumber, equipmentArray[i].type, equipmentArray[i].make);
 
                 } else {
                     console.log(serialNumber);
-                    console.log(equipmentData);
+                    console.log(equipmentArray);
                 }
             }
 
@@ -170,14 +159,38 @@
             // 2) check to see which object has that same serial no
             // 3) populate the modal with values   
         }
+        
+        var equipmentArray;
 
         function loadEquipment() {
             loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
-                // document.getElementById('problem-type-table').innerHTML = generateTable(json);
-                equipmentData = JSON.parse(json);
+                document.getElementById('problem-type-table').innerHTML = generateTable(json);
             })
         }
         loadEquipment();
+
+        function generateTable(json) {
+            const obj = JSON.parse(json); // Converts JSON to Javascript Object (Array)
+            equipmentArray = [...obj]; // Stores problem types in a variable
+            let output = `<tr>
+                            <th>Serial No.</th>
+                            <th>Type</th>
+                            <th>Make</th>
+                            <th>Actions</th>
+                          </tr>`;
+            for(var i = 0; i < obj.length; i++) {
+                output += `<tr>
+                                <td>${obj[i].serialNumber}</td>
+                                <td>${obj[i].type}</td>
+                                <td>${obj[i].make}</td>
+                                <td>
+                                        <button data-name=${obj[i].serialNumber}  onclick="openModal('${obj[i].serialNumber}')"   class="edit-button">Edit</button>
+                                        <button data-name=${obj[i].serialNumber}  onclick="confirmDelete('${obj[i].serialNumber}')"   class="report-solved-button">Delete</button>
+                                </td>
+                           </tr>`
+            }
+            return output;
+        }
         
     </script>
 
