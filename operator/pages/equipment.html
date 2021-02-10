@@ -177,6 +177,7 @@
         function confirmEdit() {
             console.log("CONFIRM CLICKED");
             var obj = getInputsAsObj();
+            var button = document.getElementById('confirm-button');
             if(!button.classList.contains("disabled-button")) {
                 var confirmed = confirm("Are you sure?");
                 if(confirmed == true) {
