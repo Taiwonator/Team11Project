@@ -185,9 +185,8 @@
                         // updateProblemType(problemType);
                         alert("Edit");
                     } else {
-                        // insertProblemType(problemType);
+                        insertEquipment(obj);
                         alert("Insert");
-                        console.log(obj);
                     } 
                     exitModal();
                 }
@@ -206,6 +205,13 @@
             })
         }
         loadEquipment();
+
+        function insertEquipment(equipment) {
+            const payload = { 'serialNumber': equipment.serialNumber, 'type': equipment.type, 'make': equipment.make };
+            loadData('POST', '../php/equipment/sql_insert_equipment.php', payload, function(json) {
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+            })
+        }
 
         function generateTable(json) {
             const obj = JSON.parse(json); // Converts JSON to Javascript Object (Array)
