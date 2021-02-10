@@ -41,11 +41,11 @@
                         <th>Actions</th>
                     </tr>
                     <tr>
-                        <td>9534</td>
+                        <td>1</td>
                         <td>Laptop</td>
                         <td>Asos</td>
                         <td>
-                            <button onclick="openModal('9534')" class="edit-button">Edit</button>
+                            <button onclick="openModal('1')" class="edit-button">Edit</button>
                             <button class="report-solved-button">Delete</button>
                         </td>
                     </tr>
@@ -140,6 +140,13 @@
             return [serialNo, type, make]
         }
 
+        function setInputs(serialNumber, type, make) {
+            var inputs = getInputs();
+            inputs[0].value = serialNumber;
+            inputs[1].value = type;
+            inputs[2].value = make;
+        }
+
         function openModal(serialNumber) {
             edit = true;
             modal.style.display = 'block';
@@ -149,6 +156,15 @@
             // generate inputs - we should have a whole list of all the equipment. So I shall...
             console.log(serialNumber);
             console.log(equipmentData);
+
+            for(var i = 0; i > equipmentData.length; i++) {
+                if(equipmentData[i].serialNumber == serialNumber) {
+
+                    setInputs(equipmentData[i].serialNumber, equipmentData[i].type, equipmentData[i].make);
+
+                }
+            }
+
             // 1) select serial no from table
             // 2) check to see which object has that same serial no
             // 3) populate the modal with values   
