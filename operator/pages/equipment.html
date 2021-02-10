@@ -50,12 +50,12 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                <h1 id="modal-title" class="title"><i class="fa fa-edit"></i> Edit</h1>  
                     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Serial No.</h3>
-                        <input onkeyup="checkIfAllEmpty()" id="serial-no-input" type="text" placeholder="Enter Serial no."></input>
+                        <input onkeyup="checkIfAllEmpty()" id="serial-no-input" type="number" placeholder="Enter Serial no."></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Type</h3>
@@ -89,6 +89,8 @@
             document.getElementById('serial-no-input').value = '';
             document.getElementById('type-input').value = '';
             document.getElementById('make-input').value = '';
+            
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
 
             var button = document.getElementById('confirm-button');
             if(!button.classList.contains('disabled-button')) {
@@ -146,6 +148,8 @@
         function openModal(serialNumber) {
             edit = true;
             modal.style.display = 'block';
+
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
 
             var button = document.getElementById('confirm-button');
             if(button.classList.contains('disabled-button')) {
