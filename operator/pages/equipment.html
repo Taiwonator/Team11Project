@@ -207,7 +207,7 @@
         function insertEquipment(equipment) {
             const payload = { 'serialNumber': equipment.serialNumber, 'type': equipment.type, 'make': equipment.make };
             loadData('POST', '../php/equipment/sql_insert_equipment.php', payload, function(json) {
-                // document.getElementById('equipment-table').innerHTML = generateTable(json);
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
                 console.log(json);
             })
         }
