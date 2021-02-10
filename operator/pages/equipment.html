@@ -154,14 +154,15 @@
             // problemTypeBuffer = problemType;
 
             // generate inputs - we should have a whole list of all the equipment. So I shall...
-            console.log(serialNumber);
-            console.log(equipmentData);
-
-            for(var i = 0; i > equipmentData.length; i++) {
+            
+            for(var i = 0; i < equipmentData.length; i++) {
                 if(equipmentData[i].serialNumber == serialNumber) {
 
                     setInputs(equipmentData[i].serialNumber, equipmentData[i].type, equipmentData[i].make);
 
+                } else {
+                    console.log(serialNumber);
+                    console.log(equipmentData);
                 }
             }
 
