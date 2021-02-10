@@ -151,7 +151,7 @@
         }
 
         function loadEquipment() {
-            loadData('GET', '../../public/sql_select_equipment.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
                 // document.getElementById('problem-type-table').innerHTML = generateTable(json);
                 console.log(json);
             })
