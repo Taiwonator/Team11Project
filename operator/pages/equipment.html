@@ -45,7 +45,7 @@
                         <td>Laptop</td>
                         <td>Asos</td>
                         <td>
-                            <button class="edit-button">Edit</button>
+                            <button onclick="openModal('9534')" class="edit-button">Edit</button>
                             <button class="report-solved-button">Delete</button>
                         </td>
                     </tr>
@@ -90,6 +90,8 @@
         var span = document.getElementsByClassName("close")[0]; // close button
         var edit = true; // edit or add?
         var equipmentBuffer; // used for alter, need previous value to know which record to change as the problemType is the primary key (See UPDATE SQL statement)
+
+        var equipmentData = loadEquipment();
 
         addEquipmentButton.onclick = function() {
             edit = false;
@@ -138,13 +140,15 @@
             return [serialNo, type, make]
         }
 
-        function openModal(problemType) {
+        function openModal(serialNumber) {
             edit = true;
             modal.style.display = 'block';
             // document.getElementById('problem-type-input').value = problemType;
             // problemTypeBuffer = problemType;
 
             // generate inputs - we should have a whole list of all the equipment. So I shall...
+            console.log(serialNumber);
+            console.log(equipmentData);
             // 1) select serial no from table
             // 2) check to see which object has that same serial no
             // 3) populate the modal with values   
@@ -153,10 +157,9 @@
         function loadEquipment() {
             loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
                 // document.getElementById('problem-type-table').innerHTML = generateTable(json);
-                console.log(json);
+                equipmentData = JSON.parse(json);
             })
         }
-
         loadEquipment();
         
     </script>
