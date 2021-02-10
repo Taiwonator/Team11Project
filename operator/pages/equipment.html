@@ -164,7 +164,7 @@
 
         function loadEquipment() {
             loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
-                document.getElementById('problem-type-table').innerHTML = generateTable(json);
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
             })
         }
         loadEquipment();
