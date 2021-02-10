@@ -198,6 +198,13 @@
         function exitModal() {
             document.getElementById('edit-screen').style.display = 'none';
         }
+
+        function confirmDelete(serialNumber) {
+            var confirmed = confirm("Are you sure?");
+            if(confirmed == true) {
+                deleteEquipment(serialNumber);
+            }
+        }
         
         var equipmentArray;
 
@@ -212,6 +219,14 @@
             const payload = { 'serialNumber': equipment.serialNumber, 'type': equipment.type, 'make': equipment.make };
             console.log(payload);
             loadData('POST', '../php/equipment/sql_insert_equipment.php', payload, function(json) {
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+                console.log(json);
+            })
+        }
+
+        function deleteEquipment(serialNumber) {
+            const payload = { 'serialNumber': serialNumber };
+            loadData('POST', '../php/equipment/sql_delete_equipment.php', payload, function(json) {
                 document.getElementById('equipment-table').innerHTML = generateTable(json);
                 console.log(json);
             })
