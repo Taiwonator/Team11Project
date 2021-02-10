@@ -4,9 +4,9 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
-$table = "ProblemType";
+$table = "Equipment";
 
-$problemType = $_POST["serialNumber"];
+$serialNumber = $_POST["serialNumber"];
 $data = [ "serialNumber" => $serialNumber ];
 $sql = "DELETE FROM $table WHERE Equipment.SerialNumber = :serialNumber";
 
