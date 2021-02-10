@@ -51,7 +51,7 @@
                     </tr>
                 </table>
                 </div>
-                <button id="add-personnel" class="big-button">Add Equipment</button>
+                <button id="add-equipment" class="big-button">Add Equipment</button>
             </div>
         </div>
         
@@ -64,31 +64,100 @@
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Serial No.</h3>
-                        <input type="text" placeholder="Enter Serial no."></input>
+                        <input onkeyup="checkIfAllEmpty()" id="serial-no-input" type="text" placeholder="Enter Serial no."></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Type</h3>
-                        <input type="text" placeholder="Enter type"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="type-input" type="text" placeholder="Enter type"></input>
                     </div>  
                 </div> 
                     
                 <div class="text-input-element">
                     <h3 class="element-title">Make</h3>
-                    <input type="text" placeholder="Enter make"></input>
+                    <input onkeyup="checkIfAllEmpty()" id="make-input" type="text" placeholder="Enter make"></input>
                 </div>  
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
 
+    <script src="../js/ajaxFunctions.js"></script>
+
     <script>
         var modal = document.getElementById("edit-screen");
-        var addPersonnelButton = document.getElementById("add-personnel");
+        var addEquipmentButton = document.getElementById("add-equipment");
+        var span = document.getElementsByClassName("close")[0]; // close button
+        var edit = true; // edit or add?
+        var equipmentBuffer; // used for alter, need previous value to know which record to change as the problemType is the primary key (See UPDATE SQL statement)
 
-        addPersonnelButton.onclick = function() {
+        addEquipmentButton.onclick = function() {
+            edit = false;
             modal.style.display = "block";
+            
+            document.getElementById('serial-no-input').value = '';
+            document.getElementById('type-input').value = '';
+            document.getElementById('make-input').value = '';
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
         }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        function checkIfAllEmpty() {
+            var button = document.getElementById('confirm-button');
+            var inputs = getInputs();
+            let flag = false;
+
+            console.log(getInputs);
+
+            for(var i = 0; i < inputs.length; i++) {
+                if(inputs[i].value == "") {
+                    flag = true;
+                }
+            }
+
+            if(flag) {
+                button.classList.add('disabled-button');
+            } else {
+                if(button.classList.contains('disabled-button')) {
+                    button.classList.remove('disabled-button');
+                }
+            }
+        }
+
+        function getInputs(){
+            let serialNo = document.getElementById('serial-no-input');
+            let type = document.getElementById('type-input');
+            let make = document.getElementById('make-input');
+            return [serialNo, type, make]
+        }
+
+        function openModal(problemType) {
+            edit = true;
+            modal.style.display = 'block';
+            // document.getElementById('problem-type-input').value = problemType;
+            // problemTypeBuffer = problemType;
+
+            // generate inputs - we should have a whole list of all the equipment. So I shall...
+            // 1) select serial no from table
+            // 2) check to see which object has that same serial no
+            // 3) populate the modal with values   
+        }
+
+        function loadEquipment() {
+            loadData('GET', '../../public/sql_select_equipment.php', {}, function(json){
+                // document.getElementById('problem-type-table').innerHTML = generateTable(json);
+                console.log(json);
+            })
+        }
+
+        loadEquipment();
         
     </script>
 
