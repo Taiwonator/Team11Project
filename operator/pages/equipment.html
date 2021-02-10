@@ -129,10 +129,10 @@
             return [serialNo, type, make]
         }
 
-        function getInputsAsObj() {
-            let serialNumber = document.getElementById('serial-no-input');
-            let type = document.getElementById('type-input');
-            let make = document.getElementById('make-input');
+        function getInputValuesAsObj() {
+            let serialNumber = document.getElementById('serial-no-input').value;
+            let type = document.getElementById('type-input').value;
+            let make = document.getElementById('make-input').value;
             return {
                 serialNumber, type, make
             }
@@ -178,7 +178,7 @@
 
         function confirmEdit() {
             console.log("CONFIRM CLICKED");
-            var obj = getInputsAsObj();
+            var obj = getInputValuesAsObj();
             var button = document.getElementById('confirm-button');
             if(!button.classList.contains("disabled-button")) {
                 var confirmed = confirm("Are you sure?");
