@@ -6,11 +6,11 @@ $table = "Problem";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
-  foreach($db->query("SELECT * FROM $table") as $row) {
+  foreach($db->query("SELECT * FROM $table WHERE Status='solved'") as $row) {
     $row = array("problemNumber"=>$row['ProblemNumber'], "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
     "inPerson"=>$row['InPerson'], "specialistID"=>$row['ID'], "externalSpecialistID"=>$row['ExternalID'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
-    "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes']);    
+    "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes']);
     array_push($output, $row);
   }
   echo json_encode($output);

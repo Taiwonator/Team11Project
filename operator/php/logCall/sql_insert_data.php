@@ -62,6 +62,7 @@ try {
       array_push($problemNumbers, $problemID);
     }
   }
+  
   print_r($problemNumbers);
 
   foreach($problemNumbers as $problemNumber) {
