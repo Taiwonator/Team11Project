@@ -279,12 +279,44 @@
     <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
 
+        var data = {};
+
         function loadSolvedProblems() {
             loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
-                console.log(json);
+                data.solvedProblems = JSON.stringify(json);
+                console.log(data);
             })
         }
         loadSolvedProblems();
+        loadBranches();
+        loadEquipment();
+        loadSoftware();
+
+        function loadBranches() {
+            loadData('GET', '../php/solvedProblems/sql_select_branches.php', {}, function(json){
+                data.branches = JSON.stringify(json);
+                console.log(data);
+            })
+        }
+
+        function loadEquipment() {
+            loadData('GET', '../php/solvedProblems/sql_select_equipment.php', {}, function(json){
+                data.equipment = JSON.stringify(json);
+                console.log(data);
+            })
+        }
+
+        function loadSoftware() {
+            loadData('GET', '../php/solvedProblems/software.php', {}, function(json){
+                data.software = JSON.stringify(json);
+                console.log(data);
+            })
+        }
+
+        // GET all software
+        // GET all equipment
+        // GET all branches
+        // GET all solved problems 
 
     </script>
 
