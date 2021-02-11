@@ -297,10 +297,12 @@
         }
 
         function generateBranchTable(branchID) {
+            console.log(branchID, data.branches);
             for(var i = 0; i < data.branches.length; i++) {
                 if(data.branches[i].branchID == branchID) {
 
                     let branch = data.branches[i];
+                    console.log(branch);
                     return `<tr>
                                 <td>${branch.branchID}</td>
                                 <td>${branch.name}</td>
