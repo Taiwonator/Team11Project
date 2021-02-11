@@ -32,76 +32,15 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                    <table class="search-element-table">
+                    <table class="search-element-table" id="solved-problems-table"> 
                         <tr>
                             <th>Problem No.</th>
-                            <th>Status</th>
-                            <th>Date Solved</th>
-                            <th>Time Solved</th>
+                            <th>Problem Description</th>
                             <th>Problem Type</th>
-                            <th>Specialist ID</th>
-                            <th>External Specialist</th>
-							<th>Solve Notes</th>
-							<th>Solve Method</th>
+                            <th>Solve Method</th>
+                            <th>Date Solved</th>
                             <th>Actions</th>
-                        </tr>
-                        <tr>
-                            <td>0</td>
-                            <td>Solved</td>
-                            <td>20/10/20</td>
-                            <td>5:30pm</td>
-                            <td>Printers</td>
-                            <td>ES001</td>
-                            <td><i class="fa fa-check-square"></i></td>
-							<td>A</td>
-							<td>A</td>
-                            <td>
-                                <button class="view-button">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Solved</td>
-                            <td>20/10/20</td>
-                            <td>5:33pm</td>
-                            <td>Software</td>
-                            <td>S001</td>
-                            <td></td>
-							<td>A</td>
-							<td>A</td>
-                            <td>
-                                <button class="view-button">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Solved</td>
-                            <td>21/10/20</td>
-                            <td>6:30pm</td>
-                            <td>Microsoft Word</td>
-                            <td>S002</td>
-                            <td></td>
-							<td>A</td>
-							<td>A</td>
-                            <td>
-                                <button class="view-button">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Solved</td>
-                            <td>22/10/20</td>
-                            <td>6:39pm</td>
-                            <td>PDF</td>
-                            <td>ES003</td>
-                            <td><i class="fa fa-check-square"></i></td>
-							<td>A</td>
-							<td>A</td>
-                            <td>
-                                <button class="view-button">Details</button>
-                            </td>
-                        </tr>
-                        
+                        </tr>         
                     </table>
                 </div>
             </div>
@@ -280,11 +219,21 @@
     <script>
 
         var data = {};
+        var solvedProblemsTable = document.getElementById("solved-problems-table");
 
         function loadSolvedProblems() {
             loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
                 data.solvedProblems = JSON.parse(json);
                 console.log(data);
+                solvedProblemsTable.innerHTML = `<tr>
+                                                    <th>Problem No.</th>
+                                                    <th>Problem Description</th>
+                                                    <th>Problem Type</th>
+                                                    <th>Solve Method</th>
+                                                    <th>Date Solved</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                ${generateSolvedProblemsTable(json)}`;
             })
         }
         loadSolvedProblems();
@@ -317,6 +266,20 @@
         // GET all equipment
         // GET all branches
         // GET all solved problems 
+
+        // Generate Table (with click buttons that display all info (of problem with id)
+
+        function generateSolvedProblemsTable(json) {
+            return generateTable(json, (solvedProblem) => {
+                return `<tr>
+                            <td>${solvedProblem.problemNumber}</td>
+                            <td>${solvedProblem.description}</td>
+                            <td>${solvedProblem.problemType}</td>
+                            <td>${solvedProblem.solveMethod}</td>
+                            <td>${solvedProblem.dateSolved}</td>
+                        </tr>`
+            })
+        }
 
     </script>
 
