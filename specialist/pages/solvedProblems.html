@@ -171,7 +171,7 @@
             </table>
         </div>
 
-            <button class="big-button confirm-edit">Exit</button>
+            <button id="exit-button" class="big-button confirm-edit">Exit</button>
           
         </div>
     </div>
@@ -203,6 +203,10 @@
             modal.style.display = "none";
         }
 
+        document.getElementById("exit-button").onclick = function() {
+            modal.style.display = "none";
+        }
+
         function loadSolvedProblems() {
             loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
                 data.solvedProblems = JSON.parse(json);
@@ -223,6 +227,8 @@
         loadBranches();
         loadEquipment();
         loadSoftware();
+        loadSpecialists();
+        loadExternalSpecialists();
 
         function loadBranches() {
             loadData('GET', '../php/solvedProblems/sql_select_branches.php', {}, function(json){
@@ -244,6 +250,22 @@
                 console.log(data);
             })
         }
+
+        function loadSpecialists() {
+            loadData('GET', '../php/solvedProblems/sql_select_specialists.php', {}, function(json){
+                data.specialists = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+        function loadExternalSpecialists() {
+            loadData('GET', '../php/solvedProblems/sql_select_externalSpecialists.php', {}, function(json){
+                data.externalSpecialists = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+
 
         // GET all software
         // GET all equipment
