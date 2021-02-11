@@ -207,6 +207,7 @@
                                                 ${generateSolvedProblemsTable(json)}`;
             })
         }
+
         loadSolvedProblems();
         loadBranches();
         loadEquipment();
@@ -261,7 +262,7 @@
 
             // Get all input objects 
             for(var i = 0; i < data.solvedProblems.length; i++) {
-                if(data.solvedProblems[i].problemNumber = problemNumber) {
+                if(data.solvedProblems[i].problemNumber == problemNumber) {
                     setInputs(data.solvedProblems[i]);
                 }
             }
