@@ -283,7 +283,7 @@
 
         function loadSolvedProblems() {
             loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
-                data.solvedProblems = JSON.stringify(json);
+                data.solvedProblems = JSON.parse(json);
                 console.log(data);
             })
         }
@@ -294,21 +294,21 @@
 
         function loadBranches() {
             loadData('GET', '../php/solvedProblems/sql_select_branches.php', {}, function(json){
-                data.branches = JSON.stringify(json);
+                data.branches = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadEquipment() {
             loadData('GET', '../php/solvedProblems/sql_select_equipment.php', {}, function(json){
-                data.equipment = JSON.stringify(json);
+                data.equipment = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadSoftware() {
-            loadData('GET', '../php/solvedProblems/software.php', {}, function(json){
-                data.software = JSON.stringify(json);
+            loadData('GET', '../php/solvedProblems/sql_select_software.php', {}, function(json){
+                data.software = JSON.parse(json);
                 console.log(data);
             })
         }
