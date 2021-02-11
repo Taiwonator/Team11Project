@@ -220,6 +220,12 @@
 
         var data = {};
         var solvedProblemsTable = document.getElementById("solved-problems-table");
+        var modal = document.getElementById("view-screen");
+        var span = document.getElementsByClassName("close")[0]; // close button
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
 
         function loadSolvedProblems() {
             loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
@@ -284,6 +290,12 @@
 
         function viewProblem(problemNumber) {
             console.log(problemNumber);
+            
+            // Open modal
+            modal.style.display = "block";
+
+            // Get all input objects 
+            // Set all values
         }
 
     </script>
