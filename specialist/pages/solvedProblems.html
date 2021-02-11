@@ -145,14 +145,14 @@
             <!-- DATE -->
             <div class="date-input-element">
                 <h3 class="element-title">Date</h3>
-                <input id="date-solved-input" type="date">
+                <input id="date-solved-input" type="date" disabled>
             </div>
         </div>
 
         <!-- IN PERSON -->
         <div class="checkbox-input-element">
             <h3 class="element-title">In Person Solving</h3>
-            <td id="in-person-input"><i class="fa fa-check-square"></i></td>
+            <td id="in-person-input"></td>
             <label>Problem must be solved in person</label>
         </div>
 
@@ -303,7 +303,7 @@
                     let branch = data.branches[i];
                     console.log(branch);
                     return `<tr>
-                                <td>${branch.branchID}</td>
+                                <td>${branch.id}</td>
                                 <td>${branch.name}</td>
                                 <td>${branch.city}</td>
                                 <td>${branch.country}</td>
@@ -364,6 +364,9 @@
                                             <th>Telephone</th>
                                         </tr>
                                         ${generateBranchTable(problem.branchID)}`;
+
+            // Checkbox
+            inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i>' : ''}`;
         }
         
 
