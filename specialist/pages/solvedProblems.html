@@ -266,6 +266,19 @@
             })
         }
 
+        function generateEquipmentTable(serialNumber) {
+            for(var i = 0; i < data.equipment.length; i++) {
+                if(data.equipment[i].serialNumber == serialNumber) {
+
+                    let equipment = data.equipment[i];
+                    return `<tr>${equipment.serialNumber}<tr>
+                            <tr>${equipment.type}<tr>
+                            <tr>${equipment.make}<tr>`;
+
+                }
+            }
+        }
+
         function viewProblem(problemNumber) {
             console.log(problemNumber);
             
@@ -285,14 +298,25 @@
 
         function setInputs(problem) {
             console.log(problem);
+
+            // Text fields
             problemDescriptionInput.value = problem.description;
             solveMethodInput.value = problem.solveMethod;
-            notesInput = problem.notes;
+            notesInput.value = problem.notes;
             problemTypeInput.value = problem.problemType;
-            osInput = problem.OS;
-            priorityInput = problem.priority;
-            dateSolvedInput = problem.dateSolved;
+            osInput.value = problem.OS;
+            priorityInput.value = problem.priority;
+            dateSolvedInput.value = problem.dateSolved;
+
+            // Table
+            equipmentTable.innerHTML = `<tr>
+                                            <th>Serial No.</th>
+                                            <th>Type</th>
+                                            <th>Make</th>
+                                        </tr>
+                                        ${generateEquipmentTable(problem.serialNumber)}`
         }
+        
 
     </script>
 
