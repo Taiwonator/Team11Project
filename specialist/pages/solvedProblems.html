@@ -48,39 +48,35 @@
         </div>
     </div>
 
-    <div id="view-screen" class="modal">
+    <div id="view-screen" style="display:block" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
           <h1 class="title"><i class="fa fa-edit"></i> View Problem</h1>
 
-          <div class="search-element">
-            <h3 class="element-title">Caller</h3>
-            <table class="search-element-table">
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Extension</th>
-                    <th>Job Title</th>
-                    <th>Department</th>
-                    <th>Email</th>
-                    <th>Branch ID</th>
-                </tr>
-                <tr>
-                    <td>E001</td>
-                    <td>Harriet Simmons</td>
-                    <td>0</td>
-                    <td>DP Officer</td>
-                    <td>Legal</td>
-                    <td>franya@kurupee.com</td>
-                    <td>B0001</td>
-                </tr>
-            </table>
+
+           <!-- DESCRIPTION -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">Problem Description</h3>
+            <textarea id="problem-description-input" class="scroll" disabled></textarea>
         </div>
 
+        <!-- SOLVE METHOD -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">How it was solved?</h3>
+            <textarea id="solve-method-input" class="scroll" disabled></textarea>
+        </div>
+
+        <!-- NOTES -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">Notes</h3>
+            <textarea id="notes-input" class="scroll" disabled></textarea>
+        </div>
+
+        <!-- EQUIPMENT -->
         <div class="search-element">
             <h3 class="element-title">Equipment</h3>
-            <table class="search-element-table">
+            <table id="equipment-table" class="search-element-table">
                 <tr>
                     <th>Serial No.</th>
                     <th>Type</th>
@@ -94,9 +90,10 @@
             </table>
         </div>
 
+        <!-- SOFTWARE -->
         <div class="search-element">
             <h3 class="element-title">Software</h3>
-            <table class="search-element-table">
+            <table id="software-table" class="search-element-table">
                 <tr>
                     <th>Software Name</th>
                     <th>Licensed</th>
@@ -110,96 +107,61 @@
             </table>
         </div>
 
-        <div class="select-input-element">
-            <h3 class="element-title">Branch</h3>
-            <select>
-                <option value="" selected disabled hidden>Select a branch</option>
-                <option>England</option>
-                <option>Germany</option>
-                <option>Japan</option>
-            </select>
+        <!-- BRANCH -->
+        <div class="search-element">
+            <h3 class="element-title">Equipment</h3>
+            <table id="branch-table" class="search-element-table">
+                <tr>
+                    <th>Branch ID</th>
+                    <th>Branch Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Telephone</th>
+                </tr>
+            </table>
         </div>
 
+        <!-- PROBLEM TYPE -->
         <div class="element-row">
-            <div class="select-input-element">
+            <div class="text-input-element">
                 <h3 class="element-title">Problem Type</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select a problem type</option>
-                    <optgroup label="Printer">
-                        <option>Printer</option>
-                        <option>Printer Ink</option>
-                        <option>Printer Paper</option>
-                    </optgroup>
-                    <optgroup label="Hardware">
-                        <option>Hardware</option>
-                        <option>GPU</option>
-                        <option>RAM</option>
-                    </optgroup>
-                </select>
+                <input id="problem-type-input" type="text" disabled>
             </div>
 
-            <div class="select-input-element">
+            <!-- OS -->
+            <div class="text-input-element">
                 <h3 class="element-title">Operating System</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select an OS</option>
-                    <option>Windows</option>
-                    <option>iOS</option>
-                    <option>Linux</option>
-                    <option>Doesn't require OS</option>
-                </select>
+                <input id="os-input" type="text" disabled>
             </div>
         </div>
 
+        <!-- PRIORITY -->
         <div class="element-row">
-            <div class="select-input-element">
+            <div class="text-input-element">
                 <h3 class="element-title">Priority</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select Priority</option>
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-                    <option>I don't know</option>
-                </select>
+                <input id="priority-input" type="text" disabled>
             </div>
 
+            <!-- DATE -->
             <div class="date-input-element">
                 <h3 class="element-title">Date</h3>
-                <input type="date">
+                <input id="date-solved-input" type="date">
             </div>
         </div>
 
+        <!-- IN PERSON -->
         <div class="checkbox-input-element">
             <h3 class="element-title">In Person Solving</h3>
-            <input type="checkbox" checked disabled>
+            <td id="in-person-input"><i class="fa fa-check-square"></i></td>
             <label>Problem must be solved in person</label>
         </div>
 
-        <div class="text-area-input-element">
-            <h3 class="element-title">Problem Description</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-        <div class="text-area-input-element">
-            <h3 class="element-title">Reason for call</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-        
-        <div class="text-area-input-element">
-            <h3 class="element-title">How it was solved?</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-        <div class="text-area-input-element">
-            <h3 class="element-title">Notes</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-    
+        <!-- SPECIALIST -->
         <div class="search-element">
-            <table class="search-element-table">
+            <table id="specialist-table" class="search-element-table">
                 <tr>
+                    <th>Specialist ID</th>
                     <th>Specialist Name</th>
-                    <th>Active Jobs</th>
                     <th>Expertise</th>
                 </tr>
                 <tr>
@@ -222,6 +184,9 @@
         var solvedProblemsTable = document.getElementById("solved-problems-table");
         var modal = document.getElementById("view-screen");
         var span = document.getElementsByClassName("close")[0]; // close button
+
+        var problemDescriptionInput = document.getElementById("problem-description-input");
+        
 
         span.onclick = function() {
             modal.style.display = "none";
@@ -295,7 +260,18 @@
             modal.style.display = "block";
 
             // Get all input objects 
+            for(var i = 0; i < data.solvedProblems.length; i++) {
+                if(data.solvedProblems[i].problemNumber = problemNumber) {
+                    setInputs(data.solvedProblems[i]);
+                }
+            }
+
+
             // Set all values
+        }
+
+        function setInputs(problem) {
+            problemDescriptionInput.value = problem.description;
         }
 
     </script>
