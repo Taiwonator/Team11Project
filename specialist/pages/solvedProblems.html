@@ -271,9 +271,11 @@
                 if(data.equipment[i].serialNumber == serialNumber) {
 
                     let equipment = data.equipment[i];
-                    return `<tr>${equipment.serialNumber}<tr>
-                            <tr>${equipment.type}<tr>
-                            <tr>${equipment.make}<tr>`;
+                    return `<tr>
+                                <td>${equipment.serialNumber}<td>
+                                <td>${equipment.type}<td>
+                                <td>${equipment.make}<td>
+                            </tr>`;
 
                 }
             }
