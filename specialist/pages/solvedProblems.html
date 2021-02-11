@@ -28,7 +28,7 @@
             <div class="search-element">
                 <h3 class="element-title">Solved Problems</h3>
                 <div class="search-element-bar">
-                    <input type="text" placeholder="Enter problem ID" onkeyup="searchTable(event, 0)">
+                    <input type="text" placeholder="Enter problem type" onkeyup="searchTable(event, 2)">
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
@@ -288,49 +288,55 @@
         }
 
         function generateEquipmentTable(serialNumber) {
-            for(var i = 0; i < data.equipment.length; i++) {
-                if(data.equipment[i].serialNumber == serialNumber) {
+            if(serialNumber != null) {
+                for(var i = 0; i < data.equipment.length; i++) {
+                    if(data.equipment[i].serialNumber == serialNumber) {
 
-                    let equipment = data.equipment[i];
-                    return `<tr>
-                                <td>${equipment.serialNumber}</td>
-                                <td>${equipment.type}</td>
-                                <td>${equipment.make}</td>
-                            </tr>`;
+                        let equipment = data.equipment[i];
+                        return `<tr>
+                                    <td>${equipment.serialNumber}</td>
+                                    <td>${equipment.type}</td>
+                                    <td>${equipment.make}</td>
+                                </tr>`;
 
+                    }
                 }
             }
         }
 
         function generateSoftwareTable(softwareName) {
-            for(var i = 0; i < data.software.length; i++) {
-                if(data.software[i].softwareName == softwareName) {
+            if(softwareName != null) {
+                for(var i = 0; i < data.software.length; i++) {
+                    if(data.software[i].softwareName == softwareName) {
 
-                    let software = data.software[i];
-                    return `<tr>
-                                <td>${software.softwareName}</td>
-                                ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
-                                ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
-                            </tr>`;
+                        let software = data.software[i];
+                        return `<tr>
+                                    <td>${software.softwareName}</td>
+                                    ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                    ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                </tr>`;
 
+                    }
                 }
             }
         }
 
         function generateBranchTable(branchID) {
-            for(var i = 0; i < data.branches.length; i++) {
-                if(data.branches[i].id == branchID) {
+            if(branchID != null) {
+                for(var i = 0; i < data.branches.length; i++) {
+                    if(data.branches[i].id == branchID) {
 
-                    let branch = data.branches[i];
-                    console.log(branch);
-                    return `<tr>
-                                <td>${branch.id}</td>
-                                <td>${branch.name}</td>
-                                <td>${branch.city}</td>
-                                <td>${branch.country}</td>
-                                <td>${branch.telephone}</td>
-                            </tr>`;
+                        let branch = data.branches[i];
+                        console.log(branch);
+                        return `<tr>
+                                    <td>${branch.id}</td>
+                                    <td>${branch.name}</td>
+                                    <td>${branch.city}</td>
+                                    <td>${branch.country}</td>
+                                    <td>${branch.telephone}</td>
+                                </tr>`;
 
+                    }
                 }
             }
         }
@@ -405,13 +411,13 @@
             console.log(problem);
 
             // Text fields
-            problemDescriptionInput.value = problem.description;
-            solveMethodInput.value = problem.solveMethod;
-            notesInput.value = problem.notes;
-            problemTypeInput.value = problem.problemType;
-            osInput.value = problem.OS;
-            priorityInput.value = problem.priority;
-            dateSolvedInput.value = problem.dateSolved;
+            setTextInput(problemDescriptionInput, problem.description);
+            setTextInput(solveMethodInput, problem.solveMethod);
+            setTextInput(notesInput, problem.notes);
+            setTextInput(problemTypeInput, problem.problemType);
+            setTextInput(osInput, problem.OS);
+            setTextInput(priorityInput, problem.priority);
+            setTextInput(dateSolvedInput, problem.dateSolved);        
 
             // Tables
             equipmentTable.innerHTML = `<tr>
@@ -440,6 +446,16 @@
 
             specialistTable.innerHTML = generateSpecialistTable(problem.specialistID, problem.externalSpecialistID);
         }
+
+        function setTextInput(input, value) {
+            if(value != null) {
+                input.value = value;
+            } else {
+                input.value = "";
+            }
+        }
+
+        function setTableInput(table, )
         
 
     </script>
