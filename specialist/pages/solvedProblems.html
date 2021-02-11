@@ -152,8 +152,7 @@
         <!-- IN PERSON -->
         <div class="checkbox-input-element">
             <h3 class="element-title">In Person Solving</h3>
-            <div id="in-person-input"></div>
-            <label>Problem must be solved in person</label>
+            <label id="input-person-input">Problem must be solved in person</label>
         </div>
 
         <!-- SPECIALIST -->
@@ -366,7 +365,7 @@
                                         ${generateBranchTable(problem.branchID)}`;
 
             // Checkbox
-            inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i>' : '<i class="fa fa-square-o"></i>'}`;
+            inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i> Problem must be solved in person' : '<i class="fa fa-square-o"></i> Problem must be solved in person'}`;
         }
         
 
