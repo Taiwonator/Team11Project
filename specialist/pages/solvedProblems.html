@@ -335,6 +335,55 @@
             }
         }
 
+        function generateSpecialistTable(specialistID, externalSpecialistID) {
+            if(specialistID != null && externalSpecialistID != null) {
+                let external = false;
+                if(externalSpecialistID != null) {
+                    external = true;
+                }
+
+                if(external) {
+                    for(var i = 0; i < data.externalSpecialists.length; i++) {
+                        if(data.externalSpecialists[i].externalID == externalSpecialistID) {
+                            let externalSpecialist = data.externalSpecialists[i];
+                            return `<tr>
+                                        <th>Specialist ID</th>
+                                        <th>Specialist Name</th>
+                                        <th>Expertise</th>
+                                        <th>Contact Number</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${externalSpecialist.externalID}</td>
+                                        <td>${externalSpecialist.name}</td>
+                                        <td>${externalSpecialist.expertise}</td>
+                                        <td>${externalSpecialist.contactNumber}</td>
+                                    </tr>`
+                        }
+                    }
+                } else {
+                    for(var i = 0; i < data.specialists.length; i++) {
+                        if(data.specialists[i].id == specialistID) {
+                            let specialist = data.specialists[i];
+                            return `<tr>
+                                        <th>Specialist ID</th>
+                                        <th>Expertise</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${specialist.id}</td>
+                                        <td>${specialist.problemType}</td>
+                                    </tr>`
+                        }
+                    }
+                }
+            } else {
+                return `<tr>
+                            <th>Specialist ID</th>
+                            <th>Specialist Name</th>
+                            <th>Expertise</th>
+                        </tr>`;
+            }
+        }
+
         function viewProblem(problemNumber) {
             console.log(problemNumber);
             
@@ -388,6 +437,8 @@
 
             // Checkbox
             inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i> Problem must be solved in person' : '<i class="fa fa-square-o"></i> Problem must be solved in person'}`;
+
+            specialistTable.innerHTML = generateSpecialistTable(problem.specialistID, problem.externalSpecialistID);
         }
         
 
