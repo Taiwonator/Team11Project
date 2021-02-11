@@ -109,7 +109,7 @@
 
         <!-- BRANCH -->
         <div class="search-element">
-            <h3 class="element-title">Equipment</h3>
+            <h3 class="element-title">Branch</h3>
             <table id="branch-table" class="search-element-table">
                 <tr>
                     <th>Branch ID</th>
@@ -186,6 +186,18 @@
         var span = document.getElementsByClassName("close")[0]; // close button
 
         var problemDescriptionInput = document.getElementById("problem-description-input");
+        var solveMethodInput = document.getElementById("solve-method-input");
+        var notesInput = document.getElementById("notes-input");
+        var equipmentTable = document.getElementById("equipment-table");
+        var softwareTable = document.getElementById("software-table");
+        var branchTable = document.getElementById("branch-table");
+        var problemTypeInput = document.getElementById("problem-type-input");
+        var osInput = document.getElementById("os-input");
+        var priorityInput = document.getElementById("priority-input");
+        var dateSolvedInput = document.getElementById("date-solved-input");
+        var inPersonInput = document.getElementById("in-person-input");
+        var specialistTable = document.getElementById("specialist-table");
+
         
 
         span.onclick = function() {
@@ -274,6 +286,12 @@
         function setInputs(problem) {
             console.log(problem);
             problemDescriptionInput.value = problem.description;
+            solveMethodInput.value = problem.solveMethod;
+            notesInput = problem.notes;
+            problemTypeInput.value = problen.problemType;
+            osInput = problem.OS;
+            priorityInput = problem.priority;
+            dateSolvedInput = problem.dateSolved;
         }
 
     </script>
