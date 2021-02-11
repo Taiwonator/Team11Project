@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <div id="view-screen" style="display:block" class="modal">
+    <div id="view-screen" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
@@ -271,6 +271,7 @@
         }
 
         function setInputs(problem) {
+            console.log(problem);
             problemDescriptionInput.value = problem.description;
         }
 
