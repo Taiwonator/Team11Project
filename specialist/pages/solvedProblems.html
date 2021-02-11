@@ -276,6 +276,18 @@
         </div>
     </div>
 
+    <script src="../js/ajaxFunctions.js"></script>
+    <script>
+
+        function loadSolvedProblems() {
+            loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
+                console.log(json);
+            })
+        }
+        loadSolvedProblems();
+
+    </script>
+
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
 </body>
