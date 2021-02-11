@@ -277,8 +277,13 @@
                             <td>${solvedProblem.problemType}</td>
                             <td>${solvedProblem.solveMethod}</td>
                             <td>${solvedProblem.dateSolved}</td>
+                            <td><button class="view-button" onclick="${viewProblem(solvedProblem.problemNumber)}">Details</button></td>
                         </tr>`
             })
+        }
+
+        function viewProblem(problemNumber) {
+            console.log(problemNumber);
         }
 
     </script>
