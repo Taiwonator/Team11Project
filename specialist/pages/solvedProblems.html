@@ -336,7 +336,7 @@
         }
 
         function generateSpecialistTable(specialistID, externalSpecialistID) {
-            if(specialistID != null && externalSpecialistID != null) {
+            if(specialistID != null || externalSpecialistID != null) {
                 let external = false;
                 if(externalSpecialistID != null) {
                     external = true;
