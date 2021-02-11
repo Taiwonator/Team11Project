@@ -272,9 +272,41 @@
 
                     let equipment = data.equipment[i];
                     return `<tr>
-                                <td>${equipment.serialNumber}<td>
-                                <td>${equipment.type}<td>
-                                <td>${equipment.make}<td>
+                                <td>${equipment.serialNumber}</td>
+                                <td>${equipment.type}</td>
+                                <td>${equipment.make}</td>
+                            </tr>`;
+
+                }
+            }
+        }
+
+        function generateSoftwareTable(softwareName) {
+            for(var i = 0; i < data.software.length; i++) {
+                if(data.equipment[i].softwareName == softwareName) {
+
+                    let software = data.software[i];
+                    return `<tr>
+                                <td>${software.softwareName}</td>
+                                ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                            </tr>`;
+
+                }
+            }
+        }
+
+        function generateBranchTable(branchID) {
+            for(var i = 0; i < data.branches.length; i++) {
+                if(data.branches[i].branchID == branchID) {
+
+                    let branch = data.branches[i];
+                    return `<tr>
+                                <td>${branch.branchID}</td>
+                                <td>${branch.name}</td>
+                                <td>${branch.city}</td>
+                                <td>${branch.country}</td>
+                                <td>${branch.telephone}</td>
                             </tr>`;
 
                 }
@@ -310,13 +342,27 @@
             priorityInput.value = problem.priority;
             dateSolvedInput.value = problem.dateSolved;
 
-            // Table
+            // Tables
             equipmentTable.innerHTML = `<tr>
                                             <th>Serial No.</th>
                                             <th>Type</th>
                                             <th>Make</th>
                                         </tr>
-                                        ${generateEquipmentTable(problem.serialNumber)}`
+                                        ${generateEquipmentTable(problem.serialNumber)}`;
+            softwareTable.innerHTML = `<tr>
+                                            <th>Software Name</th>
+                                            <th>Licensed</th>
+                                            <th>Supported</th>
+                                        </tr>
+                                        ${generateSoftwareTable(problem.softwareName)}`;
+            branchTable.innerHTML = `<tr>
+                                            <th>Branch ID</th>
+                                            <th>Branch Name</th>
+                                            <th>City</th>
+                                            <th>Country</th>
+                                            <th>Telephone</th>
+                                        </tr>
+                                        ${generateBranchTable(problem.branchID)}`;
         }
         
 
