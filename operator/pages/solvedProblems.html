@@ -259,7 +259,7 @@
         }
 
         function loadSolvedProblems() {
-            loadData('GET', '../php/solvedProblems/sql_select_solvedProblems.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_solvedProblems.php', {}, function(json){
                 data.solvedProblems = JSON.parse(json);
                 console.log(data);
                 solvedProblemsTable.innerHTML = `<tr>
