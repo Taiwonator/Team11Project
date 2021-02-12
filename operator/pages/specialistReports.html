@@ -219,9 +219,21 @@
                             <td>${solution.notes}</td>
                             <td>
                                 <button class="view-button">View</button>
-                                <button class="report-solved-button">Confirm Solved</button>
+                                <button onclick="confirmSolved(${problemNumber})" class="report-solved-button">Confirm Solved</button>
                             </td>`
             })
+        }
+
+        function confirmSolved(problemNumber) {
+            var confirmed = confirm("Are you sure you want to confirm this problem?");
+            if(confirmed) {
+                updateProblemStatus(problemNumber);
+            }
+        }
+
+        function updateProblemStatus(problemNumber) {
+            // CALL PHP FILE
+            alert(`Problem ${problemNumber} confirmed`);
         }
 
     </script>
