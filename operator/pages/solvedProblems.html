@@ -32,7 +32,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="solved-problems-table">
                     <tr>
                         <th>Problem No.</th>
                         <th>Status</th>
@@ -105,33 +105,29 @@
           <span class="close">&times;</span>
           <h1 class="title"><i class="fa fa-edit"></i> View Problem</h1>
 
-          <div class="search-element">
-            <h3 class="element-title">Caller</h3>
-            <table class="search-element-table">
-                <tr>
-                    <th>Employee ID</th>
-                    <th>Name</th>
-                    <th>Extension</th>
-                    <th>Job Title</th>
-                    <th>Department</th>
-                    <th>Email</th>
-                    <th>Branch ID</th>
-                </tr>
-                <tr>
-                    <td>E001</td>
-                    <td>Harriet Simmons</td>
-                    <td>0</td>
-                    <td>DP Officer</td>
-                    <td>Legal</td>
-                    <td>franya@kurupee.com</td>
-                    <td>B0001</td>
-                </tr>
-            </table>
+
+           <!-- DESCRIPTION -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">Problem Description</h3>
+            <textarea id="problem-description-input" class="scroll" disabled></textarea>
         </div>
 
+        <!-- SOLVE METHOD -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">How it was solved?</h3>
+            <textarea id="solve-method-input" class="scroll" disabled></textarea>
+        </div>
+
+        <!-- NOTES -->
+        <div class="text-area-input-element">
+            <h3 class="element-title">Notes</h3>
+            <textarea id="notes-input" class="scroll"></textarea>
+        </div>
+
+        <!-- EQUIPMENT -->
         <div class="search-element">
             <h3 class="element-title">Equipment</h3>
-            <table class="search-element-table">
+            <table id="equipment-table" class="search-element-table">
                 <tr>
                     <th>Serial No.</th>
                     <th>Type</th>
@@ -145,9 +141,10 @@
             </table>
         </div>
 
+        <!-- SOFTWARE -->
         <div class="search-element">
             <h3 class="element-title">Software</h3>
-            <table class="search-element-table">
+            <table id="software-table" class="search-element-table">
                 <tr>
                     <th>Software Name</th>
                     <th>Licensed</th>
@@ -161,96 +158,60 @@
             </table>
         </div>
 
-        <div class="select-input-element">
+        <!-- BRANCH -->
+        <div class="search-element">
             <h3 class="element-title">Branch</h3>
-            <select>
-                <option value="" selected disabled hidden>Select a branch</option>
-                <option>England</option>
-                <option>Germany</option>
-                <option>Japan</option>
-            </select>
+            <table id="branch-table" class="search-element-table">
+                <tr>
+                    <th>Branch ID</th>
+                    <th>Branch Name</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Telephone</th>
+                </tr>
+            </table>
         </div>
 
+        <!-- PROBLEM TYPE -->
         <div class="element-row">
-            <div class="select-input-element">
+            <div class="text-input-element">
                 <h3 class="element-title">Problem Type</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select a problem type</option>
-                    <optgroup label="Printer">
-                        <option>Printer</option>
-                        <option>Printer Ink</option>
-                        <option>Printer Paper</option>
-                    </optgroup>
-                    <optgroup label="Hardware">
-                        <option>Hardware</option>
-                        <option>GPU</option>
-                        <option>RAM</option>
-                    </optgroup>
-                </select>
+                <input id="problem-type-input" type="text" disabled>
             </div>
 
-            <div class="select-input-element">
+            <!-- OS -->
+            <div class="text-input-element">
                 <h3 class="element-title">Operating System</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select an OS</option>
-                    <option>Windows</option>
-                    <option>iOS</option>
-                    <option>Linux</option>
-                    <option>Doesn't require OS</option>
-                </select>
+                <input id="os-input" type="text" disabled>
             </div>
         </div>
 
+        <!-- PRIORITY -->
         <div class="element-row">
-            <div class="select-input-element">
+            <div class="text-input-element">
                 <h3 class="element-title">Priority</h3>
-                <select>
-                    <option value="" selected disabled hidden>Select Priority</option>
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
-                    <option>I don't know</option>
-                </select>
+                <input id="priority-input" type="text" disabled>
             </div>
 
+            <!-- DATE -->
             <div class="date-input-element">
                 <h3 class="element-title">Date</h3>
-                <input type="date">
+                <input id="date-solved-input" type="date" disabled>
             </div>
         </div>
 
+        <!-- IN PERSON -->
         <div class="checkbox-input-element">
             <h3 class="element-title">In Person Solving</h3>
-            <input type="checkbox" checked disabled>
-            <label>Problem must be solved in person</label>
+            <label id="in-person-input">Problem must be solved in person</label>
         </div>
 
-        <div class="text-area-input-element">
-            <h3 class="element-title">Problem Description</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-        <div class="text-area-input-element">
-            <h3 class="element-title">Reason for call</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-        
-        <div class="text-area-input-element">
-            <h3 class="element-title">How it was solved?</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-        <div class="text-area-input-element">
-            <h3 class="element-title">Notes</h3>
-            <textarea class="scroll"></textarea>
-        </div>
-
-    
+        <!-- SPECIALIST -->
         <div class="search-element">
-            <table class="search-element-table">
+            <table id="specialist-table" class="search-element-table">
                 <tr>
+                    <th>Specialist ID</th>
                     <th>Specialist Name</th>
-                    <th>Active Jobs</th>
                     <th>Expertise</th>
                 </tr>
                 <tr>
@@ -261,10 +222,296 @@
             </table>
         </div>
 
-            <button class="big-button confirm-edit">Exit</button>
+            <button id="exit-button" class="big-button confirm-edit">Exit</button>
           
         </div>
     </div>
+
+    <script src="../../public/js/ajaxFunctions.js"></script>
+    <script>
+
+        var data = {};
+        var solvedProblemsTable = document.getElementById("solved-problems-table");
+        var modal = document.getElementById("view-screen");
+        var span = document.getElementsByClassName("close")[0]; // close button
+
+        var problemDescriptionInput = document.getElementById("problem-description-input");
+        var solveMethodInput = document.getElementById("solve-method-input");
+        var notesInput = document.getElementById("notes-input");
+        var equipmentTable = document.getElementById("equipment-table");
+        var softwareTable = document.getElementById("software-table");
+        var branchTable = document.getElementById("branch-table");
+        var problemTypeInput = document.getElementById("problem-type-input");
+        var osInput = document.getElementById("os-input");
+        var priorityInput = document.getElementById("priority-input");
+        var dateSolvedInput = document.getElementById("date-solved-input");
+        var inPersonInput = document.getElementById("in-person-input");
+        var specialistTable = document.getElementById("specialist-table");
+
+        
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        document.getElementById("exit-button").onclick = function() {
+            modal.style.display = "none";
+        }
+
+        function loadSolvedProblems() {
+            loadData('GET', '../../public/php/sql_select_solvedProblems.php', {}, function(json){
+                data.solvedProblems = JSON.parse(json);
+                console.log(data);
+                solvedProblemsTable.innerHTML = `<tr>
+                                                    <th>Problem No.</th>
+                                                    <th>Problem Description</th>
+                                                    <th>Problem Type</th>
+                                                    <th>Solve Method</th>
+                                                    <th>Date Solved</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                ${generateSolvedProblemsTable(json)}`;
+            })
+        }
+
+        loadSolvedProblems();
+        loadBranches();
+        loadEquipment();
+        loadSoftware();
+        loadSpecialists();
+        loadExternalSpecialists();
+
+        function loadBranches() {
+            loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
+                data.branches = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+        function loadEquipment() {
+            loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
+                data.equipment = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+        function loadSoftware() {
+            loadData('GET', '../../public/php/sql_select_software.php', {}, function(json){
+                data.software = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+        function loadSpecialists() {
+            loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
+                data.specialists = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+        function loadExternalSpecialists() {
+            loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
+                data.externalSpecialists = JSON.parse(json);
+                console.log(data);
+            })
+        }
+
+
+
+        // GET all software
+        // GET all equipment
+        // GET all branches
+        // GET all solved problems 
+
+        // Generate Table (with click buttons that display all info (of problem with id)
+
+        function generateSolvedProblemsTable(json) {
+            return generateTable(json, (solvedProblem) => {
+                return `<tr>
+                            <td>${solvedProblem.problemNumber}</td>
+                            <td>${solvedProblem.description}</td>
+                            <td>${solvedProblem.problemType}</td>
+                            <td>${solvedProblem.solveMethod}</td>
+                            <td>${solvedProblem.dateSolved}</td>
+                            <td><button class="view-button" onclick=viewProblem(${solvedProblem.problemNumber})>Details</button></td>
+                        </tr>`
+            })
+        }
+
+        function generateEquipmentTable(serialNumber) {
+            if(serialNumber != null) {
+                for(var i = 0; i < data.equipment.length; i++) {
+                    if(data.equipment[i].serialNumber == serialNumber) {
+
+                        let equipment = data.equipment[i];
+                        return `<tr>
+                                    <td>${equipment.serialNumber}</td>
+                                    <td>${equipment.type}</td>
+                                    <td>${equipment.make}</td>
+                                </tr>`;
+
+                    }
+                }
+            } else {
+                return "";
+            }
+        }
+
+        function generateSoftwareTable(softwareName) {
+            if(softwareName != null) {
+                for(var i = 0; i < data.software.length; i++) {
+                    if(data.software[i].softwareName == softwareName) {
+
+                        let software = data.software[i];
+                        return `<tr>
+                                    <td>${software.softwareName}</td>
+                                    ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                    ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                </tr>`;
+
+                    }
+                }
+            } else {
+                return "";
+            }
+        }
+
+        function generateBranchTable(branchID) {
+            if(branchID != null) {
+                for(var i = 0; i < data.branches.length; i++) {
+                    if(data.branches[i].id == branchID) {
+
+                        let branch = data.branches[i];
+                        console.log(branch);
+                        return `<tr>
+                                    <td>${branch.id}</td>
+                                    <td>${branch.name}</td>
+                                    <td>${branch.city}</td>
+                                    <td>${branch.country}</td>
+                                    <td>${branch.telephone}</td>
+                                </tr>`;
+
+                    }
+                }
+            }
+        }
+
+        function generateSpecialistTable(specialistID, externalSpecialistID) {
+            if(specialistID != null || externalSpecialistID != null) {
+                let external = false;
+                if(externalSpecialistID != null) {
+                    external = true;
+                }
+
+                if(external) {
+                    for(var i = 0; i < data.externalSpecialists.length; i++) {
+                        if(data.externalSpecialists[i].externalID == externalSpecialistID) {
+                            let externalSpecialist = data.externalSpecialists[i];
+                            return `<tr>
+                                        <th>Specialist ID</th>
+                                        <th>Specialist Name</th>
+                                        <th>Expertise</th>
+                                        <th>Contact Number</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${externalSpecialist.externalID}</td>
+                                        <td>${externalSpecialist.name}</td>
+                                        <td>${externalSpecialist.expertise}</td>
+                                        <td>${externalSpecialist.contactNumber}</td>
+                                    </tr>`
+                        }
+                    }
+                } else {
+                    for(var i = 0; i < data.specialists.length; i++) {
+                        if(data.specialists[i].id == specialistID) {
+                            let specialist = data.specialists[i];
+                            return `<tr>
+                                        <th>Specialist ID</th>
+                                        <th>Expertise</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${specialist.id}</td>
+                                        <td>${specialist.problemType}</td>
+                                    </tr>`
+                        }
+                    }
+                }
+            } else {
+                return `<tr>
+                            <th>Specialist ID</th>
+                            <th>Specialist Name</th>
+                            <th>Expertise</th>
+                        </tr>`;
+            }
+        }
+
+        function viewProblem(problemNumber) {
+            console.log(problemNumber);
+            
+            // Open modal
+            modal.style.display = "block";
+
+            // Get all input objects 
+            for(var i = 0; i < data.solvedProblems.length; i++) {
+                if(data.solvedProblems[i].problemNumber == problemNumber) {
+                    setInputs(data.solvedProblems[i]);
+                }
+            }
+
+
+            // Set all values
+        }
+
+        function setInputs(problem) {
+            console.log(problem);
+
+            // Text fields
+            setTextInput(problemDescriptionInput, problem.description);
+            setTextInput(solveMethodInput, problem.solveMethod);
+            setTextInput(notesInput, problem.notes);
+            setTextInput(problemTypeInput, problem.problemType);
+            setTextInput(osInput, problem.OS);
+            setTextInput(priorityInput, problem.priority);
+            setTextInput(dateSolvedInput, problem.dateSolved);        
+
+            // Tables
+            equipmentTable.innerHTML = `<tr>
+                                            <th>Serial No.</th>
+                                            <th>Type</th>
+                                            <th>Make</th>
+                                        </tr>
+                                        ${generateEquipmentTable(problem.serialNumber)}`;
+            softwareTable.innerHTML = `<tr>
+                                            <th>Software Name</th>
+                                            <th>Licensed</th>
+                                            <th>Supported</th>
+                                        </tr>
+                                        ${generateSoftwareTable(problem.softwareName)}`;
+            branchTable.innerHTML = `<tr>
+                                            <th>Branch ID</th>
+                                            <th>Branch Name</th>
+                                            <th>City</th>
+                                            <th>Country</th>
+                                            <th>Telephone</th>
+                                        </tr>
+                                        ${generateBranchTable(problem.branchID)}`;
+
+            // Checkbox
+            inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i> Problem must be solved in person' : '<i class="fa fa-square-o"></i> Problem must be solved in person'}`;
+
+            specialistTable.innerHTML = generateSpecialistTable(problem.specialistID, problem.externalSpecialistID);
+        }
+
+        function setTextInput(input, value) {
+            if(value != null) {
+                input.value = value;
+                console.log(input, value);
+            } else {
+                input.value = "";
+            }
+        }        
+
+    </script>
 
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>

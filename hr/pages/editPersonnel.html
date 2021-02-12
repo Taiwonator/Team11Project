@@ -53,7 +53,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="personnel-table">
                     <tr>
                         <th>Employee ID</th>
                         <th>Name</th>
@@ -101,8 +101,8 @@
                         <td>lusa_2006n@coronagg.com</td>
                         <td>B0002</td>
                         <td>
-                            <button class="view-button">View All</button>
-                            <button class="edit-button">Edit</button>
+                            <button onclick="openViewModal()" class="view-button">View All</button>
+                            <button onclick="openEditModal()" class="edit-button">Edit</button>
                             <button class="report-solved-button">Delete</button>
                         </td>
                     </tr>
@@ -121,33 +121,33 @@
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Employee ID</h3>
-                        <input type="text" placeholder="Enter employee ID"></input>
+                        <input id="edit-id" type="text" placeholder="Enter employee ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Name</h3>
-                        <input type="text" placeholder="Enter name"></input>
+                        <input id="edit-name" type="text" placeholder="Enter name"></input>
                     </div>  
                 </div> 
                     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Job Title</h3>
-                        <input type="text" placeholder="Enter job title"></input>
+                        <input id="edit-job-title" type="text" placeholder="Enter job title"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Department</h3>
-                        <input type="text" placeholder="Enter department"></input>
+                        <input id="edit-dept" type="text" placeholder="Enter department"></input>
                     </div>  
                 </div> 
     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Branch ID</h3>
-                        <input type="text" placeholder="Enter branch ID"></input>
+                        <input id="edit-branch-id" type="text" placeholder="Enter branch ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Extension</h3>
-                        <input type="text" placeholder="Enter extension no."></input>
+                        <input id="edit-ext" type="text" placeholder="Enter extension no."></input>
                     </div>  
                 </div> 
                         
@@ -165,46 +165,154 @@
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Employee ID</h3>
-                    <input type="text" placeholder="Enter employee ID" value="Lorem Ipsum" disabled></input>
+                    <input id="view-id" type="text" placeholder="Enter employee ID" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Name</h3>
-                    <input type="text" placeholder="Enter name" value="Lorem Ipsum" disabled></input>
+                    <input id="view-name" type="text" placeholder="Enter name" value="Lorem Ipsum" disabled></input>
                 </div>  
             </div> 
                 
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Job Title</h3>
-                    <input type="text" placeholder="Enter job title" value="Lorem Ipsum" disabled></input>
+                    <input id="view-job-title" type="text" placeholder="Enter job title" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Department</h3>
-                    <input type="text" placeholder="Enter department" value="Lorem Ipsum" disabled></input>
+                    <input id="view-dept" type="text" placeholder="Enter department" value="Lorem Ipsum" disabled></input>
                 </div>  
             </div> 
 
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Branch ID</h3>
-                    <input type="text" placeholder="Enter branch ID" value="Lorem Ipsum" disabled></input>
+                    <input id="view-branch-id" type="text" placeholder="Enter branch ID" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Extension</h3>
-                    <input type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
+                    <input id="view-ext" type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
                 </div>  
-            </div> 
-                    
-            <button class="big-button confirm-edit">Exit</button>
+            </div>  
         </div>
 
+        
 </div>
+
+    <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
-        var modal = document.getElementById("edit-screen");
+        var editScreen = document.getElementById("edit-screen");
+        var viewScreen = document.getElementById("view-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
+        var spans = document.getElementsByClassName("close"); // close button
+        var personnelTable = document.getElementById("personnel-table");
+
+        var viewID = document.getElementById("view-id");
+        var viewName = document.getElementById("view-name");
+        var viewJobTitle = document.getElementById("view-job-title");
+        var viewDept = document.getElementById("view-dept");
+        var viewBranchID = document.getElementById("view-branch-id");
+        var viewExt = document.getElementById("view-ext");
+
+        var editID = document.getElementById("edit-id");
+        var editName = document.getElementById("edit-name");
+        var editJobTitle = document.getElementById("edit-job-title");
+        var editDept = document.getElementById("edit-dept");
+        var editBranchID = document.getElementById("edit-branch-id");
+        var editExt = document.getElementById("edit-ext");
+
+        var personnelData = [];
+
+        function openViewModal() {
+            viewScreen.style.display = "block";
+        }
+
+        function openEditModal() {
+            editScreen.style.display = "block";
+        }
 
         addPersonnelButton.onclick = function() {
-            modal.style.display = "block";
+            editScreen.style.display = "block";
+        }
+
+        for(var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function() {
+                editScreen.style.display = "none";
+                viewScreen.style.display = "none";
+            }
+        }
+
+        function loadPersonnel() {
+            loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
+                personnelData = [...JSON.parse(json)];
+                console.log(personnelData);
+                personnelTable.innerHTML = `<tr>
+                                                <th>Employee ID</th>
+                                                <th>Name</th>
+                                                <th>Extension</th>
+                                                <th>Job Title</th>
+                                                <th>Department</th>
+                                                <th>Email</th>
+                                                <th>Branch ID</th>
+                                                <th>Actions</th>
+                                            </tr
+                                            ${generatePersonnelTable(json)}`;
+            })
+        }
+
+        loadPersonnel();
+
+        function generatePersonnelTable(json) {
+            return generateTable(json, (personnel) => {
+                return `<tr>
+                            <td>${personnel.id}</td>
+                            <td>${personnel.name}</td>
+                            <td>${personnel.ext}</td>
+                            <td>${personnel.jobTitle}</td>
+                            <td>${personnel.dept}</td>
+                            <td>${personnel.email}</td>
+                            <td>${personnel.branchID}</td>
+                            <td>
+                                <button onclick="viewPersonnel(${personnel.id})" class="view-button">View All</button>
+                                <button onclick="editPersonnel(${personnel.id})" class="edit-button">Edit</button>
+                                <button class="report-solved-button">Delete</button>    
+                            </td>
+                        </tr>`
+            })
+        }
+
+        function viewPersonnel(personnelID) {
+            openViewModal();
+
+            for(var i = 0; i < personnelData.length; i++) {
+                if(personnelData[i].id == personnelID) {
+
+                    let personnel = personnelData[i];
+                    viewID.value = personnel.id;
+                    viewName.value = personnel.name;
+                    viewJobTitle.value = personnel.jobTitle;
+                    viewDept.value = personnel.dept;
+                    viewBranchID.value = personnel.branchID;
+                    viewExt.value = personnel.ext;
+                }
+            }
+        }
+
+        function editPersonnel(personnelID) {
+            openEditModal();
+
+            for(var i = 0; i < personnelData.length; i++) {
+                if(personnelData[i].id == personnelID) {
+
+                    let personnel = personnelData[i];
+                    editID.value = personnel.id;
+                    editName.value = personnel.name;
+                    editJobTitle.value = personnel.jobTitle;
+                    editDept.value = personnel.dept;
+                    editBranchID.value = personnel.branchID;
+                    editExt.value = personnel.ext;
+                }
+            }
         }
         
     </script>

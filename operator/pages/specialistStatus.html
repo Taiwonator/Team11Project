@@ -38,66 +38,15 @@
             </div>
 
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="specialist-table">
                     <tr>
-                        <th>Specialist Name</th>
-                        <th>Contact Number</th>
-                        <th>Expertise</th>
+                        <th>Specialist ID</th>
+                        <th>Problem Type</th>
                         <th>No. Jobs</th>
-                        <th>Part-Time</th>
                         <th>Status</th>
-                        <th>In-Work</th>
+                        <th>In Work</th>
+                        <th>Part Time</th>
                         <th>Next In Work</th>
-                    </tr>
-                    <tr>
-                        <td>Sally</td>
-                        <td>0</td>
-                        <td>Printer</td>
-                        <td>10</td>
-                        <td></i></td>
-                        <td>Avaliable</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>20/20/2000</td>
-                    </tr>
-                    <tr>
-                        <td>Susan</td>
-                        <td>1</td>
-                        <td>Washing Machines</td>
-                        <td>10</td>
-                        <td></td>
-                        <td>Busy</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>20/20/2000</td>
-                    </tr>
-                    <tr>
-                        <td>Simon</td>
-                        <td>2</td>
-                        <td>Alexas</td>
-                        <td>10</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>Unavailable</td>
-                        <td></td>
-                        <td>20/20/2000</td>
-                    </tr>
-                    <tr>
-                        <td>Sandre</td>
-                        <td>3</td>
-                        <td>Mac OS</td>
-                        <td>10</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>Avaliable</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>20/20/2000</td>
-                    </tr>
-                    <tr>
-                        <td>Sona</td>
-                        <td>4</td>
-                        <td>Anti-virus software</td>
-                        <td>10</td>
-                        <td></td>
-                        <td>Avaliable</td>
-                        <td><i class="fa fa-check-square"></i></td>
-                        <td>20/20/2000</td>
                     </tr>
                 </table>
                 </div>
@@ -110,20 +59,13 @@
     </div>
 
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="external-specialist-table">
                     <tr>
                         <th>Specialist Name</th>
                         <th>Contact Number</th>
                         <th>Expertise</th>
                         <th>No. Jobs</th>
                     </tr>
-                    <tr>
-                        <td>Sally</td>
-                        <td>078678526954</td>
-                        <td>Printer</td>
-                        <td>10</td>
-                    </tr>
-                   
                 </table>
                 </div>
 		</div>
@@ -134,17 +76,48 @@
         </div>
     </div>
 
+    <script src="../../public/js/ajaxFunctions.js"></script>
 	<script>
 		
 		function checkInput(e) {
-  if(e.target.checked) {
-    document.querySelector("#specialists").classList.add("hide-form");
-    document.querySelector("#third-party-specialists").classList.remove("hide-form");
-  } else {
-    document.querySelector("#third-party-specialists").classList.add("hide-form");
-    document.querySelector("#specialists").classList.remove("hide-form");
-  }
-}
+            if(e.target.checked) {
+                document.querySelector("#specialists").classList.add("hide-form");
+                document.querySelector("#third-party-specialists").classList.remove("hide-form");
+            } else {
+                document.querySelector("#third-party-specialists").classList.add("hide-form");
+                document.querySelector("#specialists").classList.remove("hide-form");
+            }
+        }
+
+        function loadSpecialist() {
+            loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
+                document.getElementById("specialist-table").innerHTML = `       <tr>
+                                                                                    <th>Specialist ID</th>
+                                                                                    <th>Problem Type</th>
+                                                                                    <th>No. Jobs</th>
+                                                                                    <th>Status</th>
+                                                                                    <th>In Work</th>
+                                                                                    <th>Part Time</th>
+                                                                                    <th>Next In Work</th>
+                                                                                </tr>
+                                                                                ${generateSpecialistsTable(json)}`;
+            });
+        }
+
+        function loadExternalSpecialists() {
+            loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
+                document.getElementById("external-specialist-table").innerHTML = `<tr>
+                                                                                    <th>Specialist Name</th>
+                                                                                    <th>Contact Number</th>
+                                                                                    <th>Expertise</th>
+                                                                                    <th>No. Jobs</th>
+                                                                                </tr>
+                                                                                ${generateExternalSpecialistsTable(json)}`;
+                    });
+        }
+
+        loadSpecialist();
+        loadExternalSpecialists();
 
 	</script>
 

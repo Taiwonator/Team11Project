@@ -34,7 +34,7 @@
                 </div>
                 <div class="search-element-table-wrapper">
 
-                    <table class="search-element-table">
+                    <table class="search-element-table" id="standard-solutions-table">
                         <tr>
                             <th>Solution Name</th>
                             <th>Problem Type</th>
@@ -60,12 +60,13 @@
         <div id="edit-screen" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
+                <span class="close">&times;</span>
                 <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
                      
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Standard Solution Name</h3>
-                        <input type="text" placeholder="Enter software name"></input>
+                        <input type="text" placeholder="Enter solution name"></input>
                     </div> 
                     <div class="select-input-element">
                         <h3 class="element-title">Problem Type</h3>
@@ -90,13 +91,45 @@
     </div>
 
     
-
+    <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
         var modal = document.getElementById("edit-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
+        var span = document.getElementsByClassName("close")[0]; // close button
 
         addPersonnelButton.onclick = function() {
             modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        function loadStandardSolutions() {
+            loadData('GET', '../../public/php/sql_select_standardSolutions.php', {}, function(json){
+                document.getElementById("standard-solutions-table").innerHTML = `<tr>
+                                                                                    <th>Solution Name</th>
+                                                                                    <th>Problem Type</th>
+                                                                                    <th>Description</th>
+                                                                                    <th>Actions</th>
+                                                                                </tr>
+                                                                                ${generateStandardSolutionsTable(json)}`;
+            })
+        }
+
+        loadStandardSolutions();
+
+        function generateStandardSolutionsTable(json) {
+            return generateTable(json, (solution) => {
+                return `<tr>
+                            <td>${solution.name}</td>
+                            <td>${solution.description}</td>
+                            <td>${solution.problemType}</td>
+                            <td>
+                                <button class="edit-button">Edit</button>
+                                <button class="report-solved-button">Delete</button>
+                            </td>`
+            })
         }
         
     </script>
