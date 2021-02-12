@@ -8,7 +8,8 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Specialist";
 
-$branchID = intval("$_POST['BranchID']");
+// $branchID = intval("$_POST['BranchID']");
+$branchID = intval("122");
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
