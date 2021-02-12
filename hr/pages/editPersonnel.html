@@ -101,8 +101,8 @@
                         <td>lusa_2006n@coronagg.com</td>
                         <td>B0002</td>
                         <td>
-                            <button class="view-button">View All</button>
-                            <button class="edit-button">Edit</button>
+                            <button onclick="openViewModal()" class="view-button">View All</button>
+                            <button onclick="openEditModal()" class="edit-button">Edit</button>
                             <button class="report-solved-button">Delete</button>
                         </td>
                     </tr>
@@ -198,14 +198,42 @@
             <button class="big-button confirm-edit">Exit</button>
         </div>
 
+        
 </div>
+
+    <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
-        var modal = document.getElementById("edit-screen");
+        var editScreen = document.getElementById("edit-screen");
+        var viewScreen = document.getElementById("view-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
+        var spans = document.getElementsByClassName("close"); // close button
+
+        function openViewModal() {
+            viewScreen.style.display = "block";
+        }
+
+        function openEditModal() {
+            editScreen.style.display = "block";
+        }
 
         addPersonnelButton.onclick = function() {
-            modal.style.display = "block";
+            editScreen.style.display = "block";
         }
+
+        for(var i = 0; i < spans.length; i++) {
+            spans[i].onclick = function() {
+                editScreen.style.display = "none";
+                viewScreen.style.display = "none";
+            }
+        }
+
+        function loadPersonnel() {
+            loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
+                console.log(json);
+            })
+        }
+
+        loadPersonnel();
         
     </script>
 
