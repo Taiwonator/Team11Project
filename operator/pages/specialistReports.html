@@ -33,13 +33,12 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="specialist-reports-table">
                     <tr>
                         <th>Problem No.</th>
-                        <th>Specialist Name</th>
-                        <th>Serial No.</th>
-                        <th>Caller Name</th>
-                        <th>Operator Name</th>
+                        <th>Problem Description</th>
+                        <th>Solve Method</th>
+                        <th>Notes</th>
                         <th>Actions</th>
                     </tr>
                     <tr>
@@ -47,29 +46,6 @@
                         <td>Jim</td>
                         <td>0</td>
                         <td>Tiger Woods</td>
-                        <td>Jimmy</td>
-                        <td>
-                            <button class="view-button">View</button>
-                            <button class="report-solved-button">Confirm Solved</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Dave</td>
-                        <td>1</td>
-                        <td>Lamron Simmons</td>
-                        <td>Sally</td>
-                        <td>
-                            <button class="view-button">View</button>
-                            <button class="report-solved-button">Confirm Solved</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>Sally</td>
-                        <td>2</td>
-                        <td>Anthony Brown</td>
-                        <td>Nancy</td>
                         <td>
                             <button class="view-button">View</button>
                             <button class="report-solved-button">Confirm Solved</button>
@@ -213,12 +189,40 @@
     <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
 
+        var specialistReportsTable = document.getElementById("specialist-reports-table");
+        var pendingProblemsData = [];
+
         function loadPendingSolutions() {
             loadData('GET', '../php/specialistReports/sql_select_pendingProblems.php', {}, function(json){
-                console.log(json);
+                pendingProblemsData = [...JSON.parse(json)];
+                console.log(pendingProblemsData);
+
+                specialistReportsTable.innerHTML = `<tr> 
+                                                      <th>Problem No.</th>
+                                                      <th>Problem Description</th>
+                                                      <th>Solve Method</th>
+                                                      <th>Notes</th>
+                                                      <th>Actions</th>
+                                                    </tr>
+                                                    ${generatePendingSolutionsTable(json)}`;
+
             })
         }
         loadPendingSolutions();
+
+        function generatePendingSolutionsTable(json) {
+            return generateTable(json, (solution) => {
+                return `<tr>
+                            <td>${solution.problemNumber}</td>
+                            <td>${solution.description}</td>
+                            <td>${solution.solveMethod}</td>
+                            <td>${solution.notes}</td>
+                            <td>
+                                <button class="view-button">View</button>
+                                <button class="report-solved-button">Confirm Solved</button>
+                            </td>`
+            })
+        }
 
     </script>
 
