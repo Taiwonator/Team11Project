@@ -91,8 +91,8 @@
         </div>
     </div>
       
-    <!-- <script src="./public/js/ajaxFunctions.js"></script> -->
-    <!-- <script > 
+    <script src="../../public/js/ajaxFunctions.js">
+      
         const operatorEmail = "operator@gmail.com";
         const specialistEmail = "specialist@gmail.com";
         const hrEmail = "hr@gmail.com";
@@ -120,9 +120,9 @@
         function runLogin() {
             var username = document.querySelector("#username");
             console.log(username.value);
-            console.log("functioning");
             if(username.value == "operator@gmail.com" || username.value == "o") {
                 loadLoginData()
+                console.log("functional");
                 console.log(sessionStorage.getItem("email"));
                 console.log(sessionStorage.getItem("id"));
                 console.log(sessionStorage.getItem("branchID"));
@@ -141,27 +141,6 @@
             }
         }
 
-        const operatorEmail = "operator@gmail.com";
-        const specialistEmail = "specialist@gmail.com";
-        const hrEmail = "hr@gmail.com";
-        const analystEmail = "analyst@gmail.com";
-        
-        function runLogin() {
-            var username = document.querySelector("#username");
-            console.log(username.value);
-            if(username.value == "operator@gmail.com" || username.value == "o") {
-                window.location = "./operator/pages/logCall.html";
-            } else if (username.value == "specialist@gmail.com" || username.value == "s") {
-                window.location = "./specialist/pages/activeProblems.html";
-            } else if (username.value == "hr@gmail.com" || username.value == "h") {
-                window.location = "./hr/pages/editPersonnel.html";
-            } else if (username.value == "analyst@gmail.com" || username.value == "a") {
-                window.location = "./analyst/pages/getData.html";
-            } else {
-                console.log("no");
-            }
-        }
-
         window.addEventListener("keyup", function(event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
@@ -170,6 +149,6 @@
         })
 
 
-    </script> -->
+    </script>
 </body>
 </html>
