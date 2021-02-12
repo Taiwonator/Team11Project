@@ -33,7 +33,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="equipment-table">
                     <tr>
                         <th>Serial No.</th>
                         <th>Type</th>
@@ -48,7 +48,26 @@
                 </div>
         </div>
     </div>
+    <script src="../../public/js/ajaxFunctions.js"></script>
 
+    <script>
+
+        function loadEquipment() {
+            loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
+                document.getElementById("equipment-table").innerHTML = `<tr>
+                                                                            <th>Serial No.</th>
+                                                                            <th>Type</th>
+                                                                            <th>Make</th>
+                                                                        </tr>
+                                                                        ${generateEquipmentTable(json)}`;
+            })
+        }
+
+        loadEquipment();
+
+        
+        
+    </script>
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
 </body>
