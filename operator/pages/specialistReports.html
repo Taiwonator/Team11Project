@@ -210,6 +210,17 @@
         </div>
 </div>
 
+    <script src="../../public/js/ajaxFunctions.js"></script>
+    <script>
+
+        function loadPendingSolutions() {
+            loadData('GET', '../php/specialistReports/sql_select_pendingProblems.php', {}, function(json){
+                console.log(json);
+            })
+        }
+        loadPendingSolutions();
+
+    </script>
 
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
