@@ -90,8 +90,56 @@
             <p class="tooltip">Analyst: <span class="tooltiptext">analyst@gmail.com</span></p>
         </div>
     </div>
+        
+        <script src="../../public/js/ajaxFunctions.js">
 
-    <script>
+        const operatorEmail = "operator@gmail.com";
+        const specialistEmail = "specialist@gmail.com";
+        const hrEmail = "hr@gmail.com";
+        const analystEmail = "analyst@gmail.com";
+
+        var data = {};
+        function loadLoginData() {
+            loadData('GET', '../login/selectLoginData.php', {}, function(json){
+                data.loginData = JSON.parse(json);
+                console.log(data);
+            })
+            // Check if the sessionStorage object exists
+            if(sessionStorage) {
+                // Store data
+                sessionStorage.setItem("ID", data.id);
+                sessionStorage.setItem("JobTitle", data.jobTitle);
+                sessionStorage.setItem("Department", data.dept);
+                sessionStorage.setItem("email", data.email);
+                sessionStorage.setItem("branchID", data.branchID);
+            } else {
+                alert("Sorry, your browser do not support session storage.");
+            }
+        }
+        
+        function runLogin() {
+            var username = document.querySelector("#username");
+            console.log(username.value);
+            console.log("functioning");
+            if(username.value == "operator@gmail.com" || username.value == "o") {
+                loadLoginData()
+                console.log(sessionStorage.getItem("email"));
+                console.log(sessionStorage.getItem("id"));
+                console.log(sessionStorage.getItem("branchID"));
+                window.location = "./operator/pages/logCall.html";
+            } else if (username.value == "specialist@gmail.com" || username.value == "s") {
+                loadLoginData()
+                window.location = "./specialist/pages/activeProblems.html";
+            } else if (username.value == "hr@gmail.com" || username.value == "h") {
+                loadLoginData()
+                window.location = "./hr/pages/editPersonnel.html";
+            } else if (username.value == "analyst@gmail.com" || username.value == "a") {
+                loadLoginData()
+                window.location = "./analyst/pages/getData.html";
+            } else {
+                console.log("no");
+            }
+        }
 
         const operatorEmail = "operator@gmail.com";
         const specialistEmail = "specialist@gmail.com";
