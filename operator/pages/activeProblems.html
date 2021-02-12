@@ -270,7 +270,7 @@
                                 <td>${problem.notes}</td>
                                 <td>
                                     <button onclick="viewProblem(${problem.problemNumber})" class="edit-button">Edit / Reassign</button>
-                                    <button class="report-solved-button">Report Solved</button>
+                                    <button onclick="reportSolved(${problem.problemNumber})" class="report-solved-button">Report Solved</button>
                                 </td>`
                 })
             }
@@ -382,8 +382,8 @@
                 }
             }
     
-            function confirmSolved(problemNumber) {
-                var confirmed = confirm("Are you sure you want to confirm this problem?");
+            function reportSolved(problemNumber) {
+                var confirmed = confirm("Are you sure you want to report this problem solved?");
                 if(confirmed) {
                     updateProblemStatus(problemNumber);
                 }
@@ -391,7 +391,7 @@
     
             function updateProblemStatus(problemNumber) {
                 // CALL PHP FILE
-                alert(`Problem ${problemNumber} confirmed`);
+                alert(`Problem ${problemNumber} reported`);
             }
     
             function viewProblem(problemNumber) {
