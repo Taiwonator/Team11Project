@@ -121,33 +121,33 @@
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Employee ID</h3>
-                        <input type="text" placeholder="Enter employee ID"></input>
+                        <input id="edit-id" type="text" placeholder="Enter employee ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Name</h3>
-                        <input type="text" placeholder="Enter name"></input>
+                        <input id="edit-name" type="text" placeholder="Enter name"></input>
                     </div>  
                 </div> 
                     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Job Title</h3>
-                        <input type="text" placeholder="Enter job title"></input>
+                        <input id="edit-job-title" type="text" placeholder="Enter job title"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Department</h3>
-                        <input type="text" placeholder="Enter department"></input>
+                        <input id="edit-dept" type="text" placeholder="Enter department"></input>
                     </div>  
                 </div> 
     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Branch ID</h3>
-                        <input type="text" placeholder="Enter branch ID"></input>
+                        <input id="edit-branch-id" type="text" placeholder="Enter branch ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Extension</h3>
-                        <input type="text" placeholder="Enter extension no."></input>
+                        <input id="edit-ext" type="text" placeholder="Enter extension no."></input>
                     </div>  
                 </div> 
                         
@@ -216,6 +216,13 @@
         var viewBranchID = document.getElementById("view-branch-id");
         var viewExt = document.getElementById("view-ext");
 
+        var editID = document.getElementById("edit-id");
+        var editName = document.getElementById("edit-name");
+        var editJobTitle = document.getElementById("edit-job-title");
+        var editDept = document.getElementById("edit-dept");
+        var editBranchID = document.getElementById("edit-branch-id");
+        var editExt = document.getElementById("edit-ext");
+
         var personnelData = [];
 
         function openViewModal() {
@@ -269,7 +276,7 @@
                             <td>${personnel.branchID}</td>
                             <td>
                                 <button onclick="viewPersonnel(${personnel.id})" class="view-button">View All</button>
-                                <button onclick="openEditModal()" class="edit-button">Edit</button>
+                                <button onclick="editPersonnel(${personnel.id})" class="edit-button">Edit</button>
                                 <button class="report-solved-button">Delete</button>    
                             </td>
                         </tr>`
@@ -289,6 +296,23 @@
                     viewDept.value = personnel.dept;
                     viewBranchID.value = personnel.branchID;
                     viewExt.value = personnel.ext;
+                }
+            }
+        }
+
+        function editPersonnel(personnelID) {
+            openEditModal();
+
+            for(var i = 0; i < personnelData.length; i++) {
+                if(personnelData[i].id == personnelID) {
+
+                    let personnel = personnelData[i];
+                    editID.value = personnel.id;
+                    editName.value = personnel.name;
+                    editJobTitle.value = personnel.jobTitle;
+                    editwDept.value = personnel.dept;
+                    editBranchID.value = personnel.branchID;
+                    editExt.value = personnel.ext;
                 }
             }
         }
