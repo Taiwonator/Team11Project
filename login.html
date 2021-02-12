@@ -118,11 +118,12 @@
         }
         
         function runLogin() {
+            console.log("new version");
             var username = document.querySelector("#username");
             console.log(username.value);
             if(username.value == "operator@gmail.com" || username.value == "o") {
                 loadLoginData()
-                 console.log("functional");
+                console.log("functional");
                 console.log(sessionStorage.getItem("email"));
                 console.log(sessionStorage.getItem("id"));
                 console.log(sessionStorage.getItem("branchID"));
