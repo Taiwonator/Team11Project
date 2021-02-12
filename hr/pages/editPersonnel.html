@@ -165,33 +165,33 @@
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Employee ID</h3>
-                    <input type="text" placeholder="Enter employee ID" value="Lorem Ipsum" disabled></input>
+                    <input id="view-id" type="text" placeholder="Enter employee ID" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Name</h3>
-                    <input type="text" placeholder="Enter name" value="Lorem Ipsum" disabled></input>
+                    <input id="view-name" type="text" placeholder="Enter name" value="Lorem Ipsum" disabled></input>
                 </div>  
             </div> 
                 
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Job Title</h3>
-                    <input type="text" placeholder="Enter job title" value="Lorem Ipsum" disabled></input>
+                    <input id="view-job-title" type="text" placeholder="Enter job title" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Department</h3>
-                    <input type="text" placeholder="Enter department" value="Lorem Ipsum" disabled></input>
+                    <input id="view-dept" type="text" placeholder="Enter department" value="Lorem Ipsum" disabled></input>
                 </div>  
             </div> 
 
             <div class="element-row">
                 <div class="text-input-element">
                     <h3 class="element-title">Branch ID</h3>
-                    <input type="text" placeholder="Enter branch ID" value="Lorem Ipsum" disabled></input>
+                    <input id="view-branch-id" type="text" placeholder="Enter branch ID" value="Lorem Ipsum" disabled></input>
                 </div>  
                 <div class="text-input-element">
                     <h3 class="element-title">Extension</h3>
-                    <input type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
+                    <input id="view-ext" type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
                 </div>  
             </div> 
                     
@@ -208,6 +208,15 @@
         var addPersonnelButton = document.getElementById("add-personnel");
         var spans = document.getElementsByClassName("close"); // close button
         var personnelTable = document.getElementById("personnel-table");
+
+        var viewID = document.getElementById("view-id");
+        var viewName = document.getElementById("view-name");
+        var viewJobTitle = document.getElementById("view-job-title");
+        var viewDept = document.getElementById("view-dept");
+        var viewBranchID = document.getElementById("view-branch-id");
+        var viewExt = document.getElementById("view-ext");
+
+        var personnelData = [];
 
         function openViewModal() {
             viewScreen.style.display = "block";
@@ -230,7 +239,8 @@
 
         function loadPersonnel() {
             loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
-                console.log(json);
+                personnelData = [...JSON.parse(json)];
+                console.log(personnelData);
                 personnelTable.innerHTML = `<tr>
                                                 <th>Employee ID</th>
                                                 <th>Name</th>
@@ -258,12 +268,29 @@
                             <td>${personnel.email}</td>
                             <td>${personnel.branchID}</td>
                             <td>
-                                <button onclick="openViewModal()" class="view-button">View All</button>
+                                <button onclick="viewPersonnel(${personnel.id})" class="view-button">View All</button>
                                 <button onclick="openEditModal()" class="edit-button">Edit</button>
                                 <button class="report-solved-button">Delete</button>    
                             </td>
                         </tr>`
             })
+        }
+
+        function viewPersonnel(personnelID) {
+            openViewModal();
+
+            for(var i = 0; i < personnelData.length; i++) {
+                if(personnelData[i].id == personnelID) {
+
+                    let personnel = personnelData[i];
+                    viewID.value = personnel.id;
+                    viewName.value = personnel.name;
+                    viewJobTitle.value = personnel.jobTitle;
+                    viewDept.value = personnel.dept;
+                    viewBranchID.value = personnel.branchID;
+                    viewExt.value = personnel.ext;
+                }
+            }
         }
         
     </script>
