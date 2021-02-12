@@ -401,9 +401,9 @@
                 modal.style.display = "block";
     
                 // Get all input objects 
-                for(var i = 0; i < data.pendingProblems.length; i++) {
-                    if(data.pendingProblems[i].problemNumber == problemNumber) {
-                        setInputs(data.pendingProblems[i]);
+                for(var i = 0; i < data.activeProblems.length; i++) {
+                    if(data.activeProblems[i].problemNumber == problemNumber) {
+                        setInputs(data.activeProblems[i]);
                     }
                 }
     
