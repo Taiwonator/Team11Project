@@ -90,7 +90,7 @@
         }
 
         function loadSpecialist() {
-            loadData('GET', '../../public/php/sql_select_specialists', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
                 document.getElementById("external-specialist-table").innerHTML = `<tr>
                                                                                     <th>Specialist Name</th>
                                                                                     <th>Contact Number</th>
@@ -102,7 +102,7 @@
         }
 
         function loadExternalSpecialists() {
-            loadData('GET', '../../public/php/sql_select_externalSpecialists', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
                 document.getElementById("external-specialist-table").innerHTML = `<tr>
                                                                                     <th>Specialist ID</th>
                                                                                     <th>Problem Type</th>
