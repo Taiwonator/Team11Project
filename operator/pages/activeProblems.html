@@ -277,26 +277,28 @@
     
             function generateEquipmentTable(serialNumber) {
                 if(serialNumber != null) {
+                    let output = ``;
                     for(var i = 0; i < data.equipment.length; i++) {
                         if(data.equipment[i].serialNumber == serialNumber) {
     
                             let equipment = data.equipment[i];
-                            return `<tr class="selected-row">
+                            out.push(`<tr class="selected-row">
                                         <td>${equipment.serialNumber}</td>
                                         <td>${equipment.type}</td>
                                         <td>${equipment.make}</td>
-                                    </tr>`;
+                                    </tr>`);
     
                         } else {
                             let equipment = data.equipment[i];
-                            return `<tr>
+                            output.push(`<tr>
                                         <td>${equipment.serialNumber}</td>
                                         <td>${equipment.type}</td>
                                         <td>${equipment.make}</td>
-                                    </tr>`;
+                                    </tr>`);
                         }
                     }
                     addSelectableRows();
+                    return output;
                 } else {
                     return "";
                 }
