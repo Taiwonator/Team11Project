@@ -33,7 +33,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="software-table">
                     <tr>
                         <th>Software Name</th>
                         <th>Licensed</th>
@@ -89,10 +89,45 @@
     <script>
         var modal = document.getElementById("edit-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
+        var span = document.getElementsByClassName("close")[0]; // close button
 
         addPersonnelButton.onclick = function() {
             modal.style.display = "block";
         }
+        
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        function loadSoftware() {
+            loadData('GET', '../../public/php/sql_select_software.php', {}, function(json){
+                document.getElementById("software-table").innerHTML = `<tr>
+                                                                            <th>Software Name</th>
+                                                                            <th>Licensed</th>
+                                                                            <th>Supported</th>
+                                                                            <th>Actions></th>
+                                                                        </tr>
+                                                                        ${generateSoftwareTable(json)}`;
+            })
+        }
+
+        loadSoftware();
+
+        function generateSoftwareTable(json) {
+            return generateTable(json, (software) => {
+                return `<tr>
+                            <td>${software.softwareName}</td>
+                            ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                            ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                            <td>
+                                <button class="edit-button">Edit</button>
+                                <button class="report-solved-button">Delete</button>
+                            </td>
+
+                        `
+            })
+        }
+        
         
     </script>
 
