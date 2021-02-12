@@ -33,7 +33,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="software-table">
                     <tr>
                         <th>Software Name</th>
                         <th>Licensed</th>
@@ -49,6 +49,26 @@
             </div>
         </div>
     </div>
+
+    <script src="../../public/js/ajaxFunctions.js"></script>
+    <script>
+
+        function loadSoftware() {
+            loadData('GET', '../../public/php/sql_select_software.php', {}, function(json){
+                document.getElementById("software-table").innerHTML = `<tr>
+                                                                            <th>Software Name</th>
+                                                                            <th>Licensed</th>
+                                                                            <th>Supported</th>
+                                                                        </tr>
+                                                                        ${generateSoftwareTable(json)}`;
+            })
+        }
+
+        loadSoftware();
+
+        
+        
+    </script>
 
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
