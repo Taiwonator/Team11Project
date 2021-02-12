@@ -91,11 +91,14 @@
 
         function loadSpecialist() {
             loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
-                document.getElementById("specialist-table").innerHTML = `<tr>
-                                                                                    <th>Specialist Name</th>
-                                                                                    <th>Contact Number</th>
-                                                                                    <th>Expertise</th>
+                document.getElementById("specialist-table").innerHTML = `       <tr>
+                                                                                    <th>Specialist ID</th>
+                                                                                    <th>Problem Type</th>
                                                                                     <th>No. Jobs</th>
+                                                                                    <th>Status</th>
+                                                                                    <th>In Work</th>
+                                                                                    <th>Part Time</th>
+                                                                                    <th>Next In Work</th>
                                                                                 </tr>
                                                                                 ${generateSpecialistsTable(json)}`;
             });
@@ -104,13 +107,10 @@
         function loadExternalSpecialists() {
             loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
                 document.getElementById("external-specialist-table").innerHTML = `<tr>
-                                                                                    <th>Specialist ID</th>
-                                                                                    <th>Problem Type</th>
+                                                                                    <th>Specialist Name</th>
+                                                                                    <th>Contact Number</th>
+                                                                                    <th>Expertise</th>
                                                                                     <th>No. Jobs</th>
-                                                                                    <th>Status</th>
-                                                                                    <th>In Work</th>
-                                                                                    <th>Part Time</th>
-                                                                                    <th>Next In Work</th>
                                                                                 </tr>
                                                                                 ${generateExternalSpecialistsTable(json)}`;
                     });
