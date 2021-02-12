@@ -53,7 +53,7 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="personnel-table">
                     <tr>
                         <th>Employee ID</th>
                         <th>Name</th>
@@ -207,6 +207,7 @@
         var viewScreen = document.getElementById("view-screen");
         var addPersonnelButton = document.getElementById("add-personnel");
         var spans = document.getElementsByClassName("close"); // close button
+        var personnelTable = document.getElementById("personnel-table");
 
         function openViewModal() {
             viewScreen.style.display = "block";
@@ -230,10 +231,40 @@
         function loadPersonnel() {
             loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
                 console.log(json);
+                personnelTable.innerHTML = `<tr>
+                                                <th>Employee ID</th>
+                                                <th>Name</th>
+                                                <th>Extension</th>
+                                                <th>Job Title</th>
+                                                <th>Department</th>
+                                                <th>Email</th>
+                                                <th>Branch ID</th>
+                                                <th>Actions</th>
+                                            </tr
+                                            ${generatePersonnelTable(json)}`;
             })
         }
 
         loadPersonnel();
+
+        function generatePersonnelTable(json) {
+            return generateTable(json, (personnel) => {
+                return `<tr>
+                            <td>${personnel.id}</td>
+                            <td>${personnel.name}</td>
+                            <td>${personnel.ext}</td>
+                            <td>${personnel.jobTitle}</td>
+                            <td>${personnel.dept}</td>
+                            <td>${personnel.email}</td>
+                            <td>${personnel.branchID}</td>
+                            <td>
+                                <button onclick="openViewModal()" class="view-button">View All</button>
+                                <button onclick="openEditModal()" class="edit-button">Edit</button>
+                                <button class="report-solved-button">Delete</button>    
+                            </td>
+                        </tr>`
+            })
+        }
         
     </script>
 
