@@ -2,12 +2,12 @@
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
-$table = "Equipment";
+$table = "Branch";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
-    $row = array("serialNumber"=>$row['SerialNumber'], "type"=>$row['Type'], "make"=>$row['Make']);
+    $row = array("id"=>$row['BranchID'], "name"=>$row['BranchName'], "city"=>$row['City'], "country"=>$row['Country'], "telephone"=>$row['Telephone']);
     array_push($output, $row);
   }
   echo json_encode($output);

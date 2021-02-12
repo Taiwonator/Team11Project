@@ -50,7 +50,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                <h1 id="modal-title" class="title"><i class="fa fa-edit"></i> Edit</h1>  
 
 
                 <div class="text-input-element">
@@ -65,7 +65,7 @@
     </div>
 
     <script src="../../public/js/cssHelpers.js"></script>
-    <script src="../js/ajaxFunctions.js"></script>
+    <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
         window.onload = function() {
             loadProblemTypes();
@@ -83,6 +83,7 @@
             modal.style.display = "block";
             
             document.getElementById('problem-type-input').value = '';
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
 
             var button = document.getElementById('confirm-button');
             if(!button.classList.contains('disabled-button')) {
@@ -110,7 +111,13 @@
             edit = true;
             modal.style.display = 'block';
             document.getElementById('problem-type-input').value = problemType;
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
             problemTypeBuffer = problemType;
+
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
         }
 
         function confirmEdit() {

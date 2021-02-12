@@ -74,7 +74,7 @@ button:focus, input:focus, textarea:focus {
     background-color: #6c757d !important;
 }
 
-input[type="text"], input[type="date"], select, textarea, input[type="time"] {
+input[type="text"], input[type="date"], select, textarea, input[type="time"], input[type="number"] {
     border:none;
     min-height: 40px;
     width: 350px;

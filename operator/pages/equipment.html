@@ -33,25 +33,16 @@
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
-                <table class="search-element-table">
+                <table class="search-element-table" id="equipment-table">
                     <tr>
                         <th>Serial No.</th>
                         <th>Type</th>
                         <th>Make</th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <td>9534</td>
-                        <td>Laptop</td>
-                        <td>Asos</td>
-                        <td>
-                            <button class="edit-button">Edit</button>
-                            <button class="report-solved-button">Delete</button>
-                        </td>
-                    </tr>
                 </table>
                 </div>
-                <button id="add-personnel" class="big-button">Add Equipment</button>
+                <button id="add-equipment" class="big-button">Add Equipment</button>
             </div>
         </div>
         
@@ -59,35 +50,209 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                <h1 id="modal-title" class="title"><i class="fa fa-edit"></i> Edit</h1>  
                     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Serial No.</h3>
-                        <input type="text" placeholder="Enter Serial no."></input>
+                        <input onkeyup="checkIfAllEmpty()" id="serial-no-input" type="number" placeholder="Enter Serial no."></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Type</h3>
-                        <input type="text" placeholder="Enter type"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="type-input" type="text" placeholder="Enter type"></input>
                     </div>  
                 </div> 
                     
                 <div class="text-input-element">
                     <h3 class="element-title">Make</h3>
-                    <input type="text" placeholder="Enter make"></input>
+                    <input onkeyup="checkIfAllEmpty()" id="make-input" type="text" placeholder="Enter make"></input>
                 </div>  
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" onclick="confirmEdit()" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
 
+    <script src="../../public/js/ajaxFunctions.js"></script>
+
     <script>
         var modal = document.getElementById("edit-screen");
-        var addPersonnelButton = document.getElementById("add-personnel");
+        var addEquipmentButton = document.getElementById("add-equipment");
+        var span = document.getElementsByClassName("close")[0]; // close button
+        var edit = true; // edit or add?
+        var equipmentBuffer; // used for alter, need previous value to know which record to change as the problemType is the primary key (See UPDATE SQL statement)
 
-        addPersonnelButton.onclick = function() {
+        addEquipmentButton.onclick = function() {
+            edit = false;
             modal.style.display = "block";
+            
+            document.getElementById('serial-no-input').value = '';
+            document.getElementById('type-input').value = '';
+            document.getElementById('make-input').value = '';
+            
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        function checkIfAllEmpty() {
+            var button = document.getElementById('confirm-button');
+            var inputs = getInputs();
+            let flag = false;
+
+            for(var i = 0; i < inputs.length; i++) {
+                if(inputs[i].value == "") {
+                    flag = true;
+                }
+            }
+
+            if(flag) {
+                button.classList.add('disabled-button');
+            } else {
+                if(button.classList.contains('disabled-button')) {
+                    button.classList.remove('disabled-button');
+                }
+            }
+        }
+
+        function getInputs(){
+            let serialNo = document.getElementById('serial-no-input');
+            let type = document.getElementById('type-input');
+            let make = document.getElementById('make-input');
+            return [serialNo, type, make]
+        }
+
+        function getInputValuesAsObj() {
+            let serialNumber = document.getElementById('serial-no-input').value;
+            let type = document.getElementById('type-input').value;
+            let make = document.getElementById('make-input').value;
+            return {
+                serialNumber, type, make
+            }
+        }
+
+        function setInputs(serialNumber, type, make) {
+            var inputs = getInputs();
+            inputs[0].value = serialNumber;
+            inputs[1].value = type;
+            inputs[2].value = make;
+        }
+
+        function openModal(serialNumber) {
+            edit = true;
+            modal.style.display = 'block';
+
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
+
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
+            // document.getElementById('problem-type-input').value = problemType;
+            // problemTypeBuffer = problemType;
+
+            // generate inputs - we should have a whole list of all the equipment. So I shall...
+            
+            for(var i = 0; i < equipmentArray.length; i++) {
+                if(equipmentArray[i].serialNumber == serialNumber) {
+
+                    setInputs(equipmentArray[i].serialNumber, equipmentArray[i].type, equipmentArray[i].make);
+
+                } else {
+                    console.log(serialNumber);
+                    console.log(equipmentArray);
+                }
+            }
+
+            // 1) select serial no from table
+            // 2) check to see which object has that same serial no
+            // 3) populate the modal with values   
+        }
+
+        function confirmEdit() {
+            console.log("CONFIRM CLICKED");
+            var obj = getInputValuesAsObj();
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains("disabled-button")) {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    if(edit) {
+                        // updateProblemType(problemType);
+                        alert("Edit");
+                    } else {
+                        insertEquipment(obj);
+                        alert("Insert");
+                    } 
+                    exitModal();
+                }
+            }
+        }
+
+        function exitModal() {
+            document.getElementById('edit-screen').style.display = 'none';
+        }
+
+        function confirmDelete(serialNumber) {
+            var confirmed = confirm("Are you sure?");
+            if(confirmed == true) {
+                deleteEquipment(serialNumber);
+            }
+        }
+        
+        var equipmentArray;
+
+        function loadEquipment() {
+            loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+            })
+        }
+        loadEquipment();
+
+        function insertEquipment(equipment) {
+            const payload = { 'serialNumber': equipment.serialNumber, 'type': equipment.type, 'make': equipment.make };
+            console.log(payload);
+            loadData('POST', '../php/equipment/sql_insert_equipment.php', payload, function(json) {
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+                console.log(json);
+            })
+        }
+
+        function deleteEquipment(serialNumber) {
+            const payload = { 'serialNumber': serialNumber };
+            loadData('POST', '../php/equipment/sql_delete_equipment.php', payload, function(json) {
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+                console.log(json);
+            })
+        }
+
+        function generateTable(json) {
+            const obj = JSON.parse(json); // Converts JSON to Javascript Object (Array)
+            equipmentArray = [...obj]; // Stores problem types in a variable
+            let output = `<tr>
+                            <th>Serial No.</th>
+                            <th>Type</th>
+                            <th>Make</th>
+                            <th>Actions</th>
+                          </tr>`;
+            for(var i = 0; i < obj.length; i++) {
+                output += `<tr>
+                                <td>${obj[i].serialNumber}</td>
+                                <td>${obj[i].type}</td>
+                                <td>${obj[i].make}</td>
+                                <td>
+                                        <button data-name=${obj[i].serialNumber}  onclick="openModal('${obj[i].serialNumber}')"   class="edit-button">Edit</button>
+                                        <button data-name=${obj[i].serialNumber}  onclick="confirmDelete('${obj[i].serialNumber}')"   class="report-solved-button">Delete</button>
+                                </td>
+                           </tr>`
+            }
+            return output;
         }
         
     </script>
