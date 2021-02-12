@@ -282,35 +282,35 @@
         loadExternalSpecialists();
 
         function loadBranches() {
-            loadData('GET', '../php/solvedProblems/sql_select_branches.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
                 data.branches = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadEquipment() {
-            loadData('GET', '../php/solvedProblems/sql_select_equipment.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
                 data.equipment = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadSoftware() {
-            loadData('GET', '../php/solvedProblems/sql_select_software.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_software.php', {}, function(json){
                 data.software = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadSpecialists() {
-            loadData('GET', '../php/solvedProblems/sql_select_specialists.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
                 data.specialists = JSON.parse(json);
                 console.log(data);
             })
         }
 
         function loadExternalSpecialists() {
-            loadData('GET', '../php/solvedProblems/sql_select_externalSpecialists.php', {}, function(json){
+            loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
                 data.externalSpecialists = JSON.parse(json);
                 console.log(data);
             })
