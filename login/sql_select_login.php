@@ -1,10 +1,9 @@
 <?php
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$servername = "35.189.96.25";
-$db = "helpdesk_database";
-$username = "pma";
+$user = "pma";
 $password = "webproject@Team11";
+$database = "helpdesk_database";
 
 // $email = $_POST['email'];
 $email = "dummy2@gmail.com";
