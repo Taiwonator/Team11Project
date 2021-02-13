@@ -333,7 +333,7 @@
                                 <td>${problem.problemNumber}</td>
                                 <td>${problem.description}</td>
                                 <td>${problem.problemType}</td>
-                                <td>${problem.priority}</td>
+                                <td>${(problem.priority == null) ? "Not sure" : problem.priority}</td>
                                 <td>
                                     <button onclick="viewProblem(${problem.problemNumber})" class="edit-button">Edit / Reassign</button>
                                     <button onclick="reportSolved(${problem.problemNumber})" class="report-solved-button">Report Solved</button>
