@@ -265,6 +265,7 @@
 
             externalCheckbox.onclick = function(e) {
                 if(e.target.checked) {
+                    external = true;
                     if(externalSpecialistForm.classList.contains("hide-form")) {
                         externalSpecialistForm.classList.remove("hide-form");
                     }
@@ -272,6 +273,7 @@
                         specialistForm.classList.add("hide-form");
                     }
                 } else {
+                    external = false;
                     if(specialistForm.classList.contains("hide-form")) {
                         specialistForm.classList.remove("hide-form");
                     }
