@@ -154,7 +154,10 @@
             </div>
     
             <!-- SPECIALIST -->
-            <div class="search-element">
+            <div class="search-element" id="specialist-element">
+                <input type="checkbox" id="external-checkbox" value="external">
+                <label>3rd party specialist</label>
+                
                 <table id="specialist-table" class="search-element-table">
                     <tr>
                         <th>Specialist ID</th>
@@ -167,6 +170,20 @@
                         <td>Printers</td>
                     </tr>
                 </table>
+
+                <table id="external-specialist-table" class="search-element-table hide-form">
+                    <tr>
+                        <th>Specialist ID</th>
+                        <th>Specialist Name</th>
+                        <th>Expertise</th>
+                    </tr>
+                    <tr>
+                        <td>Dave</td>
+                        <td>10</td>
+                        <td>Printers</td>
+                    </tr>
+                </table>
+                
             </div>
     
                 <button id="exit-button" class="big-button confirm-edit">Exit</button>
@@ -193,7 +210,10 @@
             var priorityInput = document.getElementById("priority-input");
             var dateSolvedInput = document.getElementById("date-solved-input");
             var inPersonInput = document.getElementById("in-person-input");
+
+            var specialistElement = document.getElementById("specialist-element");
             var specialistTable = document.getElementById("specialist-table");
+            var externalSpecialistTable = document.getElementById("external-specialist-table");
     
             span.onclick = function() {
                 modal.style.display = "none";
@@ -412,6 +432,91 @@
                             </tr>`;
                 }
             }
+
+            function generateBothSpecialistTables(specialistID, externalSpecialistID) {
+                if(specialistID != null || externalSpecialistID != null) {
+                    let external = false;
+                    if(externalSpecialistID != null) {
+                        external = true;
+                        if(specialistTable.classList.contains("hide-form")) {
+                            specialistTable.classList.remove("hide-form");
+                        }
+                        if(!externalSpecialistID.classList.contains("hide-form")) {
+                            specialistTable.classList.add("hide-form");
+                        }
+                    } else {
+                        if(externalSpecialistID.classList.contains("hide-form")) {
+                            externalSpecialistID.classList.remove("hide-form");
+                        }
+                        if(!specialistTable.classList.contains("hide-form")) {
+                            specialistTable.classList.add("hide-form");
+                        }
+                    }
+
+                    var specialistOutput = ``;
+                    for(var i = 0; i < data.specialists.length; i++) {
+                        if(data.specialists[i].id == specialistID) {
+                            let specialist = data.specialists[i];
+                            specialistOutput += `<tr class="selected-row">
+                                                    <th>Specialist ID</th>
+                                                    <th>Expertise</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>${specialist.id}</td>
+                                                    <td>${specialist.problemType}</td>
+                                                </tr>`
+                        } else {
+                            let specialist = data.specialists[i];
+                            specialistOutput += `<tr>
+                                                    <th>Specialist ID</th>
+                                                    <th>Expertise</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>${specialist.id}</td>
+                                                    <td>${specialist.problemType}</td>
+                                                </tr>`
+                        }
+                    }
+                    specialistTable.innerHTML = specialistOutput;
+                    
+                    var externalSpecialistOutput = ``;
+                    for(var i = 0; i < data.externalSpecialists.length; i++) {
+                        if(data.externalSpecialists[i].id == externalSpecialistID) {
+                            let externalSpecialist = data.externalSpecialists[i];
+                            externalSpecialistOutput += `<tr>
+                                                            <th>External Specialist ID</th>
+                                                            <th>Name</th>
+                                                            <th>Contact Number</th>
+                                                            <th>Expertise</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>${externalSpecialist.externalID}</td>
+                                                            <td>${externalSpecialist.name}</td>
+                                                            <td>${externalSpecialist.contactNumber}</td>
+                                                            <td>${externalSpecialist.expertise}</td>
+                                                        </tr>`
+                        } else {
+                            let externalSpecialist = data.externalSpecialists[i];
+                            externalSpecialistOutput += `<tr>
+                                                            <th>External Specialist ID</th>
+                                                            <th>Name</th>
+                                                            <th>Contact Number</th>
+                                                            <th>Expertise</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>${externalSpecialist.externalID}</td>
+                                                            <td>${externalSpecialist.name}</td>
+                                                            <td>${externalSpecialist.contactNumber}</td>
+                                                            <td>${externalSpecialist.expertise}</td>
+                                                        </tr>`
+                        }
+                    }
+                    externalSpecialistTable.innerHTML = externalSpecialistOutput;
+                    
+
+
+                }
+            }
     
             function reportSolved(problemNumber) {
                 var confirmed = confirm("Are you sure you want to report this problem solved?");
@@ -479,7 +584,11 @@
                 // Checkbox
                 inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i> Problem must be solved in person' : '<i class="fa fa-square-o"></i> Problem must be solved in person'}`;
     
-                specialistTable.innerHTML = generateSpecialistTable(problem.specialistID, problem.externalSpecialistID);
+                // Retreive the search element
+    
+                // Genertae all the specialists and external specialists but hide the one which the specialist isn't
+                specialistElement.innerHTML = generateBothSpecialistTables(problem.specialistID, problem.externalSpecialistID);
+                // Add checkbox with same id everytime so you can check if onclick....
             }
     
             function setTextInput(input, value) {
