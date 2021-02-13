@@ -223,6 +223,25 @@
             var specialistForm = document.getElementById("specialist-form");
             var externalSpecialistTable = document.getElementById("external-specialist-table");
             var externalSpecialistForm = document.getElementById("external-specialist-form");
+            var externalCheckbox = document.getElementById("external-checkbox");
+
+            externalCheckbox.onclick = function(e) {
+                if(e.target.checked) {
+                    if(specialistForm.classList.contains("hide-form")) {
+                        specialistForm.classList.remove("hide-form");
+                    }
+                    if(!externalSpecialistForm.classList.contains("hide-form")) {
+                        externalSpecialistForm.classList.add("hide-form");
+                    }
+                } else {
+                    if(externalSpecialistForm.classList.contains("hide-form")) {
+                        externalSpecialistForm.classList.remove("hide-form");
+                    }
+                    if(!specialistForm.classList.contains("hide-form")) {
+                        specialistForm.classList.add("hide-form");
+                    }
+                }
+            }
 
     
             span.onclick = function() {
