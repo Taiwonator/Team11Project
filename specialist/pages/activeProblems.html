@@ -527,7 +527,7 @@
             }
 
             function validateInputs(inputs) {
-                if(inputs.solveMethod == null) {
+                if(inputs.solveMethod == null || inputs.solveMethod.length == 0) {
                     return "solve method is empty";
                 } else {
                     return inputs;
