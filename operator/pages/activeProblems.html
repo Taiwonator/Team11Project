@@ -678,7 +678,23 @@
                     }
                     inputs.externalSpecialist = null;
                 }
-                console.log(inputs);
+
+                const validatedInputs = validateInputs(inputs);
+                console.log(validatedInputs);
+            }
+
+            function validateInputs(inputs) {
+                if(inputs.branchID == null) {
+                    return "branch ID is null"
+                } else if (inputs.description == null) {
+                    return "description is null"
+                } else if(inputs.serialNumber == null){
+                    return "serial number is null"
+                } else if (inputs.problemType == null) {
+                    return "problem type null";
+                } else {
+                    return inputs;
+                }
             }
     
         </script>
