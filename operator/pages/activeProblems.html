@@ -74,6 +74,10 @@
             <!-- EQUIPMENT -->
             <div class="search-element">
                 <h3 class="element-title">Equipment</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter Serial Number" onkeyup="searchTable(event, 0)"> 
+                    <button><i class="fa fa-search"></i></button>
+                </div>
                 <table id="equipment-table" class="search-element-table">
                     <tr>
                         <th>Serial No.</th>
@@ -91,6 +95,10 @@
             <!-- SOFTWARE -->
             <div class="search-element">
                 <h3 class="element-title">Software</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter Software Name" onkeyup="searchTable(event, 0)"> 
+                    <button><i class="fa fa-search"></i></button>
+                </div>
                 <table id="software-table" class="search-element-table">
                     <tr>
                         <th>Software Name</th>
@@ -108,6 +116,10 @@
             <!-- BRANCH -->
             <div class="search-element">
                 <h3 class="element-title">Branch</h3>
+                <div class="search-element-bar">
+                    <input type="text" placeholder="Enter City" onkeyup="searchTable(event, 2)"> 
+                    <button><i class="fa fa-search"></i></button>
+                </div>
                 <table id="branch-table" class="search-element-table">
                     <tr>
                         <th>Branch ID</th>
@@ -150,7 +162,8 @@
             <!-- IN PERSON -->
             <div class="checkbox-input-element">
                 <h3 class="element-title">In Person Solving</h3>
-                <label id="in-person-input">Problem must be solved in person</label>
+                <input type="checkbox" id="in-person-input" value="in-person">
+                <label>Problem must be solved in person</label>
             </div>
     
             <!-- SPECIALIST -->
@@ -193,7 +206,7 @@
                 
             </div>
     
-                <button id="exit-button" class="big-button confirm-edit">Exit</button>
+                <button onclick="getInputs()" id="exit-button" class="big-button confirm-edit">Exit</button>
               
             </div>
         </div>
@@ -224,6 +237,7 @@
             var externalSpecialistTable = document.getElementById("external-specialist-table");
             var externalSpecialistForm = document.getElementById("external-specialist-form");
             var externalCheckbox = document.getElementById("external-checkbox");
+            var external = false;
 
             externalCheckbox.onclick = function(e) {
                 if(e.target.checked) {
@@ -325,7 +339,6 @@
             }
     
             function generateEquipmentTable(serialNumber) {
-                if(serialNumber != null) {
                     let output = ``;
                     for(var i = 0; i < data.equipment.length; i++) {
                         if(data.equipment[i].serialNumber == serialNumber) {
@@ -348,13 +361,10 @@
                     }
                     addSelectableRows();
                     return output;
-                } else {
-                    return "";
-                }
+                
             }
     
             function generateSoftwareTable(softwareName) {
-                if(softwareName != null) {
                     let output = ``;
                     for(var i = 0; i < data.software.length; i++) {
                         if(data.software[i].softwareName == softwareName) {
@@ -377,13 +387,10 @@
                     }
                     addSelectableRows();
                     return output;
-                } else {
-                    return "";
-                }
+                
             }
     
             function generateBranchTable(branchID) {
-                if(branchID != null) {
                     let output = ``;
                     for(var i = 0; i < data.branches.length; i++) {
                         if(data.branches[i].id == branchID) {
@@ -410,13 +417,11 @@
                     }
                     addSelectableRows();
                     return output;
-                }
             }
     
 
             function generateBothSpecialistTables(specialistID, externalSpecialistID) {
-                if(specialistID != null || externalSpecialistID != null) {
-                    let external = false;
+                    external = false;
                     if(externalSpecialistID != null) {
                         external = true;
                         if(externalSpecialistForm.classList.contains("hide-form")) {
@@ -484,9 +489,6 @@
                     externalSpecialistTable.innerHTML = externalSpecialistOutput;
                     addSelectableRows();
                     
-
-
-                }
             }
     
             function reportSolved(problemNumber) {
@@ -553,12 +555,15 @@
                                             ${generateBranchTable(problem.branchID)}`;
     
                 // Checkbox
-                inPersonInput.innerHTML = `${(problem.inPerson == 1) ? '<i class="fa fa-check-square"></i> Problem must be solved in person' : '<i class="fa fa-square-o"></i> Problem must be solved in person'}`;
-    
+                if(problem.inPerson) {
+                    inPersonInput.checked = true;
+                } else {
+                    inPersonInput.checked = false;
+                }
+                
                 // Retreive the search element
     
                 // Genertae all the specialists and external specialists but hide the one which the specialist isn't
-                console.log();
                 generateBothSpecialistTables(problem.specialistID, problem.externalSpecialistID);
                 // Add checkbox with same id everytime so you can check if onclick....
             }
@@ -570,7 +575,21 @@
                 } else {
                     input.value = "";
                 }
-            }        
+            }   
+            
+            function getInputs() {
+                var inputs = {
+                    description: problemDescriptionInput.value, 
+                    solveMethod: solveMethodInput.value, 
+                    notes: notesInput.value, 
+                    problemType: problemTypeInput.value, 
+                    OS: osInput.value, 
+                    priority: priorityInput.value, 
+                    dateSolved: dateSolvedInput.value
+                }
+                inputs.serialNumber = document.querySelector("#equipment-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                console.log(inputs);
+            }
     
         </script>
 
