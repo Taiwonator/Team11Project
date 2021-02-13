@@ -496,16 +496,17 @@
                                             ${generateBranchTable(problem.branchID)}`;
     
                 // Checkbox
+                inPersonInput.false = true;
                 if(problem.inPerson) {
                     inPersonInput.checked = true;
                 } else {
                     inPersonInput.checked = false;
                 }
+                inPersonInput.disabled = true;
                 
                 // Retreive the search element
     
                 // Genertae all the specialists and external specialists but hide the one which the specialist isn't
-                generateBothSpecialistTables(problem.specialistID, problem.externalSpecialistID);
                 // Add checkbox with same id everytime so you can check if onclick....
             }
     
