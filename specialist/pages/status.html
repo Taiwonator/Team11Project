@@ -48,7 +48,7 @@
                 <input id="next-in-work-input" type="date">
             </div>
             
-            <button class="big-button confirm-edit">Save Changes</button>
+            <button onclick="getInputs()" class="big-button confirm-edit">Save Changes</button>
         </div>
     </div>
     <script src="../../public/js/ajaxFunctions.js"></script>
@@ -71,6 +71,15 @@
         }
 
         loadStatus();
+
+        function getInputs() {
+            var inputs = {
+                status: statusInput.value, 
+                inWork: (inWorkInput.checked) ? "1" : "0",
+                nextInWork: nextInWorkInput.value
+            }
+            console.log(inputs);
+        }
 
         
         
