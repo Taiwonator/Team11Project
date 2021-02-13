@@ -281,7 +281,8 @@
                             <td>${pendingSolution.notes}</td>
                             <td>
                                 <button onclick=viewProblem(${pendingSolution.problemNumber}) class="view-button">View</button>
-                                <button onclick="confirmSolved(${pendingSolution.problemNumber})" class="report-solved-button">Confirm Solved</button>
+                                <button onclick="confirmSolved(${pendingSolution.problemNumber})" class="edit-button">Confirm</button>
+                                <button onclick="rejectSolved(${pendingSolution.problemNumber})" class="report-solved-button">Reject</button>
                             </td>`
             })
         }
@@ -397,6 +398,13 @@
             var confirmed = confirm("Are you sure you want to confirm this problem?");
             if(confirmed) {
                 updateProblemStatus(problemNumber);
+            }
+        }
+
+        function rejectSolved(problemNumber) {
+            var confirmed = confirm("Are you sure you want to confirm this problem?");
+            if(confirmed) {
+                alert(`Problem ${problemNumber} rejected!`);
             }
         }
 
