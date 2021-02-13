@@ -6,7 +6,8 @@ $db = "helpdesk_database";
 $username = "pma";
 $password = "webproject@Team11";
 
-$email = $_POST['email'];
+// $email = $_POST['email'];
+$email = "dummy2@gmail.com";
 
 try {
   $db = mysqli_connect("$servername",$username,$password,$db) or die("Bad Connect:".mysqli_connect_error());
