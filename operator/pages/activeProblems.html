@@ -462,6 +462,7 @@
                                                         <th>Expertise</th>
                                                     </tr>`;
                     for(var i = 0; i < data.externalSpecialists.length; i++) {
+                        console.log(data.externalSpecialists[i].id, externalSpecialistID);
                         if(data.externalSpecialists[i].id == externalSpecialistID) {
                             let externalSpecialist = data.externalSpecialists[i];
                             externalSpecialistOutput += `<tr class="selected-row">
