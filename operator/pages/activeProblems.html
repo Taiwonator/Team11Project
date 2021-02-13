@@ -459,6 +459,7 @@
                     external = false;
                     if(externalSpecialistID != null) {
                         external = true;
+                        externalCheckbox.checked = true;
                         if(externalSpecialistForm.classList.contains("hide-form")) {
                             externalSpecialistForm.classList.remove("hide-form");
                         }
@@ -466,6 +467,7 @@
                             specialistForm.classList.add("hide-form");
                         }
                     } else {
+                        externalCheckbox.checked = false;
                         if(specialistForm.classList.contains("hide-form")) {
                             specialistForm.classList.remove("hide-form");
                         }
