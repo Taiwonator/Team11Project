@@ -462,8 +462,8 @@
                                                         <th>Expertise</th>
                                                     </tr>`;
                     for(var i = 0; i < data.externalSpecialists.length; i++) {
-                        console.log(data.externalSpecialists[i].id, externalSpecialistID);
-                        if(data.externalSpecialists[i].id == externalSpecialistID) {
+                        console.log(data.externalSpecialists[i].externalID, externalSpecialistID);
+                        if(data.externalSpecialists[i].externalID == externalSpecialistID) {
                             let externalSpecialist = data.externalSpecialists[i];
                             externalSpecialistOutput += `<tr class="selected-row">
                                                             <td>${externalSpecialist.externalID}</td>
@@ -558,6 +558,7 @@
                 // Retreive the search element
     
                 // Genertae all the specialists and external specialists but hide the one which the specialist isn't
+                console.log();
                 generateBothSpecialistTables(problem.specialistID, problem.externalSpecialistID);
                 // Add checkbox with same id everytime so you can check if onclick....
             }
