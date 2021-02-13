@@ -100,7 +100,7 @@
 
         var data = {};
         function loadLoginData(username) {
-            loadData('POST', '../login/selectLoginData.php', {'email': username}, function(json){
+            loadData('POST', '../login/sql_select_login.php', {'email': username}, function(json){
                 data.loginData = JSON.parse(json);
                 console.log(data);
             })

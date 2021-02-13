@@ -29,7 +29,7 @@
 
             <div class="select-input-element">
                 <h3 class="element-title">Status</h3>
-                <select>
+                <select id="status-input">
                     <option value="" selected disabled hidden>Select a problem type</option>
                     <option>Avaliable</option>
                     <option>Busy</option>
@@ -38,19 +38,52 @@
             </div>
 
             <div class="checkbox-input-element">
-                <h3 class="element-title">Status</h3>
-                <input type="checkbox">
+                <h3 class="element-title">In Work</h3>
+                <input id="in-work-input" type="checkbox">
                 <label>In Work Currently</label>
             </div>
 
             <div class="date-input-element">
                 <h3 class="element-title">Next In Work</h3>
-                <input type="date">
+                <input id="next-in-work-input" type="date">
             </div>
             
-            <button class="big-button confirm-edit">Save Changes</button>
+            <button onclick="getInputs()" class="big-button confirm-edit">Save Changes</button>
         </div>
     </div>
+    <script src="../../public/js/ajaxFunctions.js"></script>
+    <script>
+
+        var statusInput = document.getElementById('status-input');
+        var inWorkInput = document.getElementById('in-work-input');
+        var nextInWorkInput = document.getElementById('next-in-work-input');
+
+        var data = [];
+
+        function loadStatus() {
+            loadData('GET', '../php/status/sql_select_specialistStatus.php', {}, function(json){
+                data = {...JSON.parse(json)};
+                console.log(data);
+                statusInput.value = data.status;
+                inWorkInput.checked = (data.inWork == "1") ? true : false;
+                nextInWorkInput.value = data.nextInWork;
+            })
+        }
+
+        loadStatus();
+
+        function getInputs() {
+            var inputs = {
+                status: statusInput.value, 
+                inWork: (inWorkInput.checked) ? "1" : "0",
+                nextInWork: nextInWorkInput.value
+            }
+            console.log(inputs);
+        }
+
+        
+        
+    </script>
 
     <script src="../../public/js/navs.js"></script>
     <script src="../../public/js/cssHelpers.js"></script>
