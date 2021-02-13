@@ -282,19 +282,19 @@
                         if(data.equipment[i].serialNumber == serialNumber) {
     
                             let equipment = data.equipment[i];
-                            output.push(`<tr class="selected-row">
+                            output += `<tr class="selected-row">
                                         <td>${equipment.serialNumber}</td>
                                         <td>${equipment.type}</td>
                                         <td>${equipment.make}</td>
-                                    </tr>`);
+                                    </tr>`;
     
                         } else {
                             let equipment = data.equipment[i];
-                            output.push(`<tr>
+                            output += `<tr>
                                         <td>${equipment.serialNumber}</td>
                                         <td>${equipment.type}</td>
                                         <td>${equipment.make}</td>
-                                    </tr>`);
+                                    </tr>`;
                         }
                     }
                     addSelectableRows();
