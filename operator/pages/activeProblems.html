@@ -350,7 +350,7 @@
             }
 
             function loadProblemTypes() {
-                loadData('GET', '../../public/php/sql_select_problemTypes.php', {}, function(json){
+                loadData('GET', '../../public/php/sql_select_problemType.php', {}, function(json){
                     data.problemTypes = JSON.parse(json);
                     console.log(data);
                     problemTypeInput.innerHTML = generateProblemTypesDropdown();
