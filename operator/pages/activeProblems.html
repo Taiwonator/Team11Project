@@ -227,18 +227,18 @@
 
             externalCheckbox.onclick = function(e) {
                 if(e.target.checked) {
-                    if(specialistForm.classList.contains("hide-form")) {
-                        specialistForm.classList.remove("hide-form");
-                    }
-                    if(!externalSpecialistForm.classList.contains("hide-form")) {
-                        externalSpecialistForm.classList.add("hide-form");
-                    }
-                } else {
                     if(externalSpecialistForm.classList.contains("hide-form")) {
                         externalSpecialistForm.classList.remove("hide-form");
                     }
                     if(!specialistForm.classList.contains("hide-form")) {
                         specialistForm.classList.add("hide-form");
+                    }
+                } else {
+                    if(specialistForm.classList.contains("hide-form")) {
+                        specialistForm.classList.remove("hide-form");
+                    }
+                    if(!externalSpecialistForm.classList.contains("hide-form")) {
+                        externalSpecialistForm.classList.add("hide-form");
                     }
                 }
             }
@@ -419,18 +419,18 @@
                     let external = false;
                     if(externalSpecialistID != null) {
                         external = true;
-                        if(specialistForm.classList.contains("hide-form")) {
-                            specialistForm.classList.remove("hide-form");
-                        }
-                        if(!externalSpecialistForm.classList.contains("hide-form")) {
-                            externalSpecialistForm.classList.add("hide-form");
-                        }
-                    } else {
                         if(externalSpecialistForm.classList.contains("hide-form")) {
                             externalSpecialistForm.classList.remove("hide-form");
                         }
                         if(!specialistForm.classList.contains("hide-form")) {
                             specialistForm.classList.add("hide-form");
+                        }
+                    } else {
+                        if(specialistForm.classList.contains("hide-form")) {
+                            specialistForm.classList.remove("hide-form");
+                        }
+                        if(!externalSpecialistForm.classList.contains("hide-form")) {
+                            externalSpecialistForm.classList.add("hide-form");
                         }
                     }
 
