@@ -12,7 +12,7 @@ $email = "dummy2@gmail.com";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
-  foreach($db->query("SELECT * FROM $table WHERE Email=$email") as $row) {
+  foreach($db->query("SELECT * FROM $table WHERE Email=dummy2@gmail.com") as $row) {
     $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
     array_push($output, $row);
   }
