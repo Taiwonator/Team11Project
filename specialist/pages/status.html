@@ -65,7 +65,7 @@
                 data = {...JSON.parse(json)};
                 console.log(data);
                 statusInput.value = data.status;
-                inWorkInput.checked = (data.inWork) ? true : false;
+                inWorkInput.checked = (data.inWork == "1") ? true : false;
                 nextInWorkInput.value = data.nextInWork;
             })
         }
