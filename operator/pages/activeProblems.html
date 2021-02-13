@@ -588,6 +588,15 @@
                     dateSolved: dateSolvedInput.value
                 }
                 inputs.serialNumber = document.querySelector("#equipment-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                inputs.softwareNmae = document.querySelector("#software-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                inputs.branchID = document.querySelector("#branch-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                if(external) {
+                    inputs.specialistID = null;
+                    inputs.externalSpecialist = document.querySelector("#external-specialist-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                } else {
+                    inputs.specialistID = document.querySelector("#specialist-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                    inputs.externalSpecialist = null;
+                }
                 console.log(inputs);
             }
     
