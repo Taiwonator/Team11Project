@@ -306,18 +306,28 @@
     
             function generateSoftwareTable(softwareName) {
                 if(softwareName != null) {
+                    let output = ``;
                     for(var i = 0; i < data.software.length; i++) {
                         if(data.software[i].softwareName == softwareName) {
     
                             let software = data.software[i];
-                            return `<tr>
+                            output += `<tr class="selected-row">
                                         <td>${software.softwareName}</td>
                                         ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
                                         ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
                                     </tr>`;
     
+                        } else {
+                            let software = data.software[i];
+                            output += `<tr>
+                                        <td>${software.softwareName}</td>
+                                        ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                        ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
+                                    </tr>`;
                         }
                     }
+                    addSelectableRows();
+                    return output;
                 } else {
                     return "";
                 }
@@ -325,12 +335,12 @@
     
             function generateBranchTable(branchID) {
                 if(branchID != null) {
+                    let output = ``;
                     for(var i = 0; i < data.branches.length; i++) {
                         if(data.branches[i].id == branchID) {
     
                             let branch = data.branches[i];
-                            console.log(branch);
-                            return `<tr>
+                            output += `<tr class="selected-row">
                                         <td>${branch.id}</td>
                                         <td>${branch.name}</td>
                                         <td>${branch.city}</td>
@@ -338,8 +348,19 @@
                                         <td>${branch.telephone}</td>
                                     </tr>`;
     
+                        } else {
+                            let branch = data.branches[i];
+                            output += `<tr>
+                                        <td>${branch.id}</td>
+                                        <td>${branch.name}</td>
+                                        <td>${branch.city}</td>
+                                        <td>${branch.country}</td>
+                                        <td>${branch.telephone}</td>
+                                    </tr>`;
                         }
                     }
+                    addSelectableRows();
+                    return output;
                 }
             }
     
