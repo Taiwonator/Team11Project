@@ -133,23 +133,47 @@
     
             <!-- PROBLEM TYPE -->
             <div class="element-row">
-                <div class="text-input-element">
+                <div class="select-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <input id="problem-type-input" type="text">
+                    <select id="problem-type-input"> 
+                        <option value="" selected disabled hidden>Select a problem type</option>
+                        <optgroup label="Printer">
+                            <option>Printer</option>
+                            <option>Printer Ink</option>
+                            <option>Printer Paper</option>
+                        </optgroup>
+                        <optgroup label="Hardware">
+                            <option>Hardware</option>
+                            <option>GPU</option>
+                            <option>RAM</option>
+                        </optgroup>
+                    </select>
                 </div>
     
                 <!-- OS -->
-                <div class="text-input-element">
+                <div class="select-input-element">
                     <h3 class="element-title">Operating System</h3>
-                    <input id="os-input" type="text">
+                    <select id="os-input">
+                        <option value="" selected disabled hidden>Select an OS</option>
+                        <option>Windows</option>
+                        <option>iOS</option>
+                        <option>Linux</option>
+                        <option>Doesn't require OS</option>
+                    </select>
                 </div>
             </div>
     
             <!-- PRIORITY -->
             <div class="element-row">
-                <div class="text-input-element">
+                <div class="select-input-element">
                     <h3 class="element-title">Priority</h3>
-                    <input id="priority-input" type="text">
+                    <select id="priority-input">
+                        <option value="" selected disabled hidden>Select Priority</option>
+                        <option>Low</option>
+                        <option>Medium</option>
+                        <option>High</option>
+                        <option>I don't know</option>
+                    </select>
                 </div>
     
                 <!-- DATE -->
