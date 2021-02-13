@@ -268,8 +268,8 @@
                     activeProblemsTable.innerHTML = `<tr> 
                                                           <th>Problem No.</th>
                                                           <th>Problem Description</th>
-                                                          <th>Solve Method</th>
-                                                          <th>Notes</th>
+                                                          <th>Problem Type</th>
+                                                          <th>Priority</th>
                                                           <th>Actions</th>
                                                         </tr>
                                                         ${generateActiveSolutionsTable(json)}`;
@@ -332,8 +332,8 @@
                     return `<tr>
                                 <td>${problem.problemNumber}</td>
                                 <td>${problem.description}</td>
-                                <td>${problem.solveMethod}</td>
-                                <td>${problem.notes}</td>
+                                <td>${problem.problemType}</td>
+                                <td>${problem.priority}</td>
                                 <td>
                                     <button onclick="viewProblem(${problem.problemNumber})" class="edit-button">Edit / Reassign</button>
                                     <button onclick="reportSolved(${problem.problemNumber})" class="report-solved-button">Report Solved</button>
