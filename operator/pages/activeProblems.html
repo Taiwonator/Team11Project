@@ -155,22 +155,37 @@
     
             <!-- SPECIALIST -->
             <div class="search-element" id="specialist-element">
+                <h3 class="element-title">Specialist </h3>
                 <input type="checkbox" id="external-checkbox" value="external">
                 <label>3rd party specialist</label>
                 
-                <table id="specialist-table" class="search-element-table">
-                    <tr>
-                        <th>Specialist ID</th>
-                        <th>Specialist Name</th>
-                        <th>Expertise</th>
-                    </tr>
-                    <tr>
-                        <td>Dave</td>
-                        <td>10</td>
-                        <td>Printers</td>
-                    </tr>
-                </table>
+                <div id="specialist-form" class="">
+                    <div class="search-element-bar">
+                        <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 1)"> 
+                        <button><i class="fa fa-search"></i></button>
+                    </div>
+    
+                    <table id="specialist-table" class="search-element-table">
+                        <tr>
+                            <th>Specialist ID</th>
+                            <th>Specialist Name</th>
+                            <th>Expertise</th>
+                        </tr>
+                        <tr>
+                            <td>Dave</td>
+                            <td>10</td>
+                            <td>Printers</td>
+                        </tr>
+                    </table>
 
+                </div>
+                
+                
+                <div id="external-specialist-form"  class="hide-form">
+                    <div class="search-element-bar">
+                        <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 3)"> 
+                        <button><i class="fa fa-search"></i></button>
+                    </div>
                 <table id="external-specialist-table" class="search-element-table hide-form">
                     <tr>
                         <th>Specialist ID</th>
@@ -183,6 +198,8 @@
                         <td>Printers</td>
                     </tr>
                 </table>
+            </div>
+
                 
             </div>
     
@@ -213,7 +230,10 @@
 
             var specialistElement = document.getElementById("specialist-element");
             var specialistTable = document.getElementById("specialist-table");
+            var specialistForm = document.getElementById("specialist-form");
             var externalSpecialistTable = document.getElementById("external-specialist-table");
+            var externalSpecialistForm = document.getElementById("external-specialist-form");
+
     
             span.onclick = function() {
                 modal.style.display = "none";
@@ -438,40 +458,35 @@
                     let external = false;
                     if(externalSpecialistID != null) {
                         external = true;
-                        if(specialistTable.classList.contains("hide-form")) {
-                            specialistTable.classList.remove("hide-form");
+                        if(specialistForm.classList.contains("hide-form")) {
+                            specialistForm.classList.remove("hide-form");
                         }
-                        if(!externalSpecialistTable.classList.contains("hide-form")) {
-                            externalSpecialistTable.classList.add("hide-form");
+                        if(!externalSpecialistForm.classList.contains("hide-form")) {
+                            externalSpecialistForm.classList.add("hide-form");
                         }
                     } else {
-                        if(externalSpecialistTable.classList.contains("hide-form")) {
-                            externalSpecialistTable.classList.remove("hide-form");
+                        if(externalSpecialistForm.classList.contains("hide-form")) {
+                            externalSpecialistForm.classList.remove("hide-form");
                         }
-                        if(!specialistTable.classList.contains("hide-form")) {
-                            specialistTable.classList.add("hide-form");
+                        if(!specialistForm.classList.contains("hide-form")) {
+                            specialistForm.classList.add("hide-form");
                         }
                     }
 
-                    var specialistOutput = ``;
+                    var specialistOutput = `<tr>
+                                                <th>Specialist ID</th>
+                                                <th>Expertise</th>
+                                            </tr>`;
                     for(var i = 0; i < data.specialists.length; i++) {
                         if(data.specialists[i].id == specialistID) {
                             let specialist = data.specialists[i];
                             specialistOutput += `<tr class="selected-row">
-                                                    <th>Specialist ID</th>
-                                                    <th>Expertise</th>
-                                                </tr>
-                                                <tr>
                                                     <td>${specialist.id}</td>
                                                     <td>${specialist.problemType}</td>
                                                 </tr>`
                         } else {
                             let specialist = data.specialists[i];
                             specialistOutput += `<tr>
-                                                    <th>Specialist ID</th>
-                                                    <th>Expertise</th>
-                                                </tr>
-                                                <tr>
                                                     <td>${specialist.id}</td>
                                                     <td>${specialist.problemType}</td>
                                                 </tr>`
@@ -479,17 +494,16 @@
                     }
                     specialistTable.innerHTML = specialistOutput;
                     
-                    var externalSpecialistOutput = ``;
+                    var externalSpecialistOutput = `<tr>
+                                                        <th>External Specialist ID</th>
+                                                        <th>Name</th>
+                                                        <th>Contact Number</th>
+                                                        <th>Expertise</th>
+                                                    </tr>`;
                     for(var i = 0; i < data.externalSpecialists.length; i++) {
                         if(data.externalSpecialists[i].id == externalSpecialistID) {
                             let externalSpecialist = data.externalSpecialists[i];
-                            externalSpecialistOutput += `<tr>
-                                                            <th>External Specialist ID</th>
-                                                            <th>Name</th>
-                                                            <th>Contact Number</th>
-                                                            <th>Expertise</th>
-                                                        </tr>
-                                                        <tr>
+                            externalSpecialistOutput += `<tr class="selected-row">
                                                             <td>${externalSpecialist.externalID}</td>
                                                             <td>${externalSpecialist.name}</td>
                                                             <td>${externalSpecialist.contactNumber}</td>
@@ -498,12 +512,6 @@
                         } else {
                             let externalSpecialist = data.externalSpecialists[i];
                             externalSpecialistOutput += `<tr>
-                                                            <th>External Specialist ID</th>
-                                                            <th>Name</th>
-                                                            <th>Contact Number</th>
-                                                            <th>Expertise</th>
-                                                        </tr>
-                                                        <tr>
                                                             <td>${externalSpecialist.externalID}</td>
                                                             <td>${externalSpecialist.name}</td>
                                                             <td>${externalSpecialist.contactNumber}</td>
