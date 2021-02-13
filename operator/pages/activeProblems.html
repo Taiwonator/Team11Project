@@ -578,6 +578,12 @@
             }   
             
             function getInputs() {
+                var equipmentSelectedRow = document.querySelector("#equipment-table").getElementsByClassName("selected-row")[0];
+                var softwareSelectedRow = document.querySelector("#software-table").getElementsByClassName("selected-row")[0];
+                var branchSelectedRow = document.querySelector("#branch-table").getElementsByClassName("selected-row")[0];
+                var specialistSelectedRow = document.querySelector("#specialist-table").getElementsByClassName("selected-row")[0];
+                var externalSpecialistSelectedRow = document.querySelector("#external-specialist-table").getElementsByClassName("selected-row")[0];
+
                 var inputs = {
                     description: problemDescriptionInput.value, 
                     solveMethod: solveMethodInput.value, 
@@ -587,14 +593,28 @@
                     priority: priorityInput.value, 
                     dateSolved: dateSolvedInput.value
                 }
-                inputs.serialNumber = document.querySelector("#equipment-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
-                inputs.softwareNmae = document.querySelector("#software-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
-                inputs.branchID = document.querySelector("#branch-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+
+                if(equipmentSelectedRow != null) {
+                    inputs.serialNumber = equipmentSelectedRow.cells[0].innerHTML;
+                }
+
+                if(softwareSelectedRow != null) {
+                    inputs.softwareName = softwareSelectedRow.cells[0].innerHTML;
+                }
+
+                if(branchSelectedRow != null) {
+                    inputs.branchID = branchSelectedRow.cells[0].innerHTML;
+                }
+
                 if(external) {
                     inputs.specialistID = null;
-                    inputs.externalSpecialist = document.querySelector("#external-specialist-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                    if(externalSpecialistSelectedRow != null) {
+                        inputs.externalSpecialist = externalSpecialistSelectedRow.cells[0].innerHTML;
+                    }
                 } else {
-                    inputs.specialistID = document.querySelector("#specialist-table").getElementsByClassName("selected-row")[0].cells[0].innerHTML;
+                    if(specialistSelectedRow != null) { 
+                        inputs.specialistID = specialistSelectedRow.cells[0].innerHTML;
+                    }
                     inputs.externalSpecialist = null;
                 }
                 console.log(inputs);
