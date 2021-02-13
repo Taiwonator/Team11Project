@@ -64,6 +64,9 @@
             loadData('GET', '../php/status/sql_select_specialistStatus.php', {}, function(json){
                 data = {...JSON.parse(json)};
                 console.log(data);
+                statusInput.value = data.status;
+                inWorkInput.checked = (data.inWork) ? true : false;
+                nextInWorkInput.value = data.nextInWork;
             })
         }
 
