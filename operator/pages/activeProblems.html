@@ -312,6 +312,7 @@
             loadSoftware();
             loadSpecialists();
             loadExternalSpecialists();
+            loadProblemTypes();
     
             function loadBranches() {
                 loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
@@ -345,6 +346,14 @@
                 loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
                     data.externalSpecialists = JSON.parse(json);
                     console.log(data);
+                })
+            }
+
+            function loadProblemTypes() {
+                loadData('GET', '../../public/php/sql_select_problemTypes.php', {}, function(json){
+                    data.problemTypes = JSON.parse(json);
+                    console.log(data);
+                    problemTypeInput.innerHTML = generateProblemTypesDropdown();
                 })
             }
     
@@ -513,6 +522,18 @@
                     externalSpecialistTable.innerHTML = externalSpecialistOutput;
                     addSelectableRows();
                     
+            }
+
+            function generateProblemTypesDropdown() {    
+                var problemTypes = ``;
+                for(var i = 0; i < data.problemTypes.length; i++) {
+                    problemTypes += `<option>${data.problemTypes[i]}</option>`;
+                }
+
+                let out = `select value="${problemType}" id="problem-type-input"> 
+                                ${problemTypes}
+                            </select>`;     
+                return out;          
             }
     
             function reportSolved(problemNumber) {
