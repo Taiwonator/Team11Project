@@ -692,6 +692,8 @@
                     return "serial number is null"
                 } else if (inputs.problemType == null) {
                     return "problem type null";
+                } else if(inputs.specialistID == null && inputs.externalSpecialistID == null) {
+                    return "select a specialist"
                 } else {
                     return inputs;
                 }
