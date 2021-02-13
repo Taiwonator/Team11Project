@@ -527,7 +527,7 @@
             function generateProblemTypesDropdown() {    
                 var problemTypes = ``;
                 for(var i = 0; i < data.problemTypes.length; i++) {
-                    problemTypes += `<option>${data.problemTypes[i]}</option>`;
+                    problemTypes += `<option>${data.problemTypes[i].problemType}</option>`;
                 }
 
                 let out = `select id="problem-type-input"> 
