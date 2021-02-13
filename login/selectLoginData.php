@@ -1,11 +1,12 @@
 <?php
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 $servername = "35.189.96.25";
 $db = "helpdesk_database";
 $username = "pma";
 $password = "webproject@Team11";
 
-$email = $_GET['email'];
+$email = $_POST['email'];
 
 try {
   $db = mysqli_connect("$servername",$username,$password,$db) or die("Bad Connect:".mysqli_connect_error());

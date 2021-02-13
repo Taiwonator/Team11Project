@@ -99,19 +99,19 @@
         const analystEmail = "analyst@gmail.com";
 
         var data = {};
-        function loadLoginData() {
-            loadData('GET', '../login/selectLoginData.php', {}, function(json){
+        function loadLoginData(username) {
+            loadData('POST', '../login/selectLoginData.php', {'email': username}, function(json){
                 data.loginData = JSON.parse(json);
                 console.log(data);
             })
             // Check if the sessionStorage object exists
             if(sessionStorage) {
                 // Store data
-                sessionStorage.setItem("ID", data.id);
-                sessionStorage.setItem("JobTitle", data.jobTitle);
-                sessionStorage.setItem("Department", data.dept);
-                sessionStorage.setItem("email", data.email);
-                sessionStorage.setItem("branchID", data.branchID);
+                sessionStorage.setItem("ID", data.loginData.id);
+                sessionStorage.setItem("JobTitle", data.loginData.jobTitle);
+                sessionStorage.setItem("Department", data.loginData.dept);
+                sessionStorage.setItem("email", data.loginData.email);
+                sessionStorage.setItem("branchID", data.loginData.branchID);
             } else {
                 alert("Sorry, your browser do not support session storage.");
             }
@@ -121,7 +121,7 @@
             var username = document.querySelector("#username");
             console.log(username.value);
             if(username.value == "operator@gmail.com" || username.value == "o") {
-                loadLoginData()
+                loadLoginData(username)
                 console.log("functional");
                 console.log(sessionStorage.getItem("email"));
                 console.log(sessionStorage.getItem("id"));
