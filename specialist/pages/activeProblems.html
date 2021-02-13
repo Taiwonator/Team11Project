@@ -73,7 +73,7 @@
                         </tr>
                     </table>
                 </div>
-                <button class="big-button">Refresh</button>
+                <button onclick="refreshPage()" class="big-button">Refresh</button>
             </div>
         </div>
         
@@ -87,7 +87,7 @@
                <!-- DESCRIPTION -->
             <div class="text-area-input-element">
                 <h3 class="element-title">Problem Description</h3>
-                <textarea id="problem-description-input" class="scroll"></textarea>
+                <textarea id="problem-description-input" class="scroll" disabled></textarea>
             </div>
     
             <!-- SOLVE METHOD -->
@@ -166,7 +166,7 @@
             <div class="element-row">
                 <div class="select-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <select id="problem-type-input"> 
+                    <select id="problem-type-input" disabled> 
                         <option value="" selected disabled hidden>Select a problem type</option>
                         <optgroup label="Printer">
                             <option>Printer</option>
@@ -184,7 +184,7 @@
                 <!-- OS -->
                 <div class="select-input-element">
                     <h3 class="element-title">Operating System</h3>
-                    <select id="os-input">
+                    <select id="os-input" disabled>
                         <option value="" selected disabled hidden>Select an OS</option>
                         <option>Windows</option>
                         <option>iOS</option>
@@ -198,7 +198,7 @@
             <div class="element-row">
                 <div class="select-input-element">
                     <h3 class="element-title">Priority</h3>
-                    <select id="priority-input">
+                    <select id="priority-input" disabled>
                         <option value="" selected disabled hidden>Select Priority</option>
                         <option>Low</option>
                         <option>Medium</option>
@@ -209,55 +209,17 @@
     
                 <!-- DATE -->
                 <div class="date-input-element">
-                    <h3 class="element-title">Date</h3>
+                    <h3 class="element-title" disabled>Date</h3>
                     <input id="date-solved-input" type="date">
                 </div>
             </div>
     
             <!-- IN PERSON -->
             <div class="checkbox-input-element">
-                <h3 class="element-title">In Person Solving</h3>
-                <input type="checkbox" id="in-person-input" value="in-person">
+                <h3 onclick="getInputs()" class="element-title">In Person Solving</h3>
+                <input type="checkbox" id="in-person-input" value="in-person" disabled>
                 <label>Problem must be solved in person</label>
             </div>
-    
-            <!-- SPECIALIST -->
-            <div class="search-element" id="specialist-element">
-                <h3 onclick="getInputs()" class="element-title">Specialist </h3>
-                <input type="checkbox" id="external-checkbox" value="external">
-                <label>3rd party specialist</label>
-                
-                <div id="specialist-form" class="">
-                    <div class="search-element-bar">
-                        <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 1)"> 
-                        <button><i class="fa fa-search"></i></button>
-                    </div>
-    
-                    <table id="specialist-table" class="search-element-table">
-                        <tr>
-                            <th>Specialist ID</th>
-                            <th>Specialist Name</th>
-                            <th>Expertise</th>
-                        </tr>
-                    </table>
-
-                </div>
-                
-                
-                <div id="external-specialist-form"  class="hide-form">
-                    <div class="search-element-bar">
-                        <input type="text" placeholder="Enter Expertise" onkeyup="searchTable(event, 3)"> 
-                        <button><i class="fa fa-search"></i></button>
-                    </div>
-                <table id="external-specialist-table" class="search-element-table">
-                    <tr>
-                        <th>Specialist ID</th>
-                        <th>Specialist Name</th>
-                        <th>Expertise</th>
-                    </tr>
-                </table>
-            </div>
-
                 
             </div>
     
@@ -293,6 +255,10 @@
     
             document.getElementById("exit-button").onclick = function() {
                 modal.style.display = "none";
+            }
+
+            function refreshPage() {
+                location.reload();
             }
     
             function loadActiveSolutions() {
@@ -458,79 +424,6 @@
             }
     
 
-            function generateBothSpecialistTables(specialistID, externalSpecialistID) {
-                    external = false;
-                    if(externalSpecialistID != null) {
-                        external = true;
-                        externalCheckbox.checked = true;
-                        if(externalSpecialistForm.classList.contains("hide-form")) {
-                            externalSpecialistForm.classList.remove("hide-form");
-                        }
-                        if(!specialistForm.classList.contains("hide-form")) {
-                            specialistForm.classList.add("hide-form");
-                        }
-                    } else {
-                        externalCheckbox.checked = false;
-                        if(specialistForm.classList.contains("hide-form")) {
-                            specialistForm.classList.remove("hide-form");
-                        }
-                        if(!externalSpecialistForm.classList.contains("hide-form")) {
-                            externalSpecialistForm.classList.add("hide-form");
-                        }
-                    }
-
-                    var specialistOutput = `<tr>
-                                                <th>Specialist ID</th>
-                                                <th>Expertise</th>
-                                            </tr>`;
-                    for(var i = 0; i < data.specialists.length; i++) {
-                        if(data.specialists[i].id == specialistID) {
-                            let specialist = data.specialists[i];
-                            specialistOutput += `<tr class="selected-row">
-                                                    <td>${specialist.id}</td>
-                                                    <td>${specialist.problemType}</td>
-                                                </tr>`
-                        } else {
-                            let specialist = data.specialists[i];
-                            specialistOutput += `<tr>
-                                                    <td>${specialist.id}</td>
-                                                    <td>${specialist.problemType}</td>
-                                                </tr>`
-                        }
-                    }
-                    specialistTable.innerHTML = specialistOutput;
-                    
-                    var externalSpecialistOutput = `<tr>
-                                                        <th>External Specialist ID</th>
-                                                        <th>Name</th>
-                                                        <th>Contact Number</th>
-                                                        <th>Expertise</th>
-                                                    </tr>`;
-                    for(var i = 0; i < data.externalSpecialists.length; i++) {
-                        console.log(data.externalSpecialists[i].externalID, externalSpecialistID);
-                        if(data.externalSpecialists[i].externalID == externalSpecialistID) {
-                            let externalSpecialist = data.externalSpecialists[i];
-                            externalSpecialistOutput += `<tr class="selected-row">
-                                                            <td>${externalSpecialist.externalID}</td>
-                                                            <td>${externalSpecialist.name}</td>
-                                                            <td>${externalSpecialist.contactNumber}</td>
-                                                            <td>${externalSpecialist.expertise}</td>
-                                                        </tr>`
-                        } else {
-                            let externalSpecialist = data.externalSpecialists[i];
-                            externalSpecialistOutput += `<tr>
-                                                            <td>${externalSpecialist.externalID}</td>
-                                                            <td>${externalSpecialist.name}</td>
-                                                            <td>${externalSpecialist.contactNumber}</td>
-                                                            <td>${externalSpecialist.expertise}</td>
-                                                        </tr>`
-                        }
-                    }
-                    externalSpecialistTable.innerHTML = externalSpecialistOutput;
-                    addSelectableRows();
-                    
-            }
-
             function generateProblemTypesDropdown() {    
                 var problemTypes = ``;
                 for(var i = 0; i < data.problemTypes.length; i++) {
@@ -630,77 +523,17 @@
             }   
             
             function getInputs() {
-                var equipmentSelectedRow = document.querySelector("#equipment-table").getElementsByClassName("selected-row")[0];
-                var softwareSelectedRow = document.querySelector("#software-table").getElementsByClassName("selected-row")[0];
-                var branchSelectedRow = document.querySelector("#branch-table").getElementsByClassName("selected-row")[0];
-                var specialistSelectedRow = document.querySelector("#specialist-table").getElementsByClassName("selected-row")[0];
-                var externalSpecialistSelectedRow = document.querySelector("#external-specialist-table").getElementsByClassName("selected-row")[0];
-
                 var inputs = {
-                    description: problemDescriptionInput.value, 
                     solveMethod: solveMethodInput.value, 
                     notes: notesInput.value, 
-                    problemType: problemTypeInput.value, 
-                    OS: osInput.value, 
-                    priority: priorityInput.value, 
-                    dateSolved: dateSolvedInput.value
                 }
-
-                if(inPersonInput.checked) {
-                    inputs.inPerson = 1;
-                } else {
-                    inputs.inPerson = 0;
-                }
-
-                if(equipmentSelectedRow != null) {
-                    inputs.serialNumber = equipmentSelectedRow.cells[0].innerHTML;
-                } else {
-                    inputs.serialNumber = null;
-                }
-
-                if(softwareSelectedRow != null) {
-                    inputs.softwareName = softwareSelectedRow.cells[0].innerHTML;
-                } else {
-                    inputs.softwareName = null;
-                }
-
-                if(branchSelectedRow != null) {
-                    inputs.branchID = branchSelectedRow.cells[0].innerHTML;
-                } else {
-                    inputs.branchID = null;
-                }
-
-                if(external) {
-                    inputs.specialistID = null;
-                    if(externalSpecialistSelectedRow != null) {
-                        inputs.externalSpecialistID = externalSpecialistSelectedRow.cells[0].innerHTML;
-                    } else {
-                        inputs.externalSpecialistID = null;
-                    }
-                } else {
-                    if(specialistSelectedRow != null) { 
-                        inputs.specialistID = specialistSelectedRow.cells[0].innerHTML;
-                    } else {
-                        inputs.specialistID = null;
-                    }
-                    inputs.externalSpecialist = null;
-                }
-
                 const validatedInputs = validateInputs(inputs);
-                console.log(validatedInputs);
+                console.log(validateInputs);
             }
 
             function validateInputs(inputs) {
-                if(inputs.branchID == null) {
-                    return "branch ID is null"
-                } else if (inputs.description == null) {
-                    return "description is null"
-                } else if(inputs.serialNumber == null){
-                    return "serial number is null"
-                } else if (inputs.problemType == null) {
-                    return "problem type null";
-                } else if(inputs.specialistID == null && inputs.externalSpecialistID == null) {
-                    return "select a specialist"
+                if(inputs.solveMethod == null) {
+                    return "solve method is empty";
                 } else {
                     return inputs;
                 }
