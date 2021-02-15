@@ -1,5 +1,5 @@
 <?php
-//$_POST = json_decode(file_get_contents('php://input'), true);
+$_GET = json_decode(file_get_contents('php://input'), true);
 
 $email = $_GET['email'];
 //$email = "dummy2@gmail.com";
@@ -10,7 +10,6 @@ $database = "helpdesk_database";
 $table = "Personnel";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  //$sqlQuery = "SELECT * FROM Personnel";
   $output = array();
   foreach($db->query("SELECT * FROM Personnel") as $row) {
     $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
