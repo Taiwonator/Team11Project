@@ -127,8 +127,23 @@
                             <td>${solution.problemType}</td>
                             <td>
                                 <button class="edit-button">Edit</button>
-                                <button class="report-solved-button">Delete</button>
+                                <button onclick="confirmDelete(${solution.name})" class="report-solved-button">Delete</button>
                             </td>`
+            })
+        }
+
+        function confirmDelete(name) {
+            var confirmed = confirm("Are you sure?");
+            if(confirmed == true) {
+                deleteStandardSolution(name);
+            }
+        }
+
+        function deleteStandardSolution(name){
+            const payload = { 'name': name };
+            loadData('POST', '../php/standardSolutions/sql_delete_standardSolution.php', payload, function(json) {
+                document.getElementById('standard-solutions-table').innerHTML = generateTable(json);
+                console.log(json);
             })
         }
         
