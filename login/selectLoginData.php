@@ -18,6 +18,7 @@ try {
   $sqlQuery = "SELECT * FROM Personnel WHERE Personnel.Email = $email";
   $output = array();
   $row = $db->query($sqlQuery);
+  $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
 
   echo json_encode("more more testing");
 } catch (PDOException $e) {
