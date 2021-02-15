@@ -112,9 +112,21 @@
         var data = {};
         function loadLoginData(emailData) {
             loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:"dummy@gmail.com"}, function(json){
-                data.loginData = JSON.parse(json);
+                data = JSON.parse(json);
                 console.log(data);
             })
+         // Check if the sessionStorage object exists
+            if(sessionStorage) {
+                // Store data
+                sessionStorage.setItem("ID", data.id);
+                sessionStorage.setItem("JobTitle", data.jobTitle);
+                sessionStorage.setItem("Department", data.dept);
+                sessionStorage.setItem("email", data.email);
+                sessionStorage.setItem("branchID", data.branchID);
+            } else {
+                alert("Sorry, your browser do not support session storage.");
+            }
+        }
         }
         loadLoginData();
         
