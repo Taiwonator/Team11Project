@@ -1,6 +1,6 @@
 <?php
 
-include 'connect.php'; //connect to database
+include '../../includes/connect.php'; //connect to database
 
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
         Call.CallID = CallProblem.CallID AND 
