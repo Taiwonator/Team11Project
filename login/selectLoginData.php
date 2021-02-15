@@ -18,9 +18,9 @@ try {
   $sqlQuery = "SELECT * FROM Personnel";
   $output = array();
   $row = $db->query($sqlQuery);
-  $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
+  //$row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
 
-  echo json_encode($row);
+  echo json_encode("testing");
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
