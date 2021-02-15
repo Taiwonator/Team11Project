@@ -15,9 +15,11 @@ $database = "helpdesk_database";
 $table = "Personnel";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $sqlQuery = "SELECT * FROM Personnel WHERE Personnel.Email = $email";
   $output = array();
+  $row = $db->query($sqlQuery);
 
-  echo json_encode("more testing");
+  echo json_encode("more more testing");
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
