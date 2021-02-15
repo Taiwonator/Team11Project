@@ -15,12 +15,13 @@ $database = "helpdesk_database";
 $table = "Personnel";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  $sqlQuery = "SELECT * FROM Personnel WHERE Personnel.Email = '$email'";
+  $sqlQuery = "SELECT * FROM Personnel WHERE Email = $email";
   $output = array();
   $row = $db->query($sqlQuery);
   $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
+  array_push($output, $row);
 
-  echo json_encode($row);
+  echo json_encode($output);
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
