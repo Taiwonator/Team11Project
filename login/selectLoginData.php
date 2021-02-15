@@ -17,10 +17,11 @@ try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $sqlQuery = "SELECT * FROM Personnel";
   $output = array();
-  $row = $db->query($sqlQuery);
-  //$row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
-
-  echo json_encode("testing");
+  foreach($db->query($db->query($sqlQuery) as $row) {
+    $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
+    array_push($output, $row);
+  }
+  echo json_encode("output");
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
