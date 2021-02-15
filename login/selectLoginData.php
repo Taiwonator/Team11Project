@@ -1,27 +1,25 @@
 <?php
 //$_POST = json_decode(file_get_contents('php://input'), true);
 
-/*$servername = "35.189.96.25";
-$db = "helpdesk_database";
-$username = "pma";
-$password = "webproject@Team11";
-
 // $email = $_POST['email'];
 $email = "dummy2@gmail.com";
 
-try {
-  $db = mysqli_connect("$servername",$username,$password,$db) or die("Bad Connect:".mysqli_connect_error());
-  $sqlQuery = "SELECT * FROM Personnel WHERE Personnel.Email = $email";
-  $output = array();
+
   //$row = $db->query($sqlQuery);
   //$row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
-  //$db->close();
-  echo json_encode($output);
 
-} catch (Exception $e) {
+
+$user = "pma";
+$password = "webproject@Team11";
+$database = "helpdesk_database";
+$table = "Personnel";
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $output = array();
+
+  echo json_encode("more testing");
+} catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
-}*/
-echo ("testing");
-
+}
 ?>
