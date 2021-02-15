@@ -1,7 +1,8 @@
 <?php
 $_GET = json_decode(file_get_contents('php://input'), true);
 
-//$email = $_GET['email'];
+$emailtest = $_GET['email'];
+echo($emailtest);
 $email = "dummy2@gmail.com";
 
 $user = "pma";
