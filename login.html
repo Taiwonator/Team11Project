@@ -111,10 +111,12 @@
         }
         var data = {};
         function loadLoginData(emailData) {
-            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:"dummy@gmail.com"}, function(json){
+            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {}, function(json){
                 data = JSON.parse(json);
                 console.log(data);
                 console.log(data.jobTitle);
+                var filteredData = data.filter(function(row){return row.email == emailData;});
+                console.log(filteredData);
                 
                 // Check if the sessionStorage object exists
                 if(sessionStorage) {
@@ -130,7 +132,7 @@
             })
 
         }
-        loadLoginData();
+        loadLoginData("dummy@gmail.com");
         
         function runLogin() {
             var username = document.querySelector("#username");
