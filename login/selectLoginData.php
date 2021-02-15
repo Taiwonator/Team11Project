@@ -20,7 +20,8 @@ try {
   $row = $db->query($sqlQuery);
   $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
 
-  echo json_encode("more more testing");
+  $db->close();
+  echo json_encode($row);
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
