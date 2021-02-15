@@ -15,7 +15,7 @@ $database = "helpdesk_database";
 $table = "Personnel";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  $sqlQuery = "SELECT * FROM Personnel WHERE Email = 'dummy2@gmail.com'";
+  $sqlQuery = "SELECT * FROM Personnel";
   $output = array();
   $row = $db->query($sqlQuery);
   $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
