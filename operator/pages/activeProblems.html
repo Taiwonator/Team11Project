@@ -233,10 +233,19 @@
                 <button id="exit-button" class="big-button confirm-edit">Exit</button>
               
             </div>
+
+            <button onclick="email()" id="exit-button" class="big-button confirm-edit">Email those bastads</button>
+
         </div>
     
         <script src="../../public/js/ajaxFunctions.js"></script>
         <script>
+
+        function loadEmail() {
+                loadData('GET', '../php/email.php', {}, function(json){
+                   console.log(json);
+                })
+            }
     
             var data = {};
             var activeProblemsTable = document.getElementById("active-problems-table");
