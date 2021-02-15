@@ -90,12 +90,25 @@
             <p class="tooltip">Analyst: <span class="tooltiptext">analyst@gmail.com</span></p>
         </div>
     </div>
-    <script src="../../public/js/ajaxFunctions.js">
+    <script>
       
         const operatorEmail = "operator@gmail.com";
         const specialistEmail = "specialist@gmail.com";
         const hrEmail = "hr@gmail.com";
         const analystEmail = "analyst@gmail.com";
+        
+        function loadData(method, url, data, code) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // console.log(`Object from PHP file (${url}): ${this.responseText}`);
+                    code(this.responseText);
+                } 
+            }
+            xhttp.open(method, url, true);
+            xhttp.setRequestHeader('Content-type', 'application/json');
+            xhttp.send(JSON.stringify(data));
+        }
         
         var data = {};
         function loadLoginData() {
