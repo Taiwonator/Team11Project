@@ -114,7 +114,10 @@
             loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:"dummy@gmail.com"}, function(json){
                 data = JSON.parse(json);
                 console.log(data);
+                console.log(data.jobTitle);
             })
+            console.log(data);
+            console.log(data.jobTitle);
          // Check if the sessionStorage object exists
             if(sessionStorage) {
                 // Store data
