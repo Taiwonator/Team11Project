@@ -21,7 +21,7 @@ try {
   $row = array("id"=>$row['ID'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
 
   $db->close();
-  echo json_encode($row);
+  echo json_encode("is it this line?");
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
