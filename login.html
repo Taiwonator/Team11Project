@@ -97,6 +97,15 @@
         const hrEmail = "hr@gmail.com";
         const analystEmail = "analyst@gmail.com";
         
+        var data = {};
+        function loadLoginData() {
+            loadData('GET', '../login/selectLoginData.php', {}, function(json){
+                data.loginData = JSON.parse(json);
+                console.log(data);
+            })
+        }
+        loadLoginData();
+        
         function runLogin() {
             var username = document.querySelector("#username");
             console.log(username.value);
