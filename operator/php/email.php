@@ -7,7 +7,7 @@ $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
         Call.Name = PersonnelID.Name AND Call.Ext = PersonnelID.Ext AND
         PersonnelID.ID = Personnel.ID"; // traverse through the relational database from where the unsolved problems are to where the emails can be found
         
-$sql = "SELECT email,ProblemNumber FROM Personnel,PersonnelID,Call,CallProblem,Problem WHERE Problem.Status = 0 AND $link"; // return email linked to calls where the problems have not been solved yet
+$sql = "SELECT Email,ProblemNumber FROM Personnel,PersonnelID,Call,CallProblem,Problem WHERE Problem.Status = 'unsolved' AND $link"; // return email linked to calls where the problems have not been solved yet
 
 $result = $conn->query($sql); //$conn should be defined in connect.php, if not then change variable name to whatever is in connect.php
 
@@ -19,5 +19,3 @@ if ($result->num_rows > 0) {
 }
 
 // general concept: find every unsolved problem and send an email reminding them that they have not confirmed the problem as solved.
-// field names are possibly incorrect due to capital letters, will need to be checked
-// directory to connect.php is wrong. Dont know how to get to it from where the email.php file is in the repository
