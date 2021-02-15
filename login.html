@@ -115,20 +115,20 @@
                 data = JSON.parse(json);
                 console.log(data);
                 console.log(data.jobTitle);
+                
+                // Check if the sessionStorage object exists
+                if(sessionStorage) {
+                    // Store data
+                    sessionStorage.setItem("id",data.id);
+                    sessionStorage.setItem("jobTitle", data.jobTitle);
+                    sessionStorage.setItem("department", data.dept);
+                    sessionStorage.setItem("email", data.email);
+                    sessionStorage.setItem("branchID", data.branchID);
+                } else {
+                    alert("Sorry, your browser do not support session storage.");
+                }
             })
-            console.log(data);
-            console.log(data.jobTitle);
-         // Check if the sessionStorage object exists
-            if(sessionStorage) {
-                // Store data
-                sessionStorage.setItem("id","hello");
-                sessionStorage.setItem("jobTitle", data.jobTitle);
-                sessionStorage.setItem("department", data.dept);
-                sessionStorage.setItem("email", data.email);
-                sessionStorage.setItem("branchID", data.branchID);
-            } else {
-                alert("Sorry, your browser do not support session storage.");
-            }
+
         }
         loadLoginData();
         
