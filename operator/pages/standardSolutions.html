@@ -159,6 +159,7 @@
         }
 
         loadStandardSolutions();
+        loadProblemTypes();
 
         function generateStandardSolutionsTable(json) {
             return generateTable(json, (solution) => {
@@ -183,7 +184,21 @@
             if(button.classList.contains('disabled-button')) {
                 button.classList.remove('disabled-button');
             }
+
+            for(var i = 0; i < data.standardSolutions.length; i++) {
+                if(data.standardSolutions[i].name == name) {
+
+                    setInputs(data.standardSolutions[i].name, data.standardSolutions[i].problemType, data.standardSolutions[i].description);
+
+                } 
+            }
         } 
+
+        function setInputs(name, problemType, description) {
+            nameInput.value = name;
+            problemTypeInput.value = problemType;
+            descriptionInput.value = description;
+        }
 
         function confirmDelete(name) {
             var confirmed = confirm("Are you sure?");
