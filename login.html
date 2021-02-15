@@ -90,7 +90,7 @@
             <p class="tooltip">Analyst: <span class="tooltiptext">analyst@gmail.com</span></p>
         </div>
     </div>
-    <script>
+    <script src="/public/js/ajaxFunctions.js">
       
         const operatorEmail = "operator@gmail.com";
         const specialistEmail = "specialist@gmail.com";
@@ -112,7 +112,7 @@
         
         var data = {};
         function loadLoginData() {
-            loadData('GET', '../login/selectLoginData.php', {}, function(json){
+            loadData('GET', '/login/selectLoginData.php', {}, function(json){
                 data.loginData = JSON.parse(json);
                 console.log(data);
             })
