@@ -110,8 +110,8 @@
             xhttp.send(JSON.stringify(data));
         }
         var data = {};
-        function loadLoginData() {
-            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {}, function(json){
+        function loadLoginData(emailData) {
+            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:emailData}, function(json){
                 data.loginData = JSON.parse(json);
                 console.log(data);
             })
