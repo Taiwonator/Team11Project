@@ -102,6 +102,7 @@
         var descriptionInput = document.getElementById("description-input");
 
         var edit = false;
+        var data = {};
 
         addSolutionButton.onclick = function() {
             edit = false;
@@ -132,7 +133,29 @@
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
+                data.standardSolutions = JSON.parse(json);
+                console.log(data);
             })
+        }
+
+        function loadProblemTypes() {
+            loadData('GET', '../../public/php/sql_select_problemType.php', {}, function(json){
+                data.problemTypes = JSON.parse(json);
+                console.log(data);
+                problemTypeInput.innerHTML = generateProblemTypesDropdown();
+            })
+        }
+
+        function generateProblemTypesDropdown() {    
+            var problemTypes = ``;
+            for(var i = 0; i < data.problemTypes.length; i++) {
+                problemTypes += `<option>${data.problemTypes[i].problemType}</option>`;
+            }
+
+            let out = `select id="problem-type-input"> 
+                            ${problemTypes}
+                        </select>`;     
+            return out;          
         }
 
         loadStandardSolutions();
@@ -144,11 +167,23 @@
                             <td>${solution.description}</td>
                             <td>${solution.problemType}</td>
                             <td>
-                                <button class="edit-button">Edit</button>
+                                <button onclick="openSolution('${solution.name}')" class="edit-button">Edit</button>
                                 <button onclick="confirmDelete('${solution.name}')" class="report-solved-button">Delete</button>
                             </td>`
             })
         }
+
+        function openSolution(name) {
+            edit = false;
+            modal.style.display = "block";
+
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
+
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
+        } 
 
         function confirmDelete(name) {
             var confirmed = confirm("Are you sure?");
@@ -160,8 +195,13 @@
         function deleteStandardSolution(name){
             const payload = { 'name': name };
             loadData('POST', '../php/standardSolutions/sql_delete_standardSolution.php', payload, function(json) {
-                document.getElementById('standard-solutions-table').innerHTML = generateTable(json);
-                console.log(json);
+                document.getElementById("standard-solutions-table").innerHTML = `<tr>
+                                                                                    <th>Solution Name</th>
+                                                                                    <th>Problem Type</th>
+                                                                                    <th>Description</th>
+                                                                                    <th>Actions</th>
+                                                                                </tr>
+                                                                                ${generateStandardSolutionsTable(json)}`;
             })
         }
         
