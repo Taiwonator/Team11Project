@@ -3,10 +3,13 @@ $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Problem";
+
+$branchID = "122";
+
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $output = array();
-  foreach($db->query("SELECT * FROM $table WHERE Status='pending'") as $row) {
+  foreach($db->query("SELECT * FROM $table WHERE (`Status`='pending' AND `BranchID`=$branchID)") as $row) {
     $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
     "inPerson"=>$row['InPerson'], "specialistID"=>$row['ID'], "externalSpecialistID"=>$row['ExternalID'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
