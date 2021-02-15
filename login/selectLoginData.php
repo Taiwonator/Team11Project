@@ -1,5 +1,5 @@
 <?php
-$_POST = json_decode(file_get_contents('php://input'), true);
+//$_POST = json_decode(file_get_contents('php://input'), true);
 
 $servername = "35.189.96.25";
 $db = "helpdesk_database";
