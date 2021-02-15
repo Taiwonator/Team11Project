@@ -111,7 +111,7 @@
         }
         var data = {};
         function loadLoginData(emailData) {
-            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:"dummy2@gmail.com"}, function(json){
+            loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {email:"dummy@gmail.com"}, function(json){
                 data.loginData = JSON.parse(json);
                 console.log(data);
             })
