@@ -1,7 +1,7 @@
 <?php
 //$_POST = json_decode(file_get_contents('php://input'), true);
 
-$servername = "35.189.96.25";
+/*$servername = "35.189.96.25";
 $db = "helpdesk_database";
 $username = "pma";
 $password = "webproject@Team11";
@@ -21,6 +21,7 @@ try {
 } catch (Exception $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
-}
+}*/
+echo ("testing");
 
 ?>
