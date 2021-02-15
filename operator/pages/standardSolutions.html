@@ -55,22 +55,22 @@
                 </div>
 
         </div>
-        <button id="add-personnel" class="big-button">Add Solution</button>
+        <button id="add-solution" class="big-button">Add Solution</button>
 
         <div id="edit-screen" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                <h1 id="modal-title" class="title"><i class="fa fa-edit"></i> Edit</h1>  
                      
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Standard Solution Name</h3>
-                        <input type="text" placeholder="Enter solution name"></input>
+                        <input type="text" placeholder="Enter solution name" id="name-input"></input>
                     </div> 
                     <div class="select-input-element">
                         <h3 class="element-title">Problem Type</h3>
-                        <select>
+                        <select id="problem-type-input">
                             <option value="" selected disabled hidden>Select a branch</option>
                             <option>England</option>
                             <option>Germany</option>
@@ -81,11 +81,11 @@
 
                 <div class="text-area-input-element">
                     <h3 class="element-title">Solution Description</h3>
-                    <textarea class="scroll"></textarea>
+                    <textarea class="scroll" id="description-input"></textarea>
                 </div>  
 
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -94,11 +94,29 @@
     <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
         var modal = document.getElementById("edit-screen");
-        var addPersonnelButton = document.getElementById("add-personnel");
+        var addSolutionButton = document.getElementById("add-solution");
         var span = document.getElementsByClassName("close")[0]; // close button
 
-        addPersonnelButton.onclick = function() {
+        var nameInput = document.getElementByID("name-input");
+        var problemTypeInput = document.getElementByID("problem-type-input");
+        var descriptionInput = document.getElementByID("description-input");
+
+        var edit = false;
+
+        addSolutionButton.onclick = function() {
+            edit = false;
             modal.style.display = "block";
+            
+            nameInput.value = '';
+            problemTypeInput.value = '';
+            descriptionInput.value = '';
+            
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
         }
 
         span.onclick = function() {
@@ -127,7 +145,7 @@
                             <td>${solution.problemType}</td>
                             <td>
                                 <button class="edit-button">Edit</button>
-                                <button onclick="confirmDelete(${solution.name})" class="report-solved-button">Delete</button>
+                                <button onclick="confirmDelete('${solution.name}')" class="report-solved-button">Delete</button>
                             </td>`
             })
         }
