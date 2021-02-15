@@ -3,11 +3,11 @@
 include '../../includes/connect.php'; //connect to database
 
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
-        Call.CallID = CallProblem.CallID AND 
-        Call.Name = PersonnelID.Name AND Call.Ext = PersonnelID.Ext AND
-        PersonnelID.ID = Personnel.ID"; // traverse through the relational database from where the unsolved problems are to where the emails can be found
+        `Call`.CallID = CallProblem.CallID AND 
+        `Call`.Name = Personnel_ID.Name AND `Call`.Ext = Personnel_ID.Ext AND
+        Personnel_ID.ID = Personnel.ID"; // traverse through the relational database from where the unsolved problems are to where the emails can be found
         
-$sql = "SELECT Email,ProblemNumber FROM Personnel,PersonnelID,Call,CallProblem,Problem WHERE Problem.Status = 'unsolved' AND $link"; // return email linked to calls where the problems have not been solved yet
+$sql = "SELECT Email,Problem.ProblemNumber FROM Personnel,Personnel_ID,`Call`,CallProblem,Problem WHERE Problem.Status = 'unsolved' AND $link"; // return email linked to calls where the problems have not been solved yet
 
 $result = $conn->query($sql); //$conn should be defined in connect.php, if not then change variable name to whatever is in connect.php
 
