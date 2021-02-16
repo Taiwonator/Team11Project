@@ -121,37 +121,39 @@
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Employee ID</h3>
-                        <input id="edit-id" type="text" placeholder="Enter employee ID"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-id" type="text" placeholder="Enter employee ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Name</h3>
-                        <input id="edit-name" type="text" placeholder="Enter name"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-name" type="text" placeholder="Enter name"></input>
                     </div>  
                 </div> 
                     
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Job Title</h3>
-                        <input id="edit-job-title" type="text" placeholder="Enter job title"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-job-title" type="text" placeholder="Enter job title"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Department</h3>
-                        <input id="edit-dept" type="text" placeholder="Enter department"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-dept" type="text" placeholder="Enter department"></input>
                     </div>  
                 </div> 
     
                 <div class="element-row">
-                    <div class="text-input-element">
+                    <div class="select-input-element">
                         <h3 class="element-title">Branch ID</h3>
-                        <input id="edit-branch-id" type="text" placeholder="Enter branch ID"></input>
-                    </div>  
+                        <select id="edit-branch-id">
+                            <option value="" selected disabled hidden>Select a branch</option>
+                        </select>
+                    </div>
                     <div class="text-input-element">
                         <h3 class="element-title">Extension</h3>
-                        <input id="edit-ext" type="text" placeholder="Enter extension no."></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-ext" type="text" placeholder="Enter extension no."></input>
                     </div>  
                 </div> 
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -221,7 +223,8 @@
         var editBranchID = document.getElementById("edit-branch-id");
         var editExt = document.getElementById("edit-ext");
 
-        var personnelData = [];
+        var data = {}
+        var edit = false;
 
         function openViewModal() {
             viewScreen.style.display = "block";
@@ -231,9 +234,47 @@
             editScreen.style.display = "block";
         }
 
+        function closeEditModal() {
+            editScreen.style.display = "none";
+        }
+
         addPersonnelButton.onclick = function() {
             editScreen.style.display = "block";
+            edit = false;
+
+            editID.value = '';
+            editName.value = '';
+            editJobTitle.value = '';
+            editDept.value = '';
+            editBranchID.value = '';
+            editExt.value = '';
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
         }
+
+        function checkIfAllEmpty() {
+            var button = document.getElementById('confirm-button');
+            var inputs = getInputs();
+            let flag = false;
+
+            for(var i = 0; i < inputs.length; i++) {
+                if(inputs[i].value == "") {
+                    flag = true;
+                }
+            }
+
+            if(flag) {
+                button.classList.add('disabled-button');
+            } else {
+                if(button.classList.contains('disabled-button')) {
+                    button.classList.remove('disabled-button');
+                }
+            }
+        }
+
 
         for(var i = 0; i < spans.length; i++) {
             spans[i].onclick = function() {
@@ -244,8 +285,8 @@
 
         function loadPersonnel() {
             loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
-                personnelData = [...JSON.parse(json)];
-                console.log(personnelData);
+                data.personnel = [...JSON.parse(json)];
+                console.log(data.personnel);
                 personnelTable.innerHTML = `<tr>
                                                 <th>Employee ID</th>
                                                 <th>Name</th>
@@ -260,7 +301,31 @@
             })
         }
 
-        loadPersonnel();
+        function loadBranches() {
+            loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
+                data.branches = JSON.parse(json);
+                console.log(data);
+                editBranchID.innerHTML = generateBranchIDDropdown();
+            })
+        }
+
+        function refreshPage() {
+            loadPersonnel();
+            loadBranches();
+        }
+
+        refreshPage();
+
+        function generateBranchIDDropdown() { 
+                var branchIDs = ``;
+                for(var i = 0; i < data.braches.length; i++) {
+                    branchIDs += `<option>${data.branches[i].country} - ${data.branches[i].id}</option>`;
+                }
+                let out = `<select id="edit-branch-id">
+                                ${branchIDs}
+                           </select>`
+                return out;
+        }
 
         function generatePersonnelTable(json) {
             return generateTable(json, (personnel) => {
@@ -284,10 +349,15 @@
         function viewPersonnel(personnelID) {
             openViewModal();
 
-            for(var i = 0; i < personnelData.length; i++) {
-                if(personnelData[i].id == personnelID) {
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
 
-                    let personnel = personnelData[i];
+            for(var i = 0; i < data.personnel.length; i++) {
+                if(data.personnel[i].id == personnelID) {
+
+                    let personnel = data.personnel[i];
                     viewID.value = personnel.id;
                     viewName.value = personnel.name;
                     viewJobTitle.value = personnel.jobTitle;
@@ -301,10 +371,11 @@
         function editPersonnel(personnelID) {
             openEditModal();
 
-            for(var i = 0; i < personnelData.length; i++) {
-                if(personnelData[i].id == personnelID) {
+            edit = true;
+            for(var i = 0; i < data.personnel.length; i++) {
+                if(data.personnel[i].id == personnelID) {
 
-                    let personnel = personnelData[i];
+                    let personnel = data.personnel[i];
                     editID.value = personnel.id;
                     editName.value = personnel.name;
                     editJobTitle.value = personnel.jobTitle;
@@ -314,6 +385,36 @@
                 }
             }
         }
+
+        // function getInputValuesAsObj() {
+        //     return ({
+        //         id: editID.value, 
+        //         name: editName.value, 
+        //         ext: editExt.value, 
+        //         jobTitle: editJobTitle.value, 
+        //         dept: editDept.value,
+        //         email: 
+        //     })
+        // }
+
+        // function confirmEdit() {
+        //     console.log("CONFIRM CLICKED");
+        //     var obj = getInputValuesAsObj();
+        //     var button = document.getElementById('confirm-button');
+        //     if(!button.classList.contains("disabled-button")) {
+        //         var confirmed = confirm("Are you sure?");
+        //         if(confirmed == true) {
+        //             if(edit) {
+        //                 updateEquipment(obj);
+        //                 alert("Edit");
+        //             } else {
+        //                 insertEquipment(obj);
+        //                 alert("Insert");
+        //             } 
+        //             closeEditModal();
+        //         }
+        //     }
+        // }
         
     </script>
 
