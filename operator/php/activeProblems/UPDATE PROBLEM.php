@@ -1,18 +1,47 @@
 <?php
+$_POST = json_decode(file_get_contents('php://input'), true);
 
-$problemNum = intval($_GET['ProblemNumber']);
-$servername = "35.189.96.25";
-$db = "helpdesk_database";
-$username = "pma";
+$user = "pma";
 $password = "webproject@Team11";
+$database = "helpdesk_database";
+$table = "Problem";
+
+$oldProblemNumber = $_POST["oldProblemNumber"];
+$problemNumber = $_POST["problemNumber"];
+$status = $_POST["status"];
+$branchID = $_POST["branchID"];
+$inPerson = $_POST["inPerson"];
+$priority = $_POST["priority"];
+$probDescripion = $_POST["probDescription"];
+$OS = $_POST["OS"];
+$softwareName = $_POST["softwareName"];
+$serialNumber = $_POST["serialNumber"];
+$dateSolved = $_POST["dateSolved"];
+$timeSolved = $_POST["timeSolved"];
+$solveMethod = $_POST["solveMethod"];
+$solveNotes = $_POST["solveNotes"];
+$problemType = $_POST["problemType"];
+$ID = $_POST["ID"];
+$externalID = $_POST["externalID"];
+
+$data = [ "oldProblemNumber" => $oldProblemNumber, "problemNumber" => $problemNumber, "status" => $status, "branchID" => $branchID, "inPerson" => $inPerson, "priority" => $priority, "probDescription" => $probDescription, "OS" => $OS, "softwareName" => $softwareName, "serialNumber" => $serialNumber, "dateSolved" => $dateSolved, "timeSolved" => $timeSolved, "solveMethod" => $solveMethod, "solveNotes" => $solveNotes, "problemType" => $problemType, "ID" => $ID, "externalID" => $externalID ];
+$sql = "UPDATE $table SET ProblemNumber = :problemNumber, Status = :status, BranchID = :branchID, InPerson = :inPerson, Priority = :priority, ProblemDescription = :probDescription, OS = :OS, SoftwareName = :softwareName, SerialNumber = :serialNumber, DateSolved = :dateSolved, TimeSolved = :timeSolved, SolveMethod = :solveMethod, SolveNotes = :solveNotes, ProblemType = :problemType, ID = :ID, ExternalID = :externalID WHERE Problem.ProblemNumber = :oldProblemNumber";
 
 try {
-  $db = mysqli_connect("$servername",$username,$password,$db) or die("Bad Connect:".mysqli_connect_error());
-  $sqlQuery = "UPDATE Problem SET Status = 'pending' WHERE ProblemNumber = $problemNum";
-  $db->query($sqlQuery);
-  $db->close();
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $db->prepare($sql)->execute($data);
 
-} catch (Exception $e) {
+  $output = array();
+  foreach($db->query("SELECT * FROM $table") as $row) {
+    $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
+    "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
+    "inPerson"=>$row['InPerson'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
+    "solveMethod"=>$row['SolveMethod'], "solveNotes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
+    array_push($output, $row);
+  }
+  echo json_encode($output);
+
+} catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
 }
