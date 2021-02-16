@@ -244,7 +244,7 @@
                         // updateProblemType(problemType);
                         alert("Edit");
                     } else {
-                        // insertEquipment(obj);
+                        insertEquipment(obj);
                         alert("Insert");
                     } 
                     exitModal();
@@ -268,6 +268,21 @@
                                                                                 ${generateStandardSolutionsTable(json)}`;
             })
         }
+
+        function insertStandardSolution(solution) {
+            const payload = { 'name': solution.name, 'problemType': solution.problemType, 'description': solution.description };
+            console.log(payload);
+            loadData('POST', '../php/standardSolutions/sql_insert_standardSolutions.php', payload, function(json) {
+                document.getElementById("standard-solutions-table").innerHTML = `<tr>
+                                                                                    <th>Solution Name</th>
+                                                                                    <th>Problem Type</th>
+                                                                                    <th>Description</th>
+                                                                                    <th>Actions</th>
+                                                                                </tr>
+                                                                                ${generateStandardSolutionsTable(json)}`;
+            })
+        }
+
         
     </script>
 
