@@ -487,6 +487,8 @@
 
                     var specialistOutput = `<tr>
                                                 <th>Specialist ID</th>
+                                                <th>Name</th>
+                                                <th>Ext</th>
                                                 <th>Expertise</th>
                                             </tr>`;
                     for(var i = 0; i < data.specialists.length; i++) {
@@ -494,12 +496,16 @@
                             let specialist = data.specialists[i];
                             specialistOutput += `<tr class="selected-row">
                                                     <td>${specialist.id}</td>
+                                                    <td>${specialist.name}</td>
+                                                    <td>${specialist.ext}</td>
                                                     <td>${specialist.problemType}</td>
                                                 </tr>`
                         } else {
                             let specialist = data.specialists[i];
                             specialistOutput += `<tr>
                                                     <td>${specialist.id}</td>
+                                                    <td>${specialist.name}</td>
+                                                    <td>${specialist.ext}</td>
                                                     <td>${specialist.problemType}</td>
                                                 </tr>`
                         }

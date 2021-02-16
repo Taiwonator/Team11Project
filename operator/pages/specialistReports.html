@@ -376,10 +376,14 @@
                             let specialist = data.specialists[i];
                             return `<tr>
                                         <th>Specialist ID</th>
+                                        <th>Name</th>
+                                        <th>Ext</th>
                                         <th>Expertise</th>
                                     </tr>
                                     <tr>
                                         <td>${specialist.id}</td>
+                                        <td>${specialist.name}</td>
+                                        <td>${specialist.ext}</td>
                                         <td>${specialist.problemType}</td>
                                     </tr>`
                         }
