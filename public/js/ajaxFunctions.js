@@ -29,7 +29,7 @@ function getTable(tableName) {
 }
 
 function loadExternalSpecialists() {
-    loadData('GET', '../php/logCall/sql_select_externalSpecialists.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_externalSpecialists.php', {}, function(json){
         problemInputStrings['externalSpecialists'] = generateExternalSpecialistsTable(json);
 
         var table = getTable('externalSpecialistTable');
@@ -45,7 +45,7 @@ function loadExternalSpecialists() {
 }
 
 function loadSpecialists() {
-    loadData('GET', '../php/logCall/sql_select_specialists.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
 
         var table = getTable('specialistTable');
@@ -68,7 +68,7 @@ function loadSpecialists() {
 }
 
 function loadStandardSolutions() {
-    loadData('GET', '../php/logCall/sql_select_standardSolutions.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_standardSolutions.php', {}, function(json){
         problemInputStrings['standardSolutions'] = generateStandardSolutionsTable(json);
 
         var table = getTable('standardSolutionsTable');
@@ -83,7 +83,7 @@ function loadStandardSolutions() {
 }
 
 function loadBranches() {
-    loadData('GET', '../php/logCall/sql_select_branches.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
         problemInputStrings['branches'] = generateBranches(json);
 
         var inputs = document.getElementsByClassName("problem-input-field");
@@ -97,7 +97,7 @@ function loadBranches() {
 }
 
 function loadProblemTypes() {
-    loadData('GET', '../php/logCall/sql_select_problemType.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_problemType.php', {}, function(json){
         problemInputStrings['problemType'] = generateProblemTypes(json);
 
         var inputs = document.getElementsByClassName("problem-input-field");
@@ -111,7 +111,7 @@ function loadProblemTypes() {
 }
 
 function loadEquipment() {
-    loadData('GET', '../php/logCall/sql_select_equipment.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_equipment.php', {}, function(json){
         problemInputStrings['equipment'] = generateEquipmentTable(json);
 
         var table = getTable('equipmentTable');
