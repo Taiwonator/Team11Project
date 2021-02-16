@@ -516,15 +516,21 @@
         }
         
         function saveNotes() {
-            updateNotes({
-                problemNumber: selectedProblemNumber, 
-                notes: notesInput.value
-            })
+            var confirmed = confirm("Are you sure you want to edit these notes?");
+            if(confirmed) {
+                updateNotes({
+                    problemNumber: selectedProblemNumber, 
+                    notes: notesInput.value
+                })
+                alert("notes updated")
+            }
         }
 
         function updateNotes(problem) {
             const payload = { 'problemNumber': problem.problemNumber, 'notes': problem.notes };
+            console.log(payload);
             loadData('POST', '../php/solvedProblems/sql_update_notes.php', payload, function(json) {
+                console.log(json);
                 refreshPage();
             })
         }
