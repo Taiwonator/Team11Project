@@ -1,4 +1,7 @@
 <?php
+
+// update problem to pending
+
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 $user = "pma";
