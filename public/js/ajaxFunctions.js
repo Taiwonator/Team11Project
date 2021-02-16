@@ -51,6 +51,8 @@ function loadSpecialists() {
         var table = getTable('specialistTable');
         table.innerHTML = ` <tr>
                                     <th>Specialist ID</th>
+                                    <th>Name</th>
+                                    <th>Ext</th>
                                     <th>Problem Type</th>
                                     <th>No. Jobs</th>
                                     <th>Status</th>
@@ -199,6 +201,8 @@ function generateSpecialistsTable(json) {
     return generateTable(json, (specialist) => {
         return `<tr>
                     <td>${specialist.id}</td>
+                    <td>${specialist.name}</td>
+                    <td>${specialist.ext}</td>
                     <td>${specialist.problemType}</td>
                     <td>${specialist.numJobs}</td>
                     <td>${specialist.status}</td>
