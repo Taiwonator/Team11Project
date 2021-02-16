@@ -160,8 +160,10 @@
             return out;          
         }
 
-        loadStandardSolutions();
-        loadProblemTypes();
+        function refreshPage() {
+            loadStandardSolutions();
+            loadProblemTypes();
+        }
 
         function generateStandardSolutionsTable(json) {
             return generateTable(json, (solution) => {
@@ -270,6 +272,7 @@
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
+                refreshPage();
             })
         }
 
@@ -284,6 +287,8 @@
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
+                refreshPage();
+
             })
         }
 
@@ -297,6 +302,7 @@
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
+                refreshPage();
             })
         }
 
