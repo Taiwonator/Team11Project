@@ -9,9 +9,8 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Problem";
 
-$oldProblemNumber = $_POST["oldProblemNumber"];
 $problemNumber = $_POST["problemNumber"];
-$status = $_POST["status"];
+$status = "pending"; 
 $branchID = $_POST["branchID"];
 $inPerson = $_POST["inPerson"];
 $priority = $_POST["priority"];
@@ -27,8 +26,8 @@ $problemType = $_POST["problemType"];
 $ID = $_POST["ID"];
 $externalID = $_POST["externalID"];
 
-$data = [ "oldProblemNumber" => $oldProblemNumber, "problemNumber" => $problemNumber, "status" => $status, "branchID" => $branchID, "inPerson" => $inPerson, "priority" => $priority, "probDescription" => $probDescription, "OS" => $OS, "softwareName" => $softwareName, "serialNumber" => $serialNumber, "dateSolved" => $dateSolved, "timeSolved" => $timeSolved, "solveMethod" => $solveMethod, "solveNotes" => $solveNotes, "problemType" => $problemType, "ID" => $ID, "externalID" => $externalID ];
-$sql = "UPDATE $table SET ProblemNumber = :problemNumber, Status = :status, BranchID = :branchID, InPerson = :inPerson, Priority = :priority, ProblemDescription = :probDescription, OS = :OS, SoftwareName = :softwareName, SerialNumber = :serialNumber, DateSolved = :dateSolved, TimeSolved = :timeSolved, SolveMethod = :solveMethod, SolveNotes = :solveNotes, ProblemType = :problemType, ID = :ID, ExternalID = :externalID WHERE Problem.ProblemNumber = :oldProblemNumber";
+$data = [ "problemNumber" => $problemNumber, "oldStatus" => $oldStatus, "status" => $status, "branchID" => $branchID, "inPerson" => $inPerson, "priority" => $priority, "probDescription" => $probDescription, "OS" => $OS, "softwareName" => $softwareName, "serialNumber" => $serialNumber, "dateSolved" => $dateSolved, "timeSolved" => $timeSolved, "solveMethod" => $solveMethod, "solveNotes" => $solveNotes, "problemType" => $problemType, "ID" => $ID, "externalID" => $externalID ];
+$sql = "UPDATE $table SET ProblemNumber = :problemNumber, Status = :status, BranchID = :branchID, InPerson = :inPerson, Priority = :priority, ProblemDescription = :probDescription, OS = :OS, SoftwareName = :softwareName, SerialNumber = :serialNumber, DateSolved = :dateSolved, TimeSolved = :timeSolved, SolveMethod = :solveMethod, SolveNotes = :solveNotes, ProblemType = :problemType, ID = :ID, ExternalID = :externalID WHERE Problem.ProblemNumber = :ProblemNumber";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
