@@ -105,7 +105,6 @@
           <span class="close">&times;</span>
           <h1 class="title"><i class="fa fa-edit"></i> View Problem</h1>
 
-
            <!-- DESCRIPTION -->
         <div class="text-area-input-element">
             <h3 class="element-title">Problem Description</h3>
@@ -248,7 +247,7 @@
         var inPersonInput = document.getElementById("in-person-input");
         var specialistTable = document.getElementById("specialist-table");
 
-        
+        var selectedProblemNumber;
 
         span.onclick = function() {
             modal.style.display = "none";
@@ -274,12 +273,16 @@
             })
         }
 
-        loadSolvedProblems();
-        loadBranches();
-        loadEquipment();
-        loadSoftware();
-        loadSpecialists();
-        loadExternalSpecialists();
+        function refreshPage() {
+            loadSolvedProblems();
+            loadBranches();
+            loadEquipment();
+            loadSoftware();
+            loadSpecialists();
+            loadExternalSpecialists();
+        }
+
+        refreshPage();
 
         function loadBranches() {
             loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
@@ -450,6 +453,7 @@
             
             // Open modal
             modal.style.display = "block";
+            selectedProblemNumber = problemNumber;
 
             // Get all input objects 
             for(var i = 0; i < data.solvedProblems.length; i++) {
@@ -509,7 +513,21 @@
             } else {
                 input.value = "";
             }
-        }        
+        }
+        
+        function saveNotes() {
+            updateNotes({
+                problemNumber: selectedProblemNumber, 
+                notes: notesInput.value
+            })
+        }
+
+        function updateNotes(problem) {
+            const payload = { 'problemNumber': problem.problemNumber, 'notes': problem.notes };
+            loadData('POST', '../php/solvedProblems/sql_update_notes.php', payload, function(json) {
+                refreshPage();
+            })
+        }
 
     </script>
 
