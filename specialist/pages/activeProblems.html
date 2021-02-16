@@ -257,7 +257,13 @@
             }
 
             function refreshPage() {
-                location.reload();
+                loadActiveSolutions();
+                loadBranches();
+                loadEquipment();
+                loadSoftware();
+                loadSpecialists();
+                loadExternalSpecialists();
+                loadProblemTypes();
             }
     
             function loadActiveSolutions() {
@@ -276,6 +282,7 @@
     
                 })
             }
+
             loadActiveSolutions();
             loadBranches();
             loadEquipment();
