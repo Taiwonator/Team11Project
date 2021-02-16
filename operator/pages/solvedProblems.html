@@ -253,7 +253,7 @@
             modal.style.display = "none";
         }
 
-        document.getElementById("exit-button").onclick = function() {
+        function exitModal() {
             modal.style.display = "none";
         }
 
@@ -523,6 +523,7 @@
                     problemNumber: selectedProblemNumber, 
                     notes: notesInput.value
                 })
+                exitModal();
                 alert("notes updated")
             }
         }
