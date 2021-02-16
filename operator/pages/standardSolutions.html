@@ -104,6 +104,8 @@
         var edit = false;
         var data = {};
 
+        var standardSolutionNameBuffer;
+
         addSolutionButton.onclick = function() {
             edit = false;
             modal.style.display = "block";
@@ -195,6 +197,8 @@
             edit = true;
             modal.style.display = "block";
 
+            standardSolutionNameBuffer = name;
+
             document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
 
             var button = document.getElementById('confirm-button');
@@ -241,7 +245,7 @@
                 var confirmed = confirm("Are you sure?");
                 if(confirmed == true) {
                     if(edit) {
-                        // updateProblemType(problemType);
+                        updateStandardSolution(obj);
                         alert("Edit");
                     } else {
                         insertStandardSolution(obj);
@@ -272,7 +276,20 @@
         function insertStandardSolution(solution) {
             const payload = { 'name': solution.name, 'problemType': solution.problemType, 'description': solution.description };
             console.log(payload);
-            loadData('POST', '../php/standardSolutions/sql_insert_standardSolutions.php', payload, function(json) {
+            loadData('POST', '../php/standardSolutions/sql_insert_standardSolution.php', payload, function(json) {
+                document.getElementById("standard-solutions-table").innerHTML = `<tr>
+                                                                                    <th>Solution Name</th>
+                                                                                    <th>Problem Type</th>
+                                                                                    <th>Description</th>
+                                                                                    <th>Actions</th>
+                                                                                </tr>
+                                                                                ${generateStandardSolutionsTable(json)}`;
+            })
+        }
+
+        function updateStandardSolution(solution) {
+            const payload = { 'oldName': standardSolutionNameBuffer, 'name': solution.name, 'problemType': solution.problemType, 'description': solution.description };
+            loadData('POST', '../php/standardSolutions/sql_update_standardSolution.php', payload, function(json) {
                 document.getElementById("standard-solutions-table").innerHTML = `<tr>
                                                                                     <th>Solution Name</th>
                                                                                     <th>Problem Type</th>
