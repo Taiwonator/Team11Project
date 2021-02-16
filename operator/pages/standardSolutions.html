@@ -308,7 +308,10 @@
 
             })
         }
-
+        var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
         function updateStandardSolution(solution) {
             const payload = { 'oldName': standardSolutionNameBuffer, 'name': solution.name, 'problemType': solution.problemType, 'description': solution.description };
             loadData('POST', '../php/standardSolutions/sql_update_standardSolution.php', payload, function(json) {
