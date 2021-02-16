@@ -213,6 +213,11 @@
                 document.getElementById('equipment-table').innerHTML = generateTable(json);
             })
         }
+
+        function refreshPage() {
+            loadEquipment();
+        }
+        
         loadEquipment();
 
         function insertEquipment(equipment) {
@@ -221,6 +226,7 @@
             loadData('POST', '../php/equipment/sql_insert_equipment.php', payload, function(json) {
                 document.getElementById('equipment-table').innerHTML = generateTable(json);
                 console.log(json);
+                refreshPage();
             })
         }
 
@@ -229,6 +235,7 @@
             loadData('POST', '../php/equipment/sql_delete_equipment.php', payload, function(json) {
                 document.getElementById('equipment-table').innerHTML = generateTable(json);
                 console.log(json);
+                refreshPage();
             })
         }
 
