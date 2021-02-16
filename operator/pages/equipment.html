@@ -149,6 +149,8 @@
             edit = true;
             modal.style.display = 'block';
 
+            equipmentBuffer = serialNumber;
+
             document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
 
             var button = document.getElementById('confirm-button');
@@ -184,7 +186,7 @@
                 var confirmed = confirm("Are you sure?");
                 if(confirmed == true) {
                     if(edit) {
-                        // updateProblemType(problemType);
+                        updateEquipment(obj);
                         alert("Edit");
                     } else {
                         insertEquipment(obj);
@@ -233,6 +235,15 @@
         function deleteEquipment(serialNumber) {
             const payload = { 'serialNumber': serialNumber };
             loadData('POST', '../php/equipment/sql_delete_equipment.php', payload, function(json) {
+                document.getElementById('equipment-table').innerHTML = generateTable(json);
+                console.log(json);
+                refreshPage();
+            })
+        }
+
+        function updateEquipment(equipment) {
+            const payload = { 'oldSerialNumber': equipmentBuffer, 'serialNumber': equipment.serialNumber, 'type': equipment.type, 'make': equipment.make };
+            loadData('POST', '../php/equipment/sql_update_equipment.php', payload, function(json) {
                 document.getElementById('equipment-table').innerHTML = generateTable(json);
                 console.log(json);
                 refreshPage();
