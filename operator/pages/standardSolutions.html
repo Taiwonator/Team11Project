@@ -29,7 +29,7 @@
             <div class="search-element">
                 <h3 class="element-title">Standard Solutions</h3>
                 <div class="search-element-bar">
-                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 0)">
+                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)">
                     <button><i class="fa fa-search"></i></button>
                 </div>
                 <div class="search-element-table-wrapper">
@@ -130,8 +130,8 @@
             loadData('GET', '../../public/php/sql_select_standardSolutions.php', {}, function(json){
                 document.getElementById("standard-solutions-table").innerHTML = `<tr>
                                                                                     <th>Solution Name</th>
-                                                                                    <th>Problem Type</th>
                                                                                     <th>Description</th>
+                                                                                    <th>Problem Type</th>
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
@@ -269,8 +269,8 @@
             loadData('POST', '../php/standardSolutions/sql_delete_standardSolution.php', payload, function(json) {
                 document.getElementById("standard-solutions-table").innerHTML = `<tr>
                                                                                     <th>Solution Name</th>
-                                                                                    <th>Problem Type</th>
                                                                                     <th>Description</th>
+                                                                                    <th>Problem Type</th>
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
@@ -284,8 +284,8 @@
             loadData('POST', '../php/standardSolutions/sql_insert_standardSolution.php', payload, function(json) {
                 document.getElementById("standard-solutions-table").innerHTML = `<tr>
                                                                                     <th>Solution Name</th>
-                                                                                    <th>Problem Type</th>
                                                                                     <th>Description</th>
+                                                                                    <th>Problem Type</th>
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
@@ -299,8 +299,8 @@
             loadData('POST', '../php/standardSolutions/sql_update_standardSolution.php', payload, function(json) {
                 document.getElementById("standard-solutions-table").innerHTML = `<tr>
                                                                                     <th>Solution Name</th>
-                                                                                    <th>Problem Type</th>
                                                                                     <th>Description</th>
+                                                                                    <th>Problem Type</th>
                                                                                     <th>Actions</th>
                                                                                 </tr>
                                                                                 ${generateStandardSolutionsTable(json)}`;
