@@ -26,6 +26,7 @@ $specialistID = $_POST["specialistID"];
 $data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalSpecialistID" => $externalSpecialistID, "inPerson" => $inPerson, 
           "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, 
           "solveMethod" => $solveMethod, "specialistID" => $specialistID, "OS" => $OS ];
+print_r($data);
 
 $sql = "UPDATE $table 
         SET OS = :OS, BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
@@ -40,8 +41,7 @@ try {
   foreach($db->query("SELECT * FROM $table WHERE (`BranchID`=122 AND `Status`='unsolved')") as $row) {
     $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
-    "inPerson"=>$row['InPerson'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
-    "solveMethod"=>$row['SolveMethod'], "solveNotes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
+    "inPerson"=>$row['InPerson'], "solveMethod"=>$row['SolveMethod'], "solveNotes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
     array_push($output, $row);
   }
   echo json_encode($output);
