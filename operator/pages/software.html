@@ -81,7 +81,7 @@
                 </div> 
 
                         
-                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
+                <button onclick="confirmEdit()" id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -115,9 +115,13 @@
                 button.classList.add('disabled-button');
             }
         }
+
+        function exitModal() {
+            document.getElementById('edit-screen').style.display = 'none';
+        }
         
         span.onclick = function() {
-            modal.style.display = "none";
+            exitModal();
         }
 
         function checkIfAllEmpty() {
@@ -183,9 +187,7 @@
 
             for(var i = 0; i < data.software.length; i++) {
                 if(data.software[i].softwareName == softwareName) {
-
                     setInputs(data.software[i].softwareName, data.software[i].licensed, data.software[i].supported);
-
                 } 
             }
         }
@@ -203,6 +205,49 @@
             }
         }
 
+        function validateInputs(obj) {
+           flag = true;
+           for(var i = 0; i < data.software.length; i++) {
+               if(obj.softwareName == data.software[i].softwareName) {
+                   flag = false;
+               }
+           }
+           return flag;
+        }
+
+        function getInputValuesAsObj() {
+            let softwareName = softwareNameInput.value;
+            let licensed = licensedInput.value;
+            let supported = supportedInput.value;
+            return {
+                softwareName, licensed, supported
+            }
+        }
+
+        function confirmEdit() {
+            console.log("CONFIRM CLICKED");
+            var obj = getInputValuesAsObj();
+
+            if(validateInputs(obj)) {
+                var button = document.getElementById('confirm-button');
+                if(!button.classList.contains("disabled-button")) {
+                    var confirmed = confirm("Are you sure?");
+                    if(confirmed == true) {
+                        if(edit) {
+                            updateSoftware(obj);
+                            alert("Edit");
+                        } else {
+                            insertSoftware(obj);
+                            alert("Insert");
+                        } 
+                        exitModal();
+                    }
+                }
+            } else {
+                alert(`Solution named '${obj.name}' already exists `);
+            }
+        }
+
         function deleteSoftware(softwareName) {
             const payload = { 'softwareName': softwareName };
             loadData('POST', '../php/software/sql_delete_software.php', payload, function(json) {
@@ -210,7 +255,26 @@
                 refreshPage();
             })
         }
+
+        function insertSoftware(software) {
+            const payload = { 'softwareName': software.softwareName, 'licensed': software.licensed, 'supported': software.supported };
+            console.log(payload);
+            loadData('POST', '../php/software/sql_insert_software.php', payload, function(json) {
+                refreshPage();
+            })
+        }
         
+        function updateSoftware(software) {
+            const payload = { 'oldSoftwareName': softwareNameBuffer, 'softwareName': software.softwareName, 'licensed': software.licensed, 'supported': software.supported };
+            loadData('POST', '../php/software/sql_update_software.php', payload, function(json) {
+                refreshPage();
+            })
+        }
+        
+        var button = document.getElementById('confirm-button');
+        if(button.classList.contains('disabled-button')) {
+            button.classList.remove('disabled-button');
+        }
         
     </script>
 
