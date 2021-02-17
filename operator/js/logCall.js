@@ -198,7 +198,7 @@ function addTab() {
                                             <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
-                                        <table class="search-element-table problem-input-field" data-table-name="specialistTable" id="specialist-table-${problemCount}">
+                                        <table class="search-element-table problem-input-field" data-table-name="specialistTable" id="specialist-table-problem${problemCount}">
                                             <tr>
                                                 <th>Specialist ID</th>
                                                 <th>Problem Type</th>
@@ -291,7 +291,7 @@ function getCallerBranchID() {
    }
 }
 
-function showSpecialists(problemCount, checked=false, e) {
+function showSpecialists(problemID, checked=false, e) {
     let eChecked;
     if(e == null) {
         eChecked = false
@@ -300,11 +300,11 @@ function showSpecialists(problemCount, checked=false, e) {
     }
 
     var newProblems = document.getElementsByClassName("new-problem");
-    console.log(`FUNCTION RUNNING ${problemCount}      ${checked}` );
+    console.log(`FUNCTION RUNNING ${problemID}      ${checked}` );
     if(eChecked || checked) {
         for(var i = 0; i < newProblems.length; i++) {
-            if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
+            if(newProblems[i].dataset.name == `${problemID}`) {
+                var table = newProblems[i].querySelector(`#specialist-table-${problemID}`);
                 console.log("Show branch specialists");
                 console.log(data.specialists);
                 table.innerHTML = generateSpecialistsAtBranchTable(getCallerBranchID());
@@ -313,8 +313,8 @@ function showSpecialists(problemCount, checked=false, e) {
         }
     } else {
         for(var i = 0; i < newProblems.length; i++) {
-            if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
+            if(newProblems[i].dataset.name == `${problemID}`) {
+                var table = newProblems[i].querySelector(`#specialist-table-${problemID}`);
                 console.log("Show all specialists");
                 table.innerHTML = `<tr>
                                     <th>Specialist ID</th>
