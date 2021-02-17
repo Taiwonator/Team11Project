@@ -525,7 +525,7 @@
             }
 
             function updateProblem(problem) {
-                const payload = { "problemNumber": problem.problemNumber, "solveNotes": problem.notes, "solveMethod": problem.solveMethod };
+                const payload = { "problemNumber": selectedProblemNumber, "solveNotes": problem.notes, "solveMethod": problem.solveMethod };
                 loadData('POST', '../php/activeProblems/sql_update_activeProblem.php', payload, function(json) {
                     console.log(json);
                     refreshPage();
