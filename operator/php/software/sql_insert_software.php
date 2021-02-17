@@ -11,7 +11,7 @@ $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
 
 $data = [ "softwareName" => $softwareName, "licensed" => $licensed, "supported" => $supported ];
-$sql = "INSERT INTO $table (SoftwareName, Licensed, Supported) VALUES (:softwareName, :licensed, :supported)";
+$sql = "INSERT INTO $table (`SoftwareName`, `Licensed`, `Supported`) VALUES (:softwareName, :licensed, :supported)";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
