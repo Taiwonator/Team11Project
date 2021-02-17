@@ -192,8 +192,8 @@
 
         function setInputs(softwareName, licensed, supported) {
             softwareNameInput.value = softwareName;
-            licensedInput.checked = licensed;
-            supportedInput.checked = supported;
+            licensedInput.checked = (licensed == "1") ? true : false;
+            supportedInput.checked = (supported == "1") ? true : false;
         }
 
         function confirmDelete(softwareName) {
