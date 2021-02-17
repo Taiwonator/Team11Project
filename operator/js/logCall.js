@@ -297,7 +297,14 @@ function getCallerBranchID() {
 }
 
 function showSpecialists(problemCount, checked=false, e) {
-    if(e.target.checked || checked) {
+    let eChecked;
+    if(e == null) {
+        eChecked = false
+    } else {
+        eChecked = e.target.checked;
+    }
+
+    if(eChecked || checked) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
