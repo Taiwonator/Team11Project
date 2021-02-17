@@ -273,7 +273,7 @@ function showSpecialists(e, problemCount) {
     if(e.target.checked) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
-            if(newProblems[i].dataset.name == problemCount) {
+            if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems.getElementsByClassName('inperson')[0];
                 console.log("Show branch specialists");
             } else {
@@ -283,7 +283,7 @@ function showSpecialists(e, problemCount) {
     } else {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
-            if(newProblems[i].dataset.name == problemCount) {
+            if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems.getElementsByClassName('inperson')[0];
                 console.log("Show all specialists");
             }
