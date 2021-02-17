@@ -11,11 +11,11 @@ $solveNotes = $_POST["solveNotes"];
 $solveMethod = $_POST["solveMethod"];
 
 $data = [ "problemNumber" => $problemNumber, "solveNotes" => $solveNotes, "solveMethod" => $solveMethod ];
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = "UPDATE $table SET SolveNotes = :solveNotes, SolveMethod = :solveMethod WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($sql)->execute($data);
 
   $output = "Update complete";
