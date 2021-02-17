@@ -11,7 +11,8 @@ $solveNotes = $_POST["solveNotes"];
 $solveMethod = $_POST["solveMethod"];
 
 $data = [ "problemNumber" => $problemNumber, "solveNotes" => $solveNotes, "solveMethod" => $solveMethod ];
-$sql = "UPDATE $table SET SolveNotes = :solveNotes, SolveMethod = :solveMethod WHERE Problem.problemNumber = :problemNumber";
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$sql = "UPDATE $table SET SolveNotes = :solveNotes, SolveMethod = :solveMethod WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
