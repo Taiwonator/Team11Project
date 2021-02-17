@@ -15,7 +15,7 @@ $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
 
 $data = [ "oldSoftwareName" => $oldSotwareName, "softwareName" => $softwareName, "licensed" => $license, "supported" => $supported ];
-$sql = "UPDATE $table SET `SoftwareName` = :softwareName, `Licensed` = :licensed, `Supported` = :supported  WHERE Software.SoftwareName = oldSoftwareName";
+$sql = "UPDATE $table SET `SoftwareName` = :softwareName, `Licensed` = :licensed, `Supported` = :supported  WHERE Software.SoftwareName = :oldSoftwareName";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
