@@ -184,7 +184,7 @@ function addTab() {
                             <div id="unsolved-form-${problemCount}">
                                 <div class="checkbox-input-element">
                                     <h3 class="element-title">In Person Solving</h3>
-                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' onclick="showSpecialists(${problemCount}, false, event)" data-input='inPerson' id="in-person-checkbox-problem${problemCount}">
+                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' onclick="showSpecialists('problem${problemCount}', false, event)" data-input='inPerson' id="in-person-checkbox-problem${problemCount}">
                                     <label>Problem must be solved in person</label>
                                 </div>
 
