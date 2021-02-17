@@ -54,6 +54,8 @@ try {
                        getAttr($problem, 'dateSolved'), 
                        date('H:i:s', strtotime(getAttr($problem, 'timeSolved'))) ];
 
+      print_r($problemData);
+
       $problemSQL = "INSERT INTO `Problem` (`OS`, `BranchID`, `ExternalID`, `InPerson`, `Priority`, `ProbDescription`, `ProblemType`, `SerialNumber`, `SoftwareName`, `SolveMethod`, `SolveNotes`, `ID`, `Status`, `DateSolved`, `TimeSolved`) 
                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; 
 
