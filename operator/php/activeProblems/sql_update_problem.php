@@ -24,11 +24,11 @@ $softwareName = $_POST["softwareName"];
 $solveMethod = $_POST["solveMethod"];
 $specialistID = $_POST["specialistID"];
 
-$data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalID" => $externalSpecialistID, "inPerson" => $inPerson, 
+$data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalSpecialistID" => $externalSpecialistID, "inPerson" => $inPerson, 
           "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, 
           "solveMethod" => $solveMethod, "specialistID" => $specialistID];
 $sql = "UPDATE $table 
-        SET BranchID = :branchID, ProbDeescription = :description, InPerson = :inPerson, SolveNotes = :solveNotes, priority = :priority
+        SET BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
         ProblemType = :problemType, SerialNumber = :serialNumber, SoftwareName = :softwareName, SolveMethod = :solveMethod, ID = :specialistID 
         WHERE Problem.ProblemNumber = :problemNumber";
 
