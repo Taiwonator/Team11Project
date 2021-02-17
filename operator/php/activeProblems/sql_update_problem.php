@@ -55,6 +55,7 @@ $sql = "UPDATE $table
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($sql)->execute($data);
 
   $output = array();
