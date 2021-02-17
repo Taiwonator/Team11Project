@@ -1,7 +1,7 @@
 <?php
 
 include '../../includes/connect.php';
-
+echo "lol";
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
         `Call`.CallID = CallProblem.CallID AND 
         `Call`.Name = Personnel_ID.Name AND `Call`.Ext = Personnel_ID.Ext AND
@@ -15,7 +15,7 @@ if ($result->num_rows > 0) {
     while ($record = $result->fetch_assoc()) {
         $message = "Your problem referencing Problem ID: " . $result['ProblemNumber'] . " is still marked as unsolved. Please contact the helpdesk to confirm if your problem has been solved.\n\nMake-it-All Helpdesk";
         mail($record['email'],'Unsolved problem check up',$message);
-        echo "Email sent";
+        echo "Email sent to " . $record['email'];
     }
 }
 
