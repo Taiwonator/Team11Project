@@ -1,7 +1,6 @@
 <?php
 
 include '../../includes/connect.php';
-echo "Console.log("lol");";
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
         `Call`.CallID = CallProblem.CallID AND 
         `Call`.Name = Personnel_ID.Name AND `Call`.Ext = Personnel_ID.Ext AND
@@ -14,9 +13,10 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     while ($record = $result->fetch_assoc()) {
         $message = "Your problem referencing Problem ID: " . $result['ProblemNumber'] . " is still marked as unsolved. Please contact the helpdesk to confirm if your problem has been solved.\n\nMake-it-All Helpdesk";
-        mail($record['email'],'Unsolved problem check up',$message);
-        echo "Email sent to " . $record['email'];
+        mail($record['Email'],'Unsolved problem check up',$message);
+        print_r("Email sent to " . $record['Email'] . " about problem " . $record[ProblemNumber]);
     }
 }
 
 // general concept: find every unsolved problem and send an email reminding them that they have not confirmed the problem as solved.
+// need to learn how to debug a PHP file, especially in this case where im working with a database
