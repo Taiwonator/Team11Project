@@ -64,7 +64,7 @@
                     
                 <div class="text-input-element">
                     <h3 class="element-title">Software Name</h3>
-                    <input type="text" placeholder="Enter software name" id="software-name-input"></input>
+                    <input onkeyup="checkIfAllEmpty()" type="text" placeholder="Enter software name" id="software-name-input"></input>
                 </div>  
                      
                 <div class="element-row">
@@ -117,6 +117,20 @@
         
         span.onclick = function() {
             modal.style.display = "none";
+        }
+
+        function checkIfAllEmpty() {
+            var button = document.getElementById('confirm-button');
+
+            if(softwareNameInput.value == '') {
+                if(!button.classList.contains('disabled-button')) {
+                    button.classList.add('disabled-button');
+                } 
+            } else {
+                if(button.classList.contains('disabled-button')) {
+                    button.classList.remove('disabled-button');
+                }
+            }
         }
 
         function loadSoftware() {
