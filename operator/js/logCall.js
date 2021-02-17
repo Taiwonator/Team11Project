@@ -287,6 +287,7 @@ function showSpecialists(e, problemCount) {
             }
         }
     }
+}
 
 function checkStatus(e, problemCount) {
     if(e.target.checked) {
