@@ -223,7 +223,7 @@
                 modal.style.display = "none";
             }
     
-            document.getElementById("exit-button").onclick = function() {
+            function exitModal() {
                 modal.style.display = "none";
             }
 
@@ -529,6 +529,7 @@
                 loadData('POST', '../php/activeProblems/sql_update_activeProblem.php', payload, function(json) {
                     console.log(json);
                     refreshPage();
+                    exitModal();
                 })
             }
     
