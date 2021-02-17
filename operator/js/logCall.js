@@ -190,7 +190,7 @@ function addTab() {
 
                                 <div class="search-element">
                                     <h3 class="element-title">Specialist </h3>
-                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkIfThirdParty(event, ${problemCount})" class="external">
+                                    <input type="checkbox" id="third-party" value="third-party" onClick="checkIfThirdParty(event, problem${problemCount})" class="external">
                                     <label>3rd party specialist</label>
 
                                     <div id="specialists-${problemCount}" class="specialists">
