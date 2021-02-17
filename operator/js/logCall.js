@@ -273,7 +273,7 @@ function getCallerBranchID() {
    var callerTable = document.getElementById('caller-table');
    let selectedRow = callerTable.getElementsByClassName('selected-row')[0];
    if(selectedRow != null) {
-        return selectedRow.row.cells[6].innerHTML;
+        return selectedRow.cells[6].innerHTML;
    } else {
        return null;
    }
@@ -347,7 +347,17 @@ function generateSpecialistsAtBranchTable(branchID) {
         return branchSpecialistsTable;
     } else {
         console.log("no caller selected, return all");
-        return problemInputStrings['specialists'];
+        return `<tr>
+                    <th>Specialist ID</th>
+                    <th>Name</th>
+                    <th>Ext</th>
+                    <th>Problem Type</th>
+                    <th>No. Jobs</th>
+                    <th>Status</th>
+                    <th>In Work</th>
+                    <th>Part Time</th>
+                    <th>Next In Work</th>
+                </tr>${problemInputStrings['specialists']}`;
     }
 
 }
