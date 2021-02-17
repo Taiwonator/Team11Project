@@ -275,11 +275,10 @@ function showSpecialists(e, problemCount) {
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
-                console.log(table);
                 console.log("Show branch specialists");
-            } else {
-                console.log(`Problem Count: ${problemCount} -> ${newProblems[i].dataset.name}`);
-            }
+
+                
+            } 
         }
     } else {
         var newProblems = document.getElementsByClassName("new-problem");
@@ -287,6 +286,8 @@ function showSpecialists(e, problemCount) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show all specialists");
+
+
             }
         }
     }

@@ -47,7 +47,7 @@ function loadExternalSpecialists() {
 function loadSpecialists() {
     loadData('GET', '../../public/php/sql_select_specialists.php', {}, function(json){
         problemInputStrings['specialists'] = generateSpecialistsTable(json);
-
+        console.log(JSON.parse(json));
         var table = getTable('specialistTable');
         table.innerHTML = ` <tr>
                                     <th>Specialist ID</th>
