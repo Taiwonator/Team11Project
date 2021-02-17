@@ -674,7 +674,7 @@
                 if(equipmentSelectedRow != null) {
                     inputs.serialNumber = equipmentSelectedRow.cells[0].innerHTML;
                 } else {
-                    inputs.serialNumber = "";
+                    inputs.serialNumber = null;
                 }
 
                 if(softwareSelectedRow != null) {
@@ -731,7 +731,7 @@
                     return "serial number is null"
                 } else if (inputs.problemType == null) {
                     return "problem type null";
-                } else if(inputs.specialistID == null && inputs.externalSpecialistID == null) {
+                } else if(inputs.specialistID == "" && inputs.externalSpecialistID == "") {
                     return "select a specialist"
                 } else {
                     return inputs;
