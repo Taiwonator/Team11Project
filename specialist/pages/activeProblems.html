@@ -55,9 +55,9 @@
     
     
                <!-- DESCRIPTION -->
-            <div class="text-area-input-element">
+            <div class="text-area-input-element faded-out">
                 <h3 class="element-title">Problem Description</h3>
-                <textarea id="problem-description-input" class="scroll faded-out" disabled></textarea>
+                <textarea id="problem-description-input" class="scroll" disabled></textarea>
             </div>
     
             <!-- SOLVE METHOD -->
@@ -73,13 +73,13 @@
             </div>
     
             <!-- EQUIPMENT -->
-            <div class="search-element">
+            <div class="search-element faded-out">
                 <h3 class="element-title">Equipment</h3>
                 <div class="search-element-bar">
                     <input type="text" placeholder="Enter Serial Number" onkeyup="searchTable(event, 0)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="equipment-table" class="search-element-table faded-out">
+                <table id="equipment-table" class="search-element-table">
                     <tr>
                         <th>Serial No.</th>
                         <th>Type</th>
@@ -94,13 +94,13 @@
             </div>
     
             <!-- SOFTWARE -->
-            <div class="search-element">
+            <div class="search-element faded-out">
                 <h3 class="element-title">Software</h3>
                 <div class="search-element-bar">
                     <input type="text" placeholder="Enter Software Name" onkeyup="searchTable(event, 0)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="software-table" class="search-element-table faded-out">
+                <table id="software-table" class="search-element-table">
                     <tr>
                         <th>Software Name</th>
                         <th>Licensed</th>
@@ -115,13 +115,13 @@
             </div>
     
             <!-- BRANCH -->
-            <div class="search-element">
+            <div class="search-element faded-out">
                 <h3 class="element-title">Branch</h3>
                 <div class="search-element-bar">
                     <input type="text" placeholder="Enter City" onkeyup="searchTable(event, 2)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="branch-table" class="search-element-table" class="faded-out">
+                <table id="branch-table" class="search-element-table">
                     <tr>
                         <th>Branch ID</th>
                         <th>Branch Name</th>
@@ -133,10 +133,10 @@
             </div>
     
             <!-- PROBLEM TYPE -->
-            <div class="element-row">
+            <div class="element-row faded-out">
                 <div class="select-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <select id="problem-type-input" class="faded-out" disabled> 
+                    <select id="problem-type-input" disabled> 
                         <option value="" selected disabled hidden>Select a problem type</option>
                         <optgroup label="Printer">
                             <option>Printer</option>
@@ -152,9 +152,9 @@
                 </div>
     
                 <!-- OS -->
-                <div class="select-input-element">
+                <div class="select-input-element faded-out">
                     <h3 class="element-title">Operating System</h3>
-                    <select id="os-input" class="faded-out" disabled>
+                    <select id="os-input" disabled>
                         <option value="" selected disabled hidden>Select an OS</option>
                         <option>Windows</option>
                         <option>iOS</option>
@@ -165,10 +165,10 @@
             </div>
     
             <!-- PRIORITY -->
-            <div class="element-row">
+            <div class="element-row faded-out">
                 <div class="select-input-element">
                     <h3 class="element-title">Priority</h3>
-                    <select id="priority-input" class="faded-out" disabled>
+                    <select id="priority-input" disabled>
                         <option value="" selected disabled hidden>Select Priority</option>
                         <option>Low</option>
                         <option>Medium</option>
@@ -178,14 +178,14 @@
                 </div>
     
                 <!-- DATE -->
-                <div class="date-input-element">
+                <div class="date-input-element faded-out">
                     <h3 class="element-title">Date</h3>
-                    <input id="date-solved-input" type="date" class="faded-out" disabled>
+                    <input id="date-solved-input" type="date" disabled>
                 </div>
             </div>
     
             <!-- IN PERSON -->
-            <div class="checkbox-input-element">
+            <div class="checkbox-input-element faded-out">
                 <h3 onclick="getInputs()" class="element-title">In Person Solving</h3>
                 <input type="checkbox" id="in-person-input" value="in-person" disabled>
                 <label>Problem must be solved in person</label>
