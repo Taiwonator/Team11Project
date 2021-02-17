@@ -499,7 +499,7 @@ function retreiveInputs() {
         callerName: "", 
         extension: "",
         problems: [], 
-        operatorID: "3"
+        operatorID: "2"
     };
     for(var i = 0; i < inputFields.length; i++) {
         readCallInput(obj, inputFields[i]);
