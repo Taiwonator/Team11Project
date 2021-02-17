@@ -10,8 +10,6 @@ $softwareName = $_POST["softwareName"];
 $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
 
-print_r($licensed);
-
 $data = [ "softwareName" => $softwareName, "licensed" => $licensed, "supported" => $supported ];
 $sql = "INSERT INTO $table (SoftwareName, Licensed, Supported) VALUES (:softwareName, :licensed, :supported)";
 
@@ -25,6 +23,7 @@ try {
     array_push($output, $row);
   }
   echo json_encode($output);
+  print_r($licensed);
 
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
