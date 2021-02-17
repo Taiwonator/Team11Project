@@ -255,25 +255,25 @@
             console.log("CONFIRM CLICKED");
             var obj = getInputValuesAsObj();
 
-            if(validateInputs(obj)) {
-                var button = document.getElementById('confirm-button');
-                if(!button.classList.contains("disabled-button")) {
-                    var confirmed = confirm("Are you sure?");
-                    if(confirmed == true) {
-                        if(edit) {
-                            updateStandardSolution(obj);
-                            alert("Edit");
-                        } else {
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains("disabled-button")) {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    if(edit) {
+                        updateStandardSolution(obj);
+                        alert("Edit");
+                    } else {
+                        if(validateInputs(obj)) { 
                             insertStandardSolution(obj);
                             alert("Insert");
-                        } 
-                        exitModal();
-                    }
+                        } else {
+                            alert(`Solution named '${obj.name}' already exists `);
+                        }
+                    } 
+                    exitModal();
                 }
-            } else {
-                alert(`Solution named '${obj.name}' already exists `);
             }
-        }
+        } 
 
         function exitModal() {
             document.getElementById('edit-screen').style.display = 'none';

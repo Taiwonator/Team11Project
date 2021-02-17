@@ -228,24 +228,24 @@
             console.log("CONFIRM CLICKED");
             var obj = getInputValuesAsObj();
 
-            if(validateInputs(obj)) {
-                console.log(obj);
-                var button = document.getElementById('confirm-button');
-                if(!button.classList.contains("disabled-button")) {
-                    var confirmed = confirm("Are you sure?");
-                    if(confirmed == true) {
-                        if(edit) {
-                            updateSoftware(obj);
-                            alert("Edit");
-                        } else {
+            console.log(obj);
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains("disabled-button")) {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    if(edit) {
+                        updateSoftware(obj);
+                        alert("Edit");
+                    } else {
+                        if(validateInputs(obj)) {
                             insertSoftware(obj);
                             alert("Insert");
-                        } 
-                        exitModal();
-                    }
+                        } else {
+                            alert(`Software named '${obj.softwareName}' already exists `);
+                        }
+                    } 
+                    exitModal();
                 }
-            } else {
-                alert(`Software named '${obj.softwareName}' already exists `);
             }
         }
 
