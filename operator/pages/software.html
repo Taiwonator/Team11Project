@@ -98,6 +98,7 @@
 
         var edit = false;
         var softwareNameBuffer;
+        var data = {};
 
         addSoftwareButton.onclick = function() {
             modal.style.display = "block";
@@ -142,6 +143,7 @@
                                                                             <th>Actions></th>
                                                                         </tr>
                                                                         ${generateSoftwareTable(json)}`;
+                data.software = JSON.parse(json);
             })
         }
 
@@ -158,12 +160,40 @@
                             ${(software.licensed == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
                             ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
                             <td>
-                                <button class="edit-button">Edit</button>
+                                <button onclick="openSoftware('${software.softwareName}')" class="edit-button">Edit</button>
                                 <button onclick="confirmDelete('${software.softwareName}')" class="report-solved-button">Delete</button>
                             </td>
 
                         `
             })
+        }
+
+        function openSoftware(softwareName) {
+            edit = true;
+            modal.style.display = "block";
+
+            softwareNameBuffer = name;
+
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Edit`;
+
+            var button = document.getElementById('confirm-button');
+            if(button.classList.contains('disabled-button')) {
+                button.classList.remove('disabled-button');
+            }
+
+            for(var i = 0; i < data.software.length; i++) {
+                if(data.software[i].softwareName == softwareName) {
+
+                    setInputs(data.software[i].softwareName, data.software[i].licensed, data.software[i].supported);
+
+                } 
+            }
+        }
+
+        function setInputs(softwareName, licensed, supported) {
+            softwareNameInput.value = softwareName;
+            licensedInput.value = licensed;
+            supportedInput.value = supported;
         }
 
         function confirmDelete(softwareName) {
