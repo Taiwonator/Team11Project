@@ -50,6 +50,10 @@ window.onload = function() {
     addTab();
 }
 
+document.getElementById('caller-table').onclick = function() {
+    console.log("Caller Table has been debugged");
+}
+
 function addTab() {
     var problemString = `<div class="new-problem" data-name="problem${problemCount}"><div class="search-element">
                                 <h3 class="element-title">Equipment</h3>
