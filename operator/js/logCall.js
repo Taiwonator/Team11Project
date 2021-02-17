@@ -278,6 +278,7 @@ function showSpecialists(e, problemCount) {
                 console.log("Show branch specialists");
                 console.log(data.specialists);
                 table.innerHTML = generateSpecialistsAtBranchTable('122');
+                console.log(retreiveInputs());
             } 
         }
     } else {
