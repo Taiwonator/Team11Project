@@ -269,6 +269,16 @@ function addTab() {
     addSelectableRows();
 }
 
+function getCallerBranchID() {
+   var callerTable = document.getElementById('caller-table');
+   let selectedRow = callerTable.getElementsByClassName('selected-row')[0];
+   if(selectedRow != null) {
+        return selectedRow.row.cells[6].innerHTML;
+   } else {
+       return null;
+   }
+}
+
 function showSpecialists(e, problemCount) {
     if(e.target.checked) {
         var newProblems = document.getElementsByClassName("new-problem");
@@ -277,7 +287,7 @@ function showSpecialists(e, problemCount) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show branch specialists");
                 console.log(data.specialists);
-                table.innerHTML = generateSpecialistsAtBranchTable('122');
+                table.innerHTML = generateSpecialistsAtBranchTable(getCallerBranchID());
                 console.log(retreiveInputs());
             } 
         }
@@ -304,36 +314,41 @@ function showSpecialists(e, problemCount) {
 }
 
 function generateSpecialistsAtBranchTable(branchID) {
-    // Go through specialists and generate a new line for each specialist with branchID matching this 
-    var branchSpecialists = data.specialists.map(specialist => {
-        if(specialist.branchID == branchID) {
-            return `<tr>
-                        <td>${specialist.id}</td>
-                        <td>${specialist.name}</td>
-                        <td>${specialist.ext}</td>
-                        <td>${specialist.problemType}</td>
-                        <td>${specialist.numJobs}</td>
-                        <td>${specialist.status}</td>
-                        <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
-                        <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
-                        <td>${specialist.nextInWork}</td>
-                    </tr>`
-        }
-    })
+    if(branchID != null) {
+        // Go through specialists and generate a new line for each specialist with branchID matching this 
+        var branchSpecialists = data.specialists.map(specialist => {
+            if(specialist.branchID == branchID) {
+                return `<tr>
+                            <td>${specialist.id}</td>
+                            <td>${specialist.name}</td>
+                            <td>${specialist.ext}</td>
+                            <td>${specialist.problemType}</td>
+                            <td>${specialist.numJobs}</td>
+                            <td>${specialist.status}</td>
+                            <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
+                            <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
+                            <td>${specialist.nextInWork}</td>
+                        </tr>`
+            }
+        })
 
-    var branchSpecialistsTable = `<tr>
-                                    <th>Specialist ID</th>
-                                    <th>Name</th>
-                                    <th>Ext</th>
-                                    <th>Problem Type</th>
-                                    <th>No. Jobs</th>
-                                    <th>Status</th>
-                                    <th>In Work</th>
-                                    <th>Part Time</th>
-                                    <th>Next In Work</th>
-                                </tr>
-                                ${branchSpecialists}`;
-    return branchSpecialistsTable;
+        var branchSpecialistsTable = `<tr>
+                                        <th>Specialist ID</th>
+                                        <th>Name</th>
+                                        <th>Ext</th>
+                                        <th>Problem Type</th>
+                                        <th>No. Jobs</th>
+                                        <th>Status</th>
+                                        <th>In Work</th>
+                                        <th>Part Time</th>
+                                        <th>Next In Work</th>
+                                    </tr>
+                                    ${branchSpecialists}`;
+        return branchSpecialistsTable;
+    } else {
+        console.log("no caller selected, return all");
+        return problemInputStrings['specialists'];
+    }
 
 }
 
