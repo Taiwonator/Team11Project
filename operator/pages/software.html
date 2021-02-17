@@ -229,7 +229,7 @@
             var obj = getInputValuesAsObj();
 
             if(validateInputs(obj)) {
-                console.log(validateInputs(obj));
+                console.log(obj);
                 var button = document.getElementById('confirm-button');
                 if(!button.classList.contains("disabled-button")) {
                     var confirmed = confirm("Are you sure?");
