@@ -51,7 +51,7 @@
                     </tr>
                 </table>
                 </div>
-                <button id="add-personnel" class="big-button">Add Software</button>
+                <button id="add-software" class="big-button">Add Software</button>
                 
             </div>
         </div>
@@ -60,28 +60,28 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h1 class="title"><i class="fa fa-edit"></i> Edit</h1>  
+                <h1 id="modal-title" class="title"><i class="fa fa-edit"></i> Edit</h1>  
                     
                 <div class="text-input-element">
                     <h3 class="element-title">Software Name</h3>
-                    <input type="text" placeholder="Enter software name"></input>
+                    <input type="text" placeholder="Enter software name" id="software-name-input"></input>
                 </div>  
                      
                 <div class="element-row">
                     <div class="checkbox-input-element">
                         <h3 class="element-title">Licensed</h3>
-                        <input type="checkbox"></input>
+                        <input type="checkbox" id="licenced-input"></input>
                         <label>Licensed software</label>
                     </div>  
                     <div class="checkbox-input-element">
                         <h3 class="element-title">Supported</h3>
-                        <input type="checkbox"></input>
+                        <input type="checkbox" id="supported-input"></input>
                         <label>Supported software</label>
                     </div>  
                 </div> 
 
                         
-                <button class="big-button confirm-edit">Confirm</button>
+                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -89,11 +89,30 @@
     <script src="../../public/js/ajaxFunctions.js"></script>
     <script>
         var modal = document.getElementById("edit-screen");
-        var addPersonnelButton = document.getElementById("add-personnel");
+        var addSoftwareButton = document.getElementById("add-software");
         var span = document.getElementsByClassName("close")[0]; // close button
 
-        addPersonnelButton.onclick = function() {
+        var softwareNameInput = document.getElementById("software-name-input");
+        var licensedInput = document.getElementById("licenced-input");
+        var supportedInput = document.getElementById("supported-input");
+
+        var edit = false;
+        var softwareNameBuffer;
+
+        addSoftwareButton.onclick = function() {
             modal.style.display = "block";
+            edit = false;
+
+            softwareNameInput.value = '';
+            licensedInput.checked = false;
+            supportedInput.checked = false;
+            
+            document.getElementById('modal-title').innerHTML = `<i class="fa fa-edit"></i> Insert`;
+
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains('disabled-button')) {
+                button.classList.add('disabled-button');
+            }
         }
         
         span.onclick = function() {
