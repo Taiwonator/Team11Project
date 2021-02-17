@@ -274,7 +274,7 @@ function showSpecialists(e, problemCount) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems.getElementById(`specialist-table-${problemCount}`);
+                var table = newProblems[i].getElementById(`specialist-table-${problemCount}`);
                 console.log(table);
                 console.log("Show branch specialists");
             } else {
@@ -285,7 +285,7 @@ function showSpecialists(e, problemCount) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems.getElementById(`specialist-table-${problemCount}`);
+                var table = newProblems[i].getElementById(`specialist-table-${problemCount}`);
                 console.log("Show all specialists");
             }
         }
