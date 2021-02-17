@@ -230,12 +230,18 @@
 
             })
         }
-        loadPendingSolutions();
-        loadBranches();
-        loadEquipment();
-        loadSoftware();
-        loadSpecialists();
-        loadExternalSpecialists();
+
+        function refreshPage() {
+            loadPendingSolutions();
+            loadBranches();
+            loadEquipment();
+            loadSoftware();
+            loadSpecialists();
+            loadExternalSpecialists();
+        }
+
+        refreshPage();
+        
 
         function loadBranches() {
             loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
@@ -401,20 +407,31 @@
         function confirmSolved(problemNumber) {
             var confirmed = confirm("Are you sure you want to confirm this problem?");
             if(confirmed) {
-                updateProblemStatus(problemNumber);
+                updateProblemStatusToSolved(problemNumber);
             }
         }
 
         function rejectSolved(problemNumber) {
             var confirmed = confirm("Are you sure you want to confirm this problem?");
             if(confirmed) {
-                alert(`Problem ${problemNumber} rejected!`);
+                updateProblemStatusToUnsolved(problemNumber);
             }
         }
 
-        function updateProblemStatus(problemNumber) {
-            // CALL PHP FILE
-            alert(`Problem ${problemNumber} confirmed`);
+        function updateProblemStatusToSolved(problemNumber) {
+            const payload = { 'problemNumber': problemNumber };
+            loadData('POST', '../php/specialistReports/sql_update_problem_solved.php', payload, function(json) {
+                console.log(json);
+                refreshPage();
+            })
+        }
+
+        function updateProblemStatusToUnsolved(problemNumber) {
+            const payload = { 'problemNumber': problemNumber };
+            loadData('POST', '../php/specialistReports/sql_update_problem_unsolved.php', payload, function(json) {
+                console.log(json);
+                refreshPage();
+            })
         }
 
         function viewProblem(problemNumber) {

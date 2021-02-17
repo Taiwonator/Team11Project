@@ -1,6 +1,6 @@
 <?php
 
-// update problem to solved
+// update problem to unsolved
 
 $_POST = json_decode(file_get_contents('php://input'), true);
 
@@ -11,23 +11,9 @@ $table = "Problem";
 
 $problemNumber = $_POST["problemNumber"];
 $status = "solved"; 
-$branchID = $_POST["branchID"];
-$inPerson = $_POST["inPerson"];
-$priority = $_POST["priority"];
-$probDescripion = $_POST["probDescription"];
-$OS = $_POST["OS"];
-$softwareName = $_POST["softwareName"];
-$serialNumber = $_POST["serialNumber"];
-$dateSolved = $_POST["dateSolved"];
-$timeSolved = $_POST["timeSolved"];
-$solveMethod = $_POST["solveMethod"];
-$solveNotes = $_POST["solveNotes"];
-$problemType = $_POST["problemType"];
-$ID = $_POST["ID"];
-$externalID = $_POST["externalID"];
 
-$data = [ "problemNumber" => $problemNumber, "oldStatus" => $oldStatus, "status" => $status, "branchID" => $branchID, "inPerson" => $inPerson, "priority" => $priority, "probDescription" => $probDescription, "OS" => $OS, "softwareName" => $softwareName, "serialNumber" => $serialNumber, "dateSolved" => $dateSolved, "timeSolved" => $timeSolved, "solveMethod" => $solveMethod, "solveNotes" => $solveNotes, "problemType" => $problemType, "ID" => $ID, "externalID" => $externalID ];
-$sql = "UPDATE $table SET ProblemNumber = :problemNumber, Status = :status, BranchID = :branchID, InPerson = :inPerson, Priority = :priority, ProblemDescription = :probDescription, OS = :OS, SoftwareName = :softwareName, SerialNumber = :serialNumber, DateSolved = :dateSolved, TimeSolved = :timeSolved, SolveMethod = :solveMethod, SolveNotes = :solveNotes, ProblemType = :problemType, ID = :ID, ExternalID = :externalID WHERE Problem.ProblemNumber = :ProblemNumber";
+$data = [ "problemNumber" => $problemNumber ];
+$sql = "UPDATE $table SET Status = :status WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
