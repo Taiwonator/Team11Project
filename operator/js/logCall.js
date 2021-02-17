@@ -53,6 +53,17 @@ window.onload = function() {
 document.getElementById('caller-table').onclick = function() {
     for(var i = 0; i < problemIDs.length; i++) {
         console.log(problemIDs[i]);
+
+        problemID = problemID[i].problemID;
+        var checkedValue;
+        var newProblems = document.getElementsByClassName("new-problem");
+        for(var i = 0; i < newProblems.length; i++) {
+            if(newProblems[i].dataset.name == problemID) { 
+                checkedValue = newProblems[i].getElementById(`in-person-checkbox-${problemID}`).checked;
+            }
+        }
+
+        showSpecialists(problemID, checkedValue);
     }
 }
 
@@ -178,7 +189,7 @@ function addTab() {
                             <div id="unsolved-form-${problemCount}">
                                 <div class="checkbox-input-element">
                                     <h3 class="element-title">In Person Solving</h3>
-                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' onclick="showSpecialists(event, ${problemCount})" data-input='inPerson'>
+                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' onclick="showSpecialists(${problemCount}, false, event)" data-input='inPerson' id="in-person-checkbox-problem${problemCount}">
                                     <label>Problem must be solved in person</label>
                                 </div>
 
@@ -285,8 +296,8 @@ function getCallerBranchID() {
    }
 }
 
-function showSpecialists(e, problemCount) {
-    if(e.target.checked) {
+function showSpecialists(problemCount, checked=false, e) {
+    if(e.target.checked || checked) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
