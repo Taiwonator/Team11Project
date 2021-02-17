@@ -59,7 +59,7 @@ document.getElementById('caller-table').onclick = function() {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == problemID) { 
-                checkedValue = newProblems[i].getElementById(`in-person-checkbox-${problemID}`).checked;
+                checkedValue = newProblems[i].querySelector(`#in-person-checkbox-${problemID}`).checked;
             }
         }
 
