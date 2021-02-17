@@ -51,17 +51,12 @@ window.onload = function() {
 }
 
 document.getElementById('caller-table').onclick = function() {
-    for(var i = 0; i < problemIDs.length; i++) {
-        console.log(problemIDs[i]);
 
-        var problemID = problemIDs[i].problemID;
-        var checkedValue;
-        var newProblems = document.getElementsByClassName("new-problem");
-        for(var i = 0; i < newProblems.length; i++) {
-            if(newProblems[i].dataset.name == problemID) { 
-                checkedValue = newProblems[i].querySelector(`#in-person-checkbox-${problemID}`).checked;
-            }
-        }
+    newProblems = document.getElementsByClassName("new-problem");
+
+    for(var i = 0; i < newProblems.length; i++) {
+        var problemID = newProblems[i].dataset.name;
+        var checkedValue = newProblems[i].querySelector(`#in-person-checkbox-${problemID}`).checked;
 
         console.log(`${problemID} has a checked value of: ${checkedValue}`);
         showSpecialists(problemID, checkedValue);
