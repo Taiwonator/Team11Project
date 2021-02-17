@@ -23,9 +23,19 @@ $softwareName = $_POST["softwareName"];
 $solveMethod = $_POST["solveMethod"];
 $specialistID = $_POST["specialistID"];
 
-$data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalSpecialistID" => $externalSpecialistID, "inPerson" => $inPerson, 
-          "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, 
-          "solveMethod" => $solveMethod, "specialistID" => $specialistID, "OS" => $OS ];
+$data = [ "problemNumber" => getValue($problemNumber), 
+          "branchID" => getValue($branchID), 
+          "description" => getValue($description), 
+          "externalSpecialistID" => getValue($externalSpecialistID), 
+          "inPerson" => getValue($inPerson), 
+          "solveNotes" => getValue($solveNotes), 
+          "priority" => getValue($priority), 
+          "problemType" => getValue($problemType), 
+          "serialNumber" => getValue($serialNumber), 
+          "softwareName" => getValue($softwareName), 
+          "solveMethod" => getValue($solveMethod), 
+          "specialistID" => getValue($specialistID), 
+          "OS" => getValue($OS) ];
 print_r($data);
 
 $sql = "UPDATE $table 
@@ -49,6 +59,18 @@ try {
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
+}
+
+function getValue($value) {
+  if($value == "") {
+    return NULL;
+  } else {
+    if(is_numeric($value)) {
+      return (int)$value;
+    } else {
+      return $value;
+    }
+  }
 }
 
 ?>
