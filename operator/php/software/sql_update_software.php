@@ -24,7 +24,7 @@ try {
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
-    $row = array("softwareName"=>$row['SoftwareName'], "licensed"=>$row['Licensed'], "supported"=>$row['Supported'],);
+    $row = array("softwareName"=>$row['SoftwareName'], "licensed"=>$row['Licensed'], "supported"=>$row['Supported']);
     array_push($output, $row);
   }
   echo json_encode($output);
