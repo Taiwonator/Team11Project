@@ -417,3 +417,7 @@ input:focus, select:focus {
     .night *, .night input::placeholder {
         color: white !important;
     }
+
+    .faded-out {
+        opacity: .5;
+    }

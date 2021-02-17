@@ -57,7 +57,7 @@
                <!-- DESCRIPTION -->
             <div class="text-area-input-element">
                 <h3 class="element-title">Problem Description</h3>
-                <textarea id="problem-description-input" class="scroll" disabled></textarea>
+                <textarea id="problem-description-input" class="scroll faded-out" disabled></textarea>
             </div>
     
             <!-- SOLVE METHOD -->
@@ -79,7 +79,7 @@
                     <input type="text" placeholder="Enter Serial Number" onkeyup="searchTable(event, 0)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="equipment-table" class="search-element-table">
+                <table id="equipment-table" class="search-element-table faded-out">
                     <tr>
                         <th>Serial No.</th>
                         <th>Type</th>
@@ -100,7 +100,7 @@
                     <input type="text" placeholder="Enter Software Name" onkeyup="searchTable(event, 0)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="software-table" class="search-element-table">
+                <table id="software-table" class="search-element-table faded-out">
                     <tr>
                         <th>Software Name</th>
                         <th>Licensed</th>
@@ -121,7 +121,7 @@
                     <input type="text" placeholder="Enter City" onkeyup="searchTable(event, 2)"> 
                     <button><i class="fa fa-search"></i></button>
                 </div>
-                <table id="branch-table" class="search-element-table">
+                <table id="branch-table" class="search-element-table" class="faded-out">
                     <tr>
                         <th>Branch ID</th>
                         <th>Branch Name</th>
@@ -136,7 +136,7 @@
             <div class="element-row">
                 <div class="select-input-element">
                     <h3 class="element-title">Problem Type</h3>
-                    <select id="problem-type-input" disabled> 
+                    <select id="problem-type-input" class="faded-out" disabled> 
                         <option value="" selected disabled hidden>Select a problem type</option>
                         <optgroup label="Printer">
                             <option>Printer</option>
@@ -154,7 +154,7 @@
                 <!-- OS -->
                 <div class="select-input-element">
                     <h3 class="element-title">Operating System</h3>
-                    <select id="os-input" disabled>
+                    <select id="os-input" class="faded-out" disabled>
                         <option value="" selected disabled hidden>Select an OS</option>
                         <option>Windows</option>
                         <option>iOS</option>
@@ -168,7 +168,7 @@
             <div class="element-row">
                 <div class="select-input-element">
                     <h3 class="element-title">Priority</h3>
-                    <select id="priority-input" disabled>
+                    <select id="priority-input" class="faded-out" disabled>
                         <option value="" selected disabled hidden>Select Priority</option>
                         <option>Low</option>
                         <option>Medium</option>
@@ -180,7 +180,7 @@
                 <!-- DATE -->
                 <div class="date-input-element">
                     <h3 class="element-title">Date</h3>
-                    <input id="date-solved-input" type="date" disabled>
+                    <input id="date-solved-input" type="date" class="faded-out" disabled>
                 </div>
             </div>
     
@@ -190,7 +190,7 @@
                 <input type="checkbox" id="in-person-input" value="in-person" disabled>
                 <label>Problem must be solved in person</label>
             </div>
-            <button id="exit-button" class="big-button confirm-edit">Exit</button>
+            <button onclick="confirmEdit()" id="exit-button" class="big-button confirm-edit">Exit</button>
             </div>
     
               
@@ -217,6 +217,7 @@
             var dateSolvedInput = document.getElementById("date-solved-input");
             var inPersonInput = document.getElementById("in-person-input");
 
+            var selectedProblemNumber;
     
             span.onclick = function() {
                 modal.style.display = "none";
@@ -306,7 +307,7 @@
                                 <td>${problem.problemType}</td>
                                 <td>${(problem.priority == null) ? "Not sure" : problem.priority}</td>
                                 <td>
-                                    <button onclick="viewProblem(${problem.problemNumber})" class="edit-button">Edit / Reassign</button>
+                                    <button onclick="viewProblem(${problem.problemNumber})" class="edit-button">Input Solution</button>
                                     <button onclick="reportSolved(${problem.problemNumber})" class="report-solved-button">Report Solved</button>
                                 </td>`
                 })
@@ -418,13 +419,15 @@
                         refreshPage();
                 })
             }
+            
     
             function viewProblem(problemNumber) {
                 console.log(problemNumber);
                 
                 // Open modal
                 modal.style.display = "block";
-    
+                selectedProblemNumber = problemNumber;
+
                 // Get all input objects 
                 for(var i = 0; i < data.activeProblems.length; i++) {
                     if(data.activeProblems[i].problemNumber == problemNumber) {
@@ -497,16 +500,35 @@
                     solveMethod: solveMethodInput.value, 
                     notes: notesInput.value, 
                 }
-                const validatedInputs = validateInputs(inputs);
-                console.log(validatedInputs);
+                return inputs;
             }
 
             function validateInputs(inputs) {
                 if(inputs.solveMethod == null || inputs.solveMethod.length == 0) {
-                    return "solve method is empty";
+                    return false;
                 } else {
-                    return inputs;
+                    return true;
                 }
+            }
+
+            function confirmEdit() {
+                var inputs = getInputs();
+                if(validateInputs(inputs)) {
+                    var confirmed = confirm("Are you sure?");
+                    if(confirmed) {
+                        updateProblem(inputs);
+                    }
+                } else {
+                    alert("invalid inputs");
+                }
+            }
+
+            function updateProblem(problem) {
+                const payload = { "problemNumber": problem.problemNumber, "solveNotes": problem.notes, "solveMethod": problem.solveMethod };
+                loadData('POST', '../php/activeProblems/sql_update_activeProblem.php', payload, function(json) {
+                    console.log(json);
+                    refreshPage();
+                })
             }
     
         </script>
