@@ -420,7 +420,7 @@
 
         function updateProblemStatusToSolved(problemNumber) {
             const payload = { 'problemNumber': problemNumber };
-            loadData('POST', '../php/specialistReports/sql_update_problem_solved.php', payload, function(json) {
+            loadData('POST', '../../public/php/sql_update_problem_solved.php', payload, function(json) {
                 console.log(json);
                 refreshPage();
             })
@@ -428,7 +428,7 @@
 
         function updateProblemStatusToUnsolved(problemNumber) {
             const payload = { 'problemNumber': problemNumber };
-            loadData('POST', '../php/specialistReports/sql_update_problem_unsolved.php', payload, function(json) {
+            loadData('POST', '../../public/php/sql_update_problem_unsolved.php', payload, function(json) {
                 console.log(json);
                 refreshPage();
             })

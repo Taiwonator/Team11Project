@@ -283,13 +283,7 @@
                 })
             }
 
-            loadActiveSolutions();
-            loadBranches();
-            loadEquipment();
-            loadSoftware();
-            loadSpecialists();
-            loadExternalSpecialists();
-            loadProblemTypes();
+            refreshPage();
     
             function loadBranches() {
                 loadData('GET', '../../public/php/sql_select_branches.php', {}, function(json){
@@ -448,7 +442,11 @@
     
             function updateProblemStatus(problemNumber) {
                 // CALL PHP FILE
-                alert(`Problem ${problemNumber} reported`);
+                const payload = { 'problemNumber': problemNumber };
+                    loadData('POST', '../../public/php/sql_update_problem_pending.php', payload, function(json) {
+                        console.log(json);
+                        refreshPage();
+                })
             }
     
             function viewProblem(problemNumber) {
