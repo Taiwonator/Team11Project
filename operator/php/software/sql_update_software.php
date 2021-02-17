@@ -9,7 +9,7 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Software";
 
-$oldSoftwareName = $POST["oldSoftwareName"];
+$oldSoftwareName = $_POST["oldSoftwareName"];
 $softwareName = $_POST["softwareName"];
 $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
