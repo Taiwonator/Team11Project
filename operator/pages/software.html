@@ -260,6 +260,7 @@
             const payload = { 'softwareName': software.softwareName, 'licensed': software.licensed, 'supported': software.supported };
             console.log(payload);
             loadData('POST', '../php/software/sql_insert_software.php', payload, function(json) {
+                console.log(json);
                 refreshPage();
             })
         }
@@ -267,6 +268,7 @@
         function updateSoftware(software) {
             const payload = { 'oldSoftwareName': softwareNameBuffer, 'softwareName': software.softwareName, 'licensed': software.licensed, 'supported': software.supported };
             loadData('POST', '../php/software/sql_update_software.php', payload, function(json) {
+                console.log(json);
                 refreshPage();
             })
         }
