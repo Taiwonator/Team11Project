@@ -703,7 +703,7 @@
             function confirmEdit() {
                 var inputs = getInputs();
                 const validatedInputs = validateInputs(inputs);
-                console.log(validateInputs);
+                console.log(validatedInputs);
                 if(typeof(validatedInputs) != "string") {
                     var confirmed = confirm("Are you sure you want to edit this data?");
                     if(confirmed) {

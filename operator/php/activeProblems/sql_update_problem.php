@@ -9,6 +9,8 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Problem";
 
+$branchID = "122";
+
 $problemNumber = $_POST["problemNumber"];
 $branchID = $_POST["branchID"];
 $description = $_POST["description"];
@@ -32,7 +34,7 @@ try {
   $db->prepare($sql)->execute($data);
 
   $output = array();
-  foreach($db->query("SELECT * FROM $table") as $row) {
+  foreach($db->query("SELECT * FROM $table WHERE (`BranchID`=$branchID AND `Status`='unsolved')") as $row) {
     $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
     "inPerson"=>$row['InPerson'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
