@@ -23,24 +23,34 @@ $softwareName = $_POST["softwareName"];
 $solveMethod = $_POST["solveMethod"];
 $specialistID = $_POST["specialistID"];
 
-$data = [ "problemNumber" => getValue($problemNumber), 
-          "branchID" => getValue($branchID), 
+$data = [ "problemNumber" => (int)getValue($problemNumber), 
+          "branchID" => (int)getValue($branchID), 
           "description" => getValue($description), 
-          "externalSpecialistID" => getValue($externalSpecialistID), 
-          "inPerson" => getValue($inPerson), 
+          "externalSpecialistID" => (int)getValue($externalSpecialistID), 
+          "inPerson" => (int)getValue($inPerson), 
           "solveNotes" => getValue($solveNotes), 
           "priority" => getValue($priority), 
           "problemType" => getValue($problemType), 
-          "serialNumber" => getValue($serialNumber), 
+          "serialNumber" => (int)getValue($serialNumber), 
           "softwareName" => getValue($softwareName), 
           "solveMethod" => getValue($solveMethod), 
-          "specialistID" => getValue($specialistID), 
+          "specialistID" => (int)getValue($specialistID), 
           "OS" => getValue($OS) ];
 print_r($data);
 
 $sql = "UPDATE $table 
-        SET OS = :OS, BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
-        ProblemType = :problemType, SerialNumber = :serialNumber, SoftwareName = :softwareName, SolveMethod = :solveMethod, ID = :specialistID 
+        SET OS = :OS, 
+        BranchID = :branchID, 
+        ProbDescription = :description, 
+        InPerson = :inPerson, 
+        ExternalID = :externalSpecialistID, 
+        SolveNotes = :solveNotes, 
+        Priority = :priority
+        ProblemType = :problemType, 
+        SerialNumber = :serialNumber, 
+        SoftwareName = :softwareName, 
+        SolveMethod = :solveMethod, 
+        ID = :specialistID 
         WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
