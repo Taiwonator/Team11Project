@@ -58,7 +58,6 @@ document.getElementById('caller-table').onclick = function() {
         var problemID = newProblems[i].dataset.name;
         var checkedValue = newProblems[i].querySelector(`#in-person-checkbox-${problemID}`).checked;
 
-        console.log(`${problemID} has a checked value of: ${checkedValue}`);
         showSpecialists(problemID, checkedValue);
     }
 }
@@ -300,8 +299,9 @@ function showSpecialists(problemCount, checked=false, e) {
         eChecked = e.target.checked;
     }
 
+    var newProblems = document.getElementsByClassName("new-problem");
+    console.log(`FUNCTION RUNNING ${problemCount}      ${checked}` );
     if(eChecked || checked) {
-        var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
@@ -312,7 +312,6 @@ function showSpecialists(problemCount, checked=false, e) {
             } 
         }
     } else {
-        var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
