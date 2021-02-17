@@ -1,7 +1,7 @@
 <?php
 
 include '../../includes/connect.php';
-echo "lol";
+echo "Console.log("lol");";
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
         `Call`.CallID = CallProblem.CallID AND 
         `Call`.Name = Personnel_ID.Name AND `Call`.Ext = Personnel_ID.Ext AND
