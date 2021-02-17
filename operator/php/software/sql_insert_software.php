@@ -15,6 +15,7 @@ $sql = "INSERT INTO $table (`SoftwareName`, `Licensed`, `Supported`) VALUES (:so
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($sql)->execute($data);
 
   $output = array();
