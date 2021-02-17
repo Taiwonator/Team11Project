@@ -14,7 +14,7 @@ $softwareName = $_POST["softwareName"];
 $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
 
-$data = [ "oldSoftwareName" => $oldSotwareName, "softwareName" => $softwareName, "licensed" => $license, "supported" => $supported ];
+$data = [ "oldSoftwareName" => $oldSoftwareName, "softwareName" => $softwareName, "licensed" => $licensed, "supported" => $supported ];
 $sql = "UPDATE $table SET `SoftwareName` = :softwareName, `Licensed` = :licensed, `Supported` =:supported  WHERE Software.SoftwareName = :oldSoftwareName";
 
 try {
