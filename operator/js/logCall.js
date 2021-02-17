@@ -51,7 +51,9 @@ window.onload = function() {
 }
 
 document.getElementById('caller-table').onclick = function() {
-    console.log("Caller Table has been debugged");
+    for(var i = 0; i < problemIDs.length; i++) {
+        console.log(problemIDs[i]);
+    }
 }
 
 function addTab() {
