@@ -16,13 +16,13 @@ $sql = "DELETE FROM $table WHERE Software.SoftwareName = :softwareName";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $db->prepare($sql)->execute($data);
+  // $db->prepare($sql)->execute($data);
 
   $output = array();
-  // foreach($db->query("SELECT * FROM $table") as $row) {
-  //   $row = array("softwareName"=>$row['SoftwareName'], "licensed"=>$row['Licensed'], "supported"=>$row['Supported'],);
-  //   array_push($output, $row);
-  // }
+  foreach($db->query("SELECT * FROM $table") as $row) {
+    $row = array("softwareName"=>$row['SoftwareName'], "licensed"=>$row['Licensed'], "supported"=>$row['Supported'],);
+    array_push($output, $row);
+  }
   echo json_encode($output);
 
 } catch (PDOException $e) {
