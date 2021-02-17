@@ -750,7 +750,8 @@
                                   "serialNumber": problem.serialNumber, 
                                   "softwareName": problem.softwareName, 
                                   "solveMethod": problem.solveMethod, 
-                                  "specialistID": problem.specialistID  
+                                  "specialistID": problem.specialistID,
+                                  "OS": problem.OS  
                 };
                 loadData('POST', '../php/activeProblems/sql_update_problem.php', payload, function(json) {
                     console.log(json);

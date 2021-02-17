@@ -9,8 +9,7 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Problem";
 
-$branchID = "122";
-
+$OS = $_POST["OS"];
 $problemNumber = $_POST["problemNumber"];
 $branchID = $_POST["branchID"];
 $description = $_POST["description"];
@@ -28,7 +27,7 @@ $data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "descripti
           "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, 
           "solveMethod" => $solveMethod, "specialistID" => $specialistID];
 $sql = "UPDATE $table 
-        SET BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
+        SET OS = :OS, BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
         ProblemType = :problemType, SerialNumber = :serialNumber, SoftwareName = :softwareName, SolveMethod = :solveMethod, ID = :specialistID 
         WHERE Problem.ProblemNumber = :problemNumber";
 
@@ -37,7 +36,7 @@ try {
   $db->prepare($sql)->execute($data);
 
   $output = array();
-  foreach($db->query("SELECT * FROM $table WHERE (`BranchID`=$branchID AND `Status`='unsolved')") as $row) {
+  foreach($db->query("SELECT * FROM $table WHERE (`BranchID`=122 AND `Status`='unsolved')") as $row) {
     $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
     "inPerson"=>$row['InPerson'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
