@@ -25,7 +25,8 @@ $specialistID = $_POST["specialistID"];
 
 $data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalSpecialistID" => $externalSpecialistID, "inPerson" => $inPerson, 
           "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, 
-          "solveMethod" => $solveMethod, "specialistID" => $specialistID];
+          "solveMethod" => $solveMethod, "specialistID" => $specialistID, "OS" => $OS ];
+
 $sql = "UPDATE $table 
         SET OS = :OS, BranchID = :branchID, ProbDescription = :description, InPerson = :inPerson, ExternalID = :externalSpecialistID, SolveNotes = :solveNotes, Priority = :priority
         ProblemType = :problemType, SerialNumber = :serialNumber, SoftwareName = :softwareName, SolveMethod = :solveMethod, ID = :specialistID 
