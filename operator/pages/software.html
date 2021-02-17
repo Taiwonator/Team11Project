@@ -112,7 +112,10 @@
             })
         }
 
-        loadSoftware();
+        function refreshPage() {
+            loadSoftware();
+        }
+
 
         function generateSoftwareTable(json) {
             return generateTable(json, (software) => {
@@ -122,10 +125,25 @@
                             ${(software.supported == 1) ? '<td><i class="fa fa-check-square"></i></td>' : '<td></td>'}
                             <td>
                                 <button class="edit-button">Edit</button>
-                                <button class="report-solved-button">Delete</button>
+                                <button onclick="confirmDelete('${softwareName.softwareName}')" class="report-solved-button">Delete</button>
                             </td>
 
                         `
+            })
+        }
+
+        function confirmDelete(softwareName) {
+            var confirmed = confirm("Are you sure?");
+            if(confirmed == true) {
+                deleteSoftware(softwareName);
+            }
+        }
+
+        function deleteSoftware(softwareName) {
+            const payload = { 'softwareName': softwareName };
+            loadData('POST', '../php/software/sql_delete_software.php', payload, function(json) {
+                console.log(json);
+                refreshPage();
             })
         }
         
