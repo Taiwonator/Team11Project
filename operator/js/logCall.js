@@ -186,7 +186,7 @@ function addTab() {
                                             <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
-                                        <table class="search-element-table problem-input-field inperson" data-table-name="specialistTable">
+                                        <table class="search-element-table problem-input-field" data-table-name="specialistTable" id="specialist-table-${problemCount}">
                                             <tr>
                                                 <th>Specialist ID</th>
                                                 <th>Problem Type</th>
@@ -274,7 +274,8 @@ function showSpecialists(e, problemCount) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems.getElementsByClassName('inperson')[0];
+                var table = newProblems.getElementById(`specialist-table-${problemCount}`);
+                console.log(table);
                 console.log("Show branch specialists");
             } else {
                 console.log(`Problem Count: ${problemCount} -> ${newProblems[i].dataset.name}`);
@@ -284,7 +285,7 @@ function showSpecialists(e, problemCount) {
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
-                var table = newProblems.getElementsByClassName('inperson')[0];
+                var table = newProblems.getElementById(`specialist-table-${problemCount}`);
                 console.log("Show all specialists");
             }
         }
