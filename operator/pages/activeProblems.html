@@ -177,13 +177,6 @@
                     </select>
                 </div>
     
-                <!-- DATE -->
-                <div class="date-input-element">
-                    <h3 class="element-title">Date</h3>
-                    <input id="date-solved-input" type="date">
-                </div>
-            </div>
-    
             <!-- IN PERSON -->
             <div class="checkbox-input-element">
                 <h3 class="element-title">In Person Solving</h3>
@@ -231,7 +224,7 @@
                 
             </div>
     
-                <button id="exit-button" class="big-button confirm-edit">Exit</button>
+                <button onclick="confirmEdit()" id="exit-button" class="big-button confirm-edit">Exit</button>
               
             </div>
 
@@ -261,7 +254,6 @@
             var problemTypeInput = document.getElementById("problem-type-input");
             var osInput = document.getElementById("os-input");
             var priorityInput = document.getElementById("priority-input");
-            var dateSolvedInput = document.getElementById("date-solved-input");
             var inPersonInput = document.getElementById("in-person-input");
 
             var specialistElement = document.getElementById("specialist-element");
@@ -604,7 +596,6 @@
                 setTextInput(problemTypeInput, problem.problemType);
                 setTextInput(osInput, problem.OS);
                 setTextInput(priorityInput, problem.priority);
-                setTextInput(dateSolvedInput, problem.dateSolved);        
     
                 // Tables
                 equipmentTable.innerHTML = `<tr>
@@ -665,7 +656,6 @@
                     problemType: problemTypeInput.value, 
                     OS: osInput.value, 
                     priority: priorityInput.value, 
-                    dateSolved: dateSolvedInput.value
                 }
 
                 if(inPersonInput.checked) {
@@ -708,8 +698,21 @@
                     inputs.externalSpecialist = null;
                 }
 
+                return inputs;
+            }
+
+            function confirmEdit() {
+                var inputs = getInputs();
                 const validatedInputs = validateInputs(inputs);
-                console.log(validatedInputs);
+                console.log(validateInputs);
+                if(typeof(validatedInputs) != "string") {
+                    var confirmed = confirm("Are you sure you want to edit this data?");
+                    if(confirmed) {
+                        updateProblem(validatedInputs);
+                    }
+                } else {
+                    alert(validatedInputs);
+                }
             }
 
             function validateInputs(inputs) {
@@ -726,6 +729,26 @@
                 } else {
                     return inputs;
                 }
+            }
+
+            function updateProblem(problem) {
+                const payload = { "problemNumber": problem.problemNumber,  
+                                  "branchID": problem.branchID, 
+                                  "description": problem.description, 
+                                  "externalSpecialistID": problem.externalSpecialistID, 
+                                  "inPerson": problem.inPerson, 
+                                  "solveNotes": problem.solveNotes, 
+                                  "priority": problem.priority, 
+                                  "problemType": problem.problemType, 
+                                  "serialNumber": problem.serialNumber, 
+                                  "softwareName": problem.softwareName, 
+                                  "solveMethod": problem.solveMethod, 
+                                  "specialistID": problem.specialistID  
+                };
+                loadData('POST', '../php/activeProblems/sql_update_problem.php', payload, function(json) {
+                    console.log(json);
+                    refreshPage();
+                })
             }
     
         </script>

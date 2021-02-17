@@ -10,24 +10,22 @@ $database = "helpdesk_database";
 $table = "Problem";
 
 $problemNumber = $_POST["problemNumber"];
-$status = "pending"; 
 $branchID = $_POST["branchID"];
+$description = $_POST["description"];
+$externalSpecialistID  = $_POST["externalSpecialistID"];
 $inPerson = $_POST["inPerson"];
-$priority = $_POST["priority"];
-$probDescripion = $_POST["probDescription"];
-$OS = $_POST["OS"];
-$softwareName = $_POST["softwareName"];
-$serialNumber = $_POST["serialNumber"];
-$dateSolved = $_POST["dateSolved"];
-$timeSolved = $_POST["timeSolved"];
-$solveMethod = $_POST["solveMethod"];
 $solveNotes = $_POST["solveNotes"];
+$priority = $_POST["priority"];
 $problemType = $_POST["problemType"];
-$ID = $_POST["ID"];
-$externalID = $_POST["externalID"];
+$serialNumber = $_POST["serialNumber"];
+$softwareName = $_POST["softwareName"];
+$solveMethod = $_POST["solveMethod"];
+$specialistID = $_POST["specialistID"];
 
-$data = [ "problemNumber" => $problemNumber, "oldStatus" => $oldStatus, "status" => $status, "branchID" => $branchID, "inPerson" => $inPerson, "priority" => $priority, "probDescription" => $probDescription, "OS" => $OS, "softwareName" => $softwareName, "serialNumber" => $serialNumber, "dateSolved" => $dateSolved, "timeSolved" => $timeSolved, "solveMethod" => $solveMethod, "solveNotes" => $solveNotes, "problemType" => $problemType, "ID" => $ID, "externalID" => $externalID ];
-$sql = "UPDATE $table SET ProblemNumber = :problemNumber, Status = :status, BranchID = :branchID, InPerson = :inPerson, Priority = :priority, ProblemDescription = :probDescription, OS = :OS, SoftwareName = :softwareName, SerialNumber = :serialNumber, DateSolved = :dateSolved, TimeSolved = :timeSolved, SolveMethod = :solveMethod, SolveNotes = :solveNotes, ProblemType = :problemType, ID = :ID, ExternalID = :externalID WHERE Problem.ProblemNumber = :ProblemNumber";
+$data = [ "problemNumber" => $problemNumber, "branchID" => $branchID, "description" => $description, "externalID" => $externalSpecialistID, "inPerson" => $inPerson, 
+          "solveNotes" => $solveNotes, "priority" => $priority, "problemType" => $problemType, "serialNumber" => $serialNumber, "softwareName" => $softwareName, "solveMethod" => $solveMethod, "specialistID" => $specialistID];
+$sql = "UPDATE $table SET ProblemNumber = :problemNumber, BranchID = :branchID, ProbDeescription = :description, InPerson = :inPerson, SolveNotes = :solveNotes, priority = :priority
+        ProblemType = :problemType, SerialNumber = :serialNumber, SoftwareName = :softwareName, SolveMethod = :solveMethod, ID = :specialistID";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
