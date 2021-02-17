@@ -24,17 +24,17 @@ $solveMethod = $_POST["solveMethod"];
 $specialistID = $_POST["specialistID"];
 
 $data = [ "problemNumber" => (int)getValue($problemNumber), 
-          "branchID" => (int)getValue($branchID), 
+          "branchID" => getValue($branchID), 
           "description" => getValue($description), 
           "externalSpecialistID" => (int)getValue($externalSpecialistID), 
           "inPerson" => (int)getValue($inPerson), 
           "solveNotes" => getValue($solveNotes), 
           "priority" => getValue($priority), 
           "problemType" => getValue($problemType), 
-          "serialNumber" => (int)getValue($serialNumber), 
+          "serialNumber" => getValue($serialNumber), 
           "softwareName" => getValue($softwareName), 
           "solveMethod" => getValue($solveMethod), 
-          "specialistID" => (int)getValue($specialistID), 
+          "specialistID" => getValue($specialistID), 
           "OS" => getValue($OS) ];
 print_r($data);
 
