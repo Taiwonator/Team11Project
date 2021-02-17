@@ -277,7 +277,7 @@ function showSpecialists(e, problemCount) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show branch specialists");
                 console.log(data.specialists);
-                table.innerHTML = ${generateSpecialistsAtBranchTable('122')}
+                table.innerHTML = generateSpecialistsAtBranchTable('122');
             } 
         }
     } else {
