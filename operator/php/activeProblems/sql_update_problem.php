@@ -39,18 +39,18 @@ $data = [ "problemNumber" => (int)getValue($problemNumber),
 print_r($data);
 
 $sql = "UPDATE $table 
-        SET OS = :OS, 
+        SET ( OS = :OS, 
         BranchID = :branchID, 
         ProbDescription = :description, 
         InPerson = :inPerson, 
         ExternalID = :externalSpecialistID, 
         SolveNotes = :solveNotes, 
-        Priority = :priority
+        Priority = :priority,
         ProblemType = :problemType, 
         SerialNumber = :serialNumber, 
         SoftwareName = :softwareName, 
         SolveMethod = :solveMethod, 
-        ID = :specialistID 
+        ID = :specialistID )
         WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
