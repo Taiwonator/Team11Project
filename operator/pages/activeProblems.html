@@ -240,6 +240,7 @@
             }
     
             var data = {};
+            var selectedProblemNumber;
             var activeProblemsTable = document.getElementById("active-problems-table");
             var modal = document.getElementById("edit-screen");
             var span = document.getElementsByClassName("close")[0]; // close button
@@ -573,6 +574,8 @@
                 
                 // Open modal
                 modal.style.display = "block";
+
+                selectedProblemNumber = problemNumber;
     
                 // Get all input objects 
                 for(var i = 0; i < data.activeProblems.length; i++) {
@@ -649,6 +652,7 @@
                 var externalSpecialistSelectedRow = document.querySelector("#external-specialist-table").getElementsByClassName("selected-row")[0];
 
                 var inputs = {
+                    problemNumber: selectedProblemNumber,
                     description: problemDescriptionInput.value, 
                     solveMethod: solveMethodInput.value, 
                     notes: notesInput.value, 
