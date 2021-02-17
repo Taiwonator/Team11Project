@@ -26,7 +26,7 @@ $specialistID = $_POST["specialistID"];
 $data = [ "problemNumber" => (int)getValue($problemNumber), 
           "branchID" => getValue($branchID), 
           "description" => getValue($description), 
-          "externalSpecialistID" => (int)getValue($externalSpecialistID), 
+          "externalSpecialistID" => getValue($externalSpecialistID), 
           "inPerson" => (int)getValue($inPerson), 
           "solveNotes" => getValue($solveNotes), 
           "priority" => getValue($priority), 
