@@ -13,7 +13,7 @@ $problemNumber = $_POST["problemNumber"];
 $status = "solved"; 
 
 $data = [ "problemNumber" => $problemNumber ];
-$sql = "UPDATE $table SET Status = :status WHERE Problem.ProblemNumber = :problemNumber";
+$sql = "UPDATE $table SET `Status` = 'solved' WHERE Problem.ProblemNumber = :problemNumber";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
