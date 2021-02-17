@@ -300,7 +300,7 @@ function showSpecialists(problemID, checked=false, e) {
     }
 
     var newProblems = document.getElementsByClassName("new-problem");
-    console.log(`FUNCTION RUNNING ${problemID}      ${checked}` );
+    console.log(`FUNCTION RUNNING ${problemID}     checked: ${checked}      eChecked:${eChecked}` );
     if(eChecked || checked) {
         for(var i = 0; i < newProblems.length; i++) {
             if(newProblems[i].dataset.name == `${problemID}`) {
