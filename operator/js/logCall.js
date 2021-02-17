@@ -276,6 +276,8 @@ function showSpecialists(e, problemCount) {
             if(newProblems[i].dataset.name == problemCount) {
                 var table = newProblems.getElementsByClassName('inperson')[0];
                 console.log("Show branch specialists");
+            } else {
+                console.log(`Problem Count: ${problemCount} -> ${newProblems[i].dataset.name}`);
             }
         }
     } else {
