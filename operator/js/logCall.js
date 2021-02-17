@@ -276,7 +276,7 @@ function showSpecialists(e, problemCount) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show branch specialists");
-
+                console.log(data.specialists);
                 
             } 
         }
@@ -292,6 +292,9 @@ function showSpecialists(e, problemCount) {
         }
     }
 }
+
+
+
 
 function checkStatus(e, problemCount) {
     if(e.target.checked) {
