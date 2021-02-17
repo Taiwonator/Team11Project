@@ -1,6 +1,6 @@
 <?php
 
-print_r("testing");
+echo "testing";
 
 include '../../includes/connect.php';
 $link = "Problem.ProblemNumber = CallProblem.ProblemNumber AND
@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
     while ($record = $result->fetch_assoc()) {
         $message = "Your problem referencing Problem ID: " . $result['ProblemNumber'] . " is still marked as unsolved. Please contact the helpdesk to confirm if your problem has been solved.\n\nMake-it-All Helpdesk";
         //mail($record['Email'],'Unsolved problem check up',$message);
-        print_r("Email sent to " . $record['Email'] . " about problem " . $record[ProblemNumber]);
+        echo "Email sent to " . $record['Email'] . " about problem " . $record[ProblemNumber];
     }
 }
 
