@@ -311,6 +311,7 @@ function showSpecialists(problemID, checked=false, e) {
                 console.log(data.specialists);
                 table.innerHTML = generateSpecialistsAtBranchTable(getCallerBranchID());
                 console.log(retreiveInputs());
+                addSelectableRows();
             } 
         }
     } else {
@@ -331,6 +332,7 @@ function showSpecialists(problemID, checked=false, e) {
                                     <th>Email</th>
                                 </tr>${problemInputStrings['specialists']}`;
             }
+            addSelectableRows();
         }
     }
 }
