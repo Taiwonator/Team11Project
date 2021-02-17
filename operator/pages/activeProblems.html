@@ -288,6 +288,10 @@
             span.onclick = function() {
                 modal.style.display = "none";
             }
+
+            function exitModal() {
+                modal.style.display = "none";
+            }
     
             document.getElementById("exit-button").onclick = function() {
                 modal.style.display = "none";
@@ -751,6 +755,7 @@
                 loadData('POST', '../php/activeProblems/sql_update_problem.php', payload, function(json) {
                     console.log(json);
                     refreshPage();
+                    exitModal();
                 })
             }
     
