@@ -10,9 +10,8 @@ $database = "helpdesk_database";
 $table = "Software";
 
 $softwareName = $_POST["softwareName"];
-
-$data = [ "softwareName" => $softwareName];
-$sql = "DELETE FROM $table WHERE Software.SoftwareName = :softwareName";
+$data = [ "softwareName" => $softwareName ];
+$sql = "DELETE FROM $table WHERE Software.SoftwareName = `:softwareName`";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
