@@ -172,7 +172,7 @@ function addTab() {
                             <div id="unsolved-form-${problemCount}">
                                 <div class="checkbox-input-element">
                                     <h3 class="element-title">In Person Solving</h3>
-                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' data-input='inPerson'>
+                                    <input type="checkbox" class='problem-input-field' data-input-type='checkbox' onclick="showSpecialists(event, ${problemCount})" data-input='inPerson'>
                                     <label>Problem must be solved in person</label>
                                 </div>
 
@@ -186,7 +186,7 @@ function addTab() {
                                             <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
-                                        <table class="search-element-table problem-input-field" data-table-name="specialistTable">
+                                        <table class="search-element-table problem-input-field inperson" data-table-name="specialistTable">
                                             <tr>
                                                 <th>Specialist ID</th>
                                                 <th>Problem Type</th>
@@ -268,6 +268,25 @@ function addTab() {
 
     addSelectableRows();
 }
+
+function showSpecialists(e, problemCount) {
+    if(e.target.checked) {
+        var newProblems = document.getElementsByClassName("new-problem");
+        for(var i = 0; i < newProblems.length; i++) {
+            if(newProblems[i].dataset.name == problemCount) {
+                var table = newProblems.getElementsByClassName('inperson')[0];
+                console.log("Show branch specialists");
+            }
+        }
+    } else {
+        var newProblems = document.getElementsByClassName("new-problem");
+        for(var i = 0; i < newProblems.length; i++) {
+            if(newProblems[i].dataset.name == problemCount) {
+                var table = newProblems.getElementsByClassName('inperson')[0];
+                console.log("Show all specialists");
+            }
+        }
+    }
 
 function checkStatus(e, problemCount) {
     if(e.target.checked) {
@@ -576,6 +595,31 @@ function getNewProblemInputs(obj, newProblem) {
             }
         }
         return true;
+    }
+
+
+    // return specialists at branch ...
+    function loadSpecialistsAtBranch(branchID) {
+        loadData('GET', '../php/logCall/sql_select_specialists_at_branch.php', { branchID }, function(json){
+            problemInputStrings['specialists'] = generateSpecialistsTable(json);
+    
+            var table = getTable('specialistTable');
+            table.innerHTML = ` <tr>
+                                        <th>Specialist ID</th>
+                                        <th>Name</th>
+                                        <th>Ext</th>
+                                        <th>Problem Type</th>
+                                        <th>No. Jobs</th>
+                                        <th>Status</th>
+                                        <th>In Work</th>
+                                        <th>Part Time</th>
+                                        <th>Next In Work</th>
+                                    </tr>
+                                    ${problemInputStrings['specialists']}`;
+                
+            
+            addSelectableRows();
+        });
     }
 
 

@@ -144,7 +144,7 @@ function loadProblems() {
 
 
 function loadPersonnel() {
-    loadData('GET', '../php/logCall/sql_select_personnel.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_personnel.php', {}, function(json){
 
         var table = getTable('callerTable');
         table.innerHTML = ` <tr>
@@ -162,7 +162,7 @@ function loadPersonnel() {
 }
 
 function loadSoftware() {
-    loadData('GET', '../php/logCall/sql_select_software.php', {}, function(json){
+    loadData('GET', '../../public/php/sql_select_software.php', {}, function(json){
         problemInputStrings['software'] = generateSoftwareTable(json);
         // Sets first created to the correct value
         var table = getTable('softwareTable');
