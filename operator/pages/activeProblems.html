@@ -674,35 +674,35 @@
                 if(equipmentSelectedRow != null) {
                     inputs.serialNumber = equipmentSelectedRow.cells[0].innerHTML;
                 } else {
-                    inputs.serialNumber = null;
+                    inputs.serialNumber = "";
                 }
 
                 if(softwareSelectedRow != null) {
                     inputs.softwareName = softwareSelectedRow.cells[0].innerHTML;
                 } else {
-                    inputs.softwareName = null;
+                    inputs.softwareName = "";
                 }
 
                 if(branchSelectedRow != null) {
                     inputs.branchID = branchSelectedRow.cells[0].innerHTML;
                 } else {
-                    inputs.branchID = null;
+                    inputs.branchID = "";
                 }
 
                 if(external) {
-                    inputs.specialistID = null;
+                    inputs.specialistID = "";
                     if(externalSpecialistSelectedRow != null) {
                         inputs.externalSpecialistID = externalSpecialistSelectedRow.cells[0].innerHTML;
                     } else {
-                        inputs.externalSpecialistID = null;
+                        inputs.externalSpecialistID = "";
                     }
                 } else {
                     if(specialistSelectedRow != null) { 
                         inputs.specialistID = specialistSelectedRow.cells[0].innerHTML;
                     } else {
-                        inputs.specialistID = null;
+                        inputs.specialistID = "";
                     }
-                    inputs.externalSpecialist = null;
+                    inputs.externalSpecialist = "";
                 }
 
                 return inputs;
