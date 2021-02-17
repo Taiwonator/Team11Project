@@ -207,6 +207,7 @@ function addTab() {
                                                 <th>In Work</th>
                                                 <th>Part Time</th>
                                                 <th>Next In Work</th>
+                                                <th>Email</th>
                                             </tr>
                                             ${(problemInputStrings['specialists'] != undefined) ? problemInputStrings['specialists'] : ''}
                                         </table>
@@ -327,6 +328,7 @@ function showSpecialists(problemID, checked=false, e) {
                                     <th>In Work</th>
                                     <th>Part Time</th>
                                     <th>Next In Work</th>
+                                    <th>Email</th>
                                 </tr>${problemInputStrings['specialists']}`;
             }
         }
@@ -348,6 +350,7 @@ function generateSpecialistsAtBranchTable(branchID) {
                             <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
                             <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
                             <td>${specialist.nextInWork}</td>
+                            <td>${specialist.email}</td>
                         </tr>`
             }
         })
@@ -362,6 +365,7 @@ function generateSpecialistsAtBranchTable(branchID) {
                                         <th>In Work</th>
                                         <th>Part Time</th>
                                         <th>Next In Work</th>
+                                        <th>Email</th>
                                     </tr>
                                     ${branchSpecialists}`;
         return branchSpecialistsTable;
@@ -377,6 +381,7 @@ function generateSpecialistsAtBranchTable(branchID) {
                     <th>In Work</th>
                     <th>Part Time</th>
                     <th>Next In Work</th>
+                    <th>Email</th>
                 </tr>${problemInputStrings['specialists']}`;
     }
 
@@ -709,6 +714,7 @@ function getNewProblemInputs(obj, newProblem) {
                                         <th>In Work</th>
                                         <th>Part Time</th>
                                         <th>Next In Work</th>
+                                        <th>Email</th>
                                     </tr>
                                     ${problemInputStrings['specialists']}`;
                 

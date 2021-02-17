@@ -61,6 +61,7 @@ function loadSpecialists() {
                                     <th>In Work</th>
                                     <th>Part Time</th>
                                     <th>Next In Work</th>
+                                    <th>Email</th>
                                 </tr>
                                 ${problemInputStrings['specialists']}`;
             
@@ -211,6 +212,7 @@ function generateSpecialistsTable(json) {
                     <td>${(specialist.inWork == 1) ? '<i class="fa fa-check-square"></i>' : ''}</td>
                     <td>${(specialist.partTime == 1) ? '<td><i class="fa fa-check-square"></i></td>' : ''}</td>
                     <td>${specialist.nextInWork}</td>
+                    <td>${specialist.email}</td>
                 </tr>`
     })
 }
