@@ -277,18 +277,7 @@ function showSpecialists(e, problemCount) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show branch specialists");
                 console.log(data.specialists);
-                table.innerHTML = `<tr>
-                                        <th>Specialist ID</th>
-                                        <th>Name</th>
-                                        <th>Ext</th>
-                                        <th>Problem Type</th>
-                                        <th>No. Jobs</th>
-                                        <th>Status</th>
-                                        <th>In Work</th>
-                                        <th>Part Time</th>
-                                        <th>Next In Work</th>
-                                    </tr>
-                                    ${generateSpecialistsAtBranchTable('122')}`
+                table.innerHTML = ${generateSpecialistsAtBranchTable('122')}
             } 
         }
     } else {
@@ -297,7 +286,17 @@ function showSpecialists(e, problemCount) {
             if(newProblems[i].dataset.name == `problem${problemCount}`) {
                 var table = newProblems[i].querySelector(`#specialist-table-${problemCount}`);
                 console.log("Show all specialists");
-                table.innerHTML = problemInputStrings['specialists'];
+                table.innerHTML = `<tr>
+                                    <th>Specialist ID</th>
+                                    <th>Name</th>
+                                    <th>Ext</th>
+                                    <th>Problem Type</th>
+                                    <th>No. Jobs</th>
+                                    <th>Status</th>
+                                    <th>In Work</th>
+                                    <th>Part Time</th>
+                                    <th>Next In Work</th>
+                                </tr>${problemInputStrings['specialists']}`;
             }
         }
     }
