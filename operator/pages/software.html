@@ -242,7 +242,7 @@
 
         function deleteSoftware(softwareName) {
             const payload = { 'softwareName': softwareName };
-            console.log(payload);
+            console.log(payload);            
             loadData('POST', '../php/software/sql_delete_software.php', payload, function(json) {
                 console.log(json);
                 refreshPage();
