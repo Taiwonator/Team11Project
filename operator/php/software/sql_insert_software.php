@@ -10,7 +10,7 @@ $softwareName = $_POST["softwareName"];
 $licensed = $_POST["licensed"];
 $supported = $_POST["supported"];
 
-echo $licensed;
+print_r($licensed);
 
 $data = [ "softwareName" => $softwareName, "licensed" => $licensed, "supported" => $supported ];
 $sql = "INSERT INTO $table (SoftwareName, Licensed, Supported) VALUES (:softwareName, :licensed, :supported)";
