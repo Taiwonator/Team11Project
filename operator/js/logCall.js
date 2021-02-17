@@ -54,7 +54,7 @@ document.getElementById('caller-table').onclick = function() {
     for(var i = 0; i < problemIDs.length; i++) {
         console.log(problemIDs[i]);
 
-        problemID = problemID[i].problemID;
+        var problemID = problemID[i].problemID;
         var checkedValue;
         var newProblems = document.getElementsByClassName("new-problem");
         for(var i = 0; i < newProblems.length; i++) {
