@@ -63,6 +63,7 @@ document.getElementById('caller-table').onclick = function() {
             }
         }
 
+        console.log(`${problemID} has a checked value of: ${checkedValue}`);
         showSpecialists(problemID, checkedValue);
     }
 }
