@@ -217,8 +217,8 @@
 
         function getInputValuesAsObj() {
             let softwareName = softwareNameInput.value;
-            let licensed = licensedInput.value;
-            let supported = supportedInput.value;
+            let licensed = licensedInput.checked;
+            let supported = supportedInput.checked;
             return {
                 softwareName, licensed, supported
             }
