@@ -1,12 +1,16 @@
 <?php
 
 
-include '../../includes/connect.php';
+//include '../../includes/connect.php';
 
-$email = "bradleymaxwell12@gmail.com";
-$message = "testing testing 123";
+// The message
+$message = "Testing\r\nTesting\r\n123";
 
-mail($email,'Unsolved problem check up',$message);
+// In case any of our lines are larger than 70 characters, we should use wordwrap()
+$message = wordwrap($message, 70, "\r\n");
+
+// Send
+mail('bradleymaxwell12@gmail.com', 'test email', $message);
 
 
 // general concept: find every unsolved problem and send an email reminding them that they have not confirmed the problem as solved.
