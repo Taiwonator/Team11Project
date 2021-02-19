@@ -10,6 +10,7 @@ $database = "helpdesk_database";
 $table = "Problem";
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $output = array();
   foreach($db->query("SELECT * FROM $table WHERE `Status`='unsolved'") as $row) {
     $row = array("problemNumber"=> strval($row['ProblemNumber']), "description"=>$row['ProbDescription'], "status"=>$row['Status'], "solveMethod"=>$row['SolveMethod'], 
