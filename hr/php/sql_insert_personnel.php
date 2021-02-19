@@ -22,7 +22,7 @@ $personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUE
 print_r($personnel_data);
 
 $personnel_ID_data = [ "ext" => $ext, "id" => $id ];
-$personnel_ID_SQL = "INSERT INTO Personnel_ID (Ext, ID) VALUES (:ext, :id)";
+$personnel_ID_SQL = "INSERT INTO Personnel_ID (Name, Ext, ID) VALUES (:name, :ext, :id)";
 
 
 try {
