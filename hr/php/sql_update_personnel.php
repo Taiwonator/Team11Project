@@ -15,7 +15,7 @@ $dept = $_POST['dept'];
 $email = $_POST['email'];
 $branchID = $_POST['branchID'];
 
-$select_sql = "SELECT Email FROM `Log-in` WHERE Email=$email";
+$select_sql = "SELECT Email FROM `Log-in` WHERE Email='$email'";
 
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
