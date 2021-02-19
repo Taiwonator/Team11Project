@@ -36,7 +36,7 @@ try {
   $count = $db->query($select_sql)->fetchColumn(); 
   print_r('result');
   if(empty($count)) {
-    print_r("Empty")
+    print_r("Empty");
   } else {
     print_r($count);
   }
