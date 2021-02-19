@@ -101,7 +101,7 @@
                 <div class="element-row">
                     <div class="select-input-element">
                         <h3 class="element-title">Branch ID</h3>
-                        <select id="edit-branch-id">
+                        <select onclick="checkIfAllEmpty()" id="edit-branch-id">
                             <option value="" selected disabled hidden>Select a branch</option>
                         </select>
                     </div>
@@ -109,6 +109,10 @@
                         <h3 class="element-title">Extension</h3>
                         <input onkeyup="checkIfAllEmpty()" id="edit-ext" type="text" placeholder="Enter extension no."></input>
                     </div>  
+                </div> 
+                <div class="text-input-element">
+                    <h3 class="element-title">Email</h3>
+                    <input onkeyup="checkIfAllEmpty()" id="edit-email" type="text" placeholder="Enter email" disabled></input>
                 </div> 
                         
                 <button onclick="confirmEdit()" id="confirm-button" class="big-button confirm-edit">Confirm</button>
@@ -154,6 +158,10 @@
                     <input id="view-ext" type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
                 </div>  
             </div>  
+            <div class="text-input-element">
+                <h3 class="element-title">Email</h3>
+                <input id="view-email" type="text" placeholder="Enter extension no." value="Lorem Ipsum" disabled></input>
+            </div>  
         </div>
 
         
@@ -173,6 +181,7 @@
         var viewDept = document.getElementById("view-dept");
         var viewBranchID = document.getElementById("view-branch-id");
         var viewExt = document.getElementById("view-ext");
+        var viewEmail = document.getElementById("view-email");
 
         var editID = document.getElementById("edit-id");
         var editName = document.getElementById("edit-name");
@@ -180,6 +189,7 @@
         var editDept = document.getElementById("edit-dept");
         var editBranchID = document.getElementById("edit-branch-id");
         var editExt = document.getElementById("edit-ext");
+        var editEmail = document.getElementById("edit-email");
 
         var data = {}
         var edit = false;
@@ -206,6 +216,7 @@
             editDept.value = '';
             editBranchID.value = '';
             editExt.value = '';
+            editEmail.value = '';
 
             var button = document.getElementById('confirm-button');
             if(!button.classList.contains('disabled-button')) {
@@ -239,6 +250,18 @@
                 editScreen.style.display = "none";
                 viewScreen.style.display = "none";
             }
+        }
+
+        function getInputs() {
+            let id = editID.value;
+            let name = editName.value;
+            let jobTitle = editJobTitle.value;
+            let dept = editDept.value;
+            let branchID = editBranchID.value;
+            let ext = editExt.value;
+            let email = editEmail.value; 
+
+            return [ id, name, jobTitle, dept, branchID, ext, email ]
         }
 
         function loadPersonnel() {
@@ -322,6 +345,7 @@
                     viewDept.value = personnel.dept;
                     viewBranchID.value = personnel.branchID;
                     viewExt.value = personnel.ext;
+                    viewEmail.value = personnel.email;
                 }
             }
         }
@@ -340,6 +364,7 @@
                     editDept.value = personnel.dept;
                     editBranchID.value = personnel.branchID;
                     editExt.value = personnel.ext;
+                    editEmail.value = personnel.email;
                 }
             }
         }
@@ -360,19 +385,20 @@
         }
 
         function confirmEdit() {
+            console.log(getInputValuesAsObj());
             alert("Edit button clicked");
         }
 
-        // function getInputValuesAsObj() {
-        //     return ({
-        //         id: editID.value, 
-        //         name: editName.value, 
-        //         ext: editExt.value, 
-        //         jobTitle: editJobTitle.value, 
-        //         dept: editDept.value,
-        //         email: 
-        //     })
-        // }
+        function getInputValuesAsObj() {
+            return ({
+                id: editID.value, 
+                name: editName.value, 
+                ext: editExt.value, 
+                jobTitle: editJobTitle.value, 
+                dept: editDept.value,
+                email: editEmail.value
+            })
+        }
 
         // function confirmEdit() {
         //     console.log("CONFIRM CLICKED");
