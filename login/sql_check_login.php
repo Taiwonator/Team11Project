@@ -21,7 +21,20 @@ try {
         $flag = true;
     }
   }
-  echo json_encode($flag);
+  
+
+  $output = array();
+  if($flag) {
+
+    $select_sql = "SELECT Personnel.ID, Personnel.JobTitle, Personnel.Dept, Personnel.Email, Personnel.BranchID, Personnel_ID.Name 
+                   FROM Personnel 
+                   INNER JOIN Personnel_ID ON Personnel_ID.ID=Personnel.ID
+                   WHERE Personnel.Email='$userEmail'";
+    $data  $db->query($select_sql)->fetchColumn();
+    echo json_encode($data);
+  } else {
+    echo json_encode(false)
+  }
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
