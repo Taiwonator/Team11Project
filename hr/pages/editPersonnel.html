@@ -193,6 +193,7 @@
 
         var data = {}
         var edit = false;
+        var idBuffer; 
 
         function openViewModal() {
             viewScreen.style.display = "block";
@@ -331,6 +332,7 @@
 
         function viewPersonnel(personnelID) {
             openViewModal();
+            idBuffer = personnelID;
 
             var button = document.getElementById('confirm-button');
             if(button.classList.contains('disabled-button')) {
@@ -395,6 +397,15 @@
             })        
         }
 
+        function updatePersonnel(personnel) {
+            const payload = { 'oldID': idBuffer, 'ID': personnel.id, 'name': personnel.name, 'jobTitle': personnel.jobTitle, 'dept': personnel.dept, 'branchID': personnel.branchID, 'ext': personnel.ext, 'email': personnel.email };
+            console.log(payload);
+            loadData('POST', '../php/sql_insert_personnel.php', payload, function(json) {
+                console.log(json);
+                refreshPage();
+            })        
+        }
+
         function getInputValuesAsObj() {
             return ({
                 id: editID.value, 
@@ -415,7 +426,7 @@
                 var confirmed = confirm("Are you sure?");
                 if(confirmed == true) {
                     if(edit) {
-                        // updatePersonnel(obj);
+                        updatePersonnel(obj);
                         alert("Edit");
                     } else {
                         insertPersonnel(obj);
