@@ -12,6 +12,7 @@ $ext = $_POST['ext'];
 $jobTitle = $_POST['jobTitle'];
 $dept = $_POST['dept'];
 $email = $_POST['email'];
+$branchID = $_POST['branchID'];
 
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
