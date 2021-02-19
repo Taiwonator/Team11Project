@@ -145,12 +145,13 @@
                     console.log("no");
                 }
             } else {
-                checkCredentials({ username, password });
+                checkCredentials({ username: username.value, password: password.value });
             }
         }
 
         function checkCredentials(credentials) {
             const payload = { 'username': credentials.username, 'password': credentials.password };
+            console.log(payload);
             loadData('POST', './login/sql_check_login.php', payload, function(json) {
                 console.log(json);
             })
