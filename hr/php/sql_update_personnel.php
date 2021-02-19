@@ -35,7 +35,11 @@ try {
 
   $count = $db->query($select_sql)->fetchColumn(); 
   print_r('result');
-  print_r($count);
+  if(empty($count)) {
+    print_r("Empty")
+  } else {
+    print_r($count);
+  }
 
   // $db->prepare($login_SQL)->execute($login_data);
   // $db->prepare($sql)->execute($data);
