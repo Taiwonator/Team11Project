@@ -134,7 +134,6 @@
             const payload = { 'username': credentials.username, 'password': credentials.password };
             console.log(payload);
             loadData('POST', './login/sql_check_login.php', payload, function(json) {
-                console.log(json);
                 data = JSON.parse(json);
                 if(data != false) {
                     loadLoginData(data.email);
@@ -147,6 +146,7 @@
         }
 
         function directToPage(jobTitle) {
+            cosnole.log(jobTitle);
             switch(jobTitle) {
                 case 'operator': 
                     window.location = "./operator/pages/logCall.html";
@@ -161,7 +161,6 @@
                     window.location = "./hr/pages/editPersonnel.html";
                     break;
                 default: 
-                    alert('Bye bye');
                     break;
             }
         }
