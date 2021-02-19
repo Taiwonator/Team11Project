@@ -332,7 +332,6 @@
 
         function viewPersonnel(personnelID) {
             openViewModal();
-            idBuffer = personnelID;
 
             var button = document.getElementById('confirm-button');
             if(button.classList.contains('disabled-button')) {
@@ -356,6 +355,7 @@
 
         function editPersonnel(personnelID) {
             openEditModal();
+            idBuffer = personnelID;
 
             edit = true;
             for(var i = 0; i < data.personnel.length; i++) {
