@@ -21,7 +21,7 @@ $personnel_data = [ "id" => $id, "jobTitle" => $jobTitle, "dept" => $dept, "emai
 $personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :jobTitle, :dept, :email, :branchID)";
 print_r($personnel_data);
 
-$personnel_ID_data = [ "ext" => $ext, "id" => $id ];
+$personnel_ID_data = [ "name" => $name, "ext" => $ext, "id" => $id ];
 $personnel_ID_SQL = "INSERT INTO Personnel_ID (Name, Ext, ID) VALUES (:name, :ext, :id)";
 
 
