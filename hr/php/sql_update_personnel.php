@@ -20,14 +20,20 @@ $select_sql = "SELECT Email FROM `Log-in` WHERE Email='$email'";
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
 
-$data = [ "oldID" => $oldID, "ID" => $ID, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID" => $branchID ];
-$sql = "UPDATE $table 
-        SET ID = :ID, 
-        JobTitle = :jobTitle, 
-        Dept = :dept, 
-        Email = :email, 
-        BranchID = :branchID 
-        WHERE Personnel.ID = :oldID";
+$personnel_data = [ "oldID" => $oldID, "ID" => $ID, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID" => $branchID ];
+$personnel_sql = "UPDATE $table 
+                  SET ID = :ID, 
+                  JobTitle = :jobTitle, 
+                  Dept = :dept, 
+                  Email = :email, 
+                  BranchID = :branchID 
+                  WHERE Personnel.ID = :oldID";
+
+$personnel_ID_data = [ "name" => $name, "ext" => $ext ];
+$personnel_ID_sql = "UPDATE Personnel_ID 
+                     SET Name = :ID, 
+                     Ext = :ext, 
+                     WHERE Personnel_ID.ID = :oldID";
   
 print_r($data);
 
@@ -40,7 +46,8 @@ try {
     $db->prepare($login_SQL)->execute($login_data);
   } 
 
-  $db->prepare($sql)->execute($data);
+  $db->prepare($personnel_sql)->execute($personnel_data);
+  $db->prepare($personnel_ID_sql)->execute($personnel_ID_data);
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
