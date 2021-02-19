@@ -61,13 +61,15 @@
         var data = [];
 
         function loadStatus() {
-            loadData('GET', '../php/status/sql_select_specialistStatus.php', {}, function(json){
-                data = {...JSON.parse(json)};
-                console.log(data);
-                statusInput.value = data.status;
-                inWorkInput.checked = (data.inWork == "1") ? true : false;
-                nextInWorkInput.value = data.nextInWork;
-            })
+            if(sessionStorage) {
+                loadData('POST', '../php/status/sql_select_specialistStatus.php', { 'id': sessionStorage.getItem("id") }, function(json){
+                    data = {...JSON.parse(json)};
+                    console.log(data);
+                    statusInput.value = data.status;
+                    inWorkInput.checked = (data.inWork == "1") ? true : false;
+                    nextInWorkInput.value = data.nextInWork;
+                })
+            }
         }
 
         loadStatus();
