@@ -28,6 +28,8 @@ $sql = "UPDATE $table
         Email = :email, 
         BranchID = :branchID 
         WHERE Personnel.ID = :oldID";
+  
+print_r($data);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
