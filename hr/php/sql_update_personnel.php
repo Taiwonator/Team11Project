@@ -26,7 +26,7 @@ $sql = "UPDATE $table
         JobTitle = :jobTitle, 
         Dept = :dept, 
         Email = :email, 
-        BranchID: :branchID 
+        BranchID = :branchID 
         WHERE Personnel.ID = :oldID";
 
 try {
