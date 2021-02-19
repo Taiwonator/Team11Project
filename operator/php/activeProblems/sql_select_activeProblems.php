@@ -17,8 +17,6 @@ try {
     "problemType"=>$row['ProblemType'], "OS"=>$row['OS'], "softwareName"=>$row['SoftwareName'], "branchID"=>$row['BranchID'], "serialNumber"=>$row['SerialNumber'], 
     "inPerson"=>$row['InPerson'], "specialistID"=>$row['ID'], "externalSpecialistID"=>$row['ExternalID'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
     "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
-
-    print_r("Hello I am printing");
   
     $num = $row->problemNumber;
     print_r($num);
@@ -31,7 +29,7 @@ try {
     //   // print_r($row2);
     // }
 
-    array_push($output, $row);
+    // array_push($output, $row);
   }
   echo json_encode($output);
 } catch (PDOException $e) {
