@@ -1,4 +1,7 @@
 <?php
+
+$_POST = json_decode(file_get_contents('php://input'), true);
+
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
@@ -9,14 +12,16 @@ $userPassword = $_POST['password'];
 
 print_r($userEmail . ' - ' . $userPassword);
 
+$flag = false;
+
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  $output = array();
   foreach($db->query("SELECT * FROM `Log-in`") as $row) {
-    $row = array("username"=>$row['Email'], "password"=>$row['Password']);
-    array_push($output, $row);
+    if($row['Email'] == $userEmail && $row['Password'] == $userPassword) {
+        $flag = true;
+    }
   }
-  echo json_encode($output);
+  echo json_encode($flag);
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
