@@ -19,10 +19,12 @@ try {
     "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
     // if($row->problemNumber == )
 
+    $num = $row->problemNumber;
+    print_r($num);
     $select_operator_sql = "SELECT Call.ID 
                             FROM `Call` 
                             INNER JOIN CallProblem ON Call.ID=CallProblem.CallID
-                            WHERE CallProblem.ProblemNumber = $row->problemNumber";
+                            WHERE CallProblem.ProblemNumber = $num";
 
     foreach ($db->query($select_operator_sql) as $row) {
       print_r($row);
