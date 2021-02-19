@@ -79,7 +79,7 @@
                 <div class="element-row">
                     <div class="text-input-element">
                         <h3 class="element-title">Employee ID</h3>
-                        <input onkeyup="checkIfAllEmpty()" id="edit-id" type="text" placeholder="Enter employee ID"></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-id" type="number" placeholder="Enter employee ID"></input>
                     </div>  
                     <div class="text-input-element">
                         <h3 class="element-title">Name</h3>
@@ -107,12 +107,12 @@
                     </div>
                     <div class="text-input-element">
                         <h3 class="element-title">Extension</h3>
-                        <input onkeyup="checkIfAllEmpty()" id="edit-ext" type="text" placeholder="Enter extension no."></input>
+                        <input onkeyup="checkIfAllEmpty()" id="edit-ext" type="number" placeholder="Enter extension no."></input>
                     </div>  
                 </div> 
                 <div class="text-input-element">
                     <h3 class="element-title">Email</h3>
-                    <input onkeyup="checkIfAllEmpty()" id="edit-email" type="text" placeholder="Enter email" disabled></input>
+                    <input onkeyup="checkIfAllEmpty()" id="edit-email" type="text" placeholder="Enter email"></input>
                 </div> 
                         
                 <button onclick="confirmEdit()" id="confirm-button" class="big-button confirm-edit">Confirm</button>
@@ -234,6 +234,8 @@
                     flag = true;
                 }
             }
+
+            console.log(flag);
 
             if(flag) {
                 button.classList.add('disabled-button');
