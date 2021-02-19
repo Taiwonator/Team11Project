@@ -135,7 +135,31 @@
             console.log(payload);
             loadData('POST', './login/sql_check_login.php', payload, function(json) {
                 console.log(json);
+                data = JSON.parse(json);
+                loadLoginData(data.email);
+                directToPage(data.jobTitle);
+                alert("Data done");
             })
+        }
+
+        function directToPage(jobTitle) {
+            switch(jobTitle) {
+                case 'operator': 
+                    window.location = "./operator/pages/logCall.html";
+                    break;
+                case 'specialist': 
+                    window.location = "./specialist/pages/activeProblems.html";
+                    break;
+                case 'analyst': 
+                    window.location = "./analyst/pages/getData.html";
+                    break;
+                case 'hr': 
+                    window.location = "./hr/pages/editPersonnel.html";
+                    break;
+                default: 
+                    alert('permission denied');
+                    break;
+            }
         }
 
         window.addEventListener("keyup", function(event) {

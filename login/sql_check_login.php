@@ -10,8 +10,6 @@ $table = "Log-in";
 $userEmail = $_POST['username'];
 $userPassword = $_POST['password'];
 
-print_r($userEmail . ' - ' . $userPassword);
-
 $flag = false;
 
 try {
