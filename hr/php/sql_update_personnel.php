@@ -32,7 +32,7 @@ $personnel_sql = "UPDATE $table
 $personnel_ID_data = [ "ID" => $ID, "name" => $name, "ext" => $ext ];
 $personnel_ID_sql = "UPDATE Personnel_ID 
                      SET Name = :name, 
-                     Ext = :ext, 
+                     Ext = :ext
                      WHERE Personnel_ID.ID = :ID";
   
 print_r($personnel_ID_data);
