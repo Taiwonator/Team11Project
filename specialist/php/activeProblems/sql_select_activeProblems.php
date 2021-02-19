@@ -1,7 +1,7 @@
 <?php
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$specialistID = "1";
+$specialistID = $_POST['id'];
 $status = "unsolved";
 
 $user = "pma";

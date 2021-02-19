@@ -238,20 +238,22 @@
             }
     
             function loadActiveSolutions() {
-                loadData('GET', '../php/activeProblems/sql_select_activeProblems.php', {}, function(json){
-                    data.activeProblems = JSON.parse(json);
-                    console.log(data);
-    
-                    activeProblemsTable.innerHTML = `<tr> 
-                                                          <th>Problem No.</th>
-                                                          <th>Problem Description</th>
-                                                          <th>Problem Type</th>
-                                                          <th>Priority</th>
-                                                          <th>Actions</th>
-                                                        </tr>
-                                                        ${generateActiveSolutionsTable(json)}`;
-    
-                })
+                if(sessionStorage) {
+                    loadData('POST', '../php/activeProblems/sql_select_activeProblems.php', { 'id': sessionStorage.getItem("id") }, function(json){
+                        data.activeProblems = JSON.parse(json);
+                        console.log(data);
+        
+                        activeProblemsTable.innerHTML = `<tr> 
+                                                            <th>Problem No.</th>
+                                                            <th>Problem Description</th>
+                                                            <th>Problem Type</th>
+                                                            <th>Priority</th>
+                                                            <th>Actions</th>
+                                                            </tr>
+                                                            ${generateActiveSolutionsTable(json)}`;
+        
+                    })
+                }
             }
 
             refreshPage();
