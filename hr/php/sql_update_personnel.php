@@ -33,7 +33,7 @@ try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $count = $dn->query($select_sql)->fetchColumn(); 
+  $count = $db->query($select_sql)->fetchColumn(); 
   print_r($count);
 
   $db->prepare($login_SQL)->execute($login_data);
