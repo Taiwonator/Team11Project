@@ -137,8 +137,10 @@
                 data = JSON.parse(json);
                 if(data != false) {
                     loadLoginData(data.email);
+                    if(sessionStorage) {
+                        sessionStorage.setItem("name", data.name);
+                    }
                     directToPage(data.jobTitle);
-                    alert("Data done");
                 } else {
                     alert("Permission Denied");
                 }

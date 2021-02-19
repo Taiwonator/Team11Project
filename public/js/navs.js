@@ -1,8 +1,13 @@
+var name = 'placeholder';
+if(sessionStorage) {
+    name = sessionStorage.getItem("name");
+}
+
 const operatorSideNavBarString = `<nav class='side-nav'>
                                     <div class="side-nav-profile">
                                         <div class="profile-picture"></div>
                                         <div class="profile-info">
-                                            <h3 class="profile-name">Jimmy Dago</h3>
+                                            <h3 class="profile-name">${name}</h3>
                                             <h3 class="profile-type">Operator</h3>
                                         </div>
                                     </div>
@@ -67,7 +72,7 @@ const analystSideNavString = `<nav class='side-nav'>
                                 <div class="side-nav-profile">
                                     <div class="profile-picture"></div>
                                     <div class="profile-info">
-                                        <h3 class="profile-name">${'Alan Pip'}</h3>
+                                        <h3 class="profile-name">${name}</h3>
                                         <h3 class="profile-type">Analyst</h3>
                                     </div>
                                 </div>
@@ -95,7 +100,7 @@ const hrSideNavString = `<nav class='side-nav'>
                             <div class="side-nav-profile">
                                 <div class="profile-picture"></div>
                                 <div class="profile-info">
-                                    <h3 class="profile-name">Meghan Picker</h3>
+                                    <h3 class="profile-name">${name}</h3>
                                     <h3 class="profile-type">Human Resources</h3>
                                 </div>
                             </div>
@@ -122,7 +127,7 @@ const specialistSideNavString = `<nav class='side-nav'>
                                     <div class="side-nav-profile">
                                         <div class="profile-picture"></div>
                                         <div class="profile-info">
-                                            <h3 class="profile-name">Susan Boyle</h3>
+                                            <h3 class="profile-name">${name}</h3>
                                             <h3 class="profile-type">Specialist</h3>
                                         </div>
                                     </div>
