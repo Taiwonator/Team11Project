@@ -400,7 +400,7 @@
         function updatePersonnel(personnel) {
             const payload = { 'oldID': idBuffer, 'ID': personnel.id, 'name': personnel.name, 'jobTitle': personnel.jobTitle, 'dept': personnel.dept, 'branchID': personnel.branchID, 'ext': personnel.ext, 'email': personnel.email };
             console.log(payload);
-            loadData('POST', '../php/sql_insert_personnel.php', payload, function(json) {
+            loadData('POST', '../php/sql_update_personnel.php', payload, function(json) {
                 console.log(json);
                 refreshPage();
             })        
