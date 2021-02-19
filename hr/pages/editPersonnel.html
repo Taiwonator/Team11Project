@@ -229,15 +229,13 @@
             var inputs = getInputs();
             let flag = false;
 
+
             for(var i = 0; i < inputs.length; i++) {
-                console.log(inputs[i].value);
-                if(inputs[i].value == "") {
+                if(inputs[i] == "") {
                     flag = true;
-                    console.log(flag);
                 }
             }
 
-            console.log(inputs);
 
             if(flag) {
                 button.classList.add('disabled-button');
@@ -388,9 +386,9 @@
             })
         }
 
-        function confirmEdit() {
-            console.log(getInputValuesAsObj());
-            alert("Edit button clicked");
+        function insertPersonnel(personnel) {
+            console.log(`inserted personnel ${personnel.id}`);
+            alert();
         }
 
         function getInputValuesAsObj() {
@@ -404,24 +402,24 @@
             })
         }
 
-        // function confirmEdit() {
-        //     console.log("CONFIRM CLICKED");
-        //     var obj = getInputValuesAsObj();
-        //     var button = document.getElementById('confirm-button');
-        //     if(!button.classList.contains("disabled-button")) {
-        //         var confirmed = confirm("Are you sure?");
-        //         if(confirmed == true) {
-        //             if(edit) {
-        //                 updateEquipment(obj);
-        //                 alert("Edit");
-        //             } else {
-        //                 insertEquipment(obj);
-        //                 alert("Insert");
-        //             } 
-        //             closeEditModal();
-        //         }
-        //     }
-        // }
+        function confirmEdit() {
+            console.log("CONFIRM CLICKED");
+            var obj = getInputValuesAsObj();
+            var button = document.getElementById('confirm-button');
+            if(!button.classList.contains("disabled-button")) {
+                var confirmed = confirm("Are you sure?");
+                if(confirmed == true) {
+                    if(edit) {
+                        // updatePersonnel(obj);
+                        alert("Edit");
+                    } else {
+                        insertPersonnel(obj);
+                        alert("Insert");
+                    } 
+                    closeEditModal();
+                }
+            }
+        }
         
     </script>
 
