@@ -102,11 +102,13 @@
         }
 
         function updateStatus(status) {
-            const payload = { "status": status.status, "inWork": status.inWork, "nextInWork": status.nextInWork, "id": "1" };
+            if(sessionStorage) {
+                const payload = { "status": status.status, "inWork": status.inWork, "nextInWork": status.nextInWork, "id": sessionStorage.getItem("id") };
                 loadData('POST', '../php/status/sql_update_specialistStatus.php', payload, function(json) {
                     console.log(json);
                     loadStatus();
                 })
+            }
         }
 
         

@@ -1,7 +1,7 @@
 <?php
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$id = "1";
+$id = $_POST['id'];
 
 $user = "pma";
 $password = "webproject@Team11";
