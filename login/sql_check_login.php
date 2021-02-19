@@ -7,7 +7,7 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Log-in";
 
-$userEmail = $_POST['email'];
+$userEmail = $_POST['username'];
 $userPassword = $_POST['password'];
 
 print_r($userEmail . ' - ' . $userPassword);
