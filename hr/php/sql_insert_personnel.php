@@ -18,7 +18,7 @@ $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
 
 $personnel_data = [ "id" => $id, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID" => $branchID ];
-$personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :dept, :email, :branchID)";
+$personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :jobTitle, :dept, :email, :branchID)";
 
 $personnel_ID_data = [ "ext" => $ext, "id" => $id ];
 $personnel_ID_SQL = "INSERT INTO Personnel_ID (Ext, ID) VALUES (:ext, :id)";
