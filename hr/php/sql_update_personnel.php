@@ -36,8 +36,8 @@ try {
   $count = $dn->query($select_sql)->fetchColumn(); 
   print_r($count);
 
-  // $db->prepare($login_SQL)->execute($login_data);
-  // $db->prepare($sql)->execute($data);
+  $db->prepare($login_SQL)->execute($login_data);
+  $db->prepare($sql)->execute($data);
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
