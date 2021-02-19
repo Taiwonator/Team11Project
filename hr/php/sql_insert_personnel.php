@@ -16,7 +16,7 @@ $email = $_POST['email'];
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
 
-$personnel_data = [ "id" => $id, "name" => $name, "ext" => $ext, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email ];
+$personnel_data = [ "id" => $id, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID": $branchID ];
 $personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :dept, :email, :branchID)";
 
 $personnel_ID_data = [ "ext" => $ext, "id" => $id ];
