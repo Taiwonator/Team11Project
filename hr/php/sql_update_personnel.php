@@ -20,7 +20,7 @@ $select_sql = "SELECT Email FROM `Log-in` WHERE Email='$email'";
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
 
-$data = [ "ID" => $ID, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID" => $branchID ];
+$data = [ "oldID" => $oldID, "ID" => $ID, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email, "branchID" => $branchID ];
 $sql = "UPDATE $table 
         SET ID = :ID, 
         JobTitle = :jobTitle, 
