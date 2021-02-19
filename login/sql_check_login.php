@@ -4,10 +4,10 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 $table = "Log-in";
 
-$username = $_POST['Email'];
-$password = $_POST['Password'];
+$userEmail = $_POST['email'];
+$userPassword = $_POST['password'];
 
-print_r($username . ' - ' . $password);
+print_r($userEmail . ' - ' . $userPassword);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
