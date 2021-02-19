@@ -15,6 +15,8 @@ $dept = $_POST['dept'];
 $email = $_POST['email'];
 $branchID = $_POST['branchID'];
 
+$select_sql = "SELECT Email FROM `Log-in` WHERE Email=$email";
+
 $login_data = [ "email" => $email, "password" => 'no password' ];
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
 
@@ -30,8 +32,12 @@ $sql = "UPDATE $table
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $db->prepare($login_SQL)->execute($login_data);
-  $db->prepare($sql)->execute($data);
+
+  $count = $dn->query($select_sql)->fetchColumn(); 
+  print_r($count);
+
+  // $db->prepare($login_SQL)->execute($login_data);
+  // $db->prepare($sql)->execute($data);
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
