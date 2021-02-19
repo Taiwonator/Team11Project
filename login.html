@@ -90,26 +90,17 @@
             <p class="tooltip">Analyst: <span class="tooltiptext">analyst@gmail.com</span></p>
         </div>
     </div>
+
+    <script src="./public/js/ajaxFunctions.js"></script>
     <script>
       
         const operatorEmail = "operator@gmail.com";
         const specialistEmail = "specialist@gmail.com";
         const hrEmail = "hr@gmail.com";
         const analystEmail = "analyst@gmail.com";
+
+        var testing = true;
         
-        function loadData(method, url, data, code) {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // console.log(`Object from PHP file (${url}): ${this.responseText}`);
-                    code(this.responseText);
-                } 
-            }
-            xhttp.open(method, url, true);
-            xhttp.setRequestHeader('Content-type', 'application/json');
-            xhttp.send(JSON.stringify(data));
-        }
-        var data = {};
         function loadLoginData(emailData) {
             loadData('GET', '/20cob290-part2-team11/login/selectLoginData.php', {}, function(json){
                 data = JSON.parse(json);
@@ -132,21 +123,37 @@
 
         }
         loadLoginData("dummy2@gmail.com");
+
+
         
         function runLogin() {
             var username = document.querySelector("#username");
+            var password = document.querySelector("#password");
+
             console.log(username.value);
-            if(username.value == "operator@gmail.com" || username.value == "o") {
-                window.location = "./operator/pages/logCall.html";
-            } else if (username.value == "specialist@gmail.com" || username.value == "s") {
-                window.location = "./specialist/pages/activeProblems.html";
-            } else if (username.value == "hr@gmail.com" || username.value == "h") {
-                window.location = "./hr/pages/editPersonnel.html";
-            } else if (username.value == "analyst@gmail.com" || username.value == "a") {
-                window.location = "./analyst/pages/getData.html";
+
+            if(testing) {
+                if(username.value == "operator@gmail.com" || username.value == "o") {
+                    window.location = "./operator/pages/logCall.html";
+                } else if (username.value == "specialist@gmail.com" || username.value == "s") {
+                    window.location = "./specialist/pages/activeProblems.html";
+                } else if (username.value == "hr@gmail.com" || username.value == "h") {
+                    window.location = "./hr/pages/editPersonnel.html";
+                } else if (username.value == "analyst@gmail.com" || username.value == "a") {
+                    window.location = "./analyst/pages/getData.html";
+                } else {
+                    console.log("no");
+                }
             } else {
-                console.log("no");
+                checkCredentials({ username, password });
             }
+        }
+
+        function checkCredentials(credentials) {
+            const payload = { 'username': credentials.username, 'password': credentials.password };
+            loadData('POST', './login/sql_check_login.php', payload, function(json) {
+                console.log(json);
+            })
         }
 
         window.addEventListener("keyup", function(event) {
