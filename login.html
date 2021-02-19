@@ -136,9 +136,13 @@
             loadData('POST', './login/sql_check_login.php', payload, function(json) {
                 console.log(json);
                 data = JSON.parse(json);
-                loadLoginData(data.email);
-                directToPage(data.jobTitle);
-                alert("Data done");
+                if(data != false) {
+                    loadLoginData(data.email);
+                    directToPage(data.jobTitle);
+                    alert("Data done");
+                } else {
+                    alert("Permission Denied");
+                }
             })
         }
 
@@ -157,7 +161,7 @@
                     window.location = "./hr/pages/editPersonnel.html";
                     break;
                 default: 
-                    alert('permission denied');
+                    alert('Bye bye');
                     break;
             }
         }
