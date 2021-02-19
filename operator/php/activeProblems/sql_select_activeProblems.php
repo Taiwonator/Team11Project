@@ -26,8 +26,8 @@ try {
                             INNER JOIN CallProblem ON Call.ID=CallProblem.CallID
                             WHERE CallProblem.ProblemNumber = $num";
 
-    foreach ($db->query($select_operator_sql) as $row) {
-      print_r($row);
+    foreach ($db->query($select_operator_sql) as $row2) {
+      print_r($row2);
   }
 
     array_push($output, $row);
