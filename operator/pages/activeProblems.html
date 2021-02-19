@@ -299,8 +299,8 @@
     
             function loadActiveSolutions() {
                 loadData('GET', '../php/activeProblems/sql_select_activeProblems.php', {}, function(json){
+                    console.log(json);
                     data.activeProblems = JSON.parse(json);
-                    console.log(data);
     
                     activeProblemsTable.innerHTML = `<tr> 
                                                           <th>Problem No.</th>
