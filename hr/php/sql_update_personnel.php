@@ -34,15 +34,11 @@ try {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $count = $db->query($select_sql)->fetchColumn(); 
-  print_r('result');
   if(empty($count)) {
-    print_r("Empty");
-  } else {
-    print_r($count);
-  }
+    $db->prepare($login_SQL)->execute($login_data);
+  } 
 
-  // $db->prepare($login_SQL)->execute($login_data);
-  // $db->prepare($sql)->execute($data);
+  $db->prepare($sql)->execute($data);
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
