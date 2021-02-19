@@ -499,7 +499,7 @@ function retreiveInputs() {
         callerName: "", 
         extension: "",
         problems: [], 
-        operatorID: "2"
+        operatorID: sessionStorage.getItem("id")
     };
     for(var i = 0; i < inputFields.length; i++) {
         readCallInput(obj, inputFields[i]);
