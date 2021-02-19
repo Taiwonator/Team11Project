@@ -29,13 +29,13 @@ $personnel_sql = "UPDATE $table
                   BranchID = :branchID 
                   WHERE Personnel.ID = :oldID";
 
-$personnel_ID_data = [ "oldID" => $oldID, "name" => $name, "ext" => $ext ];
+$personnel_ID_data = [ "ID" => $ID, "name" => $name, "ext" => $ext ];
 $personnel_ID_sql = "UPDATE Personnel_ID 
-                     SET Name = :ID, 
+                     SET Name = :Name, 
                      Ext = :ext, 
-                     WHERE Personnel_ID.ID = :oldID";
+                     WHERE Personnel_ID.ID = :ID";
   
-print_r($data);
+print_r($personnel_ID_data);
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
