@@ -111,7 +111,7 @@
                     </div>  
                 </div> 
                         
-                <button id="confirm-button" class="big-button confirm-edit">Confirm</button>
+                <button onclick="confirmEdit()" id="confirm-button" class="big-button confirm-edit">Confirm</button>
             </div>
 
     </div>
@@ -347,7 +347,7 @@
         function confirmDelete(id) {
             var confirmed = confirm("Are you sure?");
             if(confirmed == true) {
-                deletPersonnel(id);
+                deletePersonnel(id);
             }
         }
 
@@ -357,6 +357,10 @@
                 console.log(json);
                 refreshPage();
             })
+        }
+
+        function confirmEdit() {
+            alert("Edit button clicked");
         }
 
         // function getInputValuesAsObj() {
