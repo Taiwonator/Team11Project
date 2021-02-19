@@ -103,6 +103,7 @@
 
         function updateStatus(status) {
             if(sessionStorage) {
+                console.log(sessionStorage.getItem("id"));
                 const payload = { "status": status.status, "inWork": status.inWork, "nextInWork": status.nextInWork, "id": sessionStorage.getItem("id") };
                 loadData('POST', '../php/status/sql_update_specialistStatus.php', payload, function(json) {
                     console.log(json);
