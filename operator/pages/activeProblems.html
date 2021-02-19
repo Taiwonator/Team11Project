@@ -298,7 +298,7 @@
             }
     
             function loadActiveSolutions() {
-                loadData('GET', '../php/activeProblems/sql_select_activeProblems.php', {}, function(json){
+                loadData('POST', '../php/activeProblems/sql_select_activeProblems.php', { 'id': sessionStorage.getItem("id") }, function(json){
                     console.log(json);
                     data.activeProblems = JSON.parse(json);
     
