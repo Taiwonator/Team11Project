@@ -18,6 +18,7 @@ try {
     "inPerson"=>$row['InPerson'], "specialistID"=>$row['ID'], "externalSpecialistID"=>$row['ExternalID'], "dateSolved"=>$row['DateSolved'], "timeSolved"=>$row['TimeSolved'], 
     "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
   
+    // Retreives problems which the operator assigned
     $num = $row['problemNumber'];
     $select_operator_sql = "SELECT `Call`.CallID 
                             FROM CallProblem 
@@ -33,7 +34,6 @@ try {
       }
     }
 
-    // array_push($output, $row);
   }
   echo json_encode($output);
 } catch (PDOException $e) {
