@@ -387,8 +387,11 @@
         }
 
         function insertPersonnel(personnel) {
-            console.log(`inserted personnel ${personnel.id}`);
-            alert();
+            const payload = { 'id': personnel.id, 'name': personnel.name, 'jobTitle': personnel.jobTitle, 'dept': personnel.dept, 'branchID': personnel.branchID, 'ext': personnel.ext, 'email': personnel.email };
+            loadData('POST', '../php/sql_insert_personnel.php', payload, function(json) {
+                console.log(json);
+                refreshPage();
+            })        
         }
 
         function getInputValuesAsObj() {
@@ -398,6 +401,7 @@
                 ext: editExt.value, 
                 jobTitle: editJobTitle.value, 
                 dept: editDept.value,
+                branchID: editBranchID,
                 email: editEmail.value
             })
         }
