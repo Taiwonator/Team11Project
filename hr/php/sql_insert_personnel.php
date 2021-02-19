@@ -13,23 +13,24 @@ $jobTitle = $_POST['jobTitle'];
 $dept = $_POST['dept'];
 $email = $_POST['email'];
 
-$login_data = [ "email" => $email "password" => 'no password' ];
-$login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
-
-// $personnel_data = [ "id" => $id, "name" => $name, "ext" => $ext, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email ];
-// $personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :ext, :jobTitle, :dept, :email)";
-
-// $personnel_ID_data = [ "ext" => $ext, "id" => $id ];
-// $personnel_ID_SQL = "INSERT INTO Personnel_ID (Ext, ID) VALUES (:ext, :id)";
-
+$login_data = [ "email" => $email, "password" => 'no password' ];
 print_r($login_data);
+$login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
+print_r($login_SQL);
+
+$personnel_data = [ "id" => $id, "name" => $name, "ext" => $ext, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email ];
+$personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :ext, :jobTitle, :dept, :email)";
+
+$personnel_ID_data = [ "ext" => $ext, "id" => $id ];
+$personnel_ID_SQL = "INSERT INTO Personnel_ID (Ext, ID) VALUES (:ext, :id)";
+
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $db->prepare($login_SQL)->execute($login_data);
-  // $db->prepare($personnel_SQL)->execute($personnel_data);
-  // $db->prepare($personnel_ID_SQL)->execute($personnel_ID_data);
+  $db->prepare($personnel_SQL)->execute($personnel_data);
+  $db->prepare($personnel_ID_SQL)->execute($personnel_ID_data);
 
   $output = array();
   foreach($db->query("SELECT * FROM $table") as $row) {
