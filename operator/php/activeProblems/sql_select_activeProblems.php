@@ -19,15 +19,14 @@ try {
     "solveMethod"=>$row['SolveMethod'], "notes"=>$row['SolveNotes'], "priority"=>$row['Priority']);
   
     $num = $row['problemNumber'];
-    print_r($num);
     $select_operator_sql = "SELECT Call.ID 
                             FROM `Call` 
                             INNER JOIN CallProblem ON Call.ID=CallProblem.CallID
                             WHERE CallProblem.ProblemNumber = $num";
 
-    // foreach ($db->query($select_operator_sql) as $row2) {
-    //   // print_r($row2);
-    // }
+    foreach ($db->query($select_operator_sql) as $row2) {
+      print_r($row2);
+    }
 
     // array_push($output, $row);
   }
