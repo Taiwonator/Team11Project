@@ -22,15 +22,17 @@ try {
     }
   }
   
-  print_r("first part done");
   if($flag) {
     $select_sql = "SELECT Personnel.ID, Personnel.JobTitle, Personnel.Dept, Personnel.Email, Personnel.BranchID, Personnel_ID.Name 
                    FROM Personnel 
                    INNER JOIN Personnel_ID ON Personnel_ID.ID=Personnel.ID
                    WHERE Personnel.Email='$userEmail'";
-    $data = $db->query($select_sql)->fetchColumn();
-    print_r("second part done");
-    echo json_encode($data);
+    
+    foreach ($db->query($select_sql) as $row) {
+        $row = array("id"=>$row['ID'], "name"=>$row['Name'], "jobTitle"=>$row['JobTitle'], "dept"=>$row['Dept'], "email"=>$row['Email'], "branchID"=>$row['BranchID']);
+        echo json_encode($row);
+    }
+
   } else {
     echo json_encode(false);
   }
