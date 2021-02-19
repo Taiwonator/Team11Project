@@ -14,12 +14,10 @@ $dept = $_POST['dept'];
 $email = $_POST['email'];
 
 $login_data = [ "email" => $email, "password" => 'no password' ];
-print_r($login_data);
 $login_SQL = "INSERT INTO `Log-in` (Email, Password) VALUES (:email, :password)";
-print_r($login_SQL);
 
 $personnel_data = [ "id" => $id, "name" => $name, "ext" => $ext, "jobTitle" => $jobTitle, "dept" => $dept, "email" => $email ];
-$personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :ext, :jobTitle, :dept, :email)";
+$personnel_SQL = "INSERT INTO $table (ID, JobTitle, Dept, Email, BranchID) VALUES (:id, :name, :dept, :email, :branchID)";
 
 $personnel_ID_data = [ "ext" => $ext, "id" => $id ];
 $personnel_ID_SQL = "INSERT INTO Personnel_ID (Ext, ID) VALUES (:ext, :id)";
