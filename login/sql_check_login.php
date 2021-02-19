@@ -33,7 +33,7 @@ try {
     $data  $db->query($select_sql)->fetchColumn();
     echo json_encode($data);
   } else {
-    echo json_encode(false)
+    echo json_encode(false);
   }
 } catch (PDOException $e) {
     print "Error!: " . $e->getMessage() . "<br/>";
