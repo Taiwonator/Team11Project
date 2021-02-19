@@ -25,7 +25,7 @@ try {
                             WHERE CallProblem.ProblemNumber = $num";
 
     foreach ($db->query($select_operator_sql) as $row2) {
-      print_r($row2);
+      print_r($row2[0]);
     }
 
     // array_push($output, $row);
