@@ -25,9 +25,8 @@ try {
                             WHERE CallProblem.ProblemNumber = $num";
 
     foreach ($db->query($select_operator_sql) as $row2) {
-      print_r($row2);
       $callID = $row2['CallID'];
-      foreach ($db->query("SELECT ID FROM Call WHERE CallID = $callID") as $row3) {
+      foreach ($db->query("SELECT ID FROM `Call` WHERE CallID = $callID") as $row3) {
           print_r($row3);
           if($row3['ID'] == $operatorID) {
             array_push($output, $row);
