@@ -19,7 +19,7 @@ fputcsv($output, array( 'ProblemNumber', 'Status', 'Branch ID', 'In Person', 'Pr
 
 // fetch the data
 
-$mysqli = new mysqli("localhost","my_user","my_password","my_db");
+$mysqli = new mysqli("localhost",$user,$password,$database);
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
