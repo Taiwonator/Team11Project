@@ -205,20 +205,22 @@
         }
 
         function loadPendingSolutions() {
-            loadData('GET', '../php/specialistReports/sql_select_pendingProblems.php', {}, function(json){
-                data.pendingProblems = JSON.parse(json);
-                console.log(data);
+            if(sessionStorage) {
+                loadData('POST', '../php/specialistReports/sql_select_pendingProblems.php', { 'id': sessionStorage.getItem("id") }, function(json){
+                    data.pendingProblems = JSON.parse(json);
+                    console.log(data);
 
-                specialistReportsTable.innerHTML = `<tr> 
-                                                      <th>Problem No.</th>
-                                                      <th>Problem Description</th>
-                                                      <th>Solve Method</th>
-                                                      <th>Notes</th>
-                                                      <th>Actions</th>
-                                                    </tr>
-                                                    ${generatePendingSolutionsTable(json)}`;
+                    specialistReportsTable.innerHTML = `<tr> 
+                                                        <th>Problem No.</th>
+                                                        <th>Problem Description</th>
+                                                        <th>Solve Method</th>
+                                                        <th>Notes</th>
+                                                        <th>Actions</th>
+                                                        </tr>
+                                                        ${generatePendingSolutionsTable(json)}`;
 
-            })
+                })
+            }
         }
 
         function refreshPage() {
