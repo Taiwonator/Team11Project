@@ -17,7 +17,7 @@ $output = fopen('php://output', 'w');
 // output the column headings
 fputcsv($output, array( 'ProblemNumber', 'Status', 'Branch ID', 'In Person', 'Priority', 'Problem Description', 'OS',
                       'Software Name', 'Serial Number', 'Date Solved', 'Time Solved', 'Solve Method', 'Solve Notes',
-                      'Problem Type', 'ID', 'External ID')
+                      'Problem Type', 'ID', 'External ID'));
 
 // fetch the data
 
@@ -27,7 +27,9 @@ mysql_select_db($database) or die (mysql_error());
 $rows = mysql_query('SELECT * FROM Problem');
 
 // loop over the rows, outputting them
-while ($row = mysql_fetch_assoc($rows)) fputcsv($output, $row);
+while ($row = mysql_fetch_assoc($rows)) {
+  fputcsv($output, $row);
+}
 
 
 ?>
