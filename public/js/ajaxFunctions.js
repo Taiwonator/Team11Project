@@ -2,6 +2,12 @@ window.onload = function() {
     
 }
 
+function logout() {
+    if(sessionStorage) {
+        sessionStorage.clear()
+    }
+}
+
 var data = {};
 
 var allProblemsArray = [];
