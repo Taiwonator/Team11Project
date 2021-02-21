@@ -4,6 +4,7 @@
 $database = "helpdesk_database";
 $user = 'pma';
 $password = "webproject@Team11";
+$table = 'Problem';
 
 
 header('Content type: text/csv; charset=utf-8');
@@ -20,12 +21,10 @@ fputcsv($output, array( 'ProblemNumber', 'Status', 'Branch ID', 'In Person', 'Pr
 
 mysqli_connect('localhost', $user , $password);
 mysqli_select_db($database);
-$rows = mysqli_query('SELECT * FROM Problem');
+$rows = mysqli_query('SELECT * FROM $table');
 
 // loop over the rows, outputting them
-foreach (mysqli_fetch_assoc($rows) as $row) {
-    fputcsv($output, $row);
-}
+while ($row = mysqli_fetch_assoc($rows)) fputcsv($output, $row);
 
 
 ?>
