@@ -5,7 +5,7 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 
 
-echo("File running");
+echo("File running1");
 
 // output headers so that the file is downloaded rather than displayed
 header('Content-Type: text/csv; charset=utf-8');
