@@ -23,7 +23,9 @@ mysqli_select_db($database);
 $rows = mysqli_query('SELECT * FROM Problem');
 
 // loop over the rows, outputting them
-while ($row = mysqli_fetch_assoc($rows)) fputcsv($output, $row);
+foreach (mysqli_fetch_assoc($rows) as $row) {
+    fputcsv($output, $row);
+}
 
 
 ?>
