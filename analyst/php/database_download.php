@@ -19,12 +19,22 @@ fputcsv($output, array( 'ProblemNumber', 'Status', 'Branch ID', 'In Person', 'Pr
 
 // fetch the data
 
-mysqli_connect('localhost', $user , $password);
-mysqli_select_db($database);
-$rows = mysqli_query('SELECT * FROM $table');
+$mysqli = new mysqli("localhost","my_user","my_password","my_db");
+
+if ($mysqli -> connect_errno) {
+  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+  exit();
+}
+
+$sql = "SELECT * FROM Problem";
+$result = $mysqli -> query($sql);
 
 // loop over the rows, outputting them
-while ($row = mysqli_fetch_assoc($rows)) fputcsv($output, $row);
+while ($row = $result -> fetch_assoc()) fputcsv($output, $row);
 
+// Free result set
+$result -> free_result();
+
+$mysqli -> close();
 
 ?>
