@@ -2,7 +2,8 @@
 
 
 $database = "helpdesk_database";
-
+$user = 'pma';
+$password = "webproject@Team11";
 
 
 echo("File running");
