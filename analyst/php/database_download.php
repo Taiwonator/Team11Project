@@ -6,7 +6,7 @@ $database = "helpdesk_database";
 
 
 
-
+echo("File running");
 
 // output headers so that the file is downloaded rather than displayed
 header('Content-Type: text/csv; charset=utf-8');
@@ -28,5 +28,5 @@ $rows = mysql_query('SELECT * FROM Problem');
 // loop over the rows, outputting them
 while ($row = mysql_fetch_assoc($rows)) fputcsv($output, $row);
 
-echo("File running");
+
 ?>
