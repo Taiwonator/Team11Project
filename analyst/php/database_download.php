@@ -5,7 +5,6 @@ $password = "webproject@Team11";
 $database = "helpdesk_database";
 
 
-
 echo("File running");
 
 // output headers so that the file is downloaded rather than displayed
@@ -21,7 +20,7 @@ fputcsv($output, array('Column 1', 'Column 2', 'Column 3'));
 // fetch the data
 
 
-mysql_connect('localhost', $user , $password);
+mysql_connect("mysql:host=localhost;dbname=$database", $user , $password);
 mysql_select_db($database);
 $rows = mysql_query('SELECT * FROM Problem');
 
