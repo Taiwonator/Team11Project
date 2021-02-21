@@ -136,9 +136,14 @@
             loadData('POST', './login/sql_check_login.php', payload, function(json) {
                 data = JSON.parse(json);
                 if(data != false) {
-                    loadLoginData(data.email);
+                    // loadLoginData(data.email);
                     if(sessionStorage) {
                         sessionStorage.setItem("name", data.name);
+                        sessionStorage.setItem("id", data.id);
+                        sessionStorage.setItem("jobTitle", data.jobTitle);
+                        sessionStorage.setItem("department", data.dept);
+                        sessionStorage.setItem("email", data.email);
+                        sessionStorage.setItem("branchID", data.branchID);
                     }
                     directToPage(data.jobTitle);
                 } else {
