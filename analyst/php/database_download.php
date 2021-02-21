@@ -22,8 +22,8 @@ fputcsv($output, array( 'ProblemNumber', 'Status', 'Branch ID', 'In Person', 'Pr
 // fetch the data
 
 
-mysql_connect("mysql:host=localhost;dbname=$database", $user , $password);
-mysql_select_db($database);
+mysql_connect('localhost', $user , $password) or die (mysql_error());
+mysql_select_db($database) or die (mysql_error());
 $rows = mysql_query('SELECT * FROM Problem');
 
 // loop over the rows, outputting them
