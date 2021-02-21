@@ -6,8 +6,6 @@ $user = 'pma';
 $password = "webproject@Team11";
 
 
-echo("File running");
-
 header('Content type: text/csv; charset=utf-8');
 header('Content-Disposition: attachment; filename=data.csv');
 
