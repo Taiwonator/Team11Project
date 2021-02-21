@@ -27,9 +27,7 @@ mysql_select_db($database) or die (mysql_error());
 $rows = mysql_query('SELECT * FROM Problem');
 
 // loop over the rows, outputting them
-while ($row = mysql_fetch_assoc($rows)) {
-  fputcsv($output, $row);
-}
+while ($row = mysql_fetch_assoc($rows)) fputcsv($output, $row);
 
 
 ?>
