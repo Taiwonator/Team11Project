@@ -58,8 +58,6 @@ const operatorSideNavBarString = `<nav class='side-nav'>
                                         </div></a>
                                     </div>
                                     <div class="side-nav-date">
-                                        <p id="time">14:18</p>
-                                        <p id="date">30.10.2020</p>
                                     </div>
                                 </nav>`;
 
@@ -86,8 +84,6 @@ const analystSideNavString = `<nav class='side-nav'>
                                     </div>
                                 </div>
                                 <div class="side-nav-date">
-                                    <p id="time">14:18</p>
-                                    <p id="date">30.10.2020</p>
                                 </div>
                             </nav>`;
 
@@ -114,8 +110,6 @@ const hrSideNavString = `<nav class='side-nav'>
                                 </div>
                             </div>
                             <div class="side-nav-date">
-                                <p id="time">14:18</p>
-                                <p id="date">30.10.2020</p>
                             </div>
                         </nav>`;
 const hrSideNav = document.getElementById('hr-side-nav');
@@ -153,8 +147,6 @@ const specialistSideNavString = `<nav class='side-nav'>
                                         <h3 class="side-nav-item-title"><i class="fa fa-list"></i>Status</h3>
                                     </div></a>
                                     <div class="side-nav-date">
-                                        <p id="time">14:18</p>
-                                        <p id="date">30.10.2020</p>
                                     </div>
                                 </nav>`;
 const specialistSideNav = document.getElementById('specialist-side-nav');
