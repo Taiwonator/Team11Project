@@ -195,7 +195,7 @@ function addTab() {
 
                                     <div id="specialists-${problemCount}" class="specialists">
                                         <div class="search-element-bar">
-                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)"> 
+                                            <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 3)"> 
                                             <button><i class="fa fa-search"></i></button>
                                         </div>
                                         <table class="search-element-table problem-input-field" data-table-name="specialistTable" id="specialist-table-problem${problemCount}">
