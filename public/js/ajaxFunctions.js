@@ -83,8 +83,8 @@ function loadStandardSolutions() {
         var table = getTable('standardSolutionsTable');
         table.innerHTML = ` <tr>
                                     <th>Solution Name</th>
-                                    <th>Problem Type</th>
                                     <th>Description</th>
+                                    <th>Problem Type</th>
                                 </tr>
                                 ${problemInputStrings['standardSolutions']}`;
         addSelectableRows();
