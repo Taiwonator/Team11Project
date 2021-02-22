@@ -146,7 +146,7 @@ function addTab() {
                             <div class="search-element night">
                                 <h3 class="element-title">Standard Solutions</h3>
                                 <div class="search-element-bar">
-                                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 1)">
+                                    <input type="text" placeholder="Enter Problem Type" onkeyup="searchTable(event, 2)">
                                     <button><i class="fa fa-search"></i></button>
                                 </div>
                                 <div class="search-element-table-wrapper">
@@ -154,8 +154,8 @@ function addTab() {
                                     <table class="search-element-table" data-table-name="standardSolutionsTable">
                                         <tr>
                                             <th>Solution Name</th>
-                                            <th>Problem Type</th>
                                             <th>Description</th>
+                                            <th>Problem Type</th>
                                         </tr>
                                         ${(problemInputStrings['standardSolutions'] != undefined) ? problemInputStrings['standardSolutions'] : ''}
                                     </table>
