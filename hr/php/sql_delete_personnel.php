@@ -4,7 +4,7 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
-$table = "Personnel";
+$table = "Log-in";
 
 $id = $_POST["id"];
 $data = [ "id" => $id ];
