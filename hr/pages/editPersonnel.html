@@ -362,8 +362,8 @@
 
         function getEmail(id) {
             for(var i = 0; i < data.personnel.length; i++) {
-                if(data.personnel.id == id) {
-                    return personnel.email;
+                if(data.personnel[i].id == id) {
+                    return data.personnel[i].email;
                 }
             }
         }
@@ -371,8 +371,10 @@
         function deletePersonnel(id) {
             const email = getEmail(id);
             const payload = { 'email': email };
-            
+            console.log(payload);
+
             loadData('POST', '../php/sql_delete_personnel.php', payload, function(json) {
+                console.log("Delete finished");
                 console.log(json);
                 refreshPage();
             })
