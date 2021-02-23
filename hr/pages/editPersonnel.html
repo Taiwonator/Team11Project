@@ -360,8 +360,18 @@
             }
         }
 
+        function getEmail(id) {
+            for(var i = 0; i < data.personnel.length; i++) {
+                if(data.personnel.id == id) {
+                    return personnel.email;
+                }
+            }
+        }
+
         function deletePersonnel(id) {
-            const payload = { 'id': id };
+            const email = getEmail(id);
+            const payload = { 'email': email };
+            
             loadData('POST', '../php/sql_delete_personnel.php', payload, function(json) {
                 console.log(json);
                 refreshPage();

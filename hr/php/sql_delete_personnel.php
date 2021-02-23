@@ -4,11 +4,11 @@ $_POST = json_decode(file_get_contents('php://input'), true);
 $user = "pma";
 $password = "webproject@Team11";
 $database = "helpdesk_database";
-$table = "Personnel";
+$table = "Log-in";
 
-$id = $_POST["id"];
-$data = [ "id" => $id ];
-$sql = "DELETE FROM $table WHERE Personnel.ID = :id";
+$email = $_POST["email"];
+$data = [ "email" => $email ];
+$sql = "DELETE FROM $table WHERE Email = :email";
 
 try {
   $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
